@@ -79,7 +79,7 @@ development.
 * Weekly schedule
 
 The course meets *once per week* on *Fridays, 5:00–8:00 PM (Pacific
-Standard Time)* for *16 weeks*, beginning *January 26*. This schedule
+Standard Time)* for *16 weeks*, beginning *January 30*. This schedule
 reflects actual course delivery, with a narrower and more realistic
 scope emphasizing foundational data structures, STL usage, and program
 organization.
