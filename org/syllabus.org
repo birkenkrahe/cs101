@@ -1,0 +1,120 @@
+#+title: Data structures with C++
+#+author: Marcus Birkenkrahe
+#+startup: overview hideblocks indent
+#+subtitle: CS 101
+#+attr_html: :width 400px:
+[[../img/cover.png]]
+* General Course Information
+
+- Course title: Introduction to Programming II (with C++)
+- Course number and section: CS 101
+- Meeting Times: Friday, 17:00-20:00 hrs Pacific Standard Time
+- Meeting place: Zoom room
+- Professor: Marcus Birkenkrahe, PhD
+- Phone: (501) 422-4725
+- Office hours: By appointment
+- Textbooks (optional/recommended): Gaddis, Starting out with C++
+  Control Structures (10th ed., Pearson 2021).
+
+* Objectives
+
+This course on *CS 101 – Introduction to Programming II* is the second
+semester of the introductory programming sequence and builds directly
+on CS 100. While CS 100 introduces programming fundamentals and
+computational problem-solving techniques using a high-level language,
+this course shifts the emphasis from *control* to *data*.
+
+Students learn how programs organize, manage, and reason about data
+using abstraction. Core topics include abstract data types (ADTs),
+fundamental data structures, encapsulation, and informal reasoning
+about performance. The course emphasizes conceptual understanding,
+practical use of library components, and disciplined program design,
+preparing students for later study in data structures, algorithms, and
+systems.
+
+* Target audience
+
+This course is intended for students who have completed CS 100 or an
+equivalent introductory programming course. It is appropriate both for
+students continuing in computer science or related fields and for
+students with prior programming experience who are ready to engage
+with data-centric problem solving and abstraction.
+
+Students with substantial prior programming background may enter this
+course directly with departmental approval.
+
+* Student Learning Outcomes
+
+Students who complete this course will be able to:
+- Apply computational problem-solving techniques to data-oriented
+  problems.
+- Explain and use abstract data types (ADTs) to structure programs.
+- Use and reason about classic data structures such as arrays, lists,
+  stacks, queues, and associative containers.
+- Describe and apply recursion in problem solving.
+- Use introductory tree-based structures at a conceptual level.
+- Organize programs using encapsulation and basic object-oriented
+  principles.
+- Compare alternative solutions using informal notions of complexity
+  and performance trade-offs.
+- Describe classic searching and sorting algorithms at a conceptual
+  level.
+- Read, adapt, and reuse library components and existing code.
+- Enter a formal data structures course with greater programming
+  maturity and conceptual clarity.
+
+* Course requirements
+
+Formal prerequisites: CS 100 – Introduction to Programming, or
+equivalent experience with departmental approval.
+
+Students are expected to be comfortable with basic programming
+concepts, including variables, control structures (loops and
+conditionals), functions or methods, and simple input/output.  No
+prior exposure to formal data structures or algorithm analysis is
+assumed. Success in this course requires regular practice, careful
+reasoning about data and abstraction, and incremental program
+development.
+
+* Weekly schedule
+
+The course meets *once per week* on *Fridays, 5:00–8:00 PM (Pacific
+Standard Time)* for *16 weeks*, beginning *January 26*. This schedule
+reflects actual course delivery, with a narrower and more realistic
+scope emphasizing foundational data structures, STL usage, and program
+organization.
+
+| Week | Content                                                  | Date (Fri) |
+|------+----------------------------------------------------------+------------|
+|    1 | Course overview, expectations, tooling                   | Jan 30     |
+|------+----------------------------------------------------------+------------|
+|    2 | C++ review; motivation for data structures               | Feb 6      |
+|------+----------------------------------------------------------+------------|
+|    3 | Data structures overview; arrays as a first structure    | Feb 13     |
+|------+----------------------------------------------------------+------------|
+|    4 | C-style arrays and indexed data                          | Feb 20     |
+|------+----------------------------------------------------------+------------|
+|    5 | STL ~vector~: usage and comparison with arrays             | Feb 27     |
+|------+----------------------------------------------------------+------------|
+|    6 | ~vector~ continued; informal time complexity               | Mar 6      |
+|------+----------------------------------------------------------+------------|
+|    7 | Pointers and memory basics                               | Mar 13     |
+|------+----------------------------------------------------------+------------|
+|    8 | Pointers in use; arrays, functions, and memory           | Mar 20     |
+|------+----------------------------------------------------------+------------|
+|    9 | Introduction to classes and encapsulation                | Mar 27     |
+|------+----------------------------------------------------------+------------|
+|      | NO CLASS (Good Friday)                                   | Apr 3      |
+|------+----------------------------------------------------------+------------|
+|   10 | Constructors, destructors; intro to STL containers       | Apr 10     |
+|------+----------------------------------------------------------+------------|
+|   11 | STL ~vector~ revisited; iteration and idioms               | Apr 17     |
+|------+----------------------------------------------------------+------------|
+|   12 | STL ~map~: associative containers                          | Apr 24     |
+|------+----------------------------------------------------------+------------|
+|   13 | ~map~ continued; keys, values, and use cases               | May 1      |
+|------+----------------------------------------------------------+------------|
+|   14 | Conceptual overview: lists, stacks, queues               | May 8      |
+|------+----------------------------------------------------------+------------|
+|   15 | Summary, integration, and outlook toward Data Structures | May 15     |
+|------+----------------------------------------------------------+------------|

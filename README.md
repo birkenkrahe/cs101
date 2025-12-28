@@ -33,5 +33,5 @@
 
 # History
 
--   First offered @Lyon: Spring 2026
+-   First offered @Catholic Polytechnic University: Spring 2026
 
