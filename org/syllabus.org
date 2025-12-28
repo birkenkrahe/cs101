@@ -118,3 +118,81 @@ organization.
 |------+----------------------------------------------------------+------------|
 |   15 | Summary, integration, and outlook toward Data Structures | May 15     |
 |------+----------------------------------------------------------+------------|
+
+* Grading system
+
+You should be able to see your current grade at any time using the
+Canvas gradebook for the course.
+
+| WHEN   | DESCRIPTION              | IMPACT |
+|--------+--------------------------+--------|
+| Weekly | Programming assignments  |    25% |
+| Weekly | Participation & Practice |    25% |
+| Weekly | Multiple choice tests    |    25% |
+| TBD    | Final exam (optional)    |    25% |
+
+Notes:
+- *To pass:* 60% of all available points.
+- *Tests:* weekly online quizzes based on classroom lectures and
+  practice.
+- *Final exam:* random selection of the known test questions. *Note:* You
+  only have to write the final exam if you want to improve your grade
+  at the end of the course. If the final exam result is below your
+  final grade average up to this point, it will be ignored.
+
+* Rubric
+
+| Component                  | Weight | Excellent                       | Good                         | Satisfactory                | Needs Improvement          | Unsatisfactory               |
+|----------------------------+--------+---------------------------------+------------------------------+-----------------------------+----------------------------+------------------------------|
+| Participation & Attendance |     0% | Consistent, active, prepared    | Regular, engaged             | Present, minimal engagement | Infrequent, passive        | Rare or absent               |
+| Programming Assignments    |    25% | Correct, clear, well-documented | Mostly correct, minor issues | Partially correct           | Frequent errors            | Incomplete or missing        |
+| Project                    |    25% | Insightful, justified, polished | Solid analysis, minor gaps   | Adequate, superficial       | Weak analysis or execution | Incoherent or minimal effort |
+| Tests                      |    25% | Conceptual mastery              | Good understanding           | Basic understanding         | Significant gaps           | Minimal understanding        |
+| Final Exam                 |    25% | Integrative, precise reasoning  | Mostly correct               | Partial integration         | Fragmented understanding   | Little or no mastery         |
+
+* Grading table
+
+This table is used to convert completion rates into letter grades. for
+the midterm results, letter grades still carry signs, while for the
+term results, only straight letters are given (by rounding up). This
+table is also used in Canvas to compute your grades. Transitions
+between letter grades are rounded (e.g. 89.5% to 90%).
+
+|------------------+------------------|
+| Percentage       | LETTER GRADE*    |
+|------------------+------------------|
+| 100% to 89.5%    | A (very good)    |
+|------------------+------------------|
+| < 89.5% to 79.5% | B (good)         |
+|------------------+------------------|
+| < 79.5% to 69.5% | C (satisfactory) |
+|------------------+------------------|
+| < 69.5% to 59.5% | D (passed)       |
+|------------------+------------------|
+| < 59.5% to 0%    | F (FAILED)       |
+|------------------+------------------|
+
+* A note on using AI to write code for you or debug your code
+
+[[https://github.com/birkenkrahe/org/blob/master/fall25/UsingAItoCode.org][See full PDF on GitHub (Fall 2025 update).]]
+
+Summary:
+
+1. Only use AI if you don't (deeply) care about the result, if you
+   don't depend on it, and if you have ample time to waste.
+
+2. AI lies unpredictably, and worse, it makes you forget stuff you
+   already knew. It's an unreliable helper without understanding.
+
+3. There is little solid research into the human-AI interaction and
+   its benefits and dangers - because of the pace of development but
+   also because of the reigning commercial interests.
+
+4. The value of AI increases somewhat when you use it for topics and
+   on issues that you are already an expert in. Then you can
+   second-guess and monitor the results much better. It still boils
+   down to a waste of time whenever the issues are complex.
+
+I got to these insights through my own experience as a teacher of
+computer and data science, as someone who hears a lot from other
+faculty what they're experiencing, and as a coder.
