@@ -13,8 +13,15 @@
 - Professor: Marcus Birkenkrahe, PhD
 - Phone: (501) 422-4725
 - Office hours: By appointment
-- Textbooks (optional/recommended): Gaddis, Starting out with C++
-  Control Structures (10th ed., Pearson 2021).
+- Books (optional + free + online):
+  1) *Think C* by Scheffler/Downey (2019): Starts easy then gets harder
+     fast.  [[https://tinyurl.com/think-C-book][tinyurl.com/think-C-book]] (also [[https://github.com/tscheffl/Think-Like-A-ComputerScientist_C/blob/master/PDF/ThinkC_german.pdf][available in German!]])
+  2) *The Rook's Guide to C++* (2013): [[https://tinyurl.com/rooksguide-cpp][tinyurl.com/rooksguide-cpp]] - with
+     my fixes to the exercises: [[https://tinyurl.com/rooksguide-cpp-notes][tinyurl.com/rooksguide-cpp-notes]]
+  3) *Beej's Guide to C Programming (2024)*: [[https://beej.us/guide/bgc/][beej.us/guide/bgc/]] -
+     assumes that you already know another programming language.
+  4) Zed Shaw's *Learn C the Hard Way* is tough but very applied,
+     no-nonsense, exercises only: [[https://archive.org/details/learn-c-the-hard-way-x-7][archive.org]].
 
 * Objectives
 
