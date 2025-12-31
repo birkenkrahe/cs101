@@ -1,89 +1,151 @@
-#+title: Coding in an AI World – When Coding Becomes Conversation
-#+subtitle: Syllabus (Beginner-Friendly, Agentic Workflows Focus)
+#+title: Data structures with C++
 #+author: Marcus Birkenkrahe
-#+options: toc:2 num:1
-#+STARTUP: overview hideblocks indent entitiespretty:
-#+OPTIONS: toc:nil num:nil ^:nil: 
+#+startup: overview hideblocks indent
+#+subtitle: CS 101
+#+attr_html: :width 400px:
+[[../img/cover.png]]
 * General Course Information
 
-- Meeting Times: Tuesday + Thursday 14:30-15:45 hrs
-- Meeting place: Derby Science Center Room 209 (computer lab)
-- Professor: Dr. Marcus Birkenkrahe
-- Office: Derby Science Building 210
-- Phone: (870) 307-7254
-- Office Hours: Mon-Wed-Fri 1500-1550 hrs, Tue-Thu 1600-1700 hrs
-- Textbooks (optional): Mollick, "Co-Intelligence - Living and Working
-  with AI" (Penguin, 2024); Lanham, "AI Agents in Action" (Manning,
-  2025); Lelek/Skowronski, "Vibe Engineering" (Manning, 2026);
-  Kim/Yegge, "Vibe Coding"; Kneusel, "How AI Works" (NoStarch, 2025).
-  #+attr_html: :width 200px :float nil:
-  [[../img/mollick.png]]
+- Course title: Introduction to Programming II (with C++)
+- Course number and section: CS 101
+- Meeting Times: Friday, 17:00-20:00 hrs Pacific Standard Time
+- Meeting place: Zoom room
+- Professor: Marcus Birkenkrahe, PhD
+- Phone: (501) 422-4725
+- Office hours: By appointment
+- Books (optional + free + online):
+  1) *Think C* by Scheffler/Downey (2019): Starts easy then gets harder
+     fast.  [[https://tinyurl.com/think-C-book][tinyurl.com/think-C-book]] (also [[https://github.com/tscheffl/Think-Like-A-ComputerScientist_C/blob/master/PDF/ThinkC_german.pdf][available in German!]])
+  2) *The Rook's Guide to C++* (2013): [[https://tinyurl.com/rooksguide-cpp][tinyurl.com/rooksguide-cpp]] - with
+     my fixes to the exercises: [[https://tinyurl.com/rooksguide-cpp-notes][tinyurl.com/rooksguide-cpp-notes]]
+  3) *Beej's Guide to C Programming (2024)*: [[https://beej.us/guide/bgc/][beej.us/guide/bgc/]] -
+     assumes that you already know another programming language.
+  4) Zed Shaw's *Learn C the Hard Way* is tough but very applied,
+     no-nonsense, exercises only: [[https://archive.org/details/learn-c-the-hard-way-x-7][archive.org]].
 
-* Course Description
+* Objectives
 
-This course teaches beginners how to use modern AI systems as *agents*
-capable of planning, acting, automating, and collaborating. Students
-learn to transform their own real-world workflows into agentic
-automations through structured conversation, without requiring prior
-programming experience.
+This course on *CS 101 – Introduction to Programming II* is the second
+semester of the introductory programming sequence and builds directly
+on CS 100. While CS 100 introduces programming fundamentals and
+computational problem-solving techniques using a high-level language,
+this course shifts the emphasis from *control* to *data*.
 
-The course ends with a practical capstone project that automates a
-genuine workflow drawn from a student’s work or academic environment.
+Students learn how programs organize, manage, and reason about data
+using abstraction. Core topics include abstract data types (ADTs),
+fundamental data structures, encapsulation, and informal reasoning
+about performance. The course emphasizes conceptual understanding,
+practical use of library components, and disciplined program design,
+preparing students for later study in data structures, algorithms, and
+systems.
 
-* Learning Outcomes
+* Target audience
 
-Students will be able to:
-1. Describe a workflow clearly using natural language.
-2. Collaborate with an AI agent to break workflows into steps.
-3. Use conversational prompting to create simple automations or scripts.
-4. Build repeatable agentic workflows with verification and guardrails.
-5. Recognize limitations and failure modes of agentic tools.
-6. Deliver a functional workflow automation in a capstone project.
+This course is intended for students who have completed CS 100 or an
+equivalent introductory programming course. It is appropriate both for
+students continuing in computer science or related fields and for
+students with prior programming experience who are ready to engage
+with data-centric problem solving and abstraction.
 
-* Prerequisites
+Students with substantial prior programming background may enter this
+course directly with departmental approval.
 
-None. This may sound weird for a 400-level course. What it means is
-that you can come to this course with any previous knowledge (or lack
-thereof) and learn something useful, as long as you're curious and not
-resilient to learning, or hostile to AI or computers in general.
+* Student Learning Outcomes
 
-* Required Materials
+Students who complete this course will be able to:
+- Apply computational problem-solving techniques to data-oriented
+  problems.
+- Explain and use abstract data types (ADTs) to structure programs.
+- Use and reason about classic data structures such as arrays, lists,
+  stacks, queues, and associative containers.
+- Describe and apply recursion in problem solving.
+- Use introductory tree-based structures at a conceptual level.
+- Organize programs using encapsulation and basic object-oriented
+  principles.
+- Compare alternative solutions using informal notions of complexity
+  and performance trade-offs.
+- Describe classic searching and sorting algorithms at a conceptual
+  level.
+- Read, adapt, and reuse library components and existing code.
+- Enter a formal data structures course with greater programming
+  maturity and conceptual clarity.
 
-- A laptop (any OS), though browser access will suffice for viewering,
-  you may need to install apps locally on your PC.
-- Access to modern AI tools (ChatGPT or similar) - a free subscription
-  to ChatGPT Team will be provided for the duration of the course.
+* Course requirements
 
-* Course Tools
+Formal prerequisites: CS 100 – Introduction to Programming, or
+equivalent experience with departmental approval.
 
-The course uses conversational AI systems (primarily ChatGPT) as the
-agent runtime, with plain-text files (TXT, CSV, PDF) serving as state,
-memory, and verification artifacts. Agent workflows are visualized
-using Mermaid, a free text-based diagram language rendered with tools
-such as Obsidian, VS Code, or a web browser, emphasizing transferable
-reasoning skills rather than platform-specific automation tools.
+Students are expected to be comfortable with basic programming
+concepts, including variables, control structures (loops and
+conditionals), functions or methods, and simple input/output.  No
+prior exposure to formal data structures or algorithm analysis is
+assumed. Success in this course requires regular practice, careful
+reasoning about data and abstraction, and incremental program
+development.
 
-* Grading System
+* Weekly schedule
+
+The course meets *once per week* on *Fridays, 5:00–8:00 PM (Pacific
+Standard Time)* for *16 weeks*, beginning *January 30*. This schedule
+reflects actual course delivery, with a narrower and more realistic
+scope emphasizing foundational data structures, STL usage, and program
+organization.
+
+| Week | Content                                                  | Date (Fri) |
+|------+----------------------------------------------------------+------------|
+|    1 | Course overview, expectations, tooling                   | Jan 30     |
+|------+----------------------------------------------------------+------------|
+|    2 | C++ review; motivation for data structures               | Feb 6      |
+|------+----------------------------------------------------------+------------|
+|    3 | Data structures overview; arrays as a first structure    | Feb 13     |
+|------+----------------------------------------------------------+------------|
+|    4 | C-style arrays and indexed data                          | Feb 20     |
+|------+----------------------------------------------------------+------------|
+|    5 | STL ~vector~: usage and comparison with arrays             | Feb 27     |
+|------+----------------------------------------------------------+------------|
+|    6 | ~vector~ continued; informal time complexity               | Mar 6      |
+|------+----------------------------------------------------------+------------|
+|    7 | Pointers and memory basics                               | Mar 13     |
+|------+----------------------------------------------------------+------------|
+|    8 | Pointers in use; arrays, functions, and memory           | Mar 20     |
+|------+----------------------------------------------------------+------------|
+|    9 | Introduction to classes and encapsulation                | Mar 27     |
+|------+----------------------------------------------------------+------------|
+|      | NO CLASS (Good Friday)                                   | Apr 3      |
+|------+----------------------------------------------------------+------------|
+|   10 | Constructors, destructors; intro to STL containers       | Apr 10     |
+|------+----------------------------------------------------------+------------|
+|   11 | STL ~vector~ revisited; iteration and idioms               | Apr 17     |
+|------+----------------------------------------------------------+------------|
+|   12 | STL ~map~: associative containers                          | Apr 24     |
+|------+----------------------------------------------------------+------------|
+|   13 | ~map~ continued; keys, values, and use cases               | May 1      |
+|------+----------------------------------------------------------+------------|
+|   14 | Conceptual overview: lists, stacks, queues               | May 8      |
+|------+----------------------------------------------------------+------------|
+|   15 | Summary, integration, and outlook toward Data Structures | May 15     |
+|------+----------------------------------------------------------+------------|
+
+* Grading system
 
 You should be able to see your current grade at any time using the
 Canvas gradebook for the course.
 
-| WHEN    | DESCRIPTION             | IMPACT |
-|---------+-------------------------+--------|
-| Weekly  | Programming Assignments |    25% |
-| Weekly  | Multiple choice tests   |    25% |
-| Monthly | Project sprint reviews  |    25% |
-| TBD     | Final exam (optional)   |    25% |
+| WHEN   | DESCRIPTION              | IMPACT |
+|--------+--------------------------+--------|
+| Weekly | Programming assignments  |    25% |
+| Weekly | Participation & Practice |    25% |
+| Weekly | Multiple choice tests    |    25% |
+| TBD    | Final exam (optional)    |    25% |
 
 Notes:
 - *To pass:* 60% of all available points.
 - *Tests:* weekly online quizzes based on classroom lectures and
   practice.
-- *Final exam:* random selection of the known test questions in the form
-  of an oral exam. *Note:* You only have to attempt the final exam if
-  you want to improve your grade at the end of the course. If the
-  final exam result is below your final grade average up to this
-  point, it will be ignored.
+- *Final exam:* random selection of the known test questions. *Note:* You
+  only have to write the final exam if you want to improve your grade
+  at the end of the course. If the final exam result is below your
+  final grade average up to this point, it will be ignored.
 
 * Rubric
 
@@ -95,47 +157,34 @@ Notes:
 | Tests                      |    25% | Conceptual mastery              | Good understanding           | Basic understanding         | Significant gaps           | Minimal understanding        |
 | Final Exam                 |    25% | Integrative, precise reasoning  | Mostly correct               | Partial integration         | Fragmented understanding   | Little or no mastery         |
 
-* Grading Table
+* A note on using AI to write code for you or debug your code
 
-|------------------+------------------|
-| Percentage       | LETTER GRADE     |
-|------------------+------------------|
-| 100% to 89.5%    | A (very good)    |
-|------------------+------------------|
-| < 89.5% to 79.5% | B (good)         |
-|------------------+------------------|
-| < 79.5% to 69.5% | C (satisfactory) |
-|------------------+------------------|
-| < 69.5% to 59.5% | D (passed)       |
-|------------------+------------------|
-| < 59.5% to 0%    | F (FAILED)       |
-  
-* Meeting Structure (75 minutes)
+[[https://github.com/birkenkrahe/org/blob/master/fall25/UsingAItoCode.org][See full PDF on GitHub (Fall 2025 update).]]
 
-Typical session plan:
-- *Mini-lecture* (15–20 minutes): concept, demonstration, context
-- *Hands-on workshop* (45–50 minutes): guided agentic workflow building
-- *Reflection + verification* (5–10 minutes): checking reliability,
-  summarizing lessons
+Summary:
 
-* Weekly Schedule
+1. Only use AI if you don't (deeply) care about the result, if you
+   don't depend on it, and if you have ample time to waste.
 
-| Week | Theme                                    | In-class focus (beginner-first)                                                                  | Weekly deliverable (builds the capstone)                                              |
-|------+------------------------------------------+--------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------|
-|    1 | AI as collaborator, not oracle           | What AI can/can’t do; “agent” idea; failure modes; course workflow; baseline mini-task           | 1-page workflow description of a real personal task (inputs/outputs/steps)            |
-|    2 | Decomposition + prompt templates         | Turning goals into steps; constraints; checklists; reusable prompt “contracts”                   | A saved prompt template + 2 test runs + brief notes on what broke                     |
-|    3 | Agentic workflows with files (no code)   | “State” via files; read→plan→act→update loop; operating on local text/CSV/PDF uploads            | First agent: maintains a log + TODO from weekly notes (file-based)                    |
-|    4 | Verification, trust, and evaluation      | Spotting hallucinations; validation tactics; cite/quote discipline; acceptance tests for outputs | Add a verification checklist + test cases to your agent (before/after)                |
-|    5 | Agents with everyday tools (free)        | Docs/Sheets as interfaces; CSV/TSV pipelines; structured tables; exporting/importing data        | A spreadsheet-backed workflow (e.g., tracker) + agent that updates it                 |
-|    6 | Conversational coding basics (Python)    | Code as *output* of dialogue; reading code safely; minimal Python for file transforms              | A simple script generated via dialogue that transforms one dataset/file               |
-|    7 | Iteration + error recovery               | Debugging by conversation; logging; “explain then change”; versioning prompts and outputs        | v2 of your script/agent with change log + rollback plan                               |
-|    8 | Data wrangling agents                    | PDFs→tables; messy text cleanup; CSV hygiene; naming conventions; reproducible transformations   | A small data-cleaning pipeline with explicit steps + verification                     |
-|    9 | Personal productivity automations        | Planning agents; study systems; email/text drafting protocols; meeting notes → actions           | A personal automation you actually use for 1 week + usage reflection                  |
-|   10 | Research + writing agents                | Summaries, memos, outlines; source-grounded writing; structure control; avoiding fabrication     | A short memo/report produced with a constrained prompt + citations/quotes             |
-|   11 | Tool use and lightweight “APIs” (opt-in) | What APIs are; where cost/risk lives; optional OpenAI API demo; simple request/response thinking | Design doc: if using API, outline budget + safeguards; otherwise deepen tool workflow |
-|   12 | Multi-step / multi-agent pipelines       | Collect→Transform→Analyze→Report; role separation; handoffs; audits; “agent manager” pattern     | A 2-stage pipeline (two prompts/roles) with a shared state file                       |
-|   13 | Guardrails + responsible deployment      | Privacy; consent; data handling; bias; safe prompting; policy for student projects               | Capstone proposal: goal, users, data types, risks, guardrails, tests                  |
-|   14 | Capstone design studio                   | Build sprint planning; milestones; testing; documentation; demo narrative                        | Working capstone prototype + README + test checklist                                  |
-|   15 | Capstone presentations                   | Demos; peer review; reliability discussion; “next steps” roadmap                                 | Final demo + reflection (what’s reliable, what isn’t, and why)                        |
+2. AI lies unpredictably, and worse, it makes you forget stuff you
+   already knew. It's an unreliable helper without understanding.
 
+3. There is little solid research into the human-AI interaction and
+   its benefits and dangers - because of the pace of development but
+   also because of the reigning commercial interests.
 
+4. The value of AI increases somewhat when you use it for topics and
+   on issues that you are already an expert in. Then you can
+   second-guess and monitor the results much better. It still boils
+   down to a waste of time whenever the issues are complex.
+
+I got to these insights through my own experience as a teacher of
+computer and data science, as someone who hears a lot from other
+faculty what they're experiencing, and as a coder.
+
+* CPU policies
+
+For policy matters and procedures, especially concerning attendance,
+grading tables, withdrawals etc. please consult the Catholic
+Polytechnic University's [[https://drive.google.com/file/d/1Vgd1G0fp73GnZ3Y0ffCkQycfw6dW22bA/view?usp=sharing][CATALOG OF COURSES (2025-2026)]].
+     
