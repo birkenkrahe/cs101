@@ -1,7 +1,7 @@
-#+title: Data structures with C++
+#+title: Introduction to Programming II
+#+Subtitle:CS101 - Catholic Polytechnic University - Spring 2026
 #+author: Marcus Birkenkrahe
 #+startup: overview hideblocks indent
-#+subtitle: CS 101
 #+attr_html: :width 400px:
 [[../img/cover.png]]
 * General Course Information
@@ -157,31 +157,19 @@ Notes:
 | Tests                      |    25% | Conceptual mastery              | Good understanding           | Basic understanding         | Significant gaps           | Minimal understanding        |
 | Final Exam                 |    25% | Integrative, precise reasoning  | Mostly correct               | Partial integration         | Fragmented understanding   | Little or no mastery         |
 
-* A note on using AI to write code for you or debug your code
-
-[[https://github.com/birkenkrahe/org/blob/master/fall25/UsingAItoCode.org][See full PDF on GitHub (Fall 2025 update).]]
-
-Summary:
-
-1. Only use AI if you don't (deeply) care about the result, if you
-   don't depend on it, and if you have ample time to waste.
-
-2. AI lies unpredictably, and worse, it makes you forget stuff you
-   already knew. It's an unreliable helper without understanding.
-
-3. There is little solid research into the human-AI interaction and
-   its benefits and dangers - because of the pace of development but
-   also because of the reigning commercial interests.
-
-4. The value of AI increases somewhat when you use it for topics and
-   on issues that you are already an expert in. Then you can
-   second-guess and monitor the results much better. It still boils
-   down to a waste of time whenever the issues are complex.
-
-I got to these insights through my own experience as a teacher of
-computer and data science, as someone who hears a lot from other
-faculty what they're experiencing, and as a coder.
-
+* A note on using AI in this course.
+In this course, AI is treated neither as a shortcut nor as an oracle,
+but as a collaborator whose usefulness depends on how it is used. You
+are encouraged to use AI systems to explore ideas, clarify goals,
+generate drafts, and test workflows, provided you remain responsible
+for understanding, checking, and explaining the results. AI systems
+can produce convincing but incorrect output, so verification,
+reflection, and revision are essential parts of the work. The goal is
+not to avoid AI, but to learn how to use it thoughtfully,
+transparently, and critically—so that it supports your reasoning
+rather than replacing it. Successful use of AI in this course means
+you can explain what it did, why it worked (or didn’t), and how you
+would improve or correct it.
 * CPU policies
 
 For policy matters and procedures, especially concerning attendance,
