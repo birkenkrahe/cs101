@@ -147,17 +147,7 @@ Notes:
   at the end of the course. If the final exam result is below your
   final grade average up to this point, it will be ignored.
 
-* Rubric
-
-| Component                  | Weight | Excellent                       | Good                         | Satisfactory                | Needs Improvement          | Unsatisfactory               |
-|----------------------------+--------+---------------------------------+------------------------------+-----------------------------+----------------------------+------------------------------|
-| Participation & Attendance |     0% | Consistent, active, prepared    | Regular, engaged             | Present, minimal engagement | Infrequent, passive        | Rare or absent               |
-| Programming Assignments    |    25% | Correct, clear, well-documented | Mostly correct, minor issues | Partially correct           | Frequent errors            | Incomplete or missing        |
-| Project                    |    25% | Insightful, justified, polished | Solid analysis, minor gaps   | Adequate, superficial       | Weak analysis or execution | Incoherent or minimal effort |
-| Tests                      |    25% | Conceptual mastery              | Good understanding           | Basic understanding         | Significant gaps           | Minimal understanding        |
-| Final Exam                 |    25% | Integrative, precise reasoning  | Mostly correct               | Partial integration         | Fragmented understanding   | Little or no mastery         |
-
-* A note on using AI in this course.
+* How to use AI
 In this course, AI is treated neither as a shortcut nor as an oracle,
 but as a collaborator whose usefulness depends on how it is used. You
 are encouraged to use AI systems to explore ideas, clarify goals,
@@ -170,6 +160,16 @@ transparently, and critically—so that it supports your reasoning
 rather than replacing it. Successful use of AI in this course means
 you can explain what it did, why it worked (or didn’t), and how you
 would improve or correct it.
+* Rubric
+
+| Component                  | Weight | Excellent                       | Good                         | Satisfactory                | Needs Improvement          | Unsatisfactory               |
+|----------------------------+--------+---------------------------------+------------------------------+-----------------------------+----------------------------+------------------------------|
+| Participation & Attendance |     0% | Consistent, active, prepared    | Regular, engaged             | Present, minimal engagement | Infrequent, passive        | Rare or absent               |
+| Programming Assignments    |    25% | Correct, clear, well-documented | Mostly correct, minor issues | Partially correct           | Frequent errors            | Incomplete or missing        |
+| Project                    |    25% | Insightful, justified, polished | Solid analysis, minor gaps   | Adequate, superficial       | Weak analysis or execution | Incoherent or minimal effort |
+| Tests                      |    25% | Conceptual mastery              | Good understanding           | Basic understanding         | Significant gaps           | Minimal understanding        |
+| Final Exam                 |    25% | Integrative, precise reasoning  | Mostly correct               | Partial integration         | Fragmented understanding   | Little or no mastery         |
+
 * CPU policies
 
 For policy matters and procedures, especially concerning attendance,
