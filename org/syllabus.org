@@ -9,10 +9,11 @@
 - Course title: Introduction to Programming II (with C++)
 - Course number and section: CS 101
 - Meeting Times: Friday, 17:00-20:00 hrs Pacific Standard Time
-- Meeting place: Zoom room
+- Meeting place: Microsoft Team room (TBC)
 - Professor: Marcus Birkenkrahe, PhD
 - Phone: (501) 422-4725
-- Office hours: By appointment
+- Office hours: By appointment (email:
+  mbirkenkrahe@catholicpolytechnic.org)
 - Books (optional + free + online):
   1) *Think C* by Scheffler/Downey (2019): Starts easy then gets harder
      fast.  [[https://tinyurl.com/think-C-book][tinyurl.com/think-C-book]] (also [[https://github.com/tscheffl/Think-Like-A-ComputerScientist_C/blob/master/PDF/ThinkC_german.pdf][available in German!]])
