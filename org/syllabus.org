@@ -165,9 +165,8 @@ would improve or correct it.
 
 | Component                  | Weight | Excellent                       | Good                         | Satisfactory                | Needs Improvement          | Unsatisfactory               |
 |----------------------------+--------+---------------------------------+------------------------------+-----------------------------+----------------------------+------------------------------|
-| Participation & Attendance |     0% | Consistent, active, prepared    | Regular, engaged             | Present, minimal engagement | Infrequent, passive        | Rare or absent               |
+| Participation & Attendance |    25% | Consistent, active, prepared    | Regular, engaged             | Present, minimal engagement | Infrequent, passive        | Rare or absent               |
 | Programming Assignments    |    25% | Correct, clear, well-documented | Mostly correct, minor issues | Partially correct           | Frequent errors            | Incomplete or missing        |
-| Project                    |    25% | Insightful, justified, polished | Solid analysis, minor gaps   | Adequate, superficial       | Weak analysis or execution | Incoherent or minimal effort |
 | Tests                      |    25% | Conceptual mastery              | Good understanding           | Basic understanding         | Significant gaps           | Minimal understanding        |
 | Final Exam                 |    25% | Integrative, precise reasoning  | Mostly correct               | Partial integration         | Fragmented understanding   | Little or no mastery         |
 
