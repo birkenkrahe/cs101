@@ -12,35 +12,12 @@
 * Opening and Closing Prayers
 
 ** Opening Prayer
-
-✝ In the name of the Father, and of the Son, and of the Holy Spirit,
-Amen.
-
-[[../img/our_father.png]]
-
-
-[[../img/hail_mary.png]]
-
-St. Albert the Great, pray for us.
-
-St. Thomas Aquinas, pray for us.
-
-St. Isidore of Seville, pray for us.
-
-[[../img/glory_be.png]]
-
-✝ In the name of the Father, and of the Son, and of the Holy Spirit,
-Amen.
+#+attr_html: :width 400px :float nil: 
+[[../img/opening_prayers.png]]
 
 ** Closing Prayer
-
-✝ In the name of the Father, and of the Son, and of the Holy Spirit,
-Amen.
-
-[[../img/closing_prayer.png]]
-
-✝ In the name of the Father, and of the Son, and of the Holy Spirit,
-Amen.
+#+attr_html: :width 400px :float nil: 
+[[../img/closing_prayers.png]]
 
 ** Why these prayers?
 
@@ -54,13 +31,15 @@ Amen.
   scholars, the internet, computer users and encyclopedias.
 - *A student's prayer* is by St. Thomas Aquinas.
 
-
 * Week 1 - Course overview and first steps
 
-- [ ] Opening prayer
-- [ ] Lecture: Course overview (see also syllabus)
-- [ ] Discussion: Your expectations
-- [ ] Practice: Course tools (OneCompiler, Google Cloud Shell)
-- [ ] Q&A
-- [ ] Closing prayer
+- [ ] *Opening prayer* 5'
+- [ ] *Lecture:* Course overview (see also syllabus) 60' + 15'
+- [ ] *Practice*: Tooling (OneCompiler, Google Cloud Shell) 60' + 15'
+- [ ] *Dark horse tip*: Emacs + Org-mode (optional but useful).
+- [ ] *Practice*: 10 simple C++ vs. Java vs. Python programs 60'+15'
+- [ ] *Assignments*: 10 more super simple C++ sample programs.
+- [ ] *Quiz*: 30 questions based on lecture and practice content.
+- [ ] *Closing prayer* 5'
 
+ 
