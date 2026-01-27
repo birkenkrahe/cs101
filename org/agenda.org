@@ -34,6 +34,7 @@
 * Week 1 - Course overview and first steps
 
 - [ ] *Opening prayer* 5'
+- [ ] *Discussion*: Way of the course (review entry survey)
 - [ ] *Lecture:* Course overview (see also syllabus) 60' + 15'
 - [ ] *Practice*: Tooling (OneCompiler, Google Cloud Shell) 60' + 15'
 - [ ] *Dark horse tip*: Emacs + Org-mode (optional but useful).
