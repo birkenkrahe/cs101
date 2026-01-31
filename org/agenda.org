@@ -10,15 +10,15 @@
 [[../img/cover.png]]
 
 * Opening and Closing Prayers
-* Opening Prayer
+** Opening Prayer
 #+attr_html: :width 400px :float nil: 
 [[../img/opening_prayers.png]]
 
-* Closing Prayer
+** Closing Prayer
 #+attr_html: :width 400px :float nil: 
 [[../img/closing_prayers.png]]
 
-* Why these prayers?
+** Why these prayers?
 
 - *The "Our Father"*, because we learn everything through him.
 - *The "Hail Mary"*, because we need trust and humility to learn.
@@ -45,12 +45,14 @@
 - [ ] *Quiz*: MPC questions based on lecture and practice content.
 - [ ] *Closing prayer* 5'
 
-* Summary of the tool session
+** Summary of the tool session
 
 - You have to include ~<iostream>~ to print or get data.
 - In C++, data can be streamed anywhere (using ~std::cout~).
 - OneCompiler.com is useful because it offers multiple languages.
 - With Google Cloud Shell you can spin up a Linux VM fast.
 - You should always ask students to fix other students' mistakes.
+
+* Week 2 - First assignment feedback & C++ tutorial
 
  
