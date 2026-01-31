@@ -10,16 +10,15 @@
 [[../img/cover.png]]
 
 * Opening and Closing Prayers
-
-** Opening Prayer
+* Opening Prayer
 #+attr_html: :width 400px :float nil: 
 [[../img/opening_prayers.png]]
 
-** Closing Prayer
+* Closing Prayer
 #+attr_html: :width 400px :float nil: 
 [[../img/closing_prayers.png]]
 
-** Why these prayers?
+* Why these prayers?
 
 - *The "Our Father"*, because we learn everything through him.
 - *The "Hail Mary"*, because we need trust and humility to learn.
@@ -33,14 +32,25 @@
 
 * Week 1 - Course overview and first steps
 
-- [ ] *Opening prayer* 5'
-- [ ] *Discussion*: Way of the course (review entry survey)
-- [ ] *Lecture:* Course overview (see also syllabus) 60' + 15'
-- [ ] *Practice*: Tooling (OneCompiler, Google Cloud Shell) 60' + 15'
+- [X] *Opening prayer* 5'
+- [X] *Introductions*: Say a few words about yourself!
+- [X] *Discussion*: Way of the course (review entry survey) - Times?
+- [X] *Lecture:* [[file:0_overview.org][Course overview]] (see also syllabus) 75' + 15'
+- [X] *Practice*: Tooling (OneCompiler, Google Cloud Shell) 60'
 - [ ] *Dark horse tip*: Emacs + Org-mode (optional but useful).
 - [ ] *Practice*: 10 simple C++ vs. Java vs. Python programs 60'+15'
-- [ ] *Assignments*: 10 more super simple C++ sample programs.
-- [ ] *Quiz*: 30 questions based on lecture and practice content.
+- [ ] *Asynchronous:* Watch remaining Java vs. C++ demos (30')
+- [ ] *Assignment*: Finish remaining practice problems (120')
+- [ ] *Bonus assignment*: 10 more super simple C++ sample programs.
+- [ ] *Quiz*: MPC questions based on lecture and practice content.
 - [ ] *Closing prayer* 5'
+
+* Summary of the tool session
+
+- You have to include ~<iostream>~ to print or get data.
+- In C++, data can be streamed anywhere (using ~std::cout~).
+- OneCompiler.com is useful because it offers multiple languages.
+- With Google Cloud Shell you can spin up a Linux VM fast.
+- You should always ask students to fix other students' mistakes.
 
  

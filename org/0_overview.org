@@ -44,7 +44,7 @@ The syllabus is available on [[https://github.com/birkenkrahe/cs101/blob/main/or
    | Binary        |                   | Decimal         |
    | Algorithmic   |                   | Heuristic       |
    | Sort/Search   |                   | Patterns        |
-   | Precise       |                   | Ambiguos        |
+   | Precise       |                   | Ambiguous        |
    | Data-oriented |                   | Story-oriented  |
    | Specialist    |                   | Generalist      |
    | Never tired   |                   | Easily fatigued |
@@ -244,6 +244,10 @@ use your feet.)
   4. Complete assignments well before the deadline. Ask questions!
 
   5. Practice 'literate programming' by documenting your process.
+
+     #+begin_quote
+     This is what you do when you use Jupyter notebook
+     #+end_quote
 
   6. Focus on fundamentals, simple examples, solid understanding.
 
