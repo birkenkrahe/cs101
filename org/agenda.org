@@ -11,11 +11,11 @@
 
 * Opening and Closing Prayers
 ** Opening Prayer
-#+attr_html: :width 400px :float nil: 
+#+attr_html: :width 400px :float nil:
 [[../img/opening_prayers.png]]
 
 ** Closing Prayer
-#+attr_html: :width 400px :float nil: 
+#+attr_html: :width 400px :float nil:
 [[../img/closing_prayers.png]]
 
 ** Why these prayers?
@@ -55,4 +55,81 @@
 
 * Week 2 - First assignment feedback & C++ tutorial
 
- 
+** Bonus assignment "Program translator" (Q&A)
+
+You had to translate a Java (or a Python) program into C++. The
+program defined two variables and printed them using ~std::cout~.
+
+- Your question (paraphrased):
+  #+begin_quote
+  What is the ~<<~ doing?
+  #+end_quote
+
+- *Answer:* We'll discuss this later in class: ~<<~ is the stream
+  insertion operator. It inserts data into the output stream (that
+  streams data to any device, e.g. a screen), represented by ~cout~, the
+  standard output (~stdout~) object.
+
+  So the chain printout command ~cout << "Hello" << 42 << endl;~
+  1. inserts the string "Hello" into ~cout~
+  2. inserts the integer 42 into ~cout~
+  3. inserts ~endl~ (= newline + flush) into ~cout~.
+
+  The idea of using a data stream makes data transfer (to the outside
+  world) more general but also conceptually more difficult than just a
+  C-style function like ~printf~, or a Java function like ~println~.
+
+- Your question (paraphrased):
+  #+begin_quote
+  For the ~main~ program, I didn't use an argument like ~String[] args~. Why
+  don't I need that in C++? Or should I have included it?
+  #+end_quote
+
+- *Answer:* You don't need it in C++, and you also don't need it in Java
+  unless you want to pass arguments on the command-line to the program.
+
+  The ~main~ function has an equivalent to the Java class argument
+  ~String[] args~. It is ~main(int argc, char* argv[])~, and has two
+  arguments that are actually easy to understand:
+  1. ~argc~ is the number of arguments fed to the program
+  2. ~argv[]~ is an array of strings that holds the arguments (an array
+     of pointers to the beginning of each argument string) beginning
+     with ~argv[0]~, which is the name of the program, and continuing
+     with as many arguments that are passed to ~main~.
+
+  *Background:* Java is tightly coupled to the JVM, the system that is
+  shipped with it and ensures its portability (but also its
+  slowness). C++ is closer to the operating system, which simply
+  starts your program and optionally provides arguments.
+
+- A *code example* use with command-line arguments looks like this:
+  
+  First the source code:
+  #+begin_src C++ :tangle args.cpp :results none
+    #include <iostream>
+    #include <string>
+
+    int main(int argc, char* argv[]) {
+      // declare two strings
+      std::string firstName, lastName;
+
+      // print first command-line argument
+      std::cout << "First name: " << argv[1] << std::endl
+                << "Last name: "  << argv[2] << std::endl;
+    }      
+  #+end_src
+
+  The source code file =args.cpp= (tangled from the code cell above) is
+  compiled, and then run on the command-line with two string
+  arguments:
+
+  #+begin_src bash :results output :exports both
+    ls -l args.cpp  # check if the file exists
+    g++ args.cpp  -o args # compile and output executable `args`
+    ./args Marcus Birkenkrahe
+  #+end_src
+
+  #+RESULTS:
+  : -rw-rw-r-- 1 aletheia aletheia 285 Feb  2 21:18 args.cpp
+  : First name: Marcus
+  : Last name: Birkenkrahe
