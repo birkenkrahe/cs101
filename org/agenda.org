@@ -252,6 +252,7 @@ What you will get later:
 - [ ] Send information on input/output streams
 - [ ] More information on why programming languages for what
 - [ ] Do a demo of pythontutor.com (online debugger)
+- [ ] Better information about where students can find what
 
 ** Summary - one thing you learnt today
 
@@ -269,3 +270,5 @@ What you will get later:
   >>~ for input and ~cout <<~ for output (like a pipe).
 
 - All files are in github.com/birkenkrahe/cs101
+
+
