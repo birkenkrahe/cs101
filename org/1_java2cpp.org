@@ -1,0 +1,1867 @@
+#+Title: 10 Simple Problems in Java, C++ (and Python)
+#+Author: Marcus Birkenkrahe
+#+STARTUP: overview hideblocks indent entitiespretty:
+#+OPTIONS: toc:1 num:nil ^:nil: 
+* Objective
+
+- Here are ten problems in Java, C++, and Python side-by-side.
+- We'll discuss them as we go along - code with me.
+- The examples will highlight similarities/differences.
+- To code on your own, you can use your preferred editor.
+- In class, I would like you to use OneCompiler.com.
+- Your first assignment will be another 10 similar problems.
+- At the end, we will summarize what we have learnt.
+
+* 1: Variable declarations
+
+- *Problem:* Declare and initialize two integer variables x and y to the
+  values -10 and 100, and print them.
+
+- *Sample output:*
+  #+begin_example
+  -10, 100
+  #+end_example
+
+** Java
+
+- Solution:
+  #+begin_src java :results output
+    // Main.java - Declare and initialize two integer variables x and y to
+    // the values -10 and 100, and print them.  Sample output: -10, 100
+    public class Main {
+        public static void main(String[] args) {
+            int x = -10;
+            int y = 100;
+            System.out.println(x + ", " + y);
+        }
+    }
+  #+end_src
+
+  #+RESULTS:
+  : -10, 100
+
+** Python
+
+- Solution:
+  #+begin_src python :results output :exports both :session *Python* :python python3
+    ## Declare and initialize two integer variables x and y to the values
+    ## -10 and 100, and print them.  Sample output: -10, 100
+    x = -10
+    y = 100
+    print(f"{x}, {100}")
+    print(str(x) + ", " + str(y))
+  #+end_src
+
+  #+RESULTS:
+  : -10, 100
+  : -10, 100
+
+** C++
+
+Starter code: https://tinyurl.com/cpp-review-1
+
+- Solution:
+  #+begin_src C++ :main no :includes :results output :exports both :noweb yes
+    // Declare and initialize two integer variables x and y to
+    // the values -10 and 100, and print them.  Sample output: -10, 100
+    #include <iostream>
+
+    int main()
+    {
+      int x = -10;
+      int y = 100;
+      std::cout << x << ", " << y << std::endl;
+      return 0;
+    }
+  #+end_src
+
+  #+RESULTS:
+  : -10, 100
+
+** Lessons
+
+*** Concept transfers, ceremony changes
+
+All three versions express the same idea:
+- Bind names (=x=, =y=) to integer values.
+- Output those values in a specific format.
+
+The amount of scaffolding varies:
+- Java requires a ~class~ and ~public static void main~.
+- C++ requires ~main~, headers, and stream output (~cout~).
+- Python runs top-level code directly.
+
+*** Output formatting is a first-class skill
+
+Requirements matter:
+- The literal comma + space =", "= is required
+- Printing two items is not the same as printing a list
+
+Printing is conceptually *stream-based* but not always explicit:
+- Python: ~print~ is built-in and hides the output stream (~sys.stdout~).
+- C++: output written to a stream (~std::cout~) provided by ~<iostream>~.
+- Java: output written to stream object (~System.out~), and ~println~ is a
+  method on that stream.
+
+Language-specific formatting shows up immediately:
+- Java: string concatenation with ~+~
+- C++: stream insertion (~<<~) and explicit newline (~endl~)
+- Python: f-strings vs. concatenation
+
+*** Types are explicit in C++/Java, implicit in Python
+
+- Python hides type declarations but not types
+- C++/Java forces you to announce the type up front
+
+*** Imports/includes are dependencies
+
+Only add dependencies when you use them:
+- C++ requires ~#include <iostream>~ to use ~std::cout~
+- Java: no ~import~ is required because ~System~ is in ~java.lang~
+- Python: no import needed here.
+
+*** Names don't come from nowhere
+
+The prefix ~std::~ reminds you that names have owners:
+- C++: ~std::~ is a name qualifier because ~cout~ lives in ~std~, which is
+  also where the standard library lives (and you must say so)
+- Python: built-ins live in an implicit global namespace
+- Java: classes are grouped into packages, often hidden by imports
+  (~System.out~ - ~System~ is a class in a built-in package)
+
+** Follow-up questions:
+
+1. What's ~public static void main~ in Java about?
+   #+begin_quote
+   - ~public~: all ~class~ members accessible from anywhere.
+   - ~static~: method belongs to the ~class~ not to any object instance.
+   - ~void~: function does not require a ~return~ value.
+   - ~main~: name the Java runtime looks for as program entry point.
+   #+end_quote
+
+2. How does Python manage to be so much simpler?
+   #+begin_quote
+   Python trades control for convenience by fixing many decisions on
+   the programmer's behalf: no ~main~, no ~class~ wrapper, no type
+   declarations (~int~), no ~include~ or ~import~ for basic
+   functions. Python removes choices, Java exposes some, C++ exposes
+   even more: memory layout (stack vs. heap), value vs. reference etc.
+   #+end_quote
+
+3. Why doesn't everyone just program Python?
+   #+begin_quote
+   Simpler syntax does not mean simpler computation. Many problems
+   cannot afford to trade control (of the program) for convenience (of
+   the programmer): Python is slow, hides security details, it's great
+   as glue or interface and almost always sits on top of C or C++, it
+   scales poorly to very large codebases. Python = automatic shift,
+   C++ = manual shift.
+   #+end_quote
+
+4. Where do names live in each language?
+   #+begin_quote
+   Python built-ins, Java packages, C++ namespaces.
+   #+end_quote
+
+5. What decisions does the language make for you, and which does it
+   force you to make?
+   #+begin_quote
+   Variable types, memory, program entry, output, format.
+   #+end_quote
+
+** Summary
+
+| Language | Primary Goal                            |
+|----------+-----------------------------------------|
+| Python   | Make correct programs easy to write     |
+| Java     | Make large programs structured and safe |
+| C++      | Make performance and control explicit   |
+
+* PRACTICE Variable declarations (C++)
+
+- *Task:* Write a C++ program that does the following
+  1) Declare *three integer variables* named =a=, =b=, and =c=.
+  2) Initialize: =a= to a *negative* integer value, =b= to =0=, =c= to a
+     *positive* integer value.
+
+- *Sample output:*
+  #+begin_example
+  a = -1
+  b = 0
+  c = 1
+  #+end_example
+
+*Constraints*
+- Use *only* integer variables.
+- Do *not* modify variables after initialization.
+- Do *not* ask the user for input.
+- Declare the three variables on *one line*.
+- Do *not* combine output onto a single line.
+- Use only one =std::cout= and one =std::endl;= statement.
+
+*Reminder*: Focus on
+- correct declarations
+- clear initialization
+- precise output formatting
+
+*Starter code*: https://tinyurl.com/cpp-tutor-1
+
+** Sample solution
+#+name: https://tinyurl.com/cpp-tutor-1-solution
+#+begin_src C++ :main no :includes :results output :exports both
+  // Declare three integer variables a,b,c and print them
+  // Output: print the variable value one per line
+
+  #include <iostream> // include header files required for I/O
+
+  // define main function
+  int main()
+  { // start main function
+    // declare and initialize three integer variables
+    int a = -1, b = 0, c = 1;
+    // print the variable values on one line
+    std::cout << "a = "   << a
+              << "\nb = " << b
+              << "\nc = " << c << std::endl;
+    return 0; // return 0 if successful
+  } // end main function
+#+end_src
+
+#+RESULTS: https://tinyurl.com/cpp-tutor-1-solution
+: a = -1
+: b = 0
+: c = 1
+
+* 2: Integer arithmetic
+
+- *Problem:* Declare three integer variables, =sum=, =a=, =b=. Initialize =sum=
+  to =0=, and =a=, =b= to arbitrary integer values. Assign the result og =a+b=
+  to =sum=.
+
+- *Sample output*:
+  #+begin_example
+  The sum of 2 and 5 is 7.
+  #+end_example
+
+** Java
+
+#+begin_src java :results output
+  // Main.java - Integer arithmetic: sum of two integers
+
+  public class Main {
+      public static void main(String[] args) {
+          int sum = 0, a = 2, b = 5;
+          sum = a + b;
+          System.out.println("The sum of " + a + " and " + b + " is " + sum + ".");
+      }
+  }
+#+end_src
+
+#+RESULTS:
+: The sum of 2 and 5 is 7.
+
+** C++
+
+#+begin_src C++ :main no :includes :results output :exports both
+  // Computer and print the sum of two integers.
+  #include <cstdio>
+
+  int main()
+  {
+    int sum = 0, a = 2, b = 5;
+    sum = a + b;
+    printf("The sum of %d and %d is %d.\n", a, b, sum);
+    return 0;
+  }
+#+end_src
+
+#+RESULTS:
+: The sum of 2 and 5 is 7.
+
+** Python
+
+#+begin_src python :results output :exports both :session *Python* :python python3
+  a = 2
+  b = 5
+  sum = a + b
+  print(f"The sum of {a} and {b} is {sum}.")
+#+end_src
+
+#+RESULTS:
+: The sum of 2 and 5 is 7.
+
+** Lessons
+
+- All three programs use the same arithmetic expression: =sum = a + b=.
+- Arithmetic is a stable abstraction across programming languages.
+- C++ uses ~printf~ with explicit format specifiers (~%d~): This requires
+  including ~<cstdio>~, correct format strings, and correspondence
+  between types and placeholders. Reinforces attention to detail.
+
+** Follow-up questions
+
+1. Why does ~printf~ require ~%d~ for integers?
+   #+begin_quote
+   Because ~printf~ uses a format string to interpret raw arguments: ~%d~
+   tells it to interpret the corresponding vaue as ~int~ and print it.
+   #+end_quote
+2. What happens is =a= or =b= are changed after computing =sum=?
+   #+begin_quote
+   =sum= retains its value computed at the time of assignment unless it
+   is explicitly reassigned. This could only be changed with *pointers*.
+   #+end_quote
+3. Why does Python no require declaring =sum= as integer?
+   #+begin_quote
+   Python uses dynamic typing: names are bound to objects at runtime,
+   and the type is inferred from the assigned value.
+   #+end_quote
+4. Could the output be produced without storing the result in =sum=? Why
+   might that be discouraged?
+   #+begin_quote
+   Yes, you could print =a+b= directly. Discouraged because it hides
+   intermediate results and makes later reuse/modification harder.
+   #+end_quote
+
+* PRACTICE Integer arithmetic (C++)
+
+*Task*: Write a C++ program that does the following:
+1) Declare four integer variables =a=, =b=, =c=, =result=.
+2) Initialize =a=, =b=, =c=, =result= to the values =2=, =3=, =4=, =0=
+3) Compute and store the value of the following expression in
+   =result=: =(a + b) * c - a=.
+4) Print the values of all variables, one per line.
+
+*Sample output:*
+#+begin_example
+ a = 2
+ b = 3
+ c = 4
+ result = 18
+#+end_example
+
+*Constraints*:
+- Use only integer variables.
+- Do not ask the user for input.
+- Declare all variables on one line.
+- Use exactly on arithmetic assignment statement.
+- Don't compute the expression inside the output statement.
+- Don't combine output on a single line.
+- Use only ~std::cout~ and one ~std::endl;~ statement.
+
+*Reminder:* Focus on
+- careful transcription of the formula
+- explicit use of parentheses
+- operator precedence
+- precise output formatting.
+
+*Starter code*: [[https://tinyurl.com/cpp-tutor-2]]
+
+** Sample solution
+#+begin_src C++ :main no :includes :results output :exports both
+  // Main.cpp: Declare integer variables, compute an expression, and
+  // print the variables and the result one output per line.
+  // include header files
+  #include <iostream>
+  // define main function
+  int main()
+  { // start main function
+    // declare and initialize variables
+    int a=2, b=3, c=4, result=0;
+    // compute and store expression
+    result = (a + b) * c - a;
+    // print variable values one per line
+    std::cout << "a = " << a << "\n"
+              << "b = " << b << "\n"
+              << "c = " << c << "\n"
+              << "result = " << result << std::endl;
+    return 0; // return 0 if successful
+  } // end main function
+#+end_src
+
+#+RESULTS:
+: a = 2
+: b = 3
+: c = 4
+: result = 18
+
+* 3: Floating-point variables
+
+- *Problem:* Declare three floating-point variables, =x=, =y=, =result=.
+  Initialize =x= and =y= to arbitrary floating-point values, and =result= to
+  =0=. Assign the result of =x * y= to =result=.
+
+- *Sample output*:
+  #+begin_example
+  The product of 3.5 and 2.0 is 7.0.
+  #+end_example
+
+** Java
+
+#+begin_src java :results output
+  // Main.java - Floating-point arithmetic: product of two numbers
+
+  public class Main {
+      public static void main(String[] args) {
+          double x = 3.5, y = 2.0, result = 0.0;
+          result = x * y;
+          System.out.println("The product of " + x + " and " + y + " is " + result + ".");
+      }
+  }
+#+end_src
+
+#+RESULTS:
+: The product of 3.5 and 2.0 is 7.0.
+
+** C++
+
+#+begin_src C++ :main no :includes :results output :exports both
+  // Compute and print the product of two floating-point numbers.
+  #include <cstdio>
+
+  int main()
+  {
+    double x = 3.5, y = 2.0, result = 0.0;
+    result = x * y;
+    printf("The product of %.1f and %.1f is %.1f.\n", x, y, result);
+    return 0;
+  }
+#+end_src
+
+#+RESULTS:
+: The product of 3.5 and 2.0 is 7.0.
+
+Or with ~<iostream>~:
+#+begin_src C++ :main no :includes :results output :exports both
+  // Compute and print the product of two floating-point numbers.
+  #include <iostream>
+  #include <iomanip>
+
+  int main()
+  {
+    double x = 3.5, y = 2.0, result = 0.0;
+    result = x * y;
+
+    std::cout << std::fixed << std::setprecision(1);
+    std::cout << "The product of " << x
+              << " and " << y
+              << " is "  << result << ".\n";
+
+    return 0;
+  }
+#+end_src
+
+#+RESULTS:
+: The product of 3.5 and 2.0 is 7.0.
+
+** Python
+
+#+begin_src python :results output :exports both :session *Python* :python python3
+  x = 3.5
+  y = 2.0
+  result = x * y
+  print(f"The product of {x} and {y} is {result}.")
+#+end_src
+
+#+RESULTS:
+: The product of 3.5 and 2.0 is 7.0.
+
+** Lessons
+
+- Floating-point variables represent *approximate* real numbers.
+- All three languages use the same arithmetic expression: =result = x * y=.
+- Java and C++ require explicit floating-point types (=double=).
+- Python infers floating-point types from literal values.
+- C++ ~printf~ uses ~%f~ format specifiers, which require attention to
+  *precision* (e.g. ~%.1f~).
+- The C++ ~<iomanip>~ header file allows you to set floating-point
+  precision.
+
+** Follow-up questions
+
+1. Why do Java and C++ use =double= instead of =float= by default?
+   #+begin_quote
+   Because =double= provides higher precision and is the standard default
+   floating-point type in most modern systems.
+   #+end_quote
+2. Why does ~printf~ require ~%f~ instead of ~%d~?
+   #+begin_quote
+   Because floating-point values have a different binary representation
+   than integers and must be interpreted differently when printed.
+   #+end_quote
+3. Why might floating-point results look “unexpected”?
+   #+begin_quote
+   Because many decimal numbers cannot be represented exactly in binary,
+   leading to rounding errors.
+   #+end_quote
+4. Why is initializing =result= to =0.0= still good practice?
+   #+begin_quote
+   It makes intent explicit and avoids accidental use of uninitialized
+   variables.
+   #+end_quote
+5. Why do =std::fixed= and =std::setprecision= affect all subsequent
+   output sent to =std::cout=?
+   #+begin_quote
+   Because =std::fixed= and =std::setprecision= modify the internal
+   formatting state of the output stream. Once set, they remain in
+   effect for all later output to that stream until changed again.
+   #+end_quote
+
+* PRACTICE Floating-point variables with formatting (C++)
+
+*Task*: Write a C++ program that does the following:
+1) Declare four floating-point variables =x=, =y=, =z=, =result=.
+2) Initialize =x=, =y=, =z=, =result= to the values =3.5=, =2.0=, =9.0=, =0.0=.
+3) Compute and store the value of the following expression in =result=:
+   =((x * y) + z) / (y + 1)=
+4) Print the result in the exact sentence format below, using *fixed*
+   notation and *two digits* after the decimal point.
+
+*Sample output:*
+#+begin_example
+The value of ((3.5 * 2.0) + 9.0) / (2.0 + 1.0) is 5.33.
+#+end_example
+
+*Constraints*:
+- Use only floating-point variables (=double=).
+- Do not ask the user for input.
+- Declare all variables on one line.
+- Use exactly one arithmetic assignment statement.
+- Do not compute the expression inside the output statement.
+- Use =<iostream>= and =<iomanip>= (no =printf=).
+- Use =std::fixed= and =std::setprecision= for formatting.
+- Use only one =std::cout= statement (formatting may be set before it).
+
+*Reminder:* Focus on
+- careful transcription of the formula
+- explicit use of parentheses
+- operator precedence
+- precision control with ~<iomanip>~
+
+*Starter code*: [[https://tinyurl.com/cpp-tutor-3]]
+
+*Question*: What happens if you remove =std::fixed= from the code?
+
+** Sample solution
+#+begin_src C++ :main no :includes :results output :exports both
+  // Main.cpp: Floating-point variables, formatted output with iomanip
+  // Compute a longer arithmetic expression and print with fixed precision
+
+  // include input/output stream library
+  #include <iostream>
+  // include formatting library for fixed precision
+  #include <iomanip>
+
+  // define main function
+  int main()
+  { // start main function
+
+    // declare and initialize floating-point variables
+    double x = 3.5, y = 2.0, z = 9.0, result = 0.0;
+
+    // compute and store arithmetic expression
+    result = ((x * y) + z) / (y + 1);
+
+    // set fixed-point notation and two-digit precision
+    std::cout << std::fixed << std::setprecision(2);
+
+    // print formatted result
+    std::cout << "The value of ((" << x << " * " << y << ") + " << z
+              << ") / (" << y << " + " << 1. << ") is " << result << ".\n";
+
+    return 0; // return 0 if program executes successfully
+  } // end main function
+#+end_src
+
+#+RESULTS:
+: The value of ((3.50 * 2.00) + 9.00) / (2.00 + 1.00) is 5.33.
+
+*Question*: What happens if you remove =std::fixed= from the code?
+#+begin_quote
+Answer: Without ~fixed~, =setprecision(2)= means "print 2 significant
+digits total", not 2 digits after the decimal point.
+#+end_quote
+
+* 4: Circle area with a constant
+
+** Problem
+
+Create a program that computes the area of a circle for a given
+radius:
+- Declare a constant to represent π.
+- Declare a floating-point variable for the radius.
+- Compute the area using the formula
+  area = π · r²
+- Print the result in a complete sentence.
+
+Sample output:
+#+begin_example
+The area of a circle of radius 4 is 50.2655.
+#+end_example
+
+** Java
+
+#+begin_src java :results output
+  // Main.java — Compute the area of a circle using a constant
+
+  public class Main {
+      public static void main(String[] args) {
+
+          // declare constant pi
+          final double PI = 3.14159;
+
+          // declare and initialize radius
+          double radius = 4.0;
+
+          // compute area
+          double area = PI * radius * radius;
+
+          // print result
+          System.out.println(
+                           "The area of a circle of radius " + radius + " is " + area + "."
+                           );
+      }
+  }
+#+end_src
+
+#+RESULTS:
+: The area of a circle of radius 4.0 is 50.26544.
+
+** C++
+
+#+begin_src cpp :results output
+  // main.cpp — Compute the area of a circle using a constant
+
+  #include <iostream>
+
+  int main()
+  {
+    // declare constant pi
+    const double PI = 3.14159;
+
+    // declare and initialize radius
+    double radius = 4.0;
+
+    // compute area
+    double area = pi * radius * radius;
+
+    // print result
+    std::cout << "The area of a circle of radius "
+            << radius
+            << " is "
+            << area
+            << "."
+            << std::endl;
+
+    return 0;
+  }
+#+end_src
+
+#+RESULTS:
+: The area of a circle of radius 4 is 50.2654.
+
+** Lessons
+
+- The same mathematical formula appears unchanged across languages.
+- Constants are declared explicitly:
+  - Java uses ~final~
+  - C++ uses ~const~
+- Floating-point arithmetic represents approximate real numbers.
+
+** Follow-up questions (with answers)
+
+Why is π declared as a constant instead of a variable?
+#+begin_quote
+Because π represents a fixed mathematical value that should not
+change during program execution.  Declaring it as a constant makes
+this intent explicit and prevents accidental reassignment.
+#+end_quote
+
+* PRACTICE Free-fall distance under gravity (C++)
+
+An object is dropped from rest and falls freely under gravity
+(ignoring air resistance).
+
+The distance fallen after time =t= seconds is given by the formula:
+
+d = (1/2) · g · t²
+
+where:
+- g is the gravitational acceleration (in meters per second squared)
+- t is the time (in seconds)
+- d is the distance fallen (in meters)
+
+Write a C++ program that does the following:
+
+1. Declare four ~double~ variables: =time=, =distance=, =half=, =g=.
+2. Initialize:
+   - =time = 3.0=
+   - =distance = 0.0=
+   - =half = 0.5= (as a constant)
+   - =g = 9.81= (as a constant)
+3. Compute the falling distance using the formula above.
+4. Print *exactly* the following output:
+
+#+begin_example
+After 3 seconds, the object has fallen 44.145 meters.
+#+end_example
+
+** Constraints
+
+- Use only =double=.
+- Do not ask the user for input.
+- Do not compute expressions inside the output statement.
+- Declare all variables on one line.
+- Use exactly one =std::cout= statement.
+- Do not use =<iomanip>=.
+
+** *Starter code*: [[https://tinyurl.com/cpp-tutor-4][tinyurl.com/cpp-tutor-4]]
+
+** Sample solution
+
+#+begin_src cpp :results output
+  // main.cpp — Compute free-fall distance under gravity
+
+  #include <iostream>
+
+  int main()
+  {
+    // declare constants and variables
+    const double half = 0.5, g = 9.81;
+    double time = 3.0, distance = 0.0;
+
+    // compute falling distance
+    distance = half * g * time * time;
+
+    // print result
+    std::cout << "After "
+            << time
+            << " seconds, the object has fallen "
+            << distance
+            << " meters."
+            << std::endl;
+
+    return 0;
+  }
+#+end_src
+
+* 5: Free-fall distance with user input
+
+** Problem
+
+Create a program that asks the user for a time in seconds and computes
+the distance an object falls freely under gravity (ignoring air
+resistance).
+
+Use the formula:
+
+d = (1/2) · g · t²
+
+where =g = 9.81= m/s².
+
+The program should read the time from standard input and print the
+result in a complete sentence.
+
+** Sample output
+
+#+begin_example
+Enter time in seconds:
+3
+After 3 seconds, the object has fallen 44.145 meters.
+#+end_example
+
+** Java
+
+#+begin_src java :results output :cmdline < input
+  // Main.java - Read time from user and compute free-fall distance
+  // Formula: d = (1/2) * g * t^2, g = 9.81 m/s^2
+
+  import java.util.Scanner;
+
+  public class Main {
+      public static void main(String[] args) {
+
+          // declare constants and variables
+          final double G = 9.81;
+          final double HALF = 0.5;
+          double time;
+          double distance;
+
+          // create scanner for user input
+          Scanner input = new Scanner(System.in);
+
+          // prompt user
+          System.out.println("Enter time in seconds:");
+          time = input.nextDouble();
+
+          // compute distance
+          distance = HALF * G * time * time;
+
+          // print result
+          System.out.printf(
+                            "After %.0f seconds, the object has fallen %.3f meters.%n",
+                            time, distance        );
+      }
+  }
+#+end_src
+
+#+RESULTS:
+: Enter time in seconds:
+: After 3 seconds, the object has fallen 44.145 meters.
+
+Generate input file:
+#+begin_src bash :results output :exports both
+  echo 3 > input
+  cat input
+#+end_src
+
+#+RESULTS:
+: 3
+
+** C++
+
+#+begin_src cpp :tangle fall.cpp :results output :cmdline < input
+  // Compute free-fall distance under gravity
+  // d = (1/2) * g * t^2
+  // g = 9.81 m/s^2
+  #include <iostream>
+  using namespace std;
+
+  int main()
+  {
+    // declare constants
+    const double g = 9.81;
+    const double half = 0.5;
+
+    // declare variables
+    double time = 0.0;
+    double distance = 0.0;
+
+    // prompt user
+    cout << "Enter time in seconds:\n";
+    cin >> time;
+
+    // compute falling distance
+    distance = half * g * time * time;
+
+    // print result
+    cout << "After "
+         << time
+         << " seconds, the object has fallen "
+         << distance
+         << " meters."
+         << endl;
+
+    return 0;
+  }
+#+end_src
+
+#+RESULTS:
+: Enter time in seconds:
+: After 3 seconds, the object has fallen 44.145 meters.
+
+** Lessons
+
+- User input is read from *standard input*.
+- =cin= and =cout= operate on streams rather than formatted strings.
+- Names like =cin= and =cout= belong to the =std= namespace.
+- Well-placed comments allow a program to be understood without
+  external explanation.
+- The code block get its input from the commandline (~:cmdline~).
+
+** Follow-up questions (with answers)
+
+1. Why does C++ require a separate compilation step before running the
+   program?
+   #+begin_quote
+   Because C++ is a compiled language. Source code must be translated
+   into machine code before it can be executed.
+   #+end_quote
+
+2. What is the role of =using namespace std;= in this program?
+   #+begin_quote
+   It allows access to standard library names like =cin= and =cout=
+   without writing =std::= each time.
+   #+end_quote
+
+3. Why is user input stored in a variable before being used in the
+   formula?
+   #+begin_quote
+   Storing input values explicitly separates input, computation, and
+   output, making the program easier to read, test, and modify.
+   #+end_quote
+
+4. Why are comments important in a program that already “works”?
+   #+begin_quote
+   Because correctness alone is not enough. Programs must also be
+   readable and maintainable by humans, including the original author.
+   #+end_quote
+
+* 6: Type conversion (~double~ to ~int~)
+
+** Problem
+
+Write a program that demonstrates type conversion from floating-point
+to integer:
+
+- Declare a variable named =sampleSize= and initialize it to =14.58093=.
+- Use a compound operator to increase its value by =12.495=.
+- Print the result converted to an integer.
+- The printed integer result should be =27=.
+
+** Sample output
+
+#+begin_example
+Integer sampleSize: 27
+#+end_example
+
+** Java
+
+#+begin_src java :results output
+  // Main.java - Change a floating-point value and print it converted to an integer
+
+  public class Main {
+      public static void main(String[] args) {
+
+          // declare and initialize variable
+          double sampleSize = 14.58093;
+
+          // increase value using a compound operator
+          sampleSize += 12.495;
+
+          // convert to int and print result
+          System.out.println("Integer sampleSize: " + (int) sampleSize);
+      }
+  }
+#+end_src
+
+#+RESULTS:
+: Integer sampleSize: 27
+
+** C++
+
+#+begin_src cpp :results output
+  // main.cpp - Change a floating-point value and print it converted to an integer
+
+  #include <iostream>
+
+  using namespace std;
+
+  int main()
+  {
+    // declare and initialize variable
+    double sampleSize = 14.58093;
+
+    // increase value using a compound operator
+    sampleSize += 12.495;
+
+    // convert to int using static_cast and print result
+    cout << "Integer sampleSize: "
+         << static_cast<int>(sampleSize)
+         << endl;
+
+    return 0;
+  }
+#+end_src
+
+#+RESULTS:
+: Integer sampleSize: 27
+
+** Lessons
+
+- Type conversion changes how a value is interpreted and may lose
+  information.
+- Converting from =double= to =int= truncates the fractional part.
+- Java uses cast syntax =(int)= for conversion.
+- C++ encourages explicit cast operators such as =static_cast=.
+- Compound assignment operators combine update and assignment into one
+  operation.
+
+** Follow-up questions (with answers)
+
+1. Why is the printed result =27= and not =28=?
+   #+begin_quote
+   Because converting from =double= to =int= truncates the fractional
+   part. The value is about 27.07593, and truncation removes
+   everything after the decimal point.
+   #+end_quote
+
+2. What information is lost during this type conversion?
+   #+begin_quote
+   The fractional part of the floating-point number is discarded when
+   converting to an integer.
+   #+end_quote
+
+3. Why does C++ use =static_cast<int>= instead of =(int)= here?
+   #+begin_quote
+   Both forms are checked at compile time, but =(int)= is ambiguous: it
+   may perform different kinds of conversions depending on
+   context. =static_cast<int>= restricts the operation to a
+   well-defined, compile-time numeric conversion and makes the
+   programmer’s intent explicit.
+   #+end_quote
+
+4. What would change if the order of operations were reversed?
+   #+begin_quote
+   Converting to =int= before adding would discard precision earlier and
+   produce a different result.
+   #+end_quote
+
+* PRACTICE Static cast of ~double~ to ~int~ (C++)
+
+Write a C++ program that does the following:
+
+1. Declare a =double= variable named =temperature= and initialize it to =-4.75=.
+2. Increase =temperature= by =9.60= using a compound operator.
+3. Print two lines:
+   - the updated floating-point value
+   - the converted integer value using =static_cast<int>=
+
+*Sample output:*
+
+#+begin_example
+Updated temperature: 4.85
+Integer temperature: 4
+#+end_example
+
+*Starter code*: [[https://onecompiler.com/cpp/44bw8dk2d][tinyurl.com/cpp-tutor-6]]
+
+** Sample solution
+
+#+begin_src cpp :results output
+  // main.cpp - Update a floating-point value and print it and its integer conversion
+
+  #include <iostream>
+
+  using namespace std;
+
+  int main()
+  {
+    // declare and initialize variable
+    double temperature = -4.75;
+
+    // update value using a compound operator
+    temperature += 9.60;
+
+    // print updated value and integer conversion
+    cout << "Updated temperature: " << temperature << "\n"
+         << "Integer temperature: "
+         << static_cast<int>(temperature)
+         << endl;
+
+    return 0;
+  }
+#+end_src
+
+* 7: Conditionals: Input and compare integer values
+
+** Problem
+
+Write a program that compares two integer values entered by the user.
+
+- Ask the user to enter two integers =a= and =b=.
+- Compare the values using conditional statements.
+- Print a message that states whether =a= is smaller than, larger than,
+  or equal to =b=.
+
+** Sample input/output
+
+#+begin_example
+Enter two integers: 10 25
+10 is smaller than 25.
+#+end_example
+
+** Java
+
+Source code:
+#+begin_src java :results output :cmdline < input
+  // Main.java - Compare two integers entered by the user
+
+  import java.util.Scanner;
+
+  public class Main {
+      public static void main(String[] args) {
+
+          // declare variables
+          int a, b;
+
+          // create scanner for user input
+          Scanner input = new Scanner(System.in);
+
+          // prompt user
+          System.out.println("Enter two integers:");
+          a = input.nextInt();
+          b = input.nextInt();
+
+          // compare values and print result
+          if (a < b) {
+              System.out.println(a + " is smaller than " + b + ".");
+          } else if (a > b) {
+              System.out.println(a + " is larger than " + b + ".");
+          } else {
+              System.out.println(a + " is equal to " + b + ".");
+          }
+      }
+  }
+#+end_src
+
+#+RESULTS:
+: Enter two integers:
+: 10 is smaller than 25.
+
+Write the input file:
+#+begin_src bash :results output :exports both
+  echo "10 25" > input
+  cat input
+#+end_src
+
+#+RESULTS:
+: 10 25
+
+** C++
+
+Source code:
+#+begin_src C++ :main no :includes :results output :cmdline < input
+  // main.cpp - Compare two integers entered by the user
+
+  #include <iostream>
+
+  using namespace std;
+
+  int main()
+  {
+    // declare and initialize variables
+    int a = 0, b = 0;
+
+    // prompt user
+    cout << "Enter two integers: ";
+    cin >> a >> b;
+    cout << a << " " << b << endl;
+
+    // compare values and print result
+    if (a < b) {
+      cout << a << " is smaller than " << b << "." << endl;
+    }
+    else if (a > b) {
+      cout << a << " is larger than " << b << "." << endl;
+    }
+    else {
+      cout << a << " is equal to " << b << "." << endl;
+    }
+
+    return 0;
+  }
+#+end_src
+
+#+RESULTS:
+: Enter two integers: 10 25
+: 10 is smaller than 25.
+
+** Lessons
+
+- Conditional statements allow programs to make decisions based on
+  comparisons.
+- Input can be read interactively from standard input.
+- Comparison operators such as =<=, =>=, and === evaluate relationships
+  between values.
+- Only one branch of an =if / else if / else= chain is executed.
+- Clear structure and braces make control flow easier to read and
+  maintain.
+
+Here is an example BPMN process diagram (pseudocode):
+#+attr_html: :width 400px :float nil:
+[[../img/if_else_good.svg]]
+
+** Follow-up questions (with answers)
+
+1. Why are two comparisons needed before reaching the =else= branch?
+   #+begin_quote
+   Because the program must explicitly test whether one value is
+   smaller or larger before concluding that the two values are equal.
+   #+end_quote
+
+2. What happens if the user enters the same value twice?
+   #+begin_quote
+   Neither of the first two conditions is true, so the program
+   executes the =else= branch and reports that the values are equal.
+   #+end_quote
+
+3. Why is =else if= used instead of a second independent =if=?
+   #+begin_quote
+   Because the conditions are mutually exclusive. Using =else if=
+   ensures that once one condition is satisfied, the remaining
+   conditions are skipped.
+   #+end_quote
+
+4. Why are braces used even when each branch contains only one
+   statement?
+   #+begin_quote
+   Braces prevent errors when statements are added later and make the
+   program structure explicit.
+   #+end_quote
+
+5. Is this program safe if the user enters something that is not an
+   integer?
+   #+begin_quote
+   No. If the user enters non-integer input, the extraction using =cin
+   >> a >> b= fails, and the variables may retain their previous
+   values. The program does not check for input failure, so its
+   behavior and output may be incorrect. Proper input validation would
+   be required to make the program robust.
+   #+end_quote
+
+* PRACTICE Positive, negative or zero sum (C++)
+
+Write a C++ program that does the following:
+
+1. Ask the user to enter two integers named =x= and =y=.
+2. Determine whether the sum =x + y= is positive, negative, or zero.
+3. Print exactly one line describing the result.
+
+Sample output formats:
+#+begin_example
+The sum is positive.
+#+end_example
+
+#+begin_example
+The sum is negative.
+#+end_example
+
+#+begin_example
+The sum is zero.
+#+end_example
+
+*Starter code:* [[https://tinyurl.com/cpp-tutor-7][tinyurl.com/cpp-tutor-7]]
+
+** Sample solution
+
+#+begin_src cpp :results output
+  // main.cpp - Determine the sign of the sum of two integers
+
+  #include <iostream>
+  // use standard namespace
+  using namespace std;
+  // main program
+  int main()
+  {
+    // declare and initialize variables
+    int x = 0, y = 0;
+    int sum = 0;
+    // ask user for input
+    cout << "Enter two integers:\n";
+    cin >> x >> y;
+    // compute sum of input values
+    sum = x + y;
+    // check if sum is greater, smaller, or equal to zero
+    // print message accordingly
+    if (sum > 0) {
+      cout << "The sum is positive." << endl;
+    }
+    else if (sum < 0) {
+      cout << "The sum is negative." << endl;
+    }
+    else {
+      cout << "The sum is zero." << endl;
+    }
+
+    return 0;
+  }
+#+end_src
+
+* 8: Loops (repeating output)
+
+** Problem
+
+Write a program that uses a ~for~ loop to print the same message multiple
+times.
+
+- Use a loop that runs exactly 10 times.
+- In each iteration, print your name on its own line alongside the
+  line number.
+- The name does not need to be stored in a variable.
+
+** Sample output
+
+#+begin_example
+1 [your name]
+2 [your name]
+...
+9 [your name]
+10 [your name]
+#+end_example
+
+** Java
+
+#+begin_src java :results output
+  // Main.java - Print the same name 10 times using a for loop
+
+  public class Main {
+      public static void main(String[] args) {
+
+          // loop runs 10 times
+p          for (int i = 0; i < 10; i++) {
+              System.out.println(i+1 + " Marcus");
+          }
+      }
+  }
+#+end_src
+
+#+RESULTS:
+#+begin_example
+1 Marcus
+2 Marcus
+3 Marcus
+4 Marcus
+5 Marcus
+6 Marcus
+7 Marcus
+8 Marcus
+9 Marcus
+10 Marcus
+#+end_example
+
+** C++
+
+#+begin_src cpp :results output
+  // main.cpp - Print the same name 10 times using a for loop
+
+  #include <iostream>
+
+  using namespace std;
+
+  int main()
+  {
+    // loop runs 10 times
+    for (int i = 0; i < 10; i++) {
+      cout << i+1 << " Marcus" << endl;
+    }
+
+    return 0;
+  }
+#+end_src
+
+#+RESULTS:
+#+begin_example
+1 Marcus
+2 Marcus
+3 Marcus
+4 Marcus
+5 Marcus
+6 Marcus
+7 Marcus
+8 Marcus
+9 Marcus
+10 Marcus
+#+end_example
+
+** Lessons
+
+- Loops allow a block of code to be executed repeatedly.
+- A =for= loop is commonly used when the number of iterations is known
+  in advance (either explicitly or implicitly, as an array length).
+- The loop variable controls how many times the loop body is executed.
+- The body of a loop is a scope included by braces ~{...}~. The loop
+  variable exists only inside that scope.
+- The loop body can contain any valid statement, including output.
+
+** Follow-up questions (with answers)
+
+1. Why does the loop start with =i = 0= instead of =i = 1=?
+   #+begin_quote
+   Starting at 0 is a common convention in programming and makes the
+   loop condition =i < 10= express “execute exactly 10 times.”
+   #+end_quote
+
+2. What would happen if the loop condition were written as =i < 10= ?
+   #+begin_quote
+   The loop would execute 11 times, because the values would range
+   from 0 through 10.
+   #+end_quote
+
+3. Does the loop variable =i= need to be used inside the loop body?
+   #+begin_quote
+   No. The loop variable controls repetition, but it does not have to
+   appear in the statements executed inside the loop.
+   #+end_quote
+
+4. Is this loop safe if the loop condition is written incorrectly?
+   #+begin_quote
+   No. An incorrect loop condition (e.g. =i > 0=) can cause an infinite
+   loop, which may produce incorrect output or prevent the program
+   from terminating.
+   #+end_quote
+
+6. Is a =string= variable the same thing as an array?
+   #+begin_quote
+   Not exactly. A =string= behaves like a sequence of characters, but it is a higher-level abstraction.
+   In C++, =string= is a class that manages a character array internally, while in Java a =String= is an
+   object that stores characters and provides many built-in operations. The details of how characters
+   are stored are intentionally hidden.
+   #+end_quote
+
+* PRACTICE Print ~string~ with ~for~ loop (C++)
+
+Write a C++ program that does the following:
+
+1. Declare a variable of type =string= named =name= and initialize it to
+   your name.
+2. Use a =for= loop that runs exactly 10 times.
+3. In each iteration, print the value of =name= on its own line.
+
+*Note:* Java has a ~String~ class (built-in) that works in the same way.
+
+Sample output format:
+
+#+begin_example
+1 [your name]
+2 [your name]
+...
+9 [your name]
+10 [your name]
+#+end_example
+
+*Starter code*: [[https://onecompiler.com/cpp/43u586gmq][tinyurl.com/cpp-tutor-8]]
+
+** Sample solution
+
+#+begin_src cpp :results output
+  // main.cpp - Print a stored name 10 times using a loop
+
+  #include <iostream>
+  #include <string>   // library for string types and functions
+
+  using namespace std;
+
+  int main()
+  {
+      // declare and initialize variable
+      string name = "Marcus";
+
+      // loop runs 10 times
+      for (int i = 0; i < 10; i++) {
+          cout << name << endl;
+      }
+
+      return 0;
+  }
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Marcus
+Marcus
+Marcus
+Marcus
+Marcus
+Marcus
+Marcus
+Marcus
+Marcus
+Marcus
+#+end_example
+
+* 9 Arrays (storing and processing multiple values)
+
+** Problem
+
+Write a program that uses an array to store multiple integer values.
+
+- Declare an integer array of size 10.
+- Read 10 integers from standard input and store them in the array
+  using a ~for~ loop.
+- Use a ~for~ loop to print the contents of the array, one value per line.
+
+** Sample input/output
+
+#+begin_example
+4 56 7 324 -4 0 21 -999 9 1
+#+end_example
+
+** Java
+
+#+begin_src java :results output :cmdline < input
+// Main.java - Store and print values using an array
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        // declare array
+        int[] values = new int[10];
+
+        // create scanner
+        Scanner input = new Scanner(System.in);
+
+        // read values into array
+        for (int i = 0; i < values.length; i++) {
+            values[i] = input.nextInt();
+        }
+
+        // print array values
+        for (int i = 0; i < values.length; i++) {
+            System.out.print(values[i] + " ");
+        }
+    }
+}
+#+end_src
+
+#+RESULTS:
+: 4 56 7 324 -4 0 21 -999 9 1 
+
+Create input file
+#+begin_src bash :results output :exports both
+  echo "4 56 7 324 -4 0 21 -999 9 1" > input
+  cat input
+#+end_src
+
+#+RESULTS:
+: 4 56 7 324 -4 0 21 -999 9 1
+
+** C++
+
+#+begin_src cpp :results output :cmdline < input
+  // main.cpp - Store and print values using an array
+
+  #include <iostream>
+
+  using namespace std;
+
+  int main()
+  {
+    // declare array
+    const int SIZE = 10;
+    int values[SIZE];
+
+    // read values into array
+    for (int i = 0; i < SIZE; i++) {
+      cin >> values[i];
+    }
+
+    // print array values
+    for (int i = 0; i < SIZE; i++) {
+      cout << values[i] << " ";
+    }
+
+    return 0;
+  }
+#+end_src
+
+#+RESULTS:
+: 4 56 7 324 -4 0 21 -999 9 1 
+
+** Lessons
+
+- An array stores multiple values of the same type under a single
+  name.
+- Array elements are accessed using an index.
+- Indexing starts at 0.
+- Loops are commonly used to process arrays.
+- The array size is fixed once declared.
+
+** Follow-up questions (with answers)
+
+1. Why does array indexing start at 0?
+   #+begin_quote
+   Because arrays are based on contiguous memory, and the first
+   element is located at an offset of zero from the start of the
+   array.
+   #+end_quote
+
+2. What happens if you access an index outside the array bounds?
+   #+begin_quote
+   In C++, the behavior is undefined and may lead to incorrect results
+   or crashes. In Java, the program throws a runtime exception.
+   #+end_quote
+
+3. Why is a loop a natural way to work with arrays?
+   #+begin_quote
+   Because arrays store sequences of values, and loops allow the same
+   operation to be applied to each element systematically.
+   #+end_quote
+
+4. Can array elements be modified after they are stored?
+   #+begin_quote
+   Yes. Individual elements can be reassigned by indexing into the
+   array and assigning a new value.
+   #+end_quote
+
+5. Is an array itself a single value or multiple values?
+   #+begin_quote
+   An array is a single object or variable that contains multiple
+   values internally.
+   #+end_quote
+
+* PRACTICE Sum elements of an integer array (C++)
+
+Write a C++ program that does the following:
+
+1. Declare an integer array of size 10.
+2. Read 10 integers from standard input into the array using a ~for~
+   loop.
+3. Compute the sum of all array elements.
+4. Print the sum on a single line.
+
+*Sample input/output:*
+
+#+begin_example
+4 56 7 324 -4 0 21 -999 9 1
+Sum: -581
+#+end_example
+
+*Starter code*: [[https://tinyurl.com/cpp-tutor-9][tinyurl.com/cpp-tutor-9]]
+
+** Sample solution
+
+#+begin_src cpp :results output :cmdline < input
+  // main.cpp - Compute the sum of array elements
+
+  #include <iostream>
+
+  using namespace std;
+
+  int main()
+  {
+    // declare constant array SIZE
+    const int SIZE = 10;
+    // declare array
+    int values[SIZE];
+    // declare variable sum
+    int sum = 0;
+
+    // read values
+    for (int i = 0; i < SIZE; i++) {
+      cin >> values[i];
+      cout << values[i] << " ";
+    }
+
+    // compute sum
+    for (int i = 0; i < SIZE; i++) {
+      sum += values[i];
+    }
+
+    // print result
+    cout << "\nSum: " << sum << endl;
+
+    return 0;
+  }
+#+end_src
+
+#+RESULTS:
+: 4 56 7 324 -4 0 21 -999 9 1 
+: Sum: -581
+
+* 10: Functions (computing speed)
+
+** Problem
+
+Write a program that computes a speed in miles per hour using a
+function.
+
+- Ask the user for the number of =miles= traveled.
+- Ask the user for the number of =hours= traveled.
+- Compute the speed using a function named =mph=.
+- Print the result in a complete sentence.
+
+The formula for speed is: =speed = miles / hours=
+
+** Sample input and output
+
+#+begin_example
+ Enter miles and hours: 740 11.5
+ With 740.0 miles in 11.5 hours, your speed was 64.3 mph.
+#+end_example
+
+** Java
+
+#+begin_src java :results output :cmdline < input
+  // Main.java - Compute speed using a function
+
+  import java.util.Scanner;
+
+  public class Main {
+
+      // function to compute miles per hour
+      public static double mph(double miles, double hours) {
+    	return miles / hours;
+      }
+
+      public static void main(String[] args) {
+
+    	double miles, hours;
+
+    	Scanner input = new Scanner(System.in);
+
+    	// prompt user
+    	System.out.println("Enter miles and hours:");
+    	miles = input.nextDouble();
+    	hours = input.nextDouble();
+
+    	// compute and print result
+  	System.out.printf(
+  			  "With %.1f miles in %.1f hours, " +
+  			  "your speed was %.1f mph.%n",
+  			  miles, hours, mph(miles, hours)
+  			  );
+      }
+  }
+#+end_src
+
+#+RESULTS:
+: Enter miles and hours:
+: With 740.0 miles in 11.5 hours, your speed was 64.3 mph.
+
+Input file:
+#+begin_src bash :results output :exports both
+  echo 740 11.5 > input
+  cat input
+#+end_src
+
+#+RESULTS:
+: 740 11.5
+
+** C++
+
+#+begin_src cpp :results output :cmdline < input
+  // main.cpp - Compute speed using a function
+
+  #include <iostream>
+  #include <iomanip>
+  using namespace std;
+
+  // function to compute miles per hour
+  double mph(double miles, double hours)
+  {
+      return miles / hours;
+  }
+
+  int main()
+  {
+      double miles = 0.0, hours = 0.0;
+
+      // prompt user
+      cout << "Enter miles and hours: ";
+      cin >> miles >> hours;
+      cout << miles << " " << hours;      
+
+      // compute and print result
+      cout << fixed << setprecision(1);
+      cout << "\nWith " << miles
+           << " miles in " << hours
+           << " hours, your speed was " << mph(miles, hours) << " mph."
+           << endl;
+
+      return 0;
+  }
+#+end_src
+
+#+RESULTS:
+: Enter miles and hours: 740 11.5
+: With 740.0 miles in 11.5 hours, your speed was 64.3 mph.
+
+** Lessons
+
+- A function groups a computation under a name.
+- Functions can take parameters and return a value.
+- Using a function avoids repeating code.
+- Functions separate *what* is computed from *how* it is used.
+- In C++, functions must be declared before they are used.
+
+** Follow-up questions (with answers)
+
+1. Why is the =speed= calculation placed in a function?
+   #+begin_quote
+   Because it isolates the computation from input and output, making
+   the program easier to read, test, and reuse.
+   #+end_quote
+
+2. What happens if =hours= is zero?
+   #+begin_quote
+   The program attempts to divide by zero, which results in undefined
+   or invalid output. The program does not check for this case.
+   #+end_quote
+
+3. Why does the Java function include the keyword =static=?
+   #+begin_quote
+   Because the function is called from =main= without creating an
+   object. Static methods belong to the class rather than to an
+   instance.
+   #+end_quote
+
+4. Why must the C++ function be defined before =main=?
+   #+begin_quote
+   Because C++ requires functions to be declared or defined before
+   they are used so the compiler knows their signature. C++ compiles
+   top to bottom, while Java reads the whole class at once.
+   #+end_quote
+
+5. Does calling a function change the values of its parameters?
+   #+begin_quote
+   No. The parameters receive copies of the arguments, so changes
+   inside the function do not affect the original variables.
+   #+end_quote
+
+* PRACTICE Define a square function
+
+Write a C++ program that does the following:
+
+1. Define a function named =square= that takes one integer parameter and
+   returns its square.
+2. In =main=, ask the user for an integer value.
+3. Call the function and print the result.
+
+*Sample output format:*
+
+#+begin_example
+Enter an integer: 5
+The square of 5 is 25.
+#+end_example
+
+*Starter code:* [[https://onecompiler.com/cpp/44c2ukxz9][tinyurl.com/cpp-tutor-10]]
+
+** Sample solution
+
+#+begin_src cpp :results output :cmdline < input
+  // main.cpp - Compute the square of a number using a function
+
+  #include <iostream>
+
+  using namespace std;
+
+  // function to compute square
+  int square(int n)
+  {
+    return n * n;
+  }
+  // main function
+  int main()
+  {
+    // declare and initialize value
+    int value = 0;
+    // ask use for integer input
+    cout << "Enter an integer: ";
+    cin >> value;
+    cout << value;
+    // print squared value using the function 
+    cout << "\nThe square of "
+         << value
+         << " is "
+         << square(value)
+         << "."
+         << endl;
+
+    return 0;
+  }
+#+end_src
+
+#+RESULTS:
+: Enter an integer: 5
+: The square of 5 is 25.
+
+Inputfile:
+#+begin_src bash :results output :exports both
+  echo 5 > input
+  cat input
+#+end_src
+
+#+RESULTS:
+: 5
