@@ -538,10 +538,11 @@ one decimal precision.
 
 - What is a reference?
   #+begin_quote
-  A reference in C++ is an ALIAS for an existing variable:
+  A reference in C++ is an *alias* for an existing variable:
   1. It must be initialized when it is declared.
   2. It cannot be changed to refer to something else.
   3. Any operation on the reference affects the original.
+  4. No extra storage is required.
   Syntax: ~&~ (address-of-operator)
   #+end_quote
 
@@ -556,28 +557,35 @@ one decimal precision.
   #+RESULTS:
   : x = 20
 
-- Example: Declare integer array of =SIZE= 5, get values for the array
+- *Example:* Declare integer array of =SIZE= 5, get values for the array
   from =inputFile= in the =../data= directory, and display the array
   values. Use a range-based ~for~ loop for both iterations.
 
-  #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> :namespaces std :results output :exports both :noweb yes
+  #+begin_src C++ :cmdline ../data/inputfile :tangle fstream.cpp :main no :includes :results output :exports both 
+    #include <iostream>
     #include <fstream>  // contains ifstream and ofstream
-    // set array SIZE to 5
-    const int SIZE {5};
-    // declare array `numbers`
-    int numbers[SIZE];
-    // declare input file
-    ifstream inputFile;
-    // Get values for the array from input file
-    inputFile.open("../data/inputFile");
 
-    for (int &val : numbers)
-      inputFile >> val;     // read data from the filestream
+    int main()
+    {
+      // set array SIZE to 5
+      const int SIZE {5};
+      // declare array `numbers`
+      int numbers[SIZE];
+      // declare input file
+      std::ifstream inputFile;
+      // Get values for the array from input file
+      inputFile.open("../data/inputfile");
 
-    inputFile.close();    
-    // Display values in the array
-    for (int val : numbers)
-      cout << val << " ";  // stream data to stdout
+      for (int &val : numbers)
+        inputFile >> val;     // read data from the filestream
+
+      inputFile.close();    
+      // Display values in the array
+      for (int val : numbers)
+        std::cout << val << " ";  // stream data to stdout
+
+      return 0;
+    }
   #+end_src
 
   #+RESULTS:
@@ -586,20 +594,16 @@ one decimal precision.
 - Input file:
   #+begin_src bash :results output :exports both
     cd ../data
-    echo "101 102 103 104 105" > inputFile
-    cat inputFile
+    echo "101 102 103 104 105" > inputfile
+    cat inputfile
   #+end_src
 
   #+RESULTS:
   : 101 102 103 104 105
-
+  
 - Why does the first loop use =&val= while the second loop uses =val=?
   #+begin_quote
-  The first loop modifies the original array: =&val= is alias for
-  the element that the loop is working on.
 
-  The second loop only displays the array elements but does not alter
-  them.
   #+end_quote
 
 - What's the advantage of range-based loops?
@@ -613,7 +617,7 @@ one decimal precision.
   subscripts.
   #+end_quote
 
-* PRACTICE Range-based ~for~ loop (command-line & ~make~)
+* PRACTICE Range-based ~for~ loop (+ command-line & ~make~)
 
 - Starter code: [[https://tinyurl.com/range-warmup][tinyurl.com/range-warmup]]
 
@@ -647,8 +651,17 @@ one decimal precision.
 
 - Answer:
   #+begin_quote
-  The array =values= will not be modified. 
+  The array =values= will not be modified because the range-based loop
+  works only on a copy of =values=, not on the original, so =value= never
+  touches the original array.
+
+  The second loop only displays the array elements but does not alter
+  them.
   #+end_quote
+
+- To change that, loop over the reference variable =&value= instead: Now
+  =value= is a reference to the original element of =values= and modifies
+  it.
 
   #+begin_src C++ :tangle ../src/values2.cpp :main yes :includes <iostream> :namespaces std :results output :exports both
     // Change value of an array using a range-based loop
@@ -739,6 +752,40 @@ one decimal precision.
 
 - Upload the URL to your solution to Canvas.  
 
+- Solution:
+  #+begin_src C++ :cmdline < ../data/inputFile :main no :includes :namespaces std :results output :exports both
+    // Get first, middle and last user name and print full name.
+    // TODO: Modify the program to work with range-based loops.
+    #include <iostream>
+    #include <string>
+    using namespace std;
+
+    int main() {
+      const int SIZE {3};     // string array length
+      string fullName[SIZE];  // string array declaration
+
+      // get array elements from keyboard
+      for (std::string &name : fullName) {
+        cout << "\nEnter name: ";
+        cin >> name;
+      }
+
+      // print result from array
+      cout << "\nFull name: ";
+      for (std::string name : fullName) {
+        cout << name << " ";
+      }
+      return 0;
+    }
+  #+end_src
+
+  #+RESULTS:
+  : 
+  : Enter name: 
+  : Enter name: 
+  : Enter name: 
+  : Full name: James Earl Jones 
+
 * Processing array contents
 
 - Processing array elements is no different than processing other
@@ -776,8 +823,6 @@ one decimal precision.
     int newValues[SIZE];
     newValues = oldValues;
   #+end_src
-
-  #+RESULTS:
 
 - Answer:
   #+begin_quote
@@ -833,7 +878,7 @@ one decimal precision.
 * Summing the Values in a Numeric Array
 
 - *Task:* Write a short C++ program that sums the values in an
-  array. Can you use a range-based loop? (5 lines.)
+  array. Can you use a range-based loop? (5 lines)
 
 - *Sample input:* 1,2,3,4,5,6,7,8
 
@@ -1004,11 +1049,23 @@ one decimal precision.
   #+RESULTS:
   : different
 
+- Here, the third line is a conditional (or *ternary*) operator. Its general form:
+  #+begin_example cpp
+  condition ? expression_if_true : expression_if_false;
+  #+end_example
+  It is a compact form of:
+  #+begin_example cpp
+  if (condition)
+     expression_if_true;
+  else
+     expression_if_false;
+  #+end_example
+
 - Explanation:
   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> :namespaces std :results output :exports both :noweb yes
     int firstArray [] {5,10,15,20,25};
     int secondArray [] {5,10,15,20,25};
-    cout << firstArray << endl << secondArray;
+    cout << firstArray << endl << secondArray; // compares the addresses of the 1st elements
   #+end_src
 
   #+RESULTS:
