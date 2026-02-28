@@ -753,14 +753,14 @@ I created a [[https://colab.research.google.com/drive/1_nYn2yO19m-gllVe1kOUl9P-z
 
 * Week 5 - Arrays as function arguments and vectors
 
-- [ ] *Time check*: We are 1/3 through the term! Hoorah!
-- [ ] *This week*: Delayed grading & assignments (I'm traveling).
-- [ ] *Assignments deadlines*: Now Friday at midnight.
-- [ ] *Review:* What affects program performance?
+- [X] *Time check*: We are 1/3 through the term! Hoorah!
+- [X] *This week*: Delayed grading & assignments (I'm traveling).
+- [X] *Assignments deadlines*: Now Friday at midnight.
+- [X] *Review:* What affects program performance?
 - [ ] *Review:* Arrays part 2 - references and operators.
 - [ ] *Lecture:* Arrays as function arguments, and vectors.
 
-** TODO What affects program performance
+** DONE What affects program performance
 
 I said summarily that only algorithmic changes and memory manipulation
 affect program performance. This was perhaps a little too short. The
@@ -789,13 +789,13 @@ textbook by Pat Morin, "[[https://opendatastructures.org/][Open Data Structures]
 the fat tome of a book by Bryant/O'Halloran, which I also use in my
 computer architectures class, "[[https://www.csapp.cs.cmu.edu/][CS:APP]]" (Computer systems: A
 Programmer's Perspective). A classic is Brooks' "[[https://archive.org/details/MythicalManMonth/][The Mythical
-Man-Month]]".
+Man-Month]]" (Software Engineering and it stresses).
  
 Donald Knuth, the inventor of "[[http://literateprogramming.com/][Literate Programming]]", said: "Premature
 optimization is the root of all evil." At this point in your journey,
 you should worry more about syntax and readability than performance.
  
-** TODO Review: Arrays part 2
+** DONE Review: Arrays part 2
 
 1. What is a *reference* in C++?
    #+begin_quote
@@ -977,3 +977,50 @@ Today, we're going to experiment with literate programming: Instead of
 using OneCompiler.com, we're going to use Colab and you code along and
 solve problems in a Jupyter notebook instead of in an IDE.
 
+** Notes: Memory management in the computer
+
+Following on from James' question: How exactly does the computer
+manage the memory when arrays are defined?
+
+[This is stuff you'll learn in detail in the courses on operating
+systems [year 4] and computer architecture [year 2] both of which I'll
+probably be teaching.]
+
+1. The most important fact: To the normal user, the computer maintains
+   the illusion that memory (as in RAM, not hard disk persistent
+   memory) is *infinite*.
+
+2. In fact, behind the lines, the *kernel* of the operating system
+   manages the memory allocation so that programs (or applications)
+   that currently are not doing anything, must return their memory
+   allocations until they've got work again.
+
+3. Independent of this memory management for multiple applications,
+   for every individual program, memory can only be allocated once:
+   when you define an array =a=, it begins at an address =&a[0]=, and
+   every other array =b= defined afterwards, is at a different address,
+   =&b[0]=. 
+
+4. This is why arrays cannot be copied over just by name (=b==a=). The
+   way you see this in the documentation (e.g. =cppreference.com=) is:
+   "The name =a= is not a modifiable lvalue", or "arrays decay to
+   pointers."
+
+5. Preview: a ~vector~ can be copied because it is a ~class~ and has a
+   "copy constructor", and a "copy assignment operator" - functions
+   that basically do the element-by-element copying without you seeing
+   it in a very efficient way (it is "cache-friendly", reallocates
+   infrequently, and exploits bulk memory operations - "all-in-one").
+
+[Copied to the Teams-General channel]
+
+** Lessons learnt / Take-aways
+
+- MB: I need to start with simpler examples. And pay even more
+  attention to memory management questions.
+
+- How to use function to pass and loop over (C-style) arrays
+
+- How to write functions efficiently in C++ (declaring/defining/using)
+
+- I learnt the functions of functions & how to use it with containers

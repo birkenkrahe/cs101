@@ -1096,6 +1096,115 @@ one decimal precision.
   #+RESULTS:
   : Arrays equal? false
 
+* Primer on functions
+
+- Functions ought to be declared with *return type*, *name* and *argument
+  list*. They are then *defined* outside of ~main~, and finally *called* in
+  ~main~.
+
+- Examples:
+  #+begin_example C++
+  void foo(int x, int y); // no return, takes two integers
+  int bar(); // returns integer, no arguments
+  double baz(int [], int); // returns double, takes array
+  #+end_example  
+
+- In longer programs, the declaration (or prototype) is bundled with
+  the preprocessor directives (like ~#include~) and other global
+  statements, in a header file, ="file.h"=, while the ~main~ function is
+  in a file =main.cpp=, and the function definitions go into a file
+  =file.cpp=. All three are linked when the program is compiled.
+
+- Write a C++ program that defines two integer variables, assigns
+  values to them, and calls a function =add= that adds the *two integers*
+  (=arguments) and returns the integer result (=return type) to ~main~
+  and prints it.
+
+  #+begin_src C++ :main no :includes :results output
+    #include <iostream>
+    #include <string>
+    using namespace std;
+
+    // function declaration (return integer result) --> add.h
+    int add(int, int);
+
+    int main() // goes into main.cpp
+    {
+      int x, y; // declare and initialize two integer variables
+      // function call (pass two integers to be added) & print it
+      cout << add(5,12); // stream the result to stdout
+      printf("\n%i\n",add(5,12)); // extra layer of formatting
+      return 0;
+    }
+    // function definition -> add.cpp
+    int add(int a, int b)
+    {
+      cout << "\nIn function: " << a + b << endl;
+      return a + b;
+    }
+  #+end_src
+
+  #+RESULTS:
+  : 
+  : In function: 17
+  : 17
+  : In function: 17
+  : 
+  : 17
+
+- The example shows that you can print (~cout~) from anywhere in the
+  program irrespective of the ~return~ type.
+
+- In math:
+  f(x,y) x + y; value for x, value for y, and a rule for f (add)
+
+- In Java, the function could be in a class
+#+begin_src C++ :main no :includes
+  #include <iostream>
+  using namespace std;
+
+  // function definition
+  int add(int a, int b)
+  {
+    return a + b;
+  }
+
+  int main()
+  {
+    int x, y; // declare and initialize two integer variables
+    // function call (pass two integers to be added) & print it
+    cout << add(5,12);
+    return 0;
+  }
+  #+end_src
+
+  #+RESULTS:
+  : 17
+
+- An even simpler example with a ~void~ function:
+
+  #+begin_src C++ :main no :includes
+    #include <iostream>
+    using namespace std;
+
+    // function declaration (return integer result)
+    void hello();
+
+    int main()
+    {
+      hello();// function call (pass two integers to be added)
+      return 0;
+    }
+    // function definition
+    void hello()
+    {
+      cout << "Hello";
+    }
+  #+end_src
+
+  #+RESULTS:
+  : Hello
+
 * Arrays as Function Arguments
 
 - To pass an array as an argument to a function, pass the name of the
