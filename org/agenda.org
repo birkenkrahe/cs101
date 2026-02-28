@@ -753,9 +753,12 @@ I created a [[https://colab.research.google.com/drive/1_nYn2yO19m-gllVe1kOUl9P-z
 
 * Week 5 - Arrays as function arguments and vectors
 
-- [ ] *Review:* What affects program performance
-- [ ] *Review:* Arrays part 2
-- [ ] *Lecture:* Arrays as function arguments, and vectors
+- [ ] *Time check*: We are 1/3 through the term! Hoorah!
+- [ ] *This week*: Delayed grading & assignments (I'm traveling).
+- [ ] *Assignments deadlines*: Now Friday at midnight.
+- [ ] *Review:* What affects program performance?
+- [ ] *Review:* Arrays part 2 - references and operators.
+- [ ] *Lecture:* Arrays as function arguments, and vectors.
 
 ** TODO What affects program performance
 
@@ -774,24 +777,25 @@ The hierarchy of run-time performance impact roughly looks like this:
 5. *Compiler optimization friendliness* (for example program order,
    defining prototypes before the definition etc.)
 
-What is correct: You cannot optimize performance by rearranging
-punctuation, and compile-time syntax differences (like num[] instead
-of num[6]) alone do not improve run-time.
+*What is correct:* You cannot optimize performance by rearranging
+punctuation, and compile-time syntax differences (like =num[]= instead
+of =num[6]=) alone do not improve run-time.
  
 You'll have a better understanding of this once we've covered time
-complexity, pointers, and other container types.
+*complexity*, *pointers*, and other *container* types.
  
-A good (free) book on this efficiency stuff in C++ is Pat Morin's Open
-Data Structures. The gold standard is the fat tome of a book by
-Bryant/O'Halloran, which I also use in my computer architectures
-class, CS:APP (Computer systems). A classic is Brooks' The Mythical
-Man-Month.
+A good book on this efficiency stuff in C++ is the open content
+textbook by Pat Morin, "[[https://opendatastructures.org/][Open Data Structures]]". The gold standard is
+the fat tome of a book by Bryant/O'Halloran, which I also use in my
+computer architectures class, "[[https://www.csapp.cs.cmu.edu/][CS:APP]]" (Computer systems: A
+Programmer's Perspective). A classic is Brooks' "[[https://archive.org/details/MythicalManMonth/][The Mythical
+Man-Month]]".
  
-Donald Knuth, the inventor of "Literate Programming", said: "Premature
+Donald Knuth, the inventor of "[[http://literateprogramming.com/][Literate Programming]]", said: "Premature
 optimization is the root of all evil." At this point in your journey,
 you should worry more about syntax and readability than performance.
  
-** Review: Arrays part 2
+** TODO Review: Arrays part 2
 
 1. What is a *reference* in C++?
    #+begin_quote
@@ -799,73 +803,91 @@ you should worry more about syntax and readability than performance.
    the reference affects the original variable.
    #+end_quote
 
-2. Why must a reference be initialized when declared?
+2. What symbol is used to declare a reference variable?
    #+begin_quote
-   Because a reference must immediately refer to an existing
-   variable and cannot remain unbound. It's not a variable.
+   The ampersand symbol: ~&~, or the address-of operator. So you say
+   =&foo= is "address-of foo", short for "memory address of foo".
+   #+end_quote
+   
+3. Why must a reference be initialized when declared?
+   #+begin_quote
+   Because a reference must immediately refer to an existing variable
+   and cannot remain unbound. *It's not a variable*, only looks like it.
    #+end_quote
 
-3. Can a reference be changed to refer to another variable?
+   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results none :exports both :noweb yes
+     int x=10;
+     int &ref;
+   #+end_src
+
+4. Can a reference be changed to refer to another variable?
    #+begin_quote
    No. After initialization, a reference cannot be reseated to
    refer to a different variable.
    #+end_quote
 
-4. Does a reference require additional storage?
-   #+begin_quote
-   No. A reference does not require extra storage.
-   #+end_quote
+   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results none :exports both :noweb yes
+     int x, y;
+     int &ref = x;
+     int &ref = y;
+   #+end_src
 
-5. What symbol is used to declare a reference variable?
+5. Does a reference require additional storage?
    #+begin_quote
-   The ampersand symbol: ~&~
+   No. A reference does not require extra storage. At run-time, it is
+   optimized away entirely by the compiler.
    #+end_quote
 
 6. Is the ampersand ~&~ symbol overloaded?
    #+begin_quote
-   Yes. It is also used as a logical/bitwise operator, and to
-   declaring references and address-of operations.
+   Yes. It is also used as a *logical/bitwise* operator, and to
+   declaring references and *address-of* operations.
    #+end_quote
 
    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
      cout << boolalpha << ("red"=="blue" && 1 == 0);
    #+end_src
 
- 7. In a range-based for loop, what does the loop variable receive by
+7. In a range-based for loop, what does the loop variable receive by
    default?
-   #+begin_quote
-   A copy of each array element.
-   #+end_quote
+     #+begin_quote
+     A copy of each array element. If it changes, the original array
+     is not changed.
+     #+end_quote
 
 8. Why must the loop variable be declared with ~&~ to modify elements?
    #+begin_quote
-   Because only a reference allows direct modification of the
-   original array elements.
+   Because only a reference allows direct modification of the original
+   array elements (via the address-of the array elements).
    #+end_quote
    
 9. What is the effect of =++score[2]=?
    #+begin_quote
-   It increments score[2] before printing or using its value.
+   It increments score[2] before printing or using its value. The
+   increment is seen before the subscript operator is applied.
    #+end_quote
 
 10. What is the effect of =score[4]++=?
     #+begin_quote
-    It prints or uses the original value, then increments it.
+    It prints or uses the original value, then increments it. The
+    subscript operator is seen before the increment is applied.
     #+end_quote
 
 11. What does =value[count--];= do?
     #+begin_quote
-    It accesses =value[count]=, then decreases count by one.
+    It accesses =value[count]=, then decreases count by one. So for
+    =value[1]=, this becomes =value[0]=.
     #+end_quote
 
 12. What does =value[count]--;= do?
     #+begin_quote
-    It decreases the value stored at index count by one.
+    It decreases the value stored at index count by one. So if
+    =value[1]= is =1=, then =value[1]= becomes =0=.
     #+end_quote
 
-13. What does an array name represent in an expression?
+13. What does an *array name* represent in an expression?
     #+begin_quote
-    It represents the starting memory address of the array.
+    It represents the *starting memory address* of the array.
     #+end_quote
 
 14. Why does =array2 = array2;= not work to copy one array into
@@ -882,9 +904,16 @@ you should worry more about syntax and readability than performance.
     It prints the starting memory address of the array.
     #+end_quote
 
+    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
+      int num[2] {100,200};
+      cout << num << endl;
+      cout << &num[0];
+    #+end_src
+
 16. Why is =&num[1]= four bytes ahead of =&num[0]=?
     #+begin_quote
-    Because an =int= typically occupies 4 bytes in memory.
+    Because an =int= typically occupies 4 bytes in memory. "Typically",
+    because the exact size depends on the computer architecture.
     #+end_quote
 
 17. What is wrong with this program?
@@ -942,7 +971,7 @@ you should worry more about syntax and readability than performance.
     Elements must be copied individually.
     #+end_quote    
 
-** Lecture and codealong in Colab
+** +Lecture and codealong in Colab+ (next week perhaps)
 
 Today, we're going to experiment with literate programming: Instead of
 using OneCompiler.com, we're going to use Colab and you code along and

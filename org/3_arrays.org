@@ -603,7 +603,9 @@ one decimal precision.
   
 - Why does the first loop use =&val= while the second loop uses =val=?
   #+begin_quote
-
+  The first loop needs to change the values of the original array
+  =numbers=, and the reference =&val= provides access to it, while in the
+  second array, we only need a copy of =numbers= to print it.
   #+end_quote
 
 - What's the advantage of range-based loops?
@@ -875,7 +877,8 @@ one decimal precision.
   in memory forward from the address of =num[0]=.
   #+end_quote  
   
-* Summing the Values in a Numeric Array
+
+* NEXT Summing the Values in a Numeric Array
 
 - *Task:* Write a short C++ program that sums the values in an
   array. Can you use a range-based loop? (5 lines)
@@ -1183,6 +1186,7 @@ one decimal precision.
       |                                     ^~~
   #+end_example
   
+
 * NEXT Introduction to the STL ~vector~
 
 - The ~vector~ data type of the Standard Template Library (STL) is
@@ -1410,7 +1414,8 @@ one decimal precision.
 
 - Why can't you use ~.push_back~ directly in a ~cout <<~ stream?
   #+begin_quote
-
+  ~push_back~ returns ~void~ (a non-value), and the ~<<~ operator expects a
+  value.
   #+end_quote
 
 * NEXT Determining the ~size~ of a ~vector~
@@ -1468,20 +1473,41 @@ one decimal precision.
       vector<int> values;
 
       // Store values in the vector, then display size.
+      values.push_back(1);
+      values.push_back(2);
+      values.push_back(3);
 
+      cout << "The size of values is " << values.size() << endl;
+
+      cout << "Let's pop the values back from the vector:\n";      
       // Remove a value from the vector, then display size.
-
+      values.pop_back();
+      cout << "The size of values is " << values.size() << endl;
       // Remove a value from the vector then display size.
-
+      values.pop_back();
+      cout << "The size of values is " << values.size() << endl;
       // Remove a value from the vector then display size.
+      values.pop_back();
+      cout << "The size of values is " << values.size() << endl;
+
+      // Removing one more element causes undefined behavior!
+      //values.pop_back();
+      //cout << "The size of values is " << values.size() << endl;
 
       return 0;
     }
   #+end_src
 
+  #+RESULTS:
+  : The size of values is 3
+  : Let's pop the values back from the vector:
+  : The size of values is 2
+  : The size of values is 1
+  : The size of values is 0
+  
 - What if we were to try and remove another value from the empty ~vector~?
   #+begin_quote
-
+  Causes undefined behavior! Not good! Bad! Let's show that.
   #+end_quote
 
 * Clearing a ~vector~
@@ -1500,17 +1526,27 @@ one decimal precision.
 
     int main()
     {
-      // define a vector of 100 elements
-
+      // define an empty vector of 100 integer elements
+      vector<int> values(100);
+        
       // display vector size
-
+      cout << "The vector has "
+           << values.size() << " elements.\n";
+      
       // clear vector
-
+      values.clear();
+      
       // display vector size
+      cout << "The vector now has "
+           << values.size() << " elements.\n";
 
       return 0;
     }
   #+end_src
+
+  #+RESULTS:
+  : The vector has 100 elements.
+  : The vector now has 0 elements.
 
 * Detecting an empty ~vector~
 
@@ -1527,6 +1563,8 @@ one decimal precision.
   #+name: Program 7-31 Gaddis page 453
   #+begin_src C++ :cmdline < ../data/inputFile :main no :includes :results output :exports both
     // Demonstrate the empty() method of the vector class.
+    // Get the number of integer values from the user, and the values,
+    // and then average over them and print the average
     // Author: Marcus Birkenkrahe (pledged) [modified from Gaddis, 2024]
     #include <iostream>
     #include <vector>
@@ -1534,18 +1572,33 @@ one decimal precision.
     using namespace std;
 
     // Function prototype
+    // Return a double and takes an integer vector as argument
     double avgVector(vector<int>);
 
     int main()
     {
-      // define empty vector, number of values, and average
-
+      // define empty integer vector, number of values, and average
+      vector<int> values; // holds the input values
+      int numValues;  // number of values to average
+      double average; // store the average of the values
+      
       // Get the number of values to average.
-
+      cout << "How many values do you wish to average? ";
+      cin >> numValues;
+      
       // Get the values and store them in the vector.
-
+      for (int count=0; count < numValues; count++)
+        {
+          int tempValue;
+          cout << "Enter an integer value: ";
+          cin >> tempValue;
+          values.push_back(tempValue);
+        }
       // Get the average of the values and display it.
-
+      average = avgVector(values);
+      cout << fixed << showpoint << setprecision(2);
+      cout << "\nAverage: " << average << endl;
+      
       return 0;
     }
 
@@ -1555,7 +1608,23 @@ one decimal precision.
     // the average of those values as a double. Otherwise, *
     // an error message is displayed and 0.0 is returned.  *
     //******************************************************
-
+    double avgVector(vector<int> vect)
+    {
+      double total = 0.;
+      double avg;
+      if (vect.empty())  // check if vector is empty
+        {
+          cout << "\nVector is empty - nothing to average.\n";
+          avg = 0.0;
+        }
+      else
+        {
+          for (int count=0; count<vect.size(); count++)
+    	total += vect[count];
+          avg = total / vect.size();
+        }
+      return avg;
+    }
   #+end_src
 
 - InputFile:
@@ -1574,8 +1643,50 @@ one decimal precision.
 - =at(element)= returns the value of the element located at =element= in
   the ~vector~:
   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-
+    vector<int> vect(100,10);
+    cout << vect.at(99); // going outside of range triggers an exception
   #+end_src
+
+  #+RESULTS:
+  : 10
+
+- =resize(num, value)= resizes a ~vector~ by =num= elements and initializes
+  each of the new elements with =value=. If =num= is the same as the
+  current ~size~, it does nothing.
+
+  #+begin_src C++ :main yes :includes <vector> <iostream> <cstdlib> <string> <fstream> :namespaces std :results output :exports both :noweb yes
+    vector<int> vect {1,2,3,4,5};
+    cout << vect.size() << endl;
+    vect.resize(10,100);
+    cout << vect.size() << endl;
+    cout << vect[9];    
+  #+end_src
+
+  #+RESULTS:
+  : 5
+  : 10
+  : 100
+
+- =swap(vector2)= swaps the content of the ~vector~ with the contents of
+  =vector2=.
+  #+begin_src C++ :main yes :includes <vector> <iostream> <cstdlib> <string> <fstream> :namespaces std :results output :exports both :noweb yes
+    vector<int> vect1 {10,20,30};
+    vector<int> vect2 {40,50,60};
+
+    vect1.swap(vect2);
+
+    for (int val : vect1)
+      cout << val << " ";
+
+    cout << endl;
+    
+    for (int val : vect2)
+      cout << val << " ";
+  #+end_src
+
+  #+RESULTS:
+  : 40 50 60 
+  : 10 20 30 
 
 - ~clear()~ clears a ~vector~ of all its elements:
   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
@@ -1595,20 +1706,6 @@ one decimal precision.
 
 - =push_back(value)= stores =value= in the last element of the ~vector~. If
   the ~vector~ is full or empty, a new element is created.
-  #+begin_src C++ :main yes :includes <vector> <iostream> <cstdlib> <string> <fstream> :namespaces std :results output :exports both :noweb yes
-
-  #+end_src
-
-- =resize(num, value)= resizes a ~vector~ by =num= elements and initializes
-  each of the new elements with =value=. If =num= is the same as the
-  current ~size~, it does nothing.
-
-  #+begin_src C++ :main yes :includes <vector> <iostream> <cstdlib> <string> <fstream> :namespaces std :results output :exports both :noweb yes
-
-  #+end_src
-
-- =swap(vector2)= swaps the content of the ~vector~ with the contents of
-  =vector2=.
   #+begin_src C++ :main yes :includes <vector> <iostream> <cstdlib> <string> <fstream> :namespaces std :results output :exports both :noweb yes
 
   #+end_src
