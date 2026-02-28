@@ -877,8 +877,7 @@ one decimal precision.
   in memory forward from the address of =num[0]=.
   #+end_quote  
   
-
-* NEXT Summing the Values in a Numeric Array
+* Summing the Values in a Numeric Array
 
 - *Task:* Write a short C++ program that sums the values in an
   array. Can you use a range-based loop? (5 lines)
