@@ -275,12 +275,42 @@ What you will get later:
 ** Review: Quiz 1
 
 - Which activity most directly relies on *abstraction*?
-  #+attr_html: :width 900px :float nil:
-  [[../img/quiz_1.png]]
+
+  Choices were:
+  1. Turning a computer on and off
+  2. Typing source code into an editor
+  3. Installing an operating system
+  4. Using a data structure without knowing its internal implementation
+
+
+  In C++ a data structure with its operations and interface is called
+  "Abstract Data Type" (ADT). Using a data structure without knowing
+  its internal implementation directly relies on abstraction, because:
+  1. You use the public interface.
+  2. You do not depend on the implementation details.
+  3. The representation is hidden.
+
+  All four activities involve abstraction but only 4 directly relies
+  on the abstraction boundary itself:
+
+  1. Turning a computer on/off: The power button abstracts voltage regulation, firmware
+     bootstrapping, hardware initialization, kernel loading. You do
+     not see what is happening electrically or at the BIOS/UEFI level.
+  2. Typing code in an editor: The editor abstracts memory buffers,
+     file systems, rendering engines, input handling, OS calls.
+  3. Installing an operating system: This is extremely abstracted. You
+     do not see partition tables, boot sectors, driver negotiation,
+     kernel configuration, etc.
 
 - Which command compiles a C++ source file?
-  #+attr_html: :width 900px :float nil:
-  [[../img/make.png]]
+  1. execute
+  2. g++
+  3. gcc-run
+  4. make
+
+  Of these, only ~g++~ and ~make~ are commands. ~g++~ is the compiler. ~make~
+  is a special program that requires a configuration file called
+  ~Makefile~, and it can, but does not have to compile a file.
 
 - Example:
   #+begin_src bash :results output :exports both
@@ -1017,11 +1047,10 @@ probably be teaching.]
   
 * Week 6 - Vectors
 
-** Coding in class
-
-What if you're struggling to code in class on command as it were? Not
-worry for several reasons:
-
+** From the Teams General Channel
+*** Coding in class
+ 
+What if you're struggling to code in class on command as it were? Not worry for several reasons:
 - There are three important skills related to programming: being able
   to read and understand programs, being able to fix programs, and
   being able to write programs.
@@ -1038,6 +1067,25 @@ worry for several reasons:
   worry if you cannot get the finished code to run. Instead, focus on
   understanding and on where your difficulties may lie and ask.
 - Apart from that, if you want to drill competitive programming, go to
-  open.kattis.com and begin to solve easy problems. I even offered a
+  [[https://open.kattis.com][open.kattis.com]] and begin to solve easy problems. I even offered a
   course like that last term, and it was actually fun.
+- For further reading and training, take a look at the competitive
+  programmers handbook - [[https://cses.fi/book/book.pdf][free PDF here]].
+
+*** Visualizing program progress
+
+In the last session, we looked at [[https://pythontutor.com][pythontutor.com]] to visualize walking
+through a program. The dashboard showed the variables appearing on the
+"stack" (when we work with dynamic structures like the vector, they
+will appear on the "heap"), how the program moves into the function
+scope and out of it again, creating and deleting memory as it
+proceeds.
+ 
+Pythontutor is excellent for small programs to identify logical
+errors - problems with your algorithm. For large programs, and for a
+lot more information, you need a professional debugging tool like
+gdb. While I would run it on the command-line (e.g. in Google Cloud
+Shell or Google Colab), there is an online version of gdb,
+[[https://onlinegdb.com][onlinegdb.com]] (with a [[https://www.onlinegdb.com/blog/brief-guide-on-how-to-use-onlinegdb-debugger/][tutorial]]). In the course, we'll use gdb soon to
+give you an idea on how to do it.
  
