@@ -106,7 +106,7 @@
 
   #+RESULTS:
   : 100 200 300 400 500
-  : 100 200 300 400 500 
+  : 100 200 300 400 500
 
 * Two types of initialization
 
@@ -204,7 +204,7 @@ dashboard preview.
 #+end_src
 
 #+RESULTS:
-: 10.00 100.00 45.99 30.00 200.00 
+: 10.00 100.00 45.99 30.00 200.00
 
 * Inputting array content element-wise
 
@@ -387,7 +387,7 @@ dashboard preview.
   #+end_src
 
   #+RESULTS:
-  : 1 2 3 4 0 0 0 
+  : 1 2 3 4 0 0 0
 
 - You can implicitly size arrays if you initialize them with a
   list. Example:
@@ -430,28 +430,28 @@ dashboard preview.
   #+begin_src C++ :main yes :includes <iostream> :namespaces std :results output :exports both :noweb yes
     int numbers[] {3,6,9};
     for (int val : numbers)  // loop with val over numbers
-      cout << val << " ";    // give me each val 
+      cout << val << " ";    // give me each val
   #+end_src
 
   #+RESULTS:
-  : 3 6 9 
+  : 3 6 9
 
 - You can use the ~auto~ key word to infer the data type of the range
   variable:
   #+begin_src C++ :main yes :includes <iostream> <cstdlib> :namespaces std :results output :exports both :noweb yes
     int numbers[] {3,6,9};
     for (auto val : numbers)  // compiler will identify int
-      cout << val << " ";    
+      cout << val << " ";
   #+end_src
 
   #+RESULTS:
-  : 3 6 9 
+  : 3 6 9
 
 - Example: Display the elements of a ~string~ array.
   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> :namespaces std :results output :exports both :noweb yes
     std::string names[] {"Jim", "Joe", "Jane", "Jack"};
     for(std::string name : names) cout << name << endl;
-    for(auto name : names) cout << name << endl;    
+    for(auto name : names) cout << name << endl;
   #+end_src
 
   #+RESULTS:
@@ -508,9 +508,9 @@ one decimal precision.
     {
       double temps[] {22.5, 25, 19.5, 21.0, 23.5, 26.1};
       for (double temperature : temps) // loop over the array
-         cout << fixed << showpoint << setprecision(2)
-              << temperature << "C = "
-      	<< temperature * 9./5. + 32. << "F." << endl;
+        cout << fixed << showpoint << setprecision(2)
+         << temperature << "C = "
+         << temperature * 9./5. + 32. << "F." << endl;
       return 0;
     }
   #+end_src
@@ -525,9 +525,9 @@ one decimal precision.
 
 - What C++ enables you do is work on three different levels:
 
-       | values | 22.5 | 25.0 | 19.5 |  range-based loops
-       | index  |    0 |    1 |    2 |  index loops
-       | memory |  0x1 |  0x2 |  0x3 |  pointer arithmetic
+  | values | 22.5 | 25.0 | 19.5 |  range-based loops
+  | index  |    0 |    1 |    2 |  index loops
+  | memory |  0x1 |  0x2 |  0x3 |  pointer arithmetic
 
 
 * Modifying an array with a Range-Based ~for~ Loop
@@ -561,7 +561,7 @@ one decimal precision.
   from =inputFile= in the =../data= directory, and display the array
   values. Use a range-based ~for~ loop for both iterations.
 
-  #+begin_src C++ :cmdline ../data/inputfile :tangle fstream.cpp :main no :includes :results output :exports both 
+  #+begin_src C++ :cmdline ../data/inputfile :tangle fstream.cpp :main no :includes :results output :exports both
     #include <iostream>
     #include <fstream>  // contains ifstream and ofstream
 
@@ -579,7 +579,7 @@ one decimal precision.
       for (int &val : numbers)
         inputFile >> val;     // read data from the filestream
 
-      inputFile.close();    
+      inputFile.close();
       // Display values in the array
       for (int val : numbers)
         std::cout << val << " ";  // stream data to stdout
@@ -589,7 +589,7 @@ one decimal precision.
   #+end_src
 
   #+RESULTS:
-  : 101 102 103 104 105 
+  : 101 102 103 104 105
 
 - Input file:
   #+begin_src bash :results output :exports both
@@ -600,7 +600,7 @@ one decimal precision.
 
   #+RESULTS:
   : 101 102 103 104 105
-  
+
 - Why does the first loop use =&val= while the second loop uses =val=?
   #+begin_quote
   The first loop needs to change the values of the original array
@@ -633,7 +633,7 @@ one decimal precision.
       {
         cout << "Enter a value: ";
         std::cin >> value;
-        }
+      }
     cout << '\n' << values[0] << endl;
   #+end_src
 
@@ -648,7 +648,7 @@ one decimal precision.
 
   #+RESULTS:
   : g++     values.cpp   -o values
-  : Enter a value: 
+  : Enter a value:
   : 12
 
 - Answer:
@@ -689,7 +689,7 @@ one decimal precision.
 
   #+RESULTS:
   : g++     values2.cpp   -o values2
-  : Enter a value: 
+  : Enter a value:
   : 5
 
 * PRACTICE Store and display strings using range-based loops
@@ -752,7 +752,7 @@ one decimal precision.
   #+RESULTS:
   : James Earl Jones
 
-- Upload the URL to your solution to Canvas.  
+- Upload the URL to your solution to Canvas.
 
 - Solution:
   #+begin_src C++ :cmdline < ../data/inputFile :main no :includes :namespaces std :results output :exports both
@@ -782,11 +782,11 @@ one decimal precision.
   #+end_src
 
   #+RESULTS:
-  : 
-  : Enter name: 
-  : Enter name: 
-  : Enter name: 
-  : Full name: James Earl Jones 
+  :
+  : Enter name:
+  : Enter name:
+  : Enter name:
+  : Full name: James Earl Jones
 
 * Processing array contents
 
@@ -799,7 +799,7 @@ one decimal precision.
     cout << score[2] << endl;
     cout << ++score[2] << endl;
     cout << score[4]++ << endl;
-    cout << score[4] << endl;    
+    cout << score[4] << endl;
   #+end_src
 
   #+RESULTS:
@@ -832,7 +832,7 @@ one decimal precision.
   assign the individual elements in the array.
   #+end_quote
 
-  #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> :namespaces std :results output :exports both     
+  #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> :namespaces std :results output :exports both
     const int SIZE {4};
     int oldValues[SIZE] {10,100,200,300};
     int newValues[SIZE];
@@ -845,7 +845,7 @@ one decimal precision.
   #+end_src
 
   #+RESULTS:
-  : 10 100 200 300 
+  : 10 100 200 300
 
 - Explanation:
   #+begin_quote
@@ -875,8 +875,8 @@ one decimal precision.
   #+begin_quote
   Notice that the address of =num[1]= is 4 bytes = length of an =int=
   in memory forward from the address of =num[0]=.
-  #+end_quote  
-  
+  #+end_quote
+
 * Summing the Values in a Numeric Array
 
 - *Task:* Write a short C++ program that sums the values in an
@@ -988,13 +988,13 @@ one decimal precision.
   #+end_src
 
   #+RESULTS:
-  : Enter a number or -1 to quit: 
-  : Enter a number or -1 to quit: 
-  : Enter a number or -1 to quit: 
-  : Enter a number or -1 to quit: 
-  : Enter a number or -1 to quit: 
-  : Enter a number or -1 to quit: 
-  : Enter a number or -1 to quit: 1 3 4 77 8 33 
+  : Enter a number or -1 to quit:
+  : Enter a number or -1 to quit:
+  : Enter a number or -1 to quit:
+  : Enter a number or -1 to quit:
+  : Enter a number or -1 to quit:
+  : Enter a number or -1 to quit:
+  : Enter a number or -1 to quit: 1 3 4 77 8 33
 
 * [Bonus program] Fill array partially with sentinel control
 
@@ -1106,7 +1106,7 @@ one decimal precision.
   void foo(int x, int y); // no return, takes two integers
   int bar(); // returns integer, no arguments
   double baz(int [], int); // returns double, takes array
-  #+end_example  
+  #+end_example
 
 - In longer programs, the declaration (or prototype) is bundled with
   the preprocessor directives (like ~#include~) and other global
@@ -1144,11 +1144,11 @@ one decimal precision.
   #+end_src
 
   #+RESULTS:
-  : 
+  :
   : In function: 17
   : 17
   : In function: 17
-  : 
+  :
   : 17
 
 - The example shows that you can print (~cout~) from anywhere in the
@@ -1175,10 +1175,10 @@ one decimal precision.
     cout << add(5,12);
     return 0;
   }
-  #+end_src
+#+end_src
 
-  #+RESULTS:
-  : 17
+#+RESULTS:
+: 17
 
 - An even simpler example with a ~void~ function:
 
@@ -1232,7 +1232,7 @@ one decimal precision.
   #+end_src
 
   #+RESULTS:
-  : 5 10 15 20 25 30 35 40 
+  : 5 10 15 20 25 30 35 40
 
 - Would a range-based loop work in ~showValues~, too?
   #+begin_example C++
@@ -1293,7 +1293,7 @@ one decimal precision.
   template<typename _Tp> const _Tp* end(const valarray<_Tp>&) noexcept;
       |                                     ^~~
   #+end_example
-  
+
 
 * NEXT Introduction to the STL ~vector~
 
@@ -1306,7 +1306,7 @@ one decimal precision.
      ~vector~ elements).
   #+end_quote
 
-- Some differences:
+- Some differences to arrays:
   #+begin_quote
   1. You don't have to declare the number of elements that the ~vector~
      will have.
@@ -1319,11 +1319,11 @@ one decimal precision.
   5. You need to ~#include <vector>~.
   #+end_quote
 
-- What the doc says:
+- What the doc says (cppreference.com):
   #+begin_quote
   You need to ~#include <vector>~ - check out ~cppreference~: "~std::vector~
   is a sequence container that encapsulates dynamic size arrays."
-  
+
   Further down the page, you see some notes on the algorithmic
   complexity (aka efficiency) of common ~vector~ operations:
   1. Random access (pick any element): O(1)
@@ -1346,7 +1346,7 @@ one decimal precision.
     vector<int> num {10,20,30,40}; // Initializes vector with value set.
   #+end_src
 
-- Overview of ~vector~ definitions:
+- Overview of ~vector~ definitions for other than ~int~ types:
   #+attr_html: :width 600px :float nil:
   [[../img/vector_definitions.png]]
 
@@ -1363,8 +1363,9 @@ one decimal precision.
 
 - Starter code: [[https://tinyurl.com/payroll-cpp][tinyurl.com/payroll-cpp]]
 
+- Solution:
   #+name: tinyurl.com/payroll-cpp
-  #+begin_src C++ :noeval :tangle ../src/payroll2.cpp :main no :includes :results output :exports both
+  #+begin_src C++ :tangle ../src/payroll2.cpp :main no :includes :results output :exports both
     // Compute the grossPay of NUM_EMPLOYEES who work certain hours and
     // receive a certain payRate.
     // Input: integer hours and double payRate for each employee
@@ -1381,7 +1382,7 @@ one decimal precision.
       // number of employees (5)
       // hours vector
       // payRate vector
-      // Loop index 
+      // Loop index
       // Hours x pay rate
 
       // Ask for user input.
@@ -1396,66 +1397,122 @@ one decimal precision.
   #+end_src
 
 - Solution: https://onecompiler.com/cpp/43x2syux9
-  
+  #+begin_src C++ :tangle ../src/payroll2.cpp :main no :includes :results output :exports both
+    // Compute the grossPay of NUM_EMPLOYEES who work certain hours and
+    // receive a certain payRate.
+    // Input: integer hours and double payRate for each employee
+    // Sample output: Hours worked/payRate/grossPay received for each employee
+    // Author: Marcus Birkenkrahe (based on Gaddis, p.444)
+    #include <iostream>
+    #include <iomanip> // input/output manipulation
+    #include <vector> // vectors
+    using namespace std;
+
+    int main()
+    {
+      // Declare variables and constants
+      const int NUM_EMPLOYEES = 5; // number of employees (5)
+      vector<int> hours(NUM_EMPLOYEES); // hours vector
+      vector<double> payRate(NUM_EMPLOYEES); // payRate vector
+      double grossPay; // gross pay = hours x pay rate
+
+      // Ask for user input.
+      cout << "Enter the hours worked by " << NUM_EMPLOYEES
+           << " employees and their hourly rates.\n";
+      // Get the hours worked and the hourly payrate for each employee.
+      // Print the input after receiving it.
+      for (int index=0; index < NUM_EMPLOYEES; index++)
+        {
+          cout << "Hours worked by employee #" << (index + 1)
+               << ": ";
+          cin >> hours[index];
+          cout << hours[index] << endl;
+          cout << "Hourly pay for employee #" << (index + 1)
+               << ": ";
+          cin >> payRate[index];
+          cout << payRate[index] << endl;
+        }
+
+      // Display each employee's gross pay (hours x pay rate).
+      // Set the precision to 2 decimals after the point.
+      cout << "\nHere is the gross pay for each employee:\n";
+      cout << fixed << showpoint << setprecision(2);
+      for (int index=0; index < NUM_EMPLOYEES; index++)
+        {
+          grossPay = hours[index] * payRate[index];
+          cout << "Enployee #" << (index + 1)
+               << ": " << grossPay << endl;
+        }
+      return 0;
+    }
+  #+end_src
+
+- Compile and run it with the sample input:
+  #+begin_src bash :results output :exports both
+    cd ../src
+    make payroll2
+    echo "10 9.75 15 8.62 20 10.50 40 18.75 40 15.65" | ./payroll2
+  #+end_src
+
 * Using the range-based ~for~ loop with a ~vector~ (from C++11)
 
-  - Example 1:
-    #+begin_src C++ :main no :includes :results output :exports both
-      // Display vector elements using a range-base for loop
-      #include <iostream>
-      #include <vector>
-      using namespace std;
+- Example 1:
+  #+begin_src C++ :main no :includes :results output :exports both
+    // Display vector elements using a range-base for loop
+    #include <iostream>
+    #include <vector>
+    using namespace std;
 
-      int main()
-      {
-        // Define and initialize a vector.
-        vector<int> numbers {10,20,30,40,50};
-        // Display the vector elements.
-        for (int val : numbers)
-          cout << val << " ";
+    int main()
+    {
+      // Define and initialize a vector.
+      vector<int> numbers {10,20,30,40,50};
+      // Display the vector elements.
+      for (int val : numbers)
+        cout << val << " ";
 
-        return 0;
-      }
-    #+end_src
+      return 0;
+    }
+  #+end_src
 
-    #+RESULTS:
-    : 10 20 30 40 50 
+  #+RESULTS:
+  : 10 20 30 40 50
 
-  - Example 2:
-    #+begin_src C++ :cmdline < ../data/inputFile :tangle vectorFill.cpp :main no :includes :results output :exports both
-      // Using a range-based for loop, fill a vector with user input
-      // and display the elements of the vector
-      #include <iostream>
-      #include <vector>
-      using namespace std;
+- Example 2:
+  #+begin_src C++ :cmdline < ../data/inputFile :tangle vectorFill.cpp :main no :includes :results output :exports both
+    // Using a range-based for loop, fill a vector with user input
+    // and display the elements of the vector
+    #include <iostream>
+    #include <vector>
+    using namespace std;
 
-      int main()
-      {
-        // Define a vector.
-        vector<int> numbers(5); // starting size 5
-        // Get values for the vector elements.
-        for(int &val :numbers)
-          cin >> val;
-        // Display the vector elements.
-        for(int val :numbers)
-          cout << val << " ";
+    int main()
+    {
+      // Define a vector.
+      vector<int> numbers(5); // starting size 5
+      // Get values for the vector elements.
+      for(int &val :numbers)
+        cin >> val;
+      // Display the vector elements.
+      for(int val :numbers)
+        cout << val << " ";
 
-        return 0;
-      }
-    #+end_src
+      return 0;
+    }
+  #+end_src
 
-    #+RESULTS:
-    : 10 20 30 40 50 
+  #+RESULTS:
+  : 10 20 30 40 50
 
-  - Input file:
-    #+begin_src bash :results output :exports both
-      cd ../data
-      echo "10 20 30 40 50" > inputFile
-      cat inputFile
-    #+end_src
+- Input file:
+  #+begin_src bash :results output :exports both
+    cd ../data
+    echo "10 20 30 40 50" > inputFile
+    cat inputFile
+  #+end_src
 
-    #+RESULTS:
-    : 10 20 30 40 50
+  #+RESULTS:
+  : 10 20 30 40 50
 
 * PRACTICE Using the ~push_back~ member function (payroll pgm modified) -> CANVAS
 
@@ -1472,6 +1529,7 @@ one decimal precision.
     {
       vector<int> numbers;    // empty vector, no starting size
 
+      // print vector elements
       for (int n : numbers)
         cout << n << " ";
 
@@ -1480,15 +1538,16 @@ one decimal precision.
       numbers.push_back(20);
       numbers.push_back(30);
 
+      // print vector elements
       for (int n : numbers)
         cout << n << " ";
-      
+
       return 0;
     }
   #+end_src
 
   #+RESULTS:
-  : 10 20 30 
+  : 10 20 30
 
 - Let's modify the payroll program: Change the ~vector~ definitions to
   vectors without starting size, and use ~push_back~ to fill the
@@ -1509,16 +1568,81 @@ one decimal precision.
 
     // main program
 
-      // Declare variables: hours, pay rate, number of employees
+    // Declare variables: hours, pay rate, number of employees
 
-      // Get the number of employees.
+    // Get the number of employees.
 
-      // Input the data.
+    // Input the data.
 
-      // Display each employee's gross pay (hours x pay rate)
+    // Display each employee's gross pay (hours x pay rate)
   #+end_src
 
 - Solution: https://onecompiler.com/cpp/43x2uk9xg
+
+  #+begin_src C++ :tangle ../src/payroll3.cpp :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
+    // Program stores, in two vectors, the hours worked by the employees
+    // and their hourly pay rates, and computes and displays the gross pay
+    // for each employee. Here, numEmployees is an integer variable;
+    // Sample input: 5 10 9.75 15 8.62 20 10.50 40 18.75 40 15.65
+
+    // header files
+    #include <iostream>
+    #include <iomanip>
+    #include <vector>
+
+    // main program
+    int main()
+    {
+      // Declare variables: hours, pay rate, number of employees
+      std::vector<int> hours;
+      std::vector<double> payRate;
+      int numEmployees;
+      double grossPay;  // to be computed
+      int tempHours;    // stores temporary hours input
+      double tempRate;  // stores temporary pay rate input
+      // Get the number of employees.
+      std::cout << "How many employees do you have to pay?\n";
+      std::cin >> numEmployees;
+
+      // Input the data.
+      for(int index=0;index<numEmployees;index++)
+        {
+          std::cin >> tempHours; // get hours for employee index + 1
+          hours.push_back(tempHours); // fill the hours vector
+          std::cin >> tempRate; // get pay rate for employee index + 1
+          payRate.push_back(tempRate); // fill the payRate vector
+        }
+      // Display each employee's gross pay (hours x pay rate)
+      std::cout << "\nHere is the gross pay for each employee:\n";
+      std::cout << std::fixed << std::showpoint << std::setprecision(2);
+      for(int index=0;index<numEmployees;index++)
+        {
+          grossPay = hours[index] * payRate[index];
+          std::cout << "Employee #" << (index + 1)
+                    << ": $" << grossPay << std::endl;
+        }
+
+      return 0;
+    }
+  #+end_src
+
+- Compile and run it with the sample input:
+  #+begin_src bash :results output :exports both
+    cd ../src
+    make payroll3
+    echo "5 9.75 15 8.62 20 10.50 40 18.75 40 15.65" | ./payroll3
+  #+end_src
+
+  #+RESULTS:
+  : make: 'payroll3' is up to date.
+  : How many employees do you have to pay?
+  :
+  : Here is the gross pay for each employee:
+  : Employee #1: $6.75
+  : Employee #2: $129.30
+  : Employee #3: $210.00
+  : Employee #4: $750.00
+  : Employee #5: $626.00
 
 - Why can't you use ~.push_back~ directly in a ~cout <<~ stream?
   #+begin_quote
@@ -1533,7 +1657,7 @@ one decimal precision.
 - Example: Demonstrates the ~vector~ method ~size~. Notice that the
   function arguments does not need to include the size since ~vector~ is
   dynamically allocated. Expected output: 0 2 4 6 8 10 12
- 
+
   #+begin_src C++ :main no :includes :results output :exports both
     // Demonstrate the size() method of the vector class.
     // Author: Marcus Birkenkrahe (pledged) [modified from Gaddis, 2024]
@@ -1546,10 +1670,14 @@ one decimal precision.
     int main()
     {
       // Define a vector.
-
+      vector<int> numbers;
       // Put a series of numbers in the vector.
-
+      for (int i=0; i<=12; i+=2)
+        {
+          numbers.push_back(i);
+        }
       // Display the numbers.
+      showValues(numbers);
 
       return 0;
     }
@@ -1558,7 +1686,11 @@ one decimal precision.
     // showValues accepts an integer vector as its argument.    *
     // The value of each of the vector's elements is displayed. *
     //***********************************************************
-
+    void showValues(vector<int> vect)
+    {
+      for (int i = 0; i < vect.size(); i++)
+        cout << vect[i] << " ";
+    }
   #+end_src
 
 * Removing elements from a ~vector~ with ~pop.back~
@@ -1587,7 +1719,7 @@ one decimal precision.
 
       cout << "The size of values is " << values.size() << endl;
 
-      cout << "Let's pop the values back from the vector:\n";      
+      cout << "Let's pop the values back from the vector:\n";
       // Remove a value from the vector, then display size.
       values.pop_back();
       cout << "The size of values is " << values.size() << endl;
@@ -1612,7 +1744,7 @@ one decimal precision.
   : The size of values is 2
   : The size of values is 1
   : The size of values is 0
-  
+
 - What if we were to try and remove another value from the empty ~vector~?
   #+begin_quote
   Causes undefined behavior! Not good! Bad! Let's show that.
@@ -1636,14 +1768,14 @@ one decimal precision.
     {
       // define an empty vector of 100 integer elements
       vector<int> values(100);
-        
+
       // display vector size
       cout << "The vector has "
            << values.size() << " elements.\n";
-      
+
       // clear vector
       values.clear();
-      
+
       // display vector size
       cout << "The vector now has "
            << values.size() << " elements.\n";
@@ -1689,11 +1821,11 @@ one decimal precision.
       vector<int> values; // holds the input values
       int numValues;  // number of values to average
       double average; // store the average of the values
-      
+
       // Get the number of values to average.
       cout << "How many values do you wish to average? ";
       cin >> numValues;
-      
+
       // Get the values and store them in the vector.
       for (int count=0; count < numValues; count++)
         {
@@ -1706,7 +1838,7 @@ one decimal precision.
       average = avgVector(values);
       cout << fixed << showpoint << setprecision(2);
       cout << "\nAverage: " << average << endl;
-      
+
       return 0;
     }
 
@@ -1728,7 +1860,7 @@ one decimal precision.
       else
         {
           for (int count=0; count<vect.size(); count++)
-    	total += vect[count];
+            total += vect[count];
           avg = total / vect.size();
         }
       return avg;
@@ -1747,7 +1879,7 @@ one decimal precision.
 
 - Open a new C++ file and code along with me. For each new member
   function, delete the old code. You can find the solutions in GitHub.
-  
+
 - =at(element)= returns the value of the element located at =element= in
   the ~vector~:
   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
@@ -1767,7 +1899,7 @@ one decimal precision.
     cout << vect.size() << endl;
     vect.resize(10,100);
     cout << vect.size() << endl;
-    cout << vect[9];    
+    cout << vect[9];
   #+end_src
 
   #+RESULTS:
@@ -1787,39 +1919,125 @@ one decimal precision.
       cout << val << " ";
 
     cout << endl;
-    
+
     for (int val : vect2)
       cout << val << " ";
   #+end_src
 
   #+RESULTS:
-  : 40 50 60 
-  : 10 20 30 
+  : 40 50 60
+  : 10 20 30
 
 - ~clear()~ clears a ~vector~ of all its elements:
   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-
+    vector<string> names {"Joe", "Jim", "Jane"};
+    for (std::string name : names) cout << name << " ";
+    names.clear();
+    for (std::string name : names) cout << name << " - "; // notice that NOTHING is printed
   #+end_src
+
+  #+RESULTS:
+  : Joe Jim Jane
 
 - ~empty()~ returns ~true~ if the ~vector~ is empty, and ~false~ otherwise.
   #+begin_src C++ :main yes :includes <vector> <iostream> <cstdlib> <string> <fstream> :namespaces std :results output :exports both :noweb yes
+    vector<bool> Boolean {0,1,1,1,0};
+    vector<bool> Boolean2 {};
 
+    cout << "\nVector is: ";
+    Boolean.empty() ? cout << "empty" : cout << "not empty";
+    cout << "\nVector is: ";    
+    Boolean2.empty() ? cout << "empty" : cout << "not empty";
   #+end_src
 
-- ~pop.back~ removes the last element from the ~vector~ thus reducing its
+  #+RESULTS:
+  : 
+  : Vector is: not empty
+  : Vector is: empty
+
+- Challenge: Simplify this last program by moving the ~empty()~ check
+  into a function =isEmpty=.
+
+- Solution:
+  #+begin_src C++ :main no :includes :results output :exports both :noweb yes
+    // pgm checks if vector is empty
+
+    #include <iostream>
+    #include <vector>
+
+    void isEmpty(std::vector<bool>);
+        		     
+    int main()
+    {
+      std::vector<bool> Boolean {0,1,1,1,0};
+      std::vector<bool> Boolean2 {};
+
+      isEmpty(Boolean);
+      isEmpty(Boolean2);
+
+      return 0;
+    }
+    void isEmpty(std::vector<bool> vec)
+    {
+      std::cout << "\nVector is ";
+      if (vec.empty())
+        {
+          std::cout << "empty";
+        } else {
+        std::cout << "not empty";
+      }
+    }
+  #+end_src
+
+  #+RESULTS:
+  : 
+  : Vector is not empty
+  : Vector is empty
+
+- ~pop_back~ removes the last element from the ~vector~ thus reducing its
   ~size~ by one.
   #+begin_src C++ :main yes :includes <vector> <iostream> <cstdlib> <string> <fstream> :namespaces std :results output :exports both :noweb yes
-
+    vector<double> pi {14, 1459, 145926};
+    for (double digit : pi) cout << "3." << digit << endl;
+    pi.pop_back();
+    for (double digit : pi) cout << "3." << digit << endl;    
   #+end_src
+
+  #+RESULTS:
+  : 3.14
+  : 3.1459
+  : 3.145926
+  : 3.14
+  : 3.1459
 
 - =push_back(value)= stores =value= in the last element of the ~vector~. If
   the ~vector~ is full or empty, a new element is created.
-  #+begin_src C++ :main yes :includes <vector> <iostream> <cstdlib> <string> <fstream> :namespaces std :results output :exports both :noweb yes
 
+  Challenge: Write a ~void~ function =append= that you can use to
+  ~push_back~ the value =1= to a vector =id=. Call the function three times
+  on an empty vector, then print the result. To work on the original
+  vector, make sure that you pass a reference, and not a copy of the
+  vector. *Do not use* =using namespace std;=
+
+  Solution:   
+  #+begin_src C++ :main no :includes  :results output :exports both 
+    #include <iostream>
+    #include <vector>
+
+    void append(std::vector<int> &);
+
+    int main()
+    {
+      std::vector<int> id;
+      append(id);
+      for (int elem : id) std::cout << elem << " ";
+      return 0;
+    }
+
+    void append(std::vector<int> &vec)
+    {
+      vec.push_back(1);
+      }
   #+end_src
 
 
-  
-
-
- 

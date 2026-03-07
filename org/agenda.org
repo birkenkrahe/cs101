@@ -1047,26 +1047,63 @@ probably be teaching.]
   
 * Week 6 - Vectors
 
+- [ ] Can you confirm: End of term = May 8. Summer term = May 18?
+- [ ] Review: Functions and arrays
+- [ ] Introduction to C++ vectors
+- [ ] Next: Time and space complexity (Big-O) [online lecture]
+- [ ] Next: Pointers (memory manipulation)
+
 ** From the Teams General Channel
+
+*** Memory management in the computer
+Following on from James' question: How exactly does the computer
+manage the memory when arrays are defined?
+
+[This is stuff you'll learn in detail in the courses on operating
+systems and computer architecture.]
+
+1. The most important fact: To the normal user, the computer maintains
+   the illusion that memory (as in RAM, not hard disk persistent
+   memory) is *infinite*.
+2. In fact, behind the lines, the *kernel* of the operating system
+   manages the memory allocation so that programs (or applications)
+   that currently are not doing anything, must return their memory
+   allocations until they've got work again.
+3. Independent of this memory management for multiple applications,
+   for every individual program, memory can only be allocated once:
+   when you define an array =a=, it begins at an address =&a[0]=, and
+   every other array =b= defined afterwards, is at =a= different address,
+   =&b[0]=.
+4. This is why arrays cannot be copied over just by name (=b==a=). The
+   way you see this in the documentation (e.g. [[https://cppreference.com][cppreference.com]]) is:
+   "The name a is not a modifiable lvalue", or "arrays decay to
+   pointers."
+5. Preview: a ~vector~ can be copied because it is a ~class~ and has a
+   "copy constructor", and a "copy assignment operator" - functions
+   that basically do the element-by-element copying without you seeing
+   it in a very efficient way (it is "cache-friendly", reallocates
+   infrequently, and exploits bulk memory operations - "all-in-one").
+ 
 *** Coding in class
  
-What if you're struggling to code in class on command as it were? Not worry for several reasons:
+What if you're struggling to code in class on command as it were? Not
+worry for several reasons:
 - There are three important skills related to programming: being able
-  to read and understand programs, being able to fix programs, and
-  being able to write programs.
-- Of these, being able to write programs is the least important,
-  especially in an AI-infested (or -blessed?) future when AI tools
+  to *read* and understand programs, being able to *fix* programs, and
+  being able to *write* programs.
+- Of these, being able to write programs may be the least important,
+  especially in an AI-infested (or -blessed?) future when *AI tools*
   will write most of the code.
-- To learn to read and fix programs, you need to practice a lot of
+- To learn to read and fix programs, you need to *practice* a lot of
   reading and fixing but you don't need to be able to program
-  competitively. I am not very good at it myself.
+  competitively (I am not very good at it myself).
 - The assignments, for which you should take all the time you need,
   look stuff up, wrestle with etc. are the best way to train what you
   need to learn right now. Everything else is icing on the cake.
 - So when I ask "are you done?", "do you need more time?" etc. don't
   worry if you cannot get the finished code to run. Instead, focus on
-  understanding and on where your difficulties may lie and ask.
-- Apart from that, if you want to drill competitive programming, go to
+  understanding and on where your difficulties may lie, and ask.
+- Apart from that, if you want to drill *competitive* programming, go to
   [[https://open.kattis.com][open.kattis.com]] and begin to solve easy problems. I even offered a
   course like that last term, and it was actually fun.
 - For further reading and training, take a look at the competitive
@@ -1084,8 +1121,96 @@ proceeds.
 Pythontutor is excellent for small programs to identify logical
 errors - problems with your algorithm. For large programs, and for a
 lot more information, you need a professional debugging tool like
-gdb. While I would run it on the command-line (e.g. in Google Cloud
+~gdb~. While I would run it on the command-line (e.g. in Google Cloud
 Shell or Google Colab), there is an online version of gdb,
 [[https://onlinegdb.com][onlinegdb.com]] (with a [[https://www.onlinegdb.com/blog/brief-guide-on-how-to-use-onlinegdb-debugger/][tutorial]]). In the course, we'll use gdb soon to
 give you an idea on how to do it.
  
+** Review: Functions and arrays - What's wrong with this code?
+
+1. What's wrong with this code?
+   #+begin_src cpp :main no :includes :results none
+     #include <iostream>
+     int add(int a, int b)
+     {
+         std::cout << a + b << std::endl;
+     }
+     int main() {return 0;}
+   #+end_src
+
+   #+begin_quote
+   The function is declared to return =int=, but it does not return a
+   value.  A return statement such as =return a + b;= is required.
+   #+end_quote
+
+2. What's wrong with this code?
+   #+begin_src cpp :main no :includes :results none
+     #include <iostream>
+     int main()
+     {
+         std::cout << add(5,12); 
+        return 0;
+     }
+   #+end_src
+
+   #+begin_quote
+   The function =add= is used before it is declared or defined. A
+   function prototype like =int add(int, int);= must appear before =main=.
+   #+end_quote
+
+3. What's wrong with this code?
+   #+begin_src cpp :main no :includes :results none
+   void showValues(int num[])
+   {
+       for (int i = 0; i < num; i++)
+           cout << num[i] << endl;
+   }
+   #+end_src
+
+   #+begin_quote
+   =num= is a pointer to the first element of the array, not the array
+   size. The function must receive the size as a separate parameter.
+   #+end_quote
+
+4. What's wrong with this code?
+   #+begin_src cpp :main no :includes :results none
+     #include <iostream>
+
+     void showValues(int num[])
+     {
+         for (int val : num)
+             std::cout << val << std::endl;
+     }
+
+     int main() {return 0;}
+   #+end_src
+
+   #+begin_quote
+   The parameter =num= is treated as a pointer, not a full array. A
+   range-based loop cannot determine the beginning and end of the
+   range.
+   #+end_quote
+
+5. What's wrong with this code?
+   #+begin_src cpp :main no :includes :results output
+     #include <iostream>
+
+     void showValues(const int num[], int size)
+     {
+         for (int i = 1; i <= size; i++)
+             std::cout << num[i] << std::endl;
+     }
+
+     int main()
+       {
+         const int SIZE=4;
+         int arr[SIZE] {100,200,300,400};
+         showValues(arr,SIZE);
+       return 0;
+       }
+   #+end_src
+
+   #+begin_quote
+   Array indexing starts at 0.  The loop accesses =num[size]=, which is
+   outside the array bounds.  The correct range is =i = 0= to =i < SIZE=.
+   #+end_quote
