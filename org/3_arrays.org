@@ -1454,6 +1454,35 @@ one decimal precision.
     echo "10 9.75 15 8.62 20 10.50 40 18.75 40 15.65" | ./payroll2
   #+end_src
 
+* Scope
+
+- When is there a semi-colon? Only for ordinary statements, not for
+  control statements with their own {...} scope, or function
+  definitions. *Scope* defines where a variable, parameter or function
+  is *visible* and *usable*.
+  #+begin_example cpp
+  for (int i=0; i<SIZE;i++) // control statement
+  {
+    // loop body
+    i * i;
+    cout << i; // statement
+  }
+
+  if(vector.empty())
+  {
+     // if statement body
+     cout << "empty";
+  }
+
+  void ask(int); // prototype
+
+  int ask(int n)
+  {
+   // function body
+   return n * n;
+  }
+  #+end_example
+
 * Using the range-based ~for~ loop with a ~vector~ (from C++11)
 
 - Example 1:
@@ -1634,9 +1663,9 @@ one decimal precision.
   #+end_src
 
   #+RESULTS:
-  : make: 'payroll3' is up to date.
+  : g++     payroll3.cpp   -o payroll3
   : How many employees do you have to pay?
-  :
+  : 
   : Here is the gross pay for each employee:
   : Employee #1: $6.75
   : Employee #2: $129.30
@@ -1650,7 +1679,7 @@ one decimal precision.
   value.
   #+end_quote
 
-* NEXT Determining the ~size~ of a ~vector~
+* Determining the ~size~ of a ~vector~
 
 - Code along with me. Starter code: [[https://tinyurl.com/vector-size][tinyurl.com/vector-size]]
 
@@ -1666,7 +1695,7 @@ one decimal precision.
     using namespace std;
 
     // Function prototype
-
+    
     int main()
     {
       // Define a vector.
