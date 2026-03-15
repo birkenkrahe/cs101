@@ -7,7 +7,6 @@
 #+property: header-args:python :session *Python* :python python3 :results output :exports both
 #+property: header-args:R      :session *R* :results graphics output file :exports both
 #+property: header-args:C++    :main yes :includes <iostream> :results output :exports both
-
 * Opening and Closing Prayers
 ** Opening Prayer
 #+attr_html: :width 550px :float nil:
@@ -1215,11 +1214,12 @@ give you an idea on how to do it.
    outside the array bounds.  The correct range is =i = 0= to =i < SIZE=.
    #+end_quote
 
+* DONE Week 7 - Time Complexity (Big-O)
 
-* Week 7 - Complexity & Pointers I
-
-- [ ] Chat: Python vs. Java vs. C++
-- [ ] Time and Space Complexity
+- [X] Review: ~at~, ~resize~, ~swap~, ~clear~, ~empty~, ~pop_back~, ~push_back~
+- [X] Chat: Python vs. Java vs. C++
+- [X] Time and Space Complexity
+- [X] Summer trimester schedule (graduate)
 - [ ] Starting with pointers
 
 ** Chat: Python vs. Java vs. C++
@@ -1285,3 +1285,41 @@ Here is the breakdown for what it's worth:
    |          | explicit memory model               | harder for weaker students |
 
    *ChatGPT recommends: Python*
+
+** C++ AI tutor
+
+I created an AI tutor for our course. [[https://chatgpt.com/g/g-69b1567d28bc8191b261ebca7aa0ef38-c-pdf-quiz-tutor][Check it out here]] and let me
+know what you think. It'll quiz you based on all the content we've
+covered so far. 
+
+** Summer 2026 trimester schedule
+
+*Graduate classes:*
+- CS530: Computer Architecture (Sonnier)
+- CS550: Operating Systems (Birkenkrahe)
+- CS67x – History of Technology (Whiskeyman)
+
+*Undergraduate classes:*
+- CS100: Introduction to Programming I (Marcus)
+- MATH201: Discrete Mathematics (Sonnier)
+- PHIL200: Philosophy & Logic (Weitzel)
+
+
+* Week 8  - Pointers
+
+** Big-O notation videos
+
+You asked for an "approved" videon on Big-O notation. [[https://youtu.be/g2o22C3CRfU?si=BjptgLjTE235iMRF][This one by
+fireship]] covers the topic in 100 seconds - that's more than I could
+ever do but I covered similar content. At the opposite end of the
+spectrum is [[https://youtu.be/Mo4vesaut8g?si=-decUX_HwcxQ1etx][this full course (120 min) on Big-O]] by FreeCodeCamp. It
+covers Big-O for multiple algorithms using JavaScript - it's easy to
+understand, looks like Python (but is even simpler to
+learn). JavaScript got nothing to do with Java, btw. Here is a [[https://youtu.be/BgLTDT03QtU?si=91uIGyF_SiLHzi1n][video
+of medium length (20 min)]] specifically for coding interviews using
+Python that goes quite a bit more deeply into identifying Big-O for
+different algorithms.
+ 
+At this point, you only have to get the basic ideas right - I'll put
+some of that in a new quiz, and we'll finish up next week reviewing
+this by looking at Big-O specifically for C++ vectors.
