@@ -1304,10 +1304,18 @@ covered so far.
 - MATH201: Discrete Mathematics (Sonnier)
 - PHIL200: Philosophy & Logic (Weitzel)
 
-
+  
 * Week 8  - Pointers
 
-** Big-O notation videos
+- [X] Quiz: Time complexity & vector methods
+- [X] Assignment: Vectors and functions (need access)
+- [X] Assignment [[https://youtu.be/jgqaOubk0nA?si=2dv6GUoxAOK19Ek_][solution on YouTube]]: Inventory management w/vectors
+- [X] Big-O notation videos
+- [X] Hunt for more digits of \pi
+- [X] My summer course: Principles of AI
+- [X] Memory manipulation with pointers
+
+** [[https://teams.microsoft.com/l/message/19:eu-py5tpdFoc8L4NBbMSvtwN0vrP4YwgHasHqcdlsAg1@thread.tacv2/1773497942531?tenantId=0a354b0e-92d3-45a0-8b54-df786cb36e0f&groupId=682c6490-780e-4dbc-ace2-df5027457405&parentMessageId=1773497942531&teamName=CS%20101&channelName=General&createdTime=1773497942531][Big-O notation videos]]
 
 You asked for an "approved" videon on Big-O notation. [[https://youtu.be/g2o22C3CRfU?si=BjptgLjTE235iMRF][This one by
 fireship]] covers the topic in 100 seconds - that's more than I could
@@ -1323,3 +1331,73 @@ different algorithms.
 At this point, you only have to get the basic ideas right - I'll put
 some of that in a new quiz, and we'll finish up next week reviewing
 this by looking at Big-O specifically for C++ vectors.
+
+** [[https://teams.microsoft.com/l/message/19:eu-py5tpdFoc8L4NBbMSvtwN0vrP4YwgHasHqcdlsAg1@thread.tacv2/1773584251932?tenantId=0a354b0e-92d3-45a0-8b54-df786cb36e0f&groupId=682c6490-780e-4dbc-ace2-df5027457405&parentMessageId=1773584251932&teamName=CS%20101&channelName=General&createdTime=1773584251932][\pi - the obsessive hunt for more digits]]
+
+This is an interesting article about pi and the hunt for more digits
+of this irrational, transcendental number:
+ 
+It is astonishing to me, especially in the light of our short
+discussion, how this article manages to completely avoid God and
+divinity. Here is one of the weaker passages - can you see how
+superficial it is because it comes infinity close to Him but still
+make itself embrace Him?
+ 
+"The obsessive pursuit of more digits is not engineering. It is
+something closer to a philosophical statement. Mathematicians and
+computer scientists keep computing pi not because the digits are
+useful but because pi refuses to end, and humans apparently cannot
+make peace with that. Every new record is a confrontation with the
+infinite, a deliberate act of measuring something that cannot be fully
+measured, knowing that and doing it anyway."
+ 
+https://x.com/i/status/2032852857133871293
+
+** [[https://teams.microsoft.com/l/message/19:eu-py5tpdFoc8L4NBbMSvtwN0vrP4YwgHasHqcdlsAg1@thread.tacv2/1773801668607?tenantId=0a354b0e-92d3-45a0-8b54-df786cb36e0f&groupId=682c6490-780e-4dbc-ace2-df5027457405&parentMessageId=1773801668607&teamName=CS%20101&channelName=General&createdTime=1773801668607][Summer schedule 2026 - my courses]]
+
+I've changed the course that I'll teach in the graduate program this
+summer -
+ 
+CS 540 Principles of Artificial Intelligence - every Wednesday from 6
+pm PDT. This class will include a selection of topics:
+
+1. What is machine learning?
+2. Classification algorithms 
+3. Linear and logistic regression
+4. Support Vector Machines
+5. Decision trees
+6. Ensemble learning (random forest)
+7. Dimensionality reduction
+8. Unsupervised learning
+9. Neural networks and deep learning
+10. Convolutional Neural Networks (CNN)
+
+With examples from natural language processing, image recognition, and
+feature various Python ML libraries. The textbook is "[[https://www.amazon.com/Hands-Machine-Learning-Scikit-Learn-PyTorch/dp/B0F2SG98Q9][Hands-on Machine
+learning with Scikit-Learn, Keras, and TensorFlow]]" by Aurelien Geron
+(3e, O'Reilly, 2025). The book is supported by my literate programming
+tool of choice, Google Colab notebooks.
+ 
+I am quite excited about this - I have taught this course only in R
+before, never in Python, but I am due to teach it in Python this fall,
+and I want to test drive it with you if you're game. This means it
+might be a little rocky but you also have my full attention, no holds
+barred, full throttle ahead!
+ 
+For the UG curriculum, I'll teach CS 100 (Intro to programming) every
+Friday 5 pm PDT. This class will also be a Python class instead of
+Java. I want to try to record these sessions so that you can also
+benefit from them if you like. The coding will also be done
+exclusively using Google Colab.
+ 
+I'm curious how much you already know of the topics that I listed
+above - answer in the reply to this message ("None whatsoever" is fine
+and is to be expected). As soon as I have worked out the syllabus,
+I'll write to all graduate students, but you're getting the new first.
+ 
+For graduate students, this also means that you get to learn CS 530
+Computer architecture (with David Sonnier) this summer before CS 550
+(Operating Systems) in the fall. That is a more logical sequence,
+since OS makes more sense once you understand the underlying hardware.
+ 
+
