@@ -1,6 +1,6 @@
 #+TITLE: Arrays and vectors
 #+AUTHOR: Marcus Birkenkrahe
-#+SUBTITLE: CSC 240 Data Structures Fall 2025
+#+SUBTITLE: CS 101 Introduction to Programming II - CPU Spring 2026
 #+OPTIONS: toc:1 num:1 ^:nil:
 #+STARTUP: overview hideblocks indent entitiespretty:
 * Objectives
@@ -528,7 +528,6 @@ one decimal precision.
   | values | 22.5 | 25.0 | 19.5 |  range-based loops
   | index  |    0 |    1 |    2 |  index loops
   | memory |  0x1 |  0x2 |  0x3 |  pointer arithmetic
-
 
 * Modifying an array with a Range-Based ~for~ Loop
 
@@ -1294,8 +1293,7 @@ one decimal precision.
       |                                     ^~~
   #+end_example
 
-
-* NEXT Introduction to the STL ~vector~
+* Introduction to the STL ~vector~
 
 - The ~vector~ data type of the Standard Template Library (STL) is
   similar to an array:
@@ -1936,6 +1934,13 @@ one decimal precision.
   : 10
   : 100
 
+- Can you initialize a vector with ascending values?
+  #+begin_quote
+  There is only a limited number of constructors (~vector~ creating
+  functions or methods) in the ~vector~ class. Generally speaking, these
+  initializations only work at the declaration (only once per vector).
+  #+end_quote
+  
 - =swap(vector2)= swaps the content of the ~vector~ with the contents of
   =vector2=.
   #+begin_src C++ :main yes :includes <vector> <iostream> <cstdlib> <string> <fstream> :namespaces std :results output :exports both :noweb yes

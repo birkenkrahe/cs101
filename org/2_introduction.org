@@ -1,6 +1,6 @@
 #+TITLE: Introduction to data structures
 #+AUTHOR: Marcus Birkenkrahe
-#+SUBTITLE: CSC 240 - Data structures with C++ - Lyon College, FA24
+#+SUBTITLE: CS 101 Introduction to Programming II - CPU Spring 2026
 #+STARTUP:overview hideblocks indent
 #+OPTIONS: toc:1 num:1 ^:nil
 #+PROPERTY: header-args:C++ :main yes :includes <iostream> :results output :exports both :noweb yes

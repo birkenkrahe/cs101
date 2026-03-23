@@ -285,47 +285,47 @@ What you will get later:
 In C++ a data structure with its operations and interface is called
 "Abstract Data Type" (ADT). Using a data structure without knowing
 its internal implementation directly relies on abstraction, because:
-  1. You use the public interface.
-  2. You do not depend on the implementation details.
-  3. The representation is hidden.
+1. You use the public interface.
+2. You do not depend on the implementation details.
+3. The representation is hidden.
 
-     All four activities involve abstraction but only 4 directly relies
-     on the abstraction boundary itself:
+   All four activities involve abstraction but only 4 directly relies
+   on the abstraction boundary itself:
 
-     1. Turning a computer on/off: The power button abstracts voltage regulation, firmware
-        bootstrapping, hardware initialization, kernel loading. You do
-        not see what is happening electrically or at the BIOS/UEFI level.
-     2. Typing code in an editor: The editor abstracts memory buffers,
-        file systems, rendering engines, input handling, OS calls.
-     3. Installing an operating system: This is extremely abstracted. You
-        do not see partition tables, boot sectors, driver negotiation,
-        kernel configuration, etc.
+   1. Turning a computer on/off: The power button abstracts voltage regulation, firmware
+      bootstrapping, hardware initialization, kernel loading. You do
+      not see what is happening electrically or at the BIOS/UEFI level.
+   2. Typing code in an editor: The editor abstracts memory buffers,
+      file systems, rendering engines, input handling, OS calls.
+   3. Installing an operating system: This is extremely abstracted. You
+      do not see partition tables, boot sectors, driver negotiation,
+      kernel configuration, etc.
 
-  - Which command compiles a C++ source file?
-    1. execute
-    2. g++
-    3. gcc-run
-    4. make
+- Which command compiles a C++ source file?
+  1. execute
+  2. g++
+  3. gcc-run
+  4. make
 
-    Of these, only ~g++~ and ~make~ are commands. ~g++~ is the compiler. ~make~
-    is a special program that requires a configuration file called
-    ~Makefile~, and it can, but does not have to compile a file.
+  Of these, only ~g++~ and ~make~ are commands. ~g++~ is the compiler. ~make~
+  is a special program that requires a configuration file called
+  ~Makefile~, and it can, but does not have to compile a file.
 
-  - Example:
-    #+begin_src bash :results output :exports both
-      echo -e '#include<iostream>\nint main(){std::cout<<"hello world"<<"\\n";return 0;}' > hello.cpp
-      cat hello.cpp  # view the program
-      g++ hello.cpp -o hello # compile & name output
-      ls hello* # check for files starting with `hello`
-      ./hello   # run it in the current (.) directory
-    #+end_src
+- Example:
+  #+begin_src bash :results output :exports both
+    echo -e '#include<iostream>\nint main(){std::cout<<"hello world"<<"\\n";return 0;}' > hello.cpp
+    cat hello.cpp  # view the program
+    g++ hello.cpp -o hello # compile & name output
+    ls hello* # check for files starting with `hello`
+    ./hello   # run it in the current (.) directory
+  #+end_src
 
-    #+RESULTS:
-    : #include<iostream>
-    : int main(){std::cout<<"hello world"<<"\n";return 0;}
-    : hello
-    : hello.cpp
-    : hello world
+  #+RESULTS:
+  : #include<iostream>
+  : int main(){std::cout<<"hello world"<<"\n";return 0;}
+  : hello
+  : hello.cpp
+  : hello world
 
 ** Review: Quiz 2
 
@@ -1290,7 +1290,7 @@ Here is the breakdown for what it's worth:
 
 I created an AI tutor for our course. [[https://chatgpt.com/g/g-69b1567d28bc8191b261ebca7aa0ef38-c-pdf-quiz-tutor][Check it out here]] and let me
 know what you think. It'll quiz you based on all the content we've
-covered so far. 
+covered so far.
 
 ** Summer 2026 trimester schedule
 
@@ -1304,8 +1304,7 @@ covered so far.
 - MATH201: Discrete Mathematics (Sonnier)
 - PHIL200: Philosophy & Logic (Weitzel)
 
-  
-* Week 8  - Pointers
+* DONE Week 8 - Pointers
 
 - [X] Quiz: Time complexity & vector methods
 - [X] Assignment: Vectors and functions (need access)
@@ -1327,7 +1326,7 @@ learn). JavaScript got nothing to do with Java, btw. Here is a [[https://youtu.b
 of medium length (20 min)]] specifically for coding interviews using
 Python that goes quite a bit more deeply into identifying Big-O for
 different algorithms.
- 
+
 At this point, you only have to get the basic ideas right - I'll put
 some of that in a new quiz, and we'll finish up next week reviewing
 this by looking at Big-O specifically for C++ vectors.
@@ -1336,13 +1335,13 @@ this by looking at Big-O specifically for C++ vectors.
 
 This is an interesting article about pi and the hunt for more digits
 of this irrational, transcendental number:
- 
+
 It is astonishing to me, especially in the light of our short
 discussion, how this article manages to completely avoid God and
 divinity. Here is one of the weaker passages - can you see how
 superficial it is because it comes infinity close to Him but still
 make itself embrace Him?
- 
+
 "The obsessive pursuit of more digits is not engineering. It is
 something closer to a philosophical statement. Mathematicians and
 computer scientists keep computing pi not because the digits are
@@ -1350,19 +1349,19 @@ useful but because pi refuses to end, and humans apparently cannot
 make peace with that. Every new record is a confrontation with the
 infinite, a deliberate act of measuring something that cannot be fully
 measured, knowing that and doing it anyway."
- 
+
 https://x.com/i/status/2032852857133871293
 
 ** [[https://teams.microsoft.com/l/message/19:eu-py5tpdFoc8L4NBbMSvtwN0vrP4YwgHasHqcdlsAg1@thread.tacv2/1773801668607?tenantId=0a354b0e-92d3-45a0-8b54-df786cb36e0f&groupId=682c6490-780e-4dbc-ace2-df5027457405&parentMessageId=1773801668607&teamName=CS%20101&channelName=General&createdTime=1773801668607][Summer schedule 2026 - my courses]]
 
 I've changed the course that I'll teach in the graduate program this
 summer -
- 
+
 CS 540 Principles of Artificial Intelligence - every Wednesday from 6
 pm PDT. This class will include a selection of topics:
 
 1. What is machine learning?
-2. Classification algorithms 
+2. Classification algorithms
 3. Linear and logistic regression
 4. Support Vector Machines
 5. Decision trees
@@ -1377,27 +1376,138 @@ feature various Python ML libraries. The textbook is "[[https://www.amazon.com/H
 learning with Scikit-Learn, Keras, and TensorFlow]]" by Aurelien Geron
 (3e, O'Reilly, 2025). The book is supported by my literate programming
 tool of choice, Google Colab notebooks.
- 
+
 I am quite excited about this - I have taught this course only in R
 before, never in Python, but I am due to teach it in Python this fall,
 and I want to test drive it with you if you're game. This means it
 might be a little rocky but you also have my full attention, no holds
 barred, full throttle ahead!
- 
+
 For the UG curriculum, I'll teach CS 100 (Intro to programming) every
 Friday 5 pm PDT. This class will also be a Python class instead of
 Java. I want to try to record these sessions so that you can also
 benefit from them if you like. The coding will also be done
 exclusively using Google Colab.
- 
+
 I'm curious how much you already know of the topics that I listed
 above - answer in the reply to this message ("None whatsoever" is fine
 and is to be expected). As soon as I have worked out the syllabus,
 I'll write to all graduate students, but you're getting the new first.
- 
+
 For graduate students, this also means that you get to learn CS 530
 Computer architecture (with David Sonnier) this summer before CS 550
 (Operating Systems) in the fall. That is a more logical sequence,
 since OS makes more sense once you understand the underlying hardware.
- 
 
+* Week 9 - C++ to Java / OOP
+#+attr_html: :width 400px :float nil:
+[[../img/cpp_to_java.png]]
+
+- [ ] Review: Pointer challenge
+- [ ] Hard pivot: From C++ back to Java!
+- [ ] From procedural to object-oriented programming
+- [ ] Home assignment: Procedural version of Light Switch
+- [ ] In-class practice: Create OOP version of an Adder
+
+** Review: Pointer challenge
+
+1. Write a statement that defines a pointer variable named =fltPtr=. The
+   variable should be a pointer to a ~float~. Be sure to properly
+   initialize the variable.
+   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
+
+   #+end_src
+
+2. Define an integer variable =foo= and a pointer-to-int variable
+   =ptr=. Write a statement that assigns the address of the =foo= variable
+   to the =ptr= variable.
+   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :efooports both :noweb yes
+
+   #+end_src
+
+3. Does =foo= have to have a value for this to work?
+   #+begin_quote
+
+   #+end_quote
+
+4. Define =ptr= as a pointer variable that points to another variable
+   =foo=. Write a ~cout~ statement that displays the value that =ptr= points
+   to.
+   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
+
+   #+end_src
+
+5. List three uses of the ~*~ (asterisk) symbol in C++.
+   #+begin_quote
+
+   #+end_quote
+
+6. What is the output of the following code?
+   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
+
+   #+end_src
+
+
+** Comparison: Original C++ Plan vs Revised Java Plan
+
+|--------+---------------------------------+------------------------------------------|
+| Week   | C++ (original)                  | Java (revised)                           |
+|--------+---------------------------------+------------------------------------------|
+| 9      | Introduction to classes         | OOP pivot: classes, encapsulation        |
+| Mar 27 | and encapsulation               | ADT concept, references (no pointers)    |
+|--------+---------------------------------+------------------------------------------|
+|        | NO CLASS (Good Friday)          | NO CLASS                                 |
+|--------+---------------------------------+------------------------------------------|
+| 10     | Constructors, destructors;      | Lists + iterators (ArrayList, iterators) |
+| Apr 10 | STL containers                  | (No destructors - garbage collection)    |
+|--------+---------------------------------+------------------------------------------|
+| 11     | STL vector revisited;           | Stacks (LIFO) + core ADT behavior        |
+| Apr 17 | iteration and idioms            |                                          |
+|--------+---------------------------------+------------------------------------------|
+| 12     | STL map: associative containers | Queues (FIFO) + Deque concept            |
+| Apr 24 |                                 |                                          |
+|--------+---------------------------------+------------------------------------------|
+| 13     | map continued; keys, values     | Maps (HashMap), key–value abstraction    |
+| May 1  | use cases                       |                                          |
+|--------+---------------------------------+------------------------------------------|
+| 14     | Conceptual overview:            | Hashing intuition + integration          |
+| May 8  | lists, stacks, queues           | trees (preview)                          |
+|--------+---------------------------------+------------------------------------------|
+
+
+** Review: Java programs
+#+attr_html: :width 700px :float nil:
+#+caption: Source: Goodrich et al (2016)
+[[../img/java.png]]
+
+- Let's code this example together. Open Onecompiler.com/java
+  #+begin_src java :tangle ../src/Universe.java
+    public class Universe {
+        public static void main(String[] args) {
+        System.out.println("Hello, Universe!");
+        }
+    }
+  #+end_src
+
+- Reminder of how this is turned into machine code:
+  #+begin_src bash :results output :exports both
+    cd ../src
+    javac Universe.java # bytecode compilation to .class file
+    ls -lt Universe*
+    java Universe # run machine code
+  #+end_src
+
+  #+RESULTS:
+  : -rw-rw-r-- 1 aletheia aletheia 426 Mar 22 20:18 Universe.class
+  : -rw-rw-r-- 1 aletheia aletheia 121 Mar 22 20:17 Universe.java
+  : Hello, Universe!
+
+* Week 10 - Lists and iterators
+
+* Week 11 - Stacks (LIFO)
+
+* Week 12 - Queues (FIFO)
+
+* Week 13 - Maps
+
+* Week 14 - Trees
