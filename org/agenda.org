@@ -1502,6 +1502,49 @@ since OS makes more sense once you understand the underlying hardware.
   : -rw-rw-r-- 1 aletheia aletheia 121 Mar 22 20:17 Universe.java
   : Hello, Universe!
 
+- Do you need a reminder of how a simple ~class~ looks like (in C++ or
+  Java)?
+
+  Code along mechanically for a simple example.
+
+  Open OneCompiler.com/java and delete all the sample code.
+
+- Example: =Counter.java=
+  #+name: Counter class
+  #+begin_src java :classname Counter :dir ../src
+    // Counter.java defines a counter
+    class Counter {
+        private int count; // integer instance variable
+        public Counter() {} // default constructor (count = 0)
+        public Counter(int initial) {count = initial;} // alternate constructor
+        public int getCount() {return count;} // accessor method
+        public void increment() {count++;} // update method (add 1)
+        public void increment(int delta) {count+=delta;} // update method
+        public void reset() {count=0;}
+    }
+  #+end_src
+
+- Test: =CounterDemo.java=
+  #+name: CounterDemo class
+  #+begin_src java :noweb yes :classname CounterDemo :dir ../src :results output
+    <<Counter class>>
+
+    // CounterDemo.java tests the Counter class        
+    public class CounterDemo {
+        public static void main(String[] args) {
+        Counter c; // reference variable declaration (no counter)
+        c = new Counter(); // construct new counter, assign ref to c
+        c.increment(); // increase counter by 1
+        c.increment(3); // increase counter by 3 (now it's 4)
+        int temp = c.getCount(); // temp stores 4
+        c.reset(); // counter is set back to 0
+
+        System.out.println("Counter is " + temp);
+        }
+    }
+  #+end_src
+
+
 * Week 10 - Lists and iterators
 
 * Week 11 - Stacks (LIFO)
