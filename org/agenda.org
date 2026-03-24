@@ -1520,7 +1520,7 @@ since OS makes more sense once you understand the underlying hardware.
         public int getCount() {return count;} // accessor method
         public void increment() {count++;} // update method (add 1)
         public void increment(int delta) {count+=delta;} // update method
-        public void reset() {count=0;}
+        public void reset() {count=0;} // update method
     }
   #+end_src
 
@@ -1544,6 +1544,7 @@ since OS makes more sense once you understand the underlying hardware.
     }
   #+end_src
 
+- Final code in [[https://tinyurl.com/Counter-Demo-java][tinyurl.com/counter-demo-java]]
 
 * Week 10 - Lists and iterators
 
