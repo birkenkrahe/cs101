@@ -1406,8 +1406,9 @@ since OS makes more sense once you understand the underlying hardware.
 - [ ] Review: Pointer challenge
 - [ ] Hard pivot: From C++ back to Java!
 - [ ] From procedural to object-oriented programming
-- [ ] Home assignment: Procedural version of Light Switch
-- [ ] In-class practice: Create OOP version of an Adder
+- [ ] Home assignment: Procedural version of =Light Switch=
+- [ ] In-class practice: Create OOP version of an Adder ~class~
+- [ ] Home bonus assignment: Handling exceptions (=Rectangle= ~class~)
 
 ** Review: Pointer challenge
 
@@ -1447,33 +1448,31 @@ since OS makes more sense once you understand the underlying hardware.
 
    #+end_src
 
-
 ** Comparison: Original C++ Plan vs Revised Java Plan
 
-|--------+---------------------------------+------------------------------------------|
-| Week   | C++ (original)                  | Java (revised)                           |
-|--------+---------------------------------+------------------------------------------|
-| 9      | Introduction to classes         | OOP pivot: classes, encapsulation        |
-| Mar 27 | and encapsulation               | ADT concept, references (no pointers)    |
-|--------+---------------------------------+------------------------------------------|
-|        | NO CLASS (Good Friday)          | NO CLASS                                 |
-|--------+---------------------------------+------------------------------------------|
-| 10     | Constructors, destructors;      | Lists + iterators (ArrayList, iterators) |
-| Apr 10 | STL containers                  | (No destructors - garbage collection)    |
-|--------+---------------------------------+------------------------------------------|
-| 11     | STL vector revisited;           | Stacks (LIFO) + core ADT behavior        |
-| Apr 17 | iteration and idioms            |                                          |
-|--------+---------------------------------+------------------------------------------|
-| 12     | STL map: associative containers | Queues (FIFO) + Deque concept            |
-| Apr 24 |                                 |                                          |
-|--------+---------------------------------+------------------------------------------|
-| 13     | map continued; keys, values     | Maps (HashMap), key–value abstraction    |
-| May 1  | use cases                       |                                          |
-|--------+---------------------------------+------------------------------------------|
-| 14     | Conceptual overview:            | Hashing intuition + integration          |
-| May 8  | lists, stacks, queues           | trees (preview)                          |
-|--------+---------------------------------+------------------------------------------|
-
+|--------+---------------------------------+-----------------------------------------|
+| Week   | C++ (original)                  | Java (revised, aligned with Downey)     |
+|--------+---------------------------------+-----------------------------------------|
+| 9      | Introduction to classes         | OOP: objects, references, encapsulation |
+| Mar 27 | and encapsulation               | Rectangle class (state + behavior)      |
+|--------+---------------------------------+-----------------------------------------|
+|        | NO CLASS (Good Friday)          | NO CLASS                                |
+|--------+---------------------------------+-----------------------------------------|
+| 10     | Constructors, destructors;      | Lists as ADT: ArrayList of objects      |
+| Apr 10 | STL containers                  | iteration, add/get/remove               |
+|--------+---------------------------------+-----------------------------------------|
+| 11     | STL vector revisited;           | LinkedList and Double-linked list       |
+| Apr 17 | iteration and idioms            | (LIFO/FIFO, real-world use)             |
+|--------+---------------------------------+-----------------------------------------|
+| 12     | STL map: associative containers | Tree traversal, search engines          |
+| Apr 24 |                                 | Parsing HTML, depth-first, stacks       |
+|--------+---------------------------------+-----------------------------------------|
+| 13     | map continued; keys, values     | Maps: key–value abstraction             |
+| May 1  | use cases                       | lookup vs search, hashing               |
+|--------+---------------------------------+-----------------------------------------|
+| 14     | Conceptual overview:            | HashMap, TreeMap, Binary Search Tree    |
+| May 8  | lists, stacks, queues           | Boolean search, sorting
+|--------+---------------------------------+-----------------------------------------|
 
 ** Review: Java programs
 #+attr_html: :width 700px :float nil:
@@ -1546,12 +1545,9 @@ since OS makes more sense once you understand the underlying hardware.
 
 - Final code in [[https://tinyurl.com/Counter-Demo-java][tinyurl.com/counter-demo-java]]
 
-* Week 10 - Lists and iterators
-
-* Week 11 - Stacks (LIFO)
-
-* Week 12 - Queues (FIFO)
-
+* Week 10 - ArrayList
+* Week 11 - Linked lists
+* Week 12 - Tree traversal
 * Week 13 - Maps
+* Week 14 - Hashing
 
-* Week 14 - Trees

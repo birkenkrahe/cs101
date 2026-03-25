@@ -552,71 +552,143 @@ We're learning just enough OOP to be able to build data structures.
 
 * PRACTICE Constructor for the =Rectangle= class
 
-- Add and use constructors to properly initialize =Rectangle= objects.
+- Add and use *constructors* to properly initialize =Rectangle= objects.
 
-- Starter code: [[https://tinyurl.com/rectangle-java][tinyurl.com/rectangle-java]]
+- *Tasks*:
+  1. Add a *default constructor* (no parameters) that:
+     - sets =width = 1=
+     - sets =length = 1=
+  2. Add a *parametrized* constructor that:
+     - takes two parameters: =width= and =length=
+     - initializes the fields
+  3. Add ~main~ to:
+     - create one =Rectangle= using the default constructor
+     - create one =Rectangle= using the parameterized constructor with
+       width 4 and length 5
+     - print the area of both rectangles
+
+- *Hints:*
+  1. Constructor name must match the class name:
+     #+begin_example java
+     public Rectangle(...) { ... }
+     #+end_example
+  2. Constructors have no return type (not even ~void~)
+  3. Use different parameter names than the fields to avoid confusion:
+     #+begin_example java
+     public Rectangle(double w, double l) {
+         width = w;
+         length = l;
+     }
+     #+end_example
+  4. The constructor is called automatically when you use ~new~:
+     #+begin_example java
+     Rectangle r = new Rectangle(4.0, 5.0);
+     #+end_example
+  5. A default constructor has no parameters:
+     #+begin_example java
+     public Rectangle() {
+         width = 1;
+         length = 1;
+     }
+     #+end_example
+
+- *Starter code*: [[https://tinyurl.com/rectangle-java][tinyurl.com/rectangle-java]]
   #+begin_src java
     // Rectangle.java: set width and length and get area
     class Rectangle {
+        // private Rectangle data
         private double width;
         private double length;
-
-        public void setWidth(double w) {
+        // public Rectangle constructors
+        // ...
+        // public Rectangle methods
+        public void setWidth(double w) { // update width
             width = w;
         }
-
-        public void setLength(double l) {
+        public void setLength(double l) { // update length
             length = l;
         }
-
-        public double getArea() {
+        public double getArea() { // get area
             return width * length;
+        }
+        // main method to test Rectangle class
+        public static void main(String[] args) {
+            // ...
         }
     }
   #+end_src
 
-- Tasks
-  1. Add a constructor that:
-     - takes two parameters: =width= and =length=
-     - initializes the fields
+  #+RESULTS:
 
-  2. Add a *default constructor* (no parameters) that:
-     - sets =width = 1=
-     - sets =length = 1=
+- *Sample output:*
+  #+begin_example
+  Area of Rectangle: 1.0
+  Area of Rectangle: 20.0
+  #+end_example
 
-  3. Modify ~main~ to:
-     - create one =Rectangle= using the default constructor
-     - create one =Rectangle= using the parameterized constructor
-     - print the area of both
+- *Optional extension* (Bonus): Add a check that =width= and =length= must
+  be > 0. What should happen if invalid values are passed? (This will
+  require some research on throwing exceptions.) Once you've added the
+  guardrails, modify the program to accept keyboard input.
 
-  - Hints:
-    1.  Constructor name must match the class name:
-       #+begin_example java
-       public Rectangle(...) { ... }
-       #+end_example
+* Solution: Constructor for the =Rectangle= ~class~
 
-    2. Constructors have no return type (not even ~void~)
+  Notice that there are two ways to test =Rectangle=: Either placing the
+  ~main~ function inside the ~class~ definition, or separating the model
+  =Rectangle= from the driver program =RectangleDemo=. This is what I do:
 
-    3. Use different parameter names than the fields to avoid confusion:
-       #+begin_example java
-       public Rectangle(double w, double l) {
-           width = w;
-           length = l;
-       }
-       #+end_example
+  #+begin_src java :dir ../src :classname RectangleDemo :results output
+    // Rectangle.java: set width and length and get area
+    class Rectangle {
+        // private Rectangle data
+        private double width;
+        private double length;
+        // public Rectangle constructors
+        public Rectangle() {width=1;length=1;} // default
+        public Rectangle(double w, double l){ // parametrized
+            width=w; length=l;}
+        // public Rectangle methods
+        public void setWidth(double w) {width=w;} // update width
+        public void setLength(double l) {length=l;} // update length
+        public double getArea() {return width*length;} // get area
+    }
+    // RectangleDemo class to test Rectangle
+    public class RectangleDemo {
+        public static void main(String[] args) {
+            Rectangle r = new Rectangle();
+            Rectangle r2 = new Rectangle(4,5);
+            System.out.println("Area of Rectangle: " + r.getArea());
+            System.out.println("Area of Rectangle: " + r2.getArea());
+        }
+    }
+  #+end_src
 
-    4. The constructor is called automatically when you use ~new~:
-       #+begin_example java
-       Rectangle r = new Rectangle(4.0, 5.0);
-       #+end_example
+  #+RESULTS:
+  : Area of Rectangle: 1.0
+  : Area of Rectangle: 20.0
 
-    5. A default constructor has no parameters:
-       #+begin_example java
-       public Rectangle() {
-           width = 1;
-           length = 1;
-       }
-       #+end_example
+* Attributes: ~public~ / ~class~ / ~static~ / ~void~
 
-- *Optional extension*: Add a check that =width= and =length= must be > 0. -
-  What should happen if invalid values are passed?
+- Why is =RectangleDemo= a ~public class~, but =Rectangle= is just a ~class~
+  (not ~public~), and why is ~main~ a ~public static void~ function?
+  #+begin_quote
+  - =RectangleDemo= is declared ~public~ because it is the main ~class~ of
+    the program. In Java, the file name must match the ~public class~
+    name, and the JVM needs access to this class to start execution.
+
+  - =Rectangle= is not ~public~ because it is only used as a helper class
+    in the same file. Since it is not intended to be accessed from
+    outside, it does not need to be ~public~. Also, Java allows only one
+    ~public~ ~class~ per file.
+
+  - The ~main~ method is declared ~public static void~ because:
+    + ~public~: the JVM must be able to access it
+    + ~static~: it can be called without creating an object
+    + ~void~: it does not return a value
+
+  Summary:
+  - =RectangleDemo= = entry point of the program
+  - =Rectangle=     = supporting class
+  - ~main~          = where execution begins
+  #+end_quote
+  
