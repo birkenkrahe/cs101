@@ -8,14 +8,20 @@
 #+property: header-args:R      :session *R* :results graphics output file :exports both
 #+property: header-args:C++    :main yes :includes <iostream> :results output :exports both
 * Opening and Closing Prayers
-** Opening Prayer
+** Opening Prayer (Angelus)
+#+attr_html: :width 600px :float nil:
+[[../img/angelus.png]]
+** Opening Prayer (standard)
 #+attr_html: :width 550px :float nil:
 [[../img/opening_prayers.png]]
 
-** Closing Prayer
+** Closing Prayer (Aquinas)
 #+attr_html: :width 550px :float nil:
 [[../img/closing_prayers.png]]
 
+** Closing Prayer (Memorare)
+#+attr_html: :width 500px :float nil: 
+[[../img/memorare.png]]
 ** Why these prayers?
 
 - *The "Our Father"*, because we learn everything through him.
