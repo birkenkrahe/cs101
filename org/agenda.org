@@ -1480,6 +1480,14 @@ since OS makes more sense once you understand the underlying hardware.
 | May 8  | lists, stacks, queues           | Boolean search, sorting
 |--------+---------------------------------+-----------------------------------------|
 
+Sources:
+
+- Think Java and Think Data Structures by Allen Downey (free, concise)
+- JavaNotes by David Eck (free, exhaustive)
+- Data structures and algorithms in Java 6e by Goodrich et al.
+- Computer Science - An Interdisciplinary Approach by Sedgewick/Wayne
+- Algorithms 4e by Sedgewick/Wayne
+
 ** Review: Java programs
 #+attr_html: :width 700px :float nil:
 #+caption: Source: Goodrich et al (2016)
@@ -1550,6 +1558,8 @@ since OS makes more sense once you understand the underlying hardware.
   #+end_src
 
 - Final code in [[https://tinyurl.com/Counter-Demo-java][tinyurl.com/counter-demo-java]]
+
+- Tutor yourself with my [[https://chatgpt.com/g/g-69b05c7780f081918d89968850e50300-java-drill-coach][Java Drill Coach]] (AI)
 
 * Week 10 - ArrayList
 * Week 11 - Linked lists
