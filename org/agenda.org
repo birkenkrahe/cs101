@@ -1405,7 +1405,7 @@ Computer architecture (with David Sonnier) this summer before CS 550
 (Operating Systems) in the fall. That is a more logical sequence,
 since OS makes more sense once you understand the underlying hardware.
 
-* Week 9 - C++ to Java / OOP
+* DONE Week 9 - C++ to Java / OOP
 #+attr_html: :width 400px :float nil:
 [[../img/cpp_to_java.png]]
 
@@ -1422,37 +1422,61 @@ since OS makes more sense once you understand the underlying hardware.
    variable should be a pointer to a ~float~. Be sure to properly
    initialize the variable.
    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-
+     float *fltPtr = nullptr;
    #+end_src
 
 2. Define an integer variable =foo= and a pointer-to-int variable
    =ptr=. Write a statement that assigns the address of the =foo= variable
-   to the =ptr= variable.
+   to the =ptr= variable. 
    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :efooports both :noweb yes
-
+     int foo;  // Does not have a defined value.
+     int *ptr=nullptr; // Points towards 0 or NULL.
+     ptr = &foo;  // Store address of foo in ptr.
    #+end_src
 
-3. Does =foo= have to have a value for this to work?
+3. Does =foo= have to have a value for this to work? 
    #+begin_quote
-
+   No, =foo= does not have to have a value for this to work. =ptr= holds
+   the value of the *address* of =foo=. The value =*ptr= is undefined.
    #+end_quote
 
 4. Define =ptr= as a pointer variable that points to another variable
    =foo=. Write a ~cout~ statement that displays the value that =ptr= points
    to.
    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-
+     int foo;
+     int *ptr = &foo; // the asterisk indicates that ptr is a pointer variable
+     cout << *ptr; // the asterisk dereferences the pointer to access the
+                   // value of the variable the pointer points to
    #+end_src
 
 5. List three uses of the ~*~ (asterisk) symbol in C++.
    #+begin_quote
-
+   1) Multiplication symbol.
+   2) Pointer definition symbol.
+   3) Indirection operator (dereferencing symbol).
    #+end_quote
 
 6. What is the output of the following code?
    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
+     int x=50, y=60, z=70;
+     int *ptr = nullptr;
 
+     cout << x << " " << y << " " << z << endl; // 50 60 70
+
+     ptr = &x;
+     (*ptr) *= 10; // 500
+     ptr = &y;
+     (*ptr) *= 5;  // 300
+     ptr = &z;
+     (*ptr) *= 2;  // 140
+
+     cout << x << " " << y << " " << z << endl; // 500 300 140
    #+end_src
+
+   #+RESULTS:
+   : 50 60 70
+   : 500 300 140
 
 ** Comparison: Original C++ Plan vs Revised Java Plan
 
@@ -1561,9 +1585,9 @@ Sources:
 
 - Tutor yourself with my [[https://chatgpt.com/g/g-69b05c7780f081918d89968850e50300-java-drill-coach][Java Drill Coach]] (AI)
 
-* Week 10 - ArrayList
-* Week 11 - Linked lists
-* Week 12 - Tree traversal
-* Week 13 - Maps
-* Week 14 - Hashing
+* Week 10 - OOP in C++ / STL
+* Week 11 - STL vector class I
+* Week 12 - STL vector class II
+* Week 13 - STL map class I
+* Week 14 - STL map class II
 
