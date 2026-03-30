@@ -1585,6 +1585,53 @@ Sources:
 
 - Tutor yourself with my [[https://chatgpt.com/g/g-69b05c7780f081918d89968850e50300-java-drill-coach][Java Drill Coach]] (AI)
 
+** Hard pivot from C++ to Jave (and back again)
+
+After giving it some thought, I’ve decided to make a small adjustment
+to the course for the remainder of the term.  We will stop our
+coverage of pointers where we left off. You’ve already seen the key
+ideas—memory, addresses, and representation—which was the main goal.
+This change is also connected to our recent discussion about
+abstraction layers in Java vs. C/C++ (from James’ question). In a
+sense, this pivot is the longer answer: we are moving from working
+close to memory toward working with higher-level abstractions.  From
+here on, we will switch to Java and focus on abstraction,
+object-oriented design, and data structures. The emphasis will shift
+from “where is the data?” to “what does the data do?”  This will
+require some work on my end as I translate the C++ material into Java,
+but I needed to do that anyway for my new teaching assignment in the
+fall.  More details next session.
+
+I asked ChatGPT for a motivating image for this message, "Catholic
+style". This is what I got: A transitional journey - kind of funny.
+#+attr_html: :width 400px :float nil:
+[[../img/catholic.png]]
+
+PS. I have created a Java Drill Coach for myself feeding it for now
+with standard literature. It's already done goog things for me. [[https://chatgpt.com/g/g-69b05c7780f081918d89968850e50300-java-drill-coach][Check
+it out here]]. Make sure it knows that you're a beginner. Just ask for a
+simple program exercise.
+
+PPS. Looked at my material again - and we'll revert back to C++ in the
+next sessions after all. I thought that this would be easier because
+you've got a strong Java foundation but the skills are a little too
+dispersed across the group. Also, I might have bit off more than I can
+chew in the middle of my upcoming move up North. Take it as a useful
+interlude - comparing Java and C++ and getting another AI tutor (which
+I wouldn't have created otherwise). Sorry for the confusion!
+
+** OOP in Python
+
+As I mentioned, DataCamp has a few courses on OOP in Python - they're
+not bad to get the basics and do a few exercises. This will be
+relevant for those who opt to follow my summer class "Principles of
+AI" because we'll do machine learning in Python, and you will get a
+free DataCamp subscription as well as weekly lesson assignments on the
+platform. Without the subscription, you can do the first lesson of any
+course for free - here is "[[https://campus.datacamp.com/courses/introduction-to-object-oriented-programming-in-python/oop-fundamentals-1?ex=11][Introduction to OOP in Python]]" - plenty of
+prerequisites, but you only need these for the exercises and not for
+the videos.
+
 * Week 10 - OOP in C++ / STL
 * Week 11 - STL vector class I
 * Week 12 - STL vector class II
