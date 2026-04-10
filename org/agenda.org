@@ -1409,10 +1409,10 @@ since OS makes more sense once you understand the underlying hardware.
 #+attr_html: :width 400px :float nil:
 [[../img/cpp_to_java.png]]
 
-- [ ] Review: Pointer challenge
-- [ ] Hard pivot: From C++ back to Java!
-- [ ] From procedural to object-oriented programming
-- [ ] Home assignment: Procedural version of =Light Switch=
+- [X] Review: Pointer challenge
+- [X] Hard pivot: From C++ back to Java!
+- [X] From procedural to object-oriented programming
+- [X] Home assignment: Procedural version of =Light Switch=
 - [ ] In-class practice: Create OOP version of an Adder ~class~
 - [ ] Home bonus assignment: Handling exceptions (=Rectangle= ~class~)
 
@@ -1633,6 +1633,13 @@ prerequisites, but you only need these for the exercises and not for
 the videos.
 
 * Week 10 - OOP in C++ / STL
+
+
+
+** Summary - what did you learn last time?
+
+** Summary - what did you learn this time?
+
 * Week 11 - STL vector class I
 * Week 12 - STL vector class II
 * Week 13 - STL map class I
