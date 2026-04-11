@@ -1632,7 +1632,7 @@ course for free - here is "[[https://campus.datacamp.com/courses/introduction-to
 prerequisites, but you only need these for the exercises and not for
 the videos.
 
-* Week 10 - OOP in C++ / STL
+* DONE Week 10 - OOP in C++ / STL
 
 - [X] Review: Classes and objects
 - [X] C++ ~string~ class
@@ -1672,6 +1672,9 @@ the videos.
 [[../img/Our_Father.png]]
 
 * Week 11 - STL vector class I
+
+- [ ] My C++ class videos (I completely forgot about them)
+
 * Week 12 - STL vector class II
 * Week 13 - STL map class I
 * Week 14 - STL map class II
