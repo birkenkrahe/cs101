@@ -1,6 +1,6 @@
 #+TITLE: Classes
 #+AUTHOR: Marcus Birkenkrahe
-#+SUBTITLE: CSC 240 Data Structures Fall 2025
+#+SUBTITLE: CS 101 Intermediate Programming Spring 2026
 #+OPTIONS: toc:1 num:1 ^:nil:
 #+STARTUP: overview hideblocks indent entitiespretty:
 * Objectives
@@ -13,7 +13,6 @@ Covered:
 5. [X] Constructors and destructors
 6. [X] Constructor and operator overloading
 7. [X] Separation of interface and implementation
-8. [X] Copy constructors
 
 Other topics:
 1. [ ] Arrays of Objects
@@ -44,17 +43,18 @@ Other topics:
 
 - What does *procedural* mean? What does it achieve?
   #+begin_quote
-  Procedural programming is centered on creating procedures or
-  functions. Its main purpose is modularization.
+  Centered creating procedures or functions. The main purpose is
+  to create modules and reuse them over and over again.
   #+end_quote
 
 - What is *object orientation*? What does it achieve?
   #+begin_quote
-  Object-orientation means that everything is an object. Each object
-  has its own state and behavior. Computation happens by message
-  exchange between objects, like a conversation between agents. It
-  enables *encapsulation* (of data), *inheritance* (of objects), and
-  *polymorphism* (at compile-time or at run-time).
+  OO means that everything is an object. And every object has its own
+  state and behavior. Computation now happens by message (data)
+  exchange between objects - like a conversation between agents.
+
+  Encapsulation of data (withhold some data), inheritance (of
+  objects), polymorphism (operator overloading at compile-time).
   #+end_quote
 
 * Example: A light switch as message exchange between objects
@@ -64,32 +64,33 @@ Other topics:
     #include <iostream>
     using namespace std;
 
+    // Let there be light!
     class Light {
     public:
-      void turnOn() {cout << "Light is on.\n";}
-      void turnOff() {cout << "Light is off.\n";}
+      void turnOn() { cout << "Light is on.\n"; }
+      void turnOff() { cout << "Light is off.\n"; }
     };
-
+    // Provide a switch!
     class Switch {
       Light *light; // knows where to send the message
     public:
       Switch(Light *l) : light(l) {}; // flips the switch
       void flip(bool on) {
         if (on)
-          light->turnOn(); // sends 'turnOn' message
+          light->turnOn(); // sends 'turnOn' message to the Light
         else
-          light->turnOff(); // sends 'turnOff' message
+          light->turnOff(); // sends 'turnOff' message to the Light
       }
     };
-
+    // Test it by switching light on and off!
     int main()
-      {
-        Light lamp; // create a lamp
-        Switch s(&lamp); // create a switch for the lamp
-        s.flip(true); // throw the switch
-        s.flip(false); // throw the switch
-        return 0;
-        }
+    {
+      Light lamp; // create a Light object called 'lamp'
+      Switch s(&lamp); // create a Switch for the lamp
+      s.flip(true); // throw the switch and turn lamp on
+      s.flip(false); // throw the switch and turn lamp off
+      return 0;
+    }
   #+end_src
 
   #+RESULTS:
@@ -98,34 +99,35 @@ Other topics:
 
 - Explanation:
   #+begin_quote
-  The =Switch= does not directly manipulate the =Light= data - it just
-  sends messages =turnOn= and =turnOff=. Each object controls its own
-  behavior. This models *message passing* between objects instead of
-  function calls manipulating shared data.
+  The =Switch= does not directly manipulate the =Light= - it sends
+  messages =turnOn= and =turnOff=. Each object controls its own behavior
+  and data - this is a huge advantage when you want to solve more and
+  more difficult problems.
   #+end_quote
 
-- *Challenge:* What would the procedural version of this program look
-  like? (Bonus problem)
+- *Challenge (bonus assignment):*
+  #+begin_quote
+  What would the procedural version of this program look like?
+  #+end_quote
 
 * Example: Procedural vs. object-oriented adding of objects
 
 - What is *object-oriented* programming?
   #+begin_quote
-  Object-oriented programming is centered on creating and manipulating
-  objects in a safe way: data are encapsulated can only be operated on
-  by member functions.
+  OOP is centered on creating and manipulating objects in a safe
+  way:
   #+end_quote
 
 - Example using an =add= function in procedural style:
   1) You may want to add integers.
   2) You may want to add floating-point numbers.
   3) You may want to "add" (concatenate) strings.
-     
-  These are three different procedures. In C++, they can be *overloaded*
+
+- These are three different procedures. In C/C++, they can be *overloaded*
   so that each function is called =add= but which one is used depends on
   its arguments.
 
-- Implementation:    
+- Implementation:
   #+begin_src C++ :main no :includes :results output
     #include <iostream>
     using namespace std;
@@ -139,7 +141,7 @@ Other topics:
     // Floating-point addition
     double add(double a, double b)
     {
-      return (a+b); 
+      return (a+b);
     }
 
     // String concatenation
@@ -150,9 +152,9 @@ Other topics:
     // The main program calls each function
     int main()
     {
-      cout << add(5,7) << endl;
-      cout << add(5.5,6.5) << endl;
-      cout << add("five","seven") << endl;
+      cout << add(5,7) << endl; // addition of two integers
+      cout << add(5.5,6.5) << endl;  // addition of two floats
+      cout << add("five","seven") << endl; // concatenation of two strings
       return 0;
     }
   #+end_src
@@ -180,7 +182,7 @@ Other topics:
       {
         return (a+b);
       }
-      string add(std::string a, std::string b)
+      string add(std::string a, std::string b) // string 'addition'
       {
         return (a+b);
       }
@@ -196,69 +198,66 @@ Other topics:
     }
   #+end_src
 
-#+RESULTS: OOP
-: 12
-: 12
-: fiveseven
+  #+RESULTS: OOP
+  : 12
+  : 12
+  : fiveseven
 
 - Problems with Procedural Style
   #+begin_quote
-  + All =add= functions live in *global scope* — no logical grouping.
-  + Namespace pollution: more functions → more name conflicts.
-  + Maintenance gets harder as more types/behaviors are added.
-  + Can't easily associate behavior with *state* (no objects).
+  + All =add= functions live in global scope.
+  + Namespace pollution: more name conflicts.
+  + Maintenance gets harder.
+  + There are no objects and no states.
   #+end_quote
 
 - Advantage of OOP
   #+begin_quote
-  + All =add= methods are grouped in *one class*: =Adder=.
-  + Code is modular and encapsulated — easier to reason about.
-  + Behavior can be extended by adding methods like =reset= or =showState=.
-  + Can associate behavior with *object state* like =lastResult= or =count=.
+  + All =add= methods are now grouped in one class =Adder=.
+  + Code is encapsulated (easier to read, find, reason about).
+  + Behavior can be extended - =reset=, =showState=
+  + You can associate behavior with state - =count=, =lastResult=.
   #+end_quote
 
 - Criticisms of OOP
   #+begin_quote
-  + Can incur significant overhead through deep class hierarchies.
-  + Misused inheritance (derived classes) can lead to tangled code.
-  + OOP adds needless structure to simple data logic.
-  + Encapsulation as an illusion: data can leak through getters.
-  + Tight coupling: Classes can become too interdependent.
-  + Difficult testing: Objects with state can be hard to test.
+  + Significant overhead if you have class hierarchies.
+  + The code can look more tangled
+  + When the logic is simple then OOP adds needless structure.
+  + Encapsulation can be illusion.
+  + Tight couping - classes are very interdependent
+  + Testing can be difficult
   #+end_quote
 
 - Why do "objects" and their "state" matter?
   #+begin_quote
-  + State (data) and behavior (methods) are separate and together.
-  + Objects mimic real identities, e.g. a =BankAccount= has *data* like a
-    =balance= and *methods* (behavior) like =deposit= or =withdraw=.
-  + Objects can be reused and evolved by extending classes.
-  + In UI and games, stateful interactions are useful (Game on/off).
+  + Object mimic real identities: =BankAccount= has data like =balance=
+    and methods like =deposit=, =withdraw=, =checkBalance=.
+  + Reuse objects and evolve them by extending your classes.
+  + In UI (Amazon checkout) and in games, OOP rules.
   #+end_quote
 
 * An everyday "data encapsulation" example: The car
 
 - What's part of the car's "user interface"? (What can you see/use?)
   #+begin_quote
-  To use a car (as driver)
-
-  + Ignition switch
-  + Steering wheel
-  + Gas pedal
-  + Brake pedal
-  + Gear shift
-  + Dashboard display
+  To use a car (as driver = user):
+  + turn the wheel
+  + open/close doors
+  + use the gas pedal
+  + brake
+  + gear shift
+  + display data on a dashboard
   #+end_quote
 
 - What's part of the car's "internal implementation"? (What's hidden?)
   #+begin_quote
-  The mechanisms hidden from the user to be able to use it.
+  Mechanisms hidden from the user (to be able to use the car):
 
   + Steering column
   + Fuel injection
-  + Transmission system
-  + Brake hydraulics
-  + Most things outside the driver's field of vision
+  + Brake system
+  + Most things outside of the driver's field of vision
   #+end_quote
 
 * Classes and objects
@@ -267,43 +266,39 @@ Other topics:
 
 - As a *keyword*:
   #+begin_quote
-  As a *keyword* a ~class~ is a specifier for a user-defined *type* that you
-  can use to cast data in any (digital) form you like. You can make
-  your own categories.
-
-  So for example, the =Light= class allowed us to define a =lamp=. As an
-  object, a =lamp= is like an integer or a string: memory + action.
+  It's a type that you can use to cast data - you can make your own
+  categories. =Light= class allowed us to define a =lamp=.
   #+end_quote
 
 - As *code*:
   #+begin_quote
-  As code, a ~class~ specifies (aka encapsulates) the attributes
-  (properties, data) and behavior (functions, methods) that an *object*
-  of that class may have.
+  A ~class~ encapsulates the attributes (properties, member data), and
+  behavior (member functions, methods) that any object of that class
+  may have. When we define a =lamp= as a =Light= we can now turn it on/off.
   #+end_quote
-    
-  #+begin_src C++ :main yes :includes :results none
+
+  #+begin_src C++ :main yes :includes <iostream> :results none 
     // The Rectangle class objects have width and length
     // You can set and get these properties for any Rectangle
-    class Rectangle { // class name
-
-    private: // member data/attributes/properties
+    class Rectangle {
+    private:  // member data = properties
       double width;
       double length;
-
-    public:  // member functions/methods/behavior
+    public: // member functions = behavior
+      int test = 100;
+      // setter / mutators
       void setWidth(double);
       void setLength(double);
+      // getter / accessors
       double getWidth();
-      double getlength();
+      double getLength();
       double getArea();
     };
   #+end_src
 
 - As a *concept:*
   #+begin_quote
-  As a concept, a ~class~ it is the *description* of an object, like a
-  blueprint:
+  A ~class~ describes an object like a blueprint
   #+end_quote
   #+attr_html: :width 400px :float nil:
   #+caption: Blueprint of a house.
@@ -321,39 +316,13 @@ Other topics:
   #+caption: An Insect class and two of its instances.
   [[../img/Insect.png]]
 
-  Answer:
+- Answer:
   #+begin_quote
-  The =Insect= class could describe attributes and abilities of
-  insects. The =housefly= object and the =mosquito= object are
-  *instantiated* from =Insect=. Instances have all of the attributes and
-  abilities described in the =Insect= class.
-
-  A lot of the code written for =Insect= applications can now be shared
-  by applications for housefly and mosquito insects. When a =housefly=
-  or =mosquito= are created, they get their own area in memory.
-
-  This makes conceptual sense: some properties/behavior is not shared
-  between these - mosquitos and houseflies have different mouthparts,
-  mosquitos sting and suck blood, houseflies feed by sponging.
+  + =Insect= can describe attributes and behaviors of MANY insects.
+  + =housefly= and =mosquito= and instantiated from =Insect=
+  + =mosquito= members have a =stinger= and they =sting=
+  + =housefly= members have a =sucker= and they =suck=
   #+end_quote
-
-* Glossary - check your understanding of basic terminology and examples!
-
-| Term               | Definition                                      |
-|--------------------+-------------------------------------------------|
-| Procedural Prog.   | Programming with procedures and global data     |
-| OOP                | Objects encapsulate data & logic                |
-| Encapsulation      | Hide internal data; access via member functions |
-| State/attribute    | Data stored in an object                        |
-| Behavior           | Actions defined by an object's methods          |
-| Car UI             | Controls used (wheel, pedals, dashboard)        |
-| Car Implementation | Internal mechanisms (steering, fuel, brakes)    |
-| class (keyword)    | Declares a user-defined type                    |
-| class (code)       | Contains attributes and member functions        |
-| class (concept)    | Blueprint to create instances of an object      |
-| Object/Instance    | Realized form of a class in memory              |
-| Insect (class)     | Class describing common insect features         |
-| housefly/mosquito  | Instances of Insect class                       |
 
 * Using the ~string~ class
 
@@ -362,7 +331,7 @@ Other topics:
 - To use the ~string~ class you need to ~#include <string>~. Now you can
   define ~string~ objects, and use string member functions.
 
-- Example:
+- Example: Setting a city name, a State, and getting its length.
   #+name: string
   #+begin_src C++ :main no :includes :results output :exports both
     #include <iostream>
@@ -371,12 +340,11 @@ Other topics:
 
     int main()
     {
-      string cityName;                   // create a string object
-      cityName = "Batesville";           // assign a string to it
-      cout << cityName << endl;          // print string content
-      cout << cityName.length() << endl; // get string size in bytes
-      cout << cityName.append(", AR");   // append another string
-
+      string cityName;    // create a string class object
+      cityName = "Batesville";  // assign string to it
+      cout << cityName << endl;
+      cout << cityName.length() << endl; // void string::length() {....}
+      cout << cityName.append(", AR"); // string string::append(string) {...}
       return 0;
     }
   #+end_src
@@ -388,125 +356,130 @@ Other topics:
 
 - What about the time complexity of the ~length~ and ~append~ functions?
   #+begin_quote
-  | Operation           | Time | Notes                                    |
-  |---------------------+------+------------------------------------------|
-  | ~std::string::length~ | O(1) | Length stored internally at compile-time |
-  | ~std::string::append~ | O(1) | Places new characters in allocated space |
-
-  In terms of *time*, both of these are as efficient as can be: When a
-  ~string~ is created, its ~length~ is stored internally already. The
-  ~append~ operation works similar to ~vector::push_back~ (which is O(1)).
+  | Operation           | Time | Notes                                       |
+  |---------------------+------+---------------------------------------------|
+  | ~std::string::length~ | O(1) | Length is stored internally at compile time |
+  | ~std::string::append~ | O(1) | Places new characters in allocated space    |
   #+end_quote
 
 * Introduction to classes (=BankAccount=)
 
 Let's use a *bank account* as an example (since everyone has got one).
 
-1. What are the computing *procedures* to run a *bank account*?
-   #+begin_quote
-   + Getting the balance (getter/accessor function)
-   + Depositing an amount (setter/mutator function)
-   + Withdrawing an amount (setter/mutator function)
-
-   All of these are going to be "~public~ member functions": This means
-   that they are available to any bank account object. It's what a
-   client can do with a bank account.
-   #+end_quote
-
-2. What are the *data* of a bank account?
-   #+begin_quote
-   + Current balance 
-   + Amount to be deposited (function argument)
-   + Amount to be withdrawn (function argument)
-
-   The =balance= is going to be "~private~ member data": We don't want
-   anyone manipulating the =balance= without our designed functions.
-   #+end_quote
-
-3. What does designing a =BankAccount= ~class~ mean?
-   #+begin_quote
-   + Writing =BankAccount= procedures that manage the data flow.
-   + Creating ("instantiating") objects in ~main~.
-   + Using =BankAccount= objects in ~main~.
-   #+end_quote
-
-4. What's an *object*?
-   #+begin_quote
-   An object is a resource used by the program to complete its task, no
-   difference from other resources, like variables, that are in
-   memory.
-
-   To the ~class~, an object is an instance of what the ~class~
-   represents - for example a =lamp= is a =Light= object, a =savingsAccount=
-   is a =BankAccount= object, etc.
-   #+end_quote
-
-5. Example of an object: A savings account. What does it have?
-   #+begin_quote
-   A savings account is a =BankAccount= object:  
-   1. The object has data (balance, account number etc.)
-   2. It has operations (deposit, withdrawal, balance)
-   3. We can interact with it: "Tell me the balance", "Withdraw $100".
-   #+end_quote
-
-6. What's a constructor? Example?
-   #+begin_quote
-   A constructor constructs objects of the chosen class. In the case of
-   =BankAccount=, our constructor creates a =BankAccount= with a starting
-   balance.
-   #+end_quote
-  
-* OOP workflow and class template
-
-- How to do it in practice:
+- What are the computing *procedures* to run a *bank account*?
   #+begin_quote
-  1) Write a class: data and methods = description/blueprint.
-  2) Create instances of the class   = objects.
-  3) Use class methods on class data = OOP
+  + get the account balance (getter)
+  + deposit an amount (setter)
+  + withdraw an amount (setter)
+
+  All of these are ~public~: this means that they are available to any
+  bank account object = It is what a client can do with a bank account.
   #+end_quote
 
-- General template:
-  #+begin_example C++
-  class ClassName {
+- What are the *data* of a bank account?
+  #+begin_quote
+  + current balance (~private~ feature/attribute)
+  + amount to be deposited (function argument)
+  + amount to be withdrawn (function argument)
 
-    private:
-       // data members (attributes)
+  =balance= is ~private~ because we want to ensure that only our functions
+  (validated transactions) are allowed to see it.
+  #+end_quote
 
-    public:
-       // member functions (methods)
-  };
-  #+end_example
+- What does designing a =BankAccount= ~class~ mean?
+  #+begin_quote
+  + Write =BankAccount= procedures that manage the data
+  + Create objects in ~main~ ("instantiating"=creating an instance)
+  + Use the =BankAccount= objects in ~main~
+  #+end_quote
 
-- Member functions can be defined *inline* (inside the ~class~ template),
-  or externally. Then they have to be brought into *scope* with the
-  scope operator ~::~
+- What's an *object*?
+  #+begin_quote
+  To the ~class~, an object is an instance of what the ~class~
+  represents - a =lamp= is a =Light= object, a =savingsAccount= is
+  a =BankAccount= object etc.
+  #+end_quote
 
-- Example: Code along using OneCompiler.Com. Insert this code beetween
-  the ~namespace~ statement and the ~main~ program, like a function. Note:
-  All of the member functions are defined *inline*.
-  
-  #+name: BankAccount
-  #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results none
-    class BankAccount
-    {
-    private:
-      double balance;
+- What's a *constructor*? Example?
+  #+begin_quote
+  A constructors creates objects of a chosen ~class~. In the case of
+  =BankAccount=, we are going to have a constructor that creates an
+  account with a starting balance.
+  #+end_quote
 
-    public:
-      BankAccount(double startingBal) // constructor
-      { balance = startingBal; }
+* OOP workflow and class template
 
-      void deposit(double amount)  // mutator/setter
-      { balance += amount; }
+  - How to do it in practice:
+    #+begin_quote
+    1) write a ~class~ = data + methods = description/blueprint
+    2) create instances of the class (~main~) = objects
+    3) use class methods on the class data = OOP
+    #+end_quote
 
-      void withdraw(double amount) // mutator/setter
-      { balance -= amount; }
+  - General template:
+    #+begin_example C++
+    class ClassName {
 
-      double getBalance() const // accessor/geetter
-      { return balance; }
+      private:
+      // data members (attributes/fields/features)
+
+      public:
+      // member functions (methods) - Constructors, getter, setter, Destructor
 
     };
-  #+end_src
+    #+end_example
+
+  - Example: Code along using OneCompiler.Com. Insert this code between
+    the ~namespace~ statement and the ~main~ program, like a function. Note:
+    All of the member functions are defined *inline*.
+
+    #+name: BankAccount
+    #+begin_src C++ :main no :includes <iostream> :results output
+      #include <iostream>
+      using namespace std;
+
+      class BankAccount
+      {
+      private:
+        double balance;
+      public:
+        BankAccount(double startingBal) // constructor
+        { balance = startingBal; }
+
+        double getBalance() const // getter method/member function
+        { return balance; }
+
+        void deposit(double amount)
+        { balance += amount; }
+
+        void withdraw(double amount)
+        { balance -= amount; }
+      };
+
+      int main() {
+
+        // Create BankAccount
+        BankAccount account(200.);
+
+        // Get the balance
+        cout << "Starting balance: $" << account.getBalance();
+
+        // Deposit amount
+        account.deposit(300.);
+        cout << "\nDeposited $300. New balance: $" << account.getBalance();
+
+        // Withdraw amount
+        account.withdraw(100.);
+        cout << "\nWithdrew $100. New balance: $" << account.getBalance();
+
+        return 0;
+      }
+    #+end_src
+
+    #+RESULTS: BankAccount
+    : Starting balance: $200
+    : Deposited $300. New balance: $500
+    : Withdrew $100. New balance: $400
 
 * Member functions and member data encapsulation
 
@@ -516,58 +489,35 @@ Let's use a *bank account* as an example (since everyone has got one).
 - What if we do not define a member function inside the ~class~
   definition?
   #+begin_quote
-  If the first function (constructor) =BankAccount= for example, would
-  be defined externally, the ~class~ declaration would only contain its
-  prototype while the function definition/implementation would be
-  elsewhere.
+  The ~class~ declaration would only contain the member function
+  prototype: =BankAccount(double);=
   #+end_quote
 
 - The compiler has to be told that it is part of the ~class~:
   #+begin_example C++
-   BankAccount::BankAccount(double startingBal)
-   {
-     balance = startingBal;
-   }
+  BankAccount::BankAccount(double startingBal)
+  {
+    balance = startingBal;
+  }
   #+end_example
-  
+
 - The main differences to the *inline* definition:
   #+begin_quote
-  1) The function parameter =startingBal= is no longer optional.
-  2) The function needs to be brought into the scope of the class it
-     talks to, with the prefix =BankAccount::= - the ~class~ name followed
-     by the scope resolution operator ~::~
-  3) The function must follow the ~class~ declaration, and usually
-     before the ~main~ function.
-  4) In the case of multiple classes, the ~class~ declaration resides in
-     its own header file =BankAccount.h=, while the member function
-     definitions are in a separate file =BankAccount.cpp=, which is
-     compiled separately and linked to the main program as an =.o=
-     object file.
+  1. =startingBal= is no longer optional
+  2. You need to bring the method into scope with =BankAccount::=
+  3. The function must follow the ~class~ declaration (usually before
+     the ~main~ function).
+  4. If you have multiple classes, the ~class~ declaration resides in
+     header file =BankAccount.h=, while the member functions reside in
+     a separate file =BankAccount.cpp=.
+  5. These files are compiled separately (into =.o= object files) and
+     later linked to the ~main~ program's object file.
   #+end_quote
 
 - What's going on conceptually here?
   #+begin_quote
-  This is an example of *Separation* of *Interface* and *Implementation* -
-  it mirrors the separation of function *prototype* and function
-  *definition* is the same thing in procedural programming.
+  Separation of interface and implementation.
   #+end_quote
-
-- We made =BankAccount::balance= ~private~ to the ~class~ so that only our
-  member functions can directly access it. The variable =balance= is
-  *encapsulated*.
-
-- The *constructor*, =BankAccount(double startingBal)= requires from us
-  that any bank account can only be created with a starting balance.
-
-- =deposit= and =withdraw= are *mutator* or *setter* functions. They allow us
-  to change the data members of the class. They usually have arguments
-  to import data (like =amount=) but the often are ~void~ because they're
-  not getting any values for us.
-
-- Functions like =getBalance= are *accessor* or *getter* functions. They
-  allow us to access data members of the class. Since they don't
-  change any values, they are usually declared ~const~, and they often
-  don't have any arguments but they have ~return~ types (like ~double~).
 
 * Using a class in a ~main~ function
 
@@ -586,7 +536,7 @@ Let's use a *bank account* as an example (since everyone has got one).
     #include <iostream>
     using namespace std;
 
-    class BankAccount
+    class BankAccount // class declaration
     {
     private:
       double balance;
@@ -606,17 +556,26 @@ Let's use a *bank account* as an example (since everyone has got one).
 
     };
 
-    int main()
+    int main() // main program - define objects, use class
     {
+      // create a BankAccount = construct one
       BankAccount acct(100.0);
+      // get the current acct balance
       cout << "Current balance: " << acct.getBalance() << endl;
+      // deposit some money
       acct.deposit(10.0);
       cout << "Current balance: " << acct.getBalance() << endl;
+      // withdraw some money
       acct.withdraw(50.0);
-      cout << "Current balance: " << acct.getBalance() << endl;
+      cout << "Current balance: " << acct.getBalance() << endl;      
       return 0;
     }
   #+end_src
+
+  #+RESULTS: Using BankAccount
+  : Current balance: 100
+  : Current balance: 110
+  : Current balance: 60
 
 * PRACTICE Separate interface and implementation
 
@@ -663,96 +622,52 @@ Let's use a *bank account* as an example (since everyone has got one).
     };
   #+end_src
 
-- Solution video https://youtu.be/CyJvZ7nB_IU)
+- Solution video: https://youtu.be/CyJvZ7nB_IU)
 
-  Solution code: https://tinyurl.com/bank-account-separation
-  #+name: BankAccount separated
-  #+begin_src C++ :main no :include :results output
-    #include <iostream>
-    using namespace std;
-
-    // The BankAccount class has a balance. 
-    // It is created with a starting balance.
-    // You can deposit or withdraw funds.
-    // You can get a balance printout.
-    // Author: Marcus Birkenkrahe (pledged)
-    // Class declaration
-    class BankAccount
-    {
-    private:
+- When you have separated interface and implementation, your files
+  look like this:
+  #+begin_src C :main yes :includes <stdio.h> <stdlib.h> <string.h> :results output :exports both :noweb yes
+    // BankAccount.h
+    class BankAccount {
+     private:
       double balance;
-
-    public:
-      // Member function prototypes
-      BankAccount(double starting_balance);
-      void deposit(double amount);
-      void withdraw(double amount);
-      double getBalance() const;
+      //...
+     public:
+      double deposit(double);
     };
 
-    // Class member function definitions
-    BankAccount::BankAccount(double startingBal)
-    { balance = startingBal; }
-
-    void BankAccount::deposit(double amount)
+    // BankAccount.cpp
+    double BankAccount::deposit(double amount)
     { balance += amount; }
 
-    void BankAccount::withdraw(double amount)
-    { balance -= amount; }
-
-    double BankAccount::getBalance() const
-    { return balance; }
-
-    // Main function
+    // Test implementation
     int main()
     {
-      // Create BankAccount
-      BankAccount account(200.);
-      cout << "Account starting balance: $" << account.getBalance() << ".\n";
-      // Deposit amount
-      account.deposit(300.);
-      cout << "Deposited $300. New balance: $" << account.getBalance() << ".\n";
-      // Withdraw amount
-      account.withdraw(100.);
-      cout << "Withdrawn $100. New balance: $" << account.getBalance() << ".\n";
-      return 0;
+      BankAccount b;
+      b.deposit(300.);
     }
   #+end_src
 
-  #+RESULTS: BankAccount separated
-  : Account starting balance: $200.
-  : Deposited $300. New balance: $500.
-  : Withdrawn $100. New balance: $400.
-
+  #+RESULTS:
+  
 * Example: A =Rectangle= class
 
 - Which data members should a =Rectangle= class have? Which types?
   #+begin_quote
-  A rectangle, as a geometric object, is fully defined by its *width*
-  and by its *length*. These should be ~double~ precision data.
+  As a geometric object it is fully defined by its =width= and its
+  =length=. These should be ~double~.
   #+end_quote
 
 - Which member functions should a =Rectangle= class have?
   #+begin_quote
-  Every class needs *getter* (accessor) functions to extract the ~private~
-  data, and *setter* (mutator) functions to pass values to the ~private~
-  data. A default constructor is provided but it is better to code it
-  explicitly (otherwise the data values are undefined).
-
-  Then there are things you can *do with the data* to compute derived
-  quantities. For the rectangle, these are the *area* and the *perimeter*.
-
-  - Getters: =getWidth= and =getLength=; optional: =getArea=, =getPerimeter=
-  - Setters: =setWidth= and =setLength=
-  - Optional but better: constructor, =Rectangle=.
+  - Getters: =getWidth=, =getLength=
+  - Setters: =setWidth=, =setLength=
   #+end_quote
 
 - What ~return~ types and arguments should the member functions have?
   #+begin_quote
-  - The getter functions ~return~ the data so they are ~double~ functions,
-    but they don't change the data so they can be ~const~.
-  - The ~private~ data members are ~double~, so all setters must have ~double~
-    parameters and need not ~return~ anything so they are ~void~ functions.
+  - Getters: =getWidth=, =getLength= <- ~double~ (give back member data)
+  - Setters: =setWidth=, =setLength= <- ~void~ (change member data)
   #+end_quote
 
 - In OOP, an object protects its important data by making them
@@ -768,7 +683,7 @@ Let's use a *bank account* as an example (since everyone has got one).
 
   Write all member functions as *inline functions* (definitions in the
   ~class~ declaration). Remember to *run your code* as soon as you
-  finished a statement for syntax checks - as soon.
+  finished a statement for syntax checks.
 
   *Test this class* using the ~main~ function:
   1. Create a =Rectangle= object =r= with width 4 and length 5.
@@ -809,8 +724,8 @@ Let's use a *bank account* as an example (since everyone has got one).
     // show object length
   #+end_src
 
-- Solution: https://tinyurl.com/rectangle-class-solution
-  #+name: https://onecompiler.com/cpp/43sc6gzhr
+For the solution, see: [[https://tinyurl.com/rectangle-class-solution][tinyurl.com/rectangle-class-solution]]
+
   #+begin_src C++ :main no :includes :results output
     // Declare and test a Rectangle class
     // Header files
@@ -819,13 +734,15 @@ Let's use a *bank account* as an example (since everyone has got one).
     using namespace std;
 
     // Class declaration
-    class Rectangle {
+    class Rectangle
+    {
       // private member data
     private:
       double width; // rectangle width
       double length;  // rectangle length
       // public member functions
     public:
+      // all member functions are defined inline
       void setWidth (double w) { width = w; } // set rectangle width
       void setLength (double l) { length = l; } // set rectangle length
       double getWidth() const { return width; } // get rectangle width
@@ -841,354 +758,11 @@ Let's use a *bank account* as an example (since everyone has got one).
       cout << "Length = " << r.getLength() << endl; // show object length
       return 0;
     }
-  #+end_src
+        #+end_src
 
-  #+RESULTS:
-  : Width = 4
-  : Length = 5
-
-* TODO Bonus assignment: Separate interface and implementation for =Rectangle=
-
-- Modify the declaration for the =Rectangle= class to separate the ~class~
-  declaration with prototypes and the member function implementation.
-
-- Each function should have its own short header explaining what it
-  does. Example for two member functions of the =BankAccount= class:
-  #+begin_example C++
-    //****************************************************************
-    // withdraw subtracts the amount from the private member balance *
-    //****************************************************************
-    void BankAccount::withdraw(double amount)
-    { balance -= amount; }
-
-    //****************************************************************
-    // getBalance returns the value in the private member balance    *
-    //****************************************************************
-    double BankAccount::getBalance() const
-    { return balance; }
-  #+end_example
-
-- After the separation, the test in ~main~ should still work and
-  generate the same output:
-  #+begin_example
-  Account starting balance: $200.
-  Deposited $300. New balance: $500.
-  Withdrawn $100. New balance: $400.
-  #+end_example
-
-- Submit the onecompiler.com URL to your solution in Canvas.
-
-- Solution:
-  #+name: https://onecompiler.com/cpp/43sc7qvdw
-  #+begin_src C++ :main no :includes :results output
-    // Declare and test a Rectangle class
-    // Header files
-    #include <iostream>
-    // Namespace declaration
-    using namespace std;
-
-    // Class declaration
-    class Rectangle {
-      // private member data
-    private:
-      double width; // rectangle width
-      double length;  // rectangle length
-      // public member functions
-    public:
-      void setWidth (double );  // set rectangle width
-      void setLength (double ); // set rectangle length
-      double getWidth() const;  // get rectangle width
-      double getLength() const; // get rectangle length
-    };
-
-    // Main function
-    int main()
-    {
-      Rectangle r; // create a Rectangle object r
-      r.setWidth(4.);  // set object width to 4
-      r.setLength(5.);  // set object length to 5
-      cout << "Width = " << r.getWidth() << endl; // show object width
-      cout << "Length = " << r.getLength() << endl; // show object length
-      return 0;
-    }
-
-    // Member function definitions
-    //****************************************************************
-    // setWidth assigns its argument to the private member width     *
-    //****************************************************************
-    void Rectangle::setWidth (double w)
-    {
-      width = w;
-    }
-    //****************************************************************
-    // setLength assigns its argument to the private member length   *
-    //****************************************************************
-    void Rectangle::setLength (double l)
-    {
-      length = l;
-    }
-    //****************************************************************
-    // getWidth returns the value in the private member width        *
-    //****************************************************************
-    double Rectangle::getWidth() const
-    {
-      return width;
-    }
-    //****************************************************************
-    // getLength returns the value in the private member length      *
-    //****************************************************************
-    double Rectangle::getLength() const
-    {
-      return length;
-    }
-  #+end_src
-
-  #+RESULTS: https://onecompiler.com/cpp/43sc7qvdw
-  : Width = 4
-  : Length = 5
-
-* C++urious George: Object choices, default constructions, multiple value returns
-#+attr_html: :width 400px :float nil:
-[[../img/curious5.png]]
-
-- What would be an *object* to start with for a bank program?
-  #+begin_quote
-  1. A bank account.
-  2. A bank account holder.
-  3. A bank.
-
-  Of these three, the bank account is the best candidate to start with
-  because it's got range (of operations), and is fairly
-  self-contained. The account holder data and the bank are attached to
-  it, and they exist at different levels of abstraction.
-  #+end_quote
-
-- What about when we want to draw a *rectangle*? Which objects could be
-  relevant?
-  #+begin_quote
-  1. A rectangle.
-  2. A line.
-  3. A point.
-  4. A length.
-  5. A width.
-  6. A person who draws the rectangle.
-  #+end_quote
-
-- Is a default constructor always provided without declaration?
-  #+begin_quote
-  Yes but the data member values are not defined until they are
-  initialized, either with a setter function or with a constructor.
-  #+end_quote
-  #+begin_src C++ :main no :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-    class Rectangle {
-    private:
-      double width;
-      double length;
-    public:
-      double getWidth() const {return width;}
-      double getLength() const {return length;}
-    };
-    int main()
-    {
-      Rectangle ra;
-      cout << ra.getWidth() << endl;
-      cout << ra.getLength() << endl;
-      return 0;
-    }
-  #+end_src
-
-  #+RESULTS:
-  : 6.40436e-310
-  : 6.40436e-310
-
-- Why not just define a member function =getData= and ~return~ all member
-  data with one function?
-  #+begin_quote
-  You can only ~return~ a single value (or object) at a time. To ~return~
-  multiple member values, you must used a composite type (like a ~class~
-  or a ~struct~), and the ~class~ construction is a lot more difficult!
-  #+end_quote
-
-  Code example:
-  #+begin_src C++ :main no :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-    struct RectangleData {
-      double width;
-      double length;
-    };
-
-    class Rectangle {
-    private:
-      double width;
-      double length;
-    public:
-      // constructor
-      Rectangle(double w, double l)
-        : width(w), length(l) {}
-
-      // getter function
-      RectangleData getData() const {
-        RectangleData data;
-        data.width = width;
-        data.length = length;
-        return data;
-      }
-    };
-    int main()
-    {
-      Rectangle ra(4.0, 5.0);
-      RectangleData d=ra.getData();
-      cout << "Width: " << d.width << "\nLength: " << d.length << endl;
-      return 0;
-    }
-  #+end_src
-
-  #+RESULTS:
-  : Width: 4
-  : Length: 5
-
-* Review questions
-
-1. ~private~ and ~public~ are known as what?
-   - [ ] Class declarators
-   - [ ] Assignment delimiters
-   - [X] Access specifiers
-   - [ ] Member accessors
-
-2. Which symbol delimits ~private~ and ~public~?
-   - [ ] Curly braces {}
-   - [ ] Scope resolution operator ::
-   - [ ] A semicolon ;
-   - [X] A colon :
-
-3. Where are class data members and class member functions usually
-   located in the ~class~ declaration?
-   #+begin_quote
-   - Data members are ~private~ so that they are protected.
-   - Member functions are ~public~ so that they can be used to access the
-     data.
-   #+end_quote
-
-4. What does the keyword ~const~ written after the parentheses at the
-   end of a member function declaration mean? As in this example:
-   #+begin_example C++
-   int getLength() const;
-   #+end_example
-
-   #+begin_quote
-   The keyword ~const~ written after the parentheses of a member
-   function declaration means that the function will not change any
-   data stored in the calling object.
-   #+end_quote
-
-5. If I create a =Rectangle= object named =ra=, how do I call the =setWidth=
-   function to set the =width= of the rectangle to the value 5?
-   #+begin_example C++
-     ra.setWidth(5.); // to set
-   #+end_example
-
-6. What is the prescribed order for ~private~ and ~public~ members within
-   the ~class~ declaration?
-   #+begin_quote
-   ~private~ and ~public~ sections of the declaration can be written in
-   any order.
-   #+end_quote
-
-7. Assume that =RetailItem= is the name of a ~class~, and that the class
-   has a ~void~ member function =setPrice= which accepts a ~double~
-   argument. Which of these show the correct use of the scope
-   resolution operator?
-
-   - [ ] =void setPrice (double p)=
-
-   - [X] =void RetailItem::setPrice (double p)=
-
-   - [ ] =void setPrice (double p)::RetailItem=
-
-   - [ ] =RetailItem::void setPrice (double p)=
-
-8. Which message do you expect if you use an externally defined member
-   function if you leave the class name and scope resolution operator
-   out of the functions's header? How do you explain it?
-   #+begin_quote
-   An error message (compiler error): The function cannot be found
-   within the scope because the function has not become a member of
-   the class.
-   #+end_quote
-
-9. What is an accessor, what is a mutator in OOP?
-   #+begin_quote
-   - An accessor, or getter, is a class member function that gets a
-     velue from a class variable but does not change it (~const~).
-   - A mutator, or setter, is a class member function that changes the
-     value of a class variable but does not get it (~void~).
-   #+end_quote
-
-10. When you mark a member function as ~const~, the ~const~ keywoard must
-    appear in:
-
-    - [ ] The function header of all member functions.
-    - [ ] The function header but not the declaration.
-    - [ ] The declaration only.
-    - [ ] Both the declaration and the function header.
-
-* Defining an Instance of a Class (VideoNote 13.2)
-
-- How do we create a =BankAccount= object?
-  #+begin_quote
-  Similar to type definitions =int x;=, a ~class~ is a user-defined type,
-  so a ~class~ instance (an object) is created like this: =Class x;= This
-  invokes the default constructor.
-  #+end_quote
-
-- How many instances of a ~class~ can we create?
-  #+begin_quote
-  Any number as long as there's memory available to us.
-  #+end_quote
-
-- How are the data members (e.g. =balance= of =BankAccount=) of different
-  instances, linked? Will changing one change the other? For example:
-  #+begin_example C++
-    BankAccount savingsAccount(2500.0);
-    BankAccount checkingAccount(500.0);
-  #+end_example
-
-  Answer:
-  #+begin_quote
-  The data are not linked at all: Each object, =savingsAccount= and
-  =checkingAccount= has its own copy of =balance=, stored independently in
-  memory. Changing one will not change the other.
-  #+end_quote
-
-  #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-    class BankAccount
-    {
-    private:
-      double balance;
-
-    public:
-      BankAccount(double startingBal)
-      { balance = startingBal; }
-
-      void deposit(double amount)
-      { balance += amount; }
-
-      void withdraw(double amount)
-      { balance -= amount; }
-
-      double getBalance() const
-      { return balance; }
-
-    };
-
-    BankAccount savingsAccount(2500.0);
-    cout << "Savings: " << savingsAccount.getBalance() << endl;
-    BankAccount checkingAccount(500.0);
-    cout << "Checking: " << checkingAccount.getBalance();
-  #+end_src
-
-  #+RESULTS:
-  : Savings: 2500
-  : Checking: 500
+        #+RESULTS:
+        : Width = 4
+        : Length = 5
 
 * TODO Home assignment: Complete the =Rectangle= class
 
@@ -1252,98 +826,8 @@ Let's use a *bank account* as an example (since everyone has got one).
 
 - *Extension:* We will work in class with separated header and
   implementation files using Google Cloud shell.
-
-- Solution:
-  #+name: https://onecompiler.com/cpp/43sfm6sk3
-  #+begin_src C++ :main no :includes :results output
-    // Declare and test a Rectangle class
-    // Header files
-    #include <iostream>
-    // Namespace declaration
-    using namespace std;
-
-    // Class declaration
-    class Rectangle {
-      // private member data
-    private:
-      double width; //rectangle width
-      double length;  // rectangle length
-      // public member functions
-    public:
-      void setWidth (double );  // set rectangle width
-      void setLength (double ); // set rectangle length
-      double getWidth() const;  // get rectangle width
-      double getLength() const; // get rectangle length
-      double getArea() const;   // compute and get rectangle area
-    };
-
-    // Member function definitions
-    //****************************************************************
-    // setWidth assigns its argument to the private member width     *
-    //****************************************************************
-    void Rectangle::setWidth (double w)
-    {
-      width = w;
-    }
-    //****************************************************************
-    // setLength assigns its argument to the private member length   *
-    //****************************************************************
-    void Rectangle::setLength (double l)
-    {
-      length = l;
-    }
-    //****************************************************************
-    // getWidth returns the value in the private member width        *
-    //****************************************************************
-    double Rectangle::getWidth() const
-    {
-      return width;
-    }
-    //****************************************************************
-    // getLength returns the value in the private member length      *
-    //****************************************************************
-    double Rectangle::getLength() const
-    {
-      return length;
-    }
-    //****************************************************************
-    // getArea computes and returns the area from private data       *
-    //****************************************************************
-    double Rectangle::getArea() const
-    {
-      return (width * length);
-    }
-
-    // main function
-    int main()
-    {
-      Rectangle box1;
-      box1.setWidth(12.7);
-      box1.setLength(14.5);
-      cout << "Box 1: "
-           << box1.getWidth() << " x " << box1.getLength()
-           << endl;
-      Rectangle box2;
-      box2.setWidth(8.5);
-      box2.setLength(29.3);
-      cout << "Box 2: "
-           << box2.getWidth() << " x " << box2.getLength()
-           << endl;
-      // Test getArea()
-      if (box1.getArea() < box2.getArea())
-        cout << "Box 1 is smaller.\n";
-      else
-        cout << "Box 2 is smaller.\n";
-      return 0;
-    }
-  #+end_src
-
-  #+RESULTS: bad dog
-  : Box 1: 12.7 x 14.5
-  : Box 2: 8.5 x 29.3
-  : Box 1 is smaller.
-
-* Separate interface and implementation files
+  
+* PRACTICE Separate interface and implementation files
 
 - We separated ~class~ declaration (interface part) and member function
   definitions (implementation part) [[https://onecompiler.com/cpp/43sc7qvdw][in an earlier exercise]].
@@ -1354,22 +838,20 @@ Let's use a *bank account* as an example (since everyone has got one).
 
 - How can we run the test using these three files? Take a guess!
   #+begin_quote
-  1. The =Rectangle.h= file (which also contains the ~#include~ and
-     ~namespace~ statements) will be included as a header file in both
-     =Rectangle.cpp= and =RectangleTest.cpp=.
-
-  2. =Rectangle.cpp= will be compiled into an object file =Rectangle.o=
-     without linking using the =-c= option of the ~g++~ (GCC) compiler.
-
-  3. =RectangleTest.cpp=, which contains the ~main~ function, will be
-     compiled and linked with =Rectangle.o=.
-
-  4. It turns out that the Linux ~make~ command can execute all of these
-     steps using a configuration file called a ~Makefile~.
+  1. The =Rectangle.h= will be included as a header file in both
+     =Rectangle.cpp= and =RectangleTest.cpp= (which is the ~main~ pgm).
+  2. =Rectangle.cpp= will be compiled into =Rectangle.o= without linking
+     it (=-c= flag of the g++ compiler).
+  3. =RectangleTest.cpp= will be compiled and linked with =Rectangle.o=.
+  4. On Linux there is a utility program called ~make~ that can execute
+     all of these steps using a config file ~Makefile~.
   #+end_quote
 
 - We're first going to do this manually on Google Cloud Shell, and
   then with a ~Makefile~.
+
+- Actually, you can also do this in OneCompiler.com (add =.h= and =.cpp=
+  files with the ~+~ button).
 
 * PRACTICE Tangle separate files
 
@@ -1386,7 +868,7 @@ Let's use a *bank account* as an example (since everyone has got one).
     class Rectangle {
       // private member data
     private:
-      double width; // rectangle width
+      double width; // rectangle widtho
       double length;  // rectangle length
       // public member functions
     public:
@@ -1462,7 +944,7 @@ Let's use a *bank account* as an example (since everyone has got one).
            << box2.getWidth() << " x " << box2.getLength()
            << endl;
       // Test getArea()
-      if (box1.getArea() < box2.getArea())
+      if (box1.getArea() < box2.getArea()) 
         cout << "Box 1 is smaller.\n";
       else
         cout << "Box 2 is smaller.\n";
@@ -1496,9 +978,9 @@ Let's use a *bank account* as an example (since everyone has got one).
 5) Get the three files from GitHub using ~wget~. Enter the following
    commands at the ~$~ prompt, then check they're there with ~ll~.
    #+begin_example bash
-     wget -O Rectangle.h tinuyrl.com/rectangle-h
-     wget -O Rectangle.cpp tinuyrl.com/rectangle-cpp
-     wget -O RectangleTest.cpp tinuyrl.com/rectangletest-cpp
+     wget -O Rectangle.h tinyurl.com/rectangle-h
+     wget -O Rectangle.cpp tinyurl.com/rectangle-cpp
+     wget -O RectangleTest.cpp tinyurl.com/rectangletest-cpp
    #+end_example
 
 6) Execute the following commands to build the executable =rect=, and
@@ -1508,7 +990,7 @@ Let's use a *bank account* as an example (since everyone has got one).
      g++ RectangleTest.cpp Rectangle.o -o rect
      ./rect
    #+end_example
-   
+
    If any of your .cpp or .h files cannot be found, add the current
    directory (~.~) to your ~PATH~ with: ~export PATH="$PATH:."~
 
@@ -1549,207 +1031,112 @@ Let's use a *bank account* as an example (since everyone has got one).
     g++ RectangleTest.o Rectangle.o -o rectangle
     #+end_example
 
-* PRACTICE Review questions
+* Example: Planning a house (multiple =Rectangle= objects)
 
-1. A header file that contains a class declaration is called
-   - [X] a class specification file
-   - [ ] a class implementation file
-   - [ ] a class header file
-   - [ ] a class definition file
+      - Constraints: Includes [[RECTANGLE_CPP]] (needs to be tangled and be
+        available as =../src/Rectangle.cpp=, and =Rectangle.h= must also be
+        there). Later, we will see a verion with [[Program 13-3 Gaddis page 772][dynamical allocation]].
 
-2. The name of the class specification file is usually the same as the
-   name of the class, with a .cpp extension (false)
+      - Sample input/output:
+        #+begin_example
+        : What is the kitchen's length? 10
+        : What is the kitchen's width? 14
+        : What is the bedroom's length? 15
+        : What is the bedroom's width? 12
+        : What is the den's length? 20
+        : What is the den's width? 30
+        : The total area of the three rooms is 920
+        #+end_example
 
-3. What is stored in a separate .cpp file called the *class
-   implementation* file?
+      - Code:
+        #+begin_src C++ :noeval :tangle ../src/rectangle2.cpp :flags -I ~/GitHub/cpp-25/src :main no :includes
+          #include <iostream>
+          #include "Rectangle.cpp"
+          using namespace std;
 
-   - [ ] static variable definitions
-   - [ ] private members
-   - [ ] public members
-   - [ ] member function definitions
+          //******************************************************************
+          // Function main
+          //******************************************************************
+          int main()
+          {
+            double number;     // number input
+            double totalArea;  // total area
+            Rectangle kitchen; // kitchen dimensions
+            Rectangle bedroom; // bedroom dimensions
+            Rectangle den;     // den dimensions
 
-4. An include guard (preprocessor directive) prevents the header from
-   accidentally being included more than once (true).
+            // Get the kitchen dimensions
+            cout << "What is the kitchen's length? ";
+            cin >> number; cout << number << endl;    // get the length
+            kitchen.setLength(number);                // store in kitchen object
+            cout << "What is the kitchen's width? ";
+            cin >> number; cout << number << endl;    // get the width
+            kitchen.setWidth(number);                 // store in kitchen object
 
-5. The standard library header files like ~<iostream>~ and the ~namespace~
-   declarations can be included more than once. (true)
+            // Get the bedroom dimensions
+            cout << "What is the bedroom's length? ";
+            cin >> number; cout << number << endl;    // get the length
+            bedroom.setLength(number);                // store in bedroom object
+            cout << "What is the bedroom's width? ";
+            cin >> number;  cout << number << endl;   // get the width
+            bedroom.setWidth(number);                 // store in bedroom object
 
-* PRACTICE Planning a house (multiple =Rectangle= objects)
+            // Get the den dimensions
+            cout << "What is the den's length? ";
+            cin >> number; cout << number << endl;    // get the length
+            den.setLength(number);                    // store in den object
+            cout << "What is the den's width? ";
+            cin >> number; cout << number << endl;    // get the width
+            den.setWidth(number);                     // store in den object
 
-- Constraints: Includes [[RECTANGLE_CPP]] (needs to be tangled and be
-  available as =../src/Rectangle.cpp=, and =Rectangle.h= must also be
-  there). There are two other versions of this application:
-  1. One with [[Program 13-3 Gaddis page 772][dynamical allocation]], and
-  2. one with [[Program 13-4 Gaddis page 774][smart pointers to class objects]].
+            // Calculate the total area of the three rooms
+            totalArea = kitchen.getArea() +
+              bedroom.getArea() +
+              den.getArea();
 
-- Sample input/output:
-  #+begin_example
-  : What is the kitchen's length? 10
-  : What is the kitchen's width? 14
-  : What is the bedroom's length? 15
-  : What is the bedroom's width? 12
-  : What is the den's length? 20
-  : What is the den's width? 30
-  : The total area of the three rooms is 920
-  #+end_example
+            // Display total area of the three rooms
+            cout << "The total area of the three rooms is "
+                 << totalArea << endl;
+            return 0;
+          }
+        #+end_src
 
-- Code:
-  #+name: Program 13-2 Gaddis page 768
-  #+begin_src C++ :noeval :tangle ../src/rectangle2.cpp :flags -I ~/GitHub/cpp-25/src :main no :includes
-    #include <iostream>
-    #include "Rectangle.cpp"
-    using namespace std;
+      - Testing the tangled program (org-babel-tangle) - cursor right after
+        the command, then C-x C-e with the values
+        #+begin_src bash :results output :exports both
+          cd ../src
+          g++ rectangle2.cpp -o rectangle2
+          echo "10 14 15 12 20 30" | ./rectangle2
+        #+end_src
 
-    //******************************************************************
-    // Function main
-    //******************************************************************
-    int main()
-    {
-      double number;     // number input
-      double totalArea;  // total area
-      Rectangle kitchen; // kitchen dimensions
-      Rectangle bedroom; // bedroom dimensions
-      Rectangle den;     // den dimensions
+        #+RESULTS:
+        : What is the kitchen's length? 10
+        : What is the kitchen's width? 14
+        : What is the bedroom's length? 15
+        : What is the bedroom's width? 12
+        : What is the den's length? 20
+        : What is the den's width? 30
+        : The total area of the three rooms is 920
 
-      // Get the kitchen dimensions
-      cout << "What is the kitchen's length? ";
-      cin >> number; cout << number << endl;    // get the length
-      kitchen.setLength(number);                // store in kitchen object
-      cout << "What is the kitchen's width? ";
-      cin >> number; cout << number << endl;    // get the width
-      kitchen.setWidth(number);                 // store in kitchen object
+* Pointers to ~class~ Objects
 
-      // Get the bedroom dimensions
-      cout << "What is the bedroom's length? ";
-      cin >> number; cout << number << endl;    // get the length
-      bedroom.setLength(number);                // store in bedroom object
-      cout << "What is the bedroom's width? ";
-      cin >> number;  cout << number << endl;   // get the width
-      bedroom.setWidth(number);                 // store in bedroom object
-
-      // Get the den dimensions
-      cout << "What is the den's length? ";
-      cin >> number; cout << number << endl;    // get the length
-      den.setLength(number);                    // store in den object
-      cout << "What is the den's width? ";
-      cin >> number; cout << number << endl;    // get the width
-      den.setWidth(number);                     // store in den object
-
-      // Calculate the total area of the three rooms
-      totalArea = kitchen.getArea() +
-        bedroom.getArea() +
-        den.getArea();
-
-      // Display total area of the three rooms
-      cout << "The total area of the three rooms is "
-           << totalArea << endl;
-      return 0;
-    }
-  #+end_src
-
-- Testing the tangled program (org-babel-tangle) - cursor right after
-  the command, then C-x C-e with the values
-  #+begin_src bash :results output :exports both
-    cd ../src
-    g++ rectangle2.cpp -o rectangle2
-    echo "10 14 15 12 20 30" | ./rectangle2
-  #+end_src
-
-  #+RESULTS:
-  : What is the kitchen's length? 10
-  : What is the kitchen's width? 14
-  : What is the bedroom's length? 15
-  : What is the bedroom's width? 12
-  : What is the den's length? 20
-  : What is the den's width? 30
-  : The total area of the three rooms is 920
-
-* C++urious George: default constructor
-#+attr_html: :width 400px :float nil:
-[[../img/curious5.png]]
-
-- You can define a non-acting default constructor:
-  #+begin_example C++
-    class X {
-    private:
-      int a;
-    public:
-      X() {}
-    };
-    int main()
-    {
-      X x;
-      return 0;
-    }
-  #+end_example
-
-- Why can the standard library header files like ~<iostream>~ and the
-  ~namespace~ declarations can be included more than once?
-  #+begin_quote
-  Standard headers use include guards (or the directive ~#pragma once~)
-  internally so the compiler processes their contents only once even
-  if you include them multiple times.
-
-  ~namespace~ declarations can be repeated: They just tell the compiler
-  to treat unqualified names as if they were in that namespace so
-  re-declaring is harmless.
-  #+end_quote
-
-* Avoiding Stale Data
-
-- In [[RECTANGLE_CPP]], the =getArea= member function returns the result of
-  a calculation. Why don't we store the area in a member variable like
-  =length= and =width=?
-  #+begin_quote
-  We do not store the area in a member variable because it may become
-  *stale*: It depends wholly on two other member variables, and it would
-  become incorrect as soon as one of these other variables changed.
-  #+end_quote
-
-- When designing a class do not store calculated data in member
-  variables because they could become stale. Instead provide a member
-  function that returns the result of the calculation.
-
-* Pointers to ~class~ objects
+- A ~class~ is a user-defined type. Its objects are regions of memory.
 
 - You can define a pointer that points at a ~class~ object. You can then
-  use the ~->~ operator to call member functions.
+  use the ~->~ operator to call member functions (instead of dot ~.~)
   #+attr_html: :width 600px :float nil:
   #+caption: State of the object pointed at before initialization.
   [[../img/rectangle_pointer.png]]
 
-  #+name: rectangle pointer
-  #+begin_src C++ :flags -I ~/GitHub/cpp-25/src :main no :includes :results output :exports both
-    #include <iostream>
-    #include "Rectangle.cpp"
-    using namespace std;
-
-    int main()
-    {
-      Rectangle myRectangle;         // create a rectangle
-      Rectangle *rectPtr = nullptr;  // create a pointer
-      rectPtr = &myRectangle;        // pointer points at rectangle
-
-      rectPtr->setWidth(12.5);
-      rectPtr->setLength(4.8);
-
-      cout << "Width: " << rectPtr->getWidth() << endl;
-      cout << "Length: " << rectPtr->getLength() << endl;
-      return 0;
-    }
-  #+end_src
-
-  #+RESULTS: rectangle pointer
-  : Width: 12.5
-  : Length: 4.8
-
 - Class object pointers can be used to dynamically allocate
-  objects. Unless you use a smart pointer, you have to ~delete~ the
+  objects. Unless you use a *smart pointer*, you have to ~delete~ the
   object when you're done.
   #+attr_html: :width 600px :float nil:
+  #+caption: State of the object pointed at after initialization.
   [[../img/rectangle_dynamical.png]]
 
-  #+name: dynamically allocated object
+- Code example using the =Rectangle= class:
+
   #+begin_src C++ :flags -I ~/GitHub/cpp-25/src :main no :includes :results output :exports both
     #include <iostream>
     #include "Rectangle.cpp"
@@ -1757,30 +1144,44 @@ Let's use a *bank account* as an example (since everyone has got one).
 
     int main()
     {
-      Rectangle myRectangle;         // create a rectangle
-      Rectangle *rectPtr = nullptr;  // create a pointer
-      rectPtr = new Rectangle;       // dynamically allocate a Rectangle object
-
-      rectPtr->setWidth(10.0);       // store width value
-      rectPtr->setLength(15.0);      // store length value
-
-      cout << "Width: " << rectPtr->getWidth() << endl;
-      cout << "Length: " << rectPtr->getLength() << endl;
-
-      delete rectPtr;                // free the allocated memory
-      rectPtr = nullptr;             // store address 0 in pointer
 
       return 0;
     }
   #+end_src
 
-  #+RESULTS: dynamically allocated object
-  : Width: 10
-  : Length: 15
+- Same thing with dynamically allocated pointers (~new~, ~delete~)
+  #+begin_src C++ :flags -I ~/GitHub/cpp-25/src :main no :includes :results output :exports both
+    #include <iostream>
+    #include "Rectangle.cpp"
+    using namespace std;
+
+    int main()
+    {
+      Rectangle R; // create a rectangle
+      Rectangle *rectPtr = nullptr; // create a pointer (initialize it)
+      rectPtr = new Rectangle; // dynamically allocate a Rectangle object
+
+      rectPtr->setWidth(11.5); // store width value with the pointer
+      rectPtr->setLength(5.8); // store length value
+
+      cout << "Width: "  << rectPtr->getWidth() << endl;
+      cout << "Length: " << rectPtr->getLength() << endl;
+
+      // must free allocated memory
+      delete rectPtr;
+      rectPtr = nullptr;
+
+      return 0;
+    }
+  #+end_src
+
+  #+RESULTS:
+  : Width: 11.5
+  : Length: 5.8
 
 * PRACTICE Using pointers to objects [Bonus assignment]
 
-- *Task:* Modify [[Program 13-2 Gaddis page 768]] to dynamically allocate
+- *Task:* Modify the house building program to dynamically allocate
   =Rectangle= objects, =kitchen=, =bedroom=, and =den=.
 
 - *Constraints:* Includes [[RECTANGLE_CPP]] (needs to be tangled and be
@@ -1798,364 +1199,60 @@ Let's use a *bank account* as an example (since everyone has got one).
   : The total area of the three rooms is 920
   #+end_example
 
-- *Solution:*
-  #+name: Program 13-3 Gaddis page 772
-  #+begin_src C++ :noeval :tangle ../src/rectangle3.cpp :flags -I ~/GitHub/cpp-25/src :main no :includes
-    #include <iostream>
-    #include "Rectangle.cpp"
-    using namespace std;
-
-    //******************************************************************
-    // Function main
-    //******************************************************************
-    int main()
-    {
-      double number;                    // number input
-      double totalArea;                 // total area
-      Rectangle *kitchen = nullptr;     // pointer to Rectangle object
-      kitchen = new Rectangle;          // kitchen dimensions
-      Rectangle *bedroom = nullptr;     // pointer to Rectangle object
-      bedroom = new Rectangle;          // bedroom dimensions
-      Rectangle *den = nullptr;         // pointer to Rectangle object
-      den = new Rectangle;              // den dimensions
-
-      // Get the kitchen dimensions
-      cout << "What is the kitchen's length? ";
-      cin >> number; cout << number << endl;     // get the length
-      kitchen->setLength(number);                // store in kitchen object
-      cout << "What is the kitchen's width? ";
-      cin >> number; cout << number << endl;     // get the width
-      kitchen->setWidth(number);                 // store in kitchen object
-
-      // Get the bedroom dimensions
-      cout << "What is the bedroom's length? ";
-      cin >> number; cout << number << endl;     // get the length
-      bedroom->setLength(number);                // store in bedroom object
-      cout << "What is the bedroom's width? ";
-      cin >> number;  cout << number << endl;    // get the width
-      bedroom->setWidth(number);                 // store in bedroom object
-
-      // Get the den dimensions
-      cout << "What is the den's length? ";
-      cin >> number; cout << number << endl;    // get the length
-      den->setLength(number);                   // store in den object
-      cout << "What is the den's width? ";
-      cin >> number; cout << number << endl;    // get the width
-      den->setWidth(number);                    // store in den object
-
-      // Calculate the total area of the three rooms
-      totalArea = kitchen->getArea() +
-        bedroom->getArea() +
-        den->getArea();
-
-      // Display total area of the three rooms
-      cout << "The total area of the three rooms is "
-           << totalArea << endl;
-
-      // Deallocate memory
-      delete kitchen;
-      kitchen = nullptr;
-      delete bedroom;
-      bedroom = nullptr;
-      delete den;
-      den = nullptr;
-      return 0;
-    }
-  #+end_src
-
-- Testing the tangled program (org-babel-tangle) - cursor right after
-  the command, then C-x C-e with the values
-  #+begin_src bash :results output :exports both
-    cd ../src
-    g++ rectangle3.cpp -o rectangle3
-    echo "10 14 15 12 20 30" | ./rectangle3
-  #+end_src
-
-  #+RESULTS:
-  : What is the kitchen's length? 10
-  : What is the kitchen's width? 14
-  : What is the bedroom's length? 15
-  : What is the bedroom's width? 12
-  : What is the den's length? 20
-  : What is the den's width? 30
-  : The total area of the three rooms is 920
-
-* SOMEDAY Using Smart Pointers to Allocate Objects
-
-- You can use smart pointers to automatically delete a chunk of
-  dynamically allocated memory when it is no longer being used.
-
-- Requires ~#include <memory>~
-
-- Code Example:
-  1) Using [[RECTANGLE_CPP]],
-  2) modifying [[Program 13-3 Gaddis page 772]].
-
-  #+name: Program 13-4 Gaddis page 774
-  #+begin_src C++ :noeval :tangle ../src/rectangle4.cpp :flags -I ~/GitHub/cpp-25/src :main no :includes
-    #include <iostream>
-    #include <memory>
-    #include "Rectangle.cpp"
-    using namespace std;
-
-    //******************************************************************
-    // Function main
-    //******************************************************************
-    int main()
-    {
-      double number;                    // number input
-      double totalArea;                 // total area
-
-      // Dynamically allocate the objects.
-      unique_ptr<Rectangle> kitchen(new Rectangle);
-      unique_ptr<Rectangle> bedroom(new Rectangle);
-      unique_ptr<Rectangle> den(new Rectangle);
-
-      // Get the kitchen dimensions
-      cout << "What is the kitchen's length? ";
-      cin >> number; cout << number << endl;     // get the length
-      kitchen->setLength(number);                // store in kitchen object
-      cout << "What is the kitchen's width? ";
-      cin >> number; cout << number << endl;     // get the width
-      kitchen->setWidth(number);                 // store in kitchen object
-
-      // Get the bedroom dimensions
-      cout << "What is the bedroom's length? ";
-      cin >> number; cout << number << endl;     // get the length
-      bedroom->setLength(number);                // store in bedroom object
-      cout << "What is the bedroom's width? ";
-      cin >> number;  cout << number << endl;    // get the width
-      bedroom->setWidth(number);                 // store in bedroom object
-
-      // Get the den dimensions
-      cout << "What is the den's length? ";
-      cin >> number; cout << number << endl;    // get the length
-      den->setLength(number);                   // store in den object
-      cout << "What is the den's width? ";
-      cin >> number; cout << number << endl;    // get the width
-      den->setWidth(number);                    // store in den object
-
-      // Calculate the total area of the three rooms
-      totalArea = kitchen->getArea() +
-        bedroom->getArea() +
-        den->getArea();
-
-      // Display total area of the three rooms
-      cout << "The total area of the three rooms is "
-           << totalArea << endl;
-
-      return 0;
-    }
-  #+end_src
-
-- Testing the tangled program (org-babel-tangle) - cursor right after
-  the command, then C-x C-e with the values
-  #+begin_src bash :results output :exports both
-    cd ../src
-    g++ rectangle4.cpp -o rectangle4
-    echo "10 14 15 12 20 30" | ./rectangle4
-  #+end_src
-
-  #+RESULTS:
-  : What is the kitchen's length? 10
-  : What is the kitchen's width? 14
-  : What is the bedroom's length? 15
-  : What is the bedroom's width? 12
-  : What is the den's length? 20
-  : What is the den's width? 30
-  : The total area of the three rooms is 920
-
-* PRACTICE Review Questions
-
-1. What is defining a ~class~ object called?
-   - [X] Instantiation
-   - [ ] Allocation
-   - [ ] Declaration
-   - [ ] Definition
-
-2. When is a variable in danger of becoming stale and what to do about
-   it? Example?
-
-3. You can use the ~new~ operator to dynamically allocate an instance of
-   a class. Give an example!
-
-4. Given the following code, which of the statements below correctly
-   calls the =setRadius= member function passing 2.5 as an argument?
-   #+begin_example C++
-   Circle *circlePtr = nullptr;
-   circlePtr = new Circle;
-   #+end_example
-
-   - [ ] =nullptr.setRadius(2.5);=
-   - [X] =circlePtr->setRadius(2.5);=
-   - [ ] =Circle::setRadius(2.5);=
-   - [ ] =circlePtr.setRadius(2.5);=
-
-5. You must declare all ~private~ members of a ~class~ before the ~public~
-   members (false).
-
-6. Assume =RetailItem= is the name of a ~class~, with a ~void~ member
-   function named =setPrice=, which accepts a ~double~ argument. Which of
-   the following shows the correct use of the scope resolution
-   operator in the member function definition?
-
-   - [ ] =RetailItem::void setPrice(double p);=
-   - [X] =void RetailItem::setPrice(double p);=
-
-7. An object's ~private~ member variables are accessed from outside the
-   object by which of the following?
-
-   - [X] ~public~ member functions
-   - [ ] any function
-   - [ ] the dot operator
-   - [ ] the scope resolution operator
-
-8. Assume =RetailItem= is the name of a ~class~ with a ~void~ member
-   function named =setPrice=, which accepts a ~double~ argument. If =soap=
-   is an instance of the =RetailItem= ~class~, which of the following
-   statements properly uses the =soap= object to call the =setPrice=
-   member function?
-
-   - [ ] =RetailItem::setPrice(1.49);=
-   - [ ] =soap::setPrice(1.49);=
-   - [X] =soap.setPrice(1.49);=
-   - [ ] =soap:setPrice(1.49);=
-
-9. Assume =RetailItem= is the name of a ~class~ with a ~void~ member
-   function named =setPrice=, which accepts a ~double~ argument. If =soap=
-   is a dynamically allocated pointer to a =RetailItem= object, which of
-   the following statements properly uses the =soap= pointer to call the
-   =setPrice= member function?
-
-   - [ ] =RetailItem::setPrice(1.49);=
-   - [ ] =soap.setPrice(1.49);=
-   - [X] =soap->setPrice(1.49);=
-   - [ ] =soap:setPrice(1.49);=
-
-10. Complete the following code skeleton to declare a ~class~ named
-    =Date=. The class should contain variables and functions to store
-    and retrieve a date in the form 4/2/2021.
-
-    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std
-      class Date
-      {
-      private:
-        int month;
-        int day;
-        int year;
-      public:
-        Date(int m, int d, int y);
-        void setMonth(int m);
-        void setDay(int d);
-        void setYear(int y);
-        int getMonth();
-        int getDay();
-        int getYear();
-      };
-    #+end_src
-
-* SOMEDAY Why Have Private Members?
-
-- In OOP, an object protects its important data by making them
-  ~private~, and provides a ~public~ interface to access the data.
-
-- Member functions can protect against invalid data values and you can
-  use ~exit(EXIT_FAILURE)~ from ~<cstdlib>~ to leave the application.
-
-- There is a whole methodology of implementing invalid data
-  protections called *exceptions*.
-
-* SOMEDAY Inline member functions
-
-- Inline functions are member functions whose body is written inside a
-  class declaration.
-
-- Inline functions are compiled differently from other functions: They
-  are not called but expanded inline the call is replaced with the
-  function code itself, which results in a performance improvement.
-
-- However, the program size therefore necessarily increases if the
-  function is called multiple times.
-
-* Review Questions
-
-1. Why would you declare a ~class~ member variable ~private~?
-   #+begin_quote
-   You would declare data ~private~ to enforce encapsulation, keeping
-   the data hidden from outside code.
-   #+end_quote
-2. When a ~class~ member variable is declared ~private~, how does code
-   outside the class store values in, or retrieve values from, the
-   member variables?
-   #+begin_quote
-   ~private~ data are changed by mutator (setter), and retrieved by
-   accessor (getter) ~public~ member functions.
-   #+end_quote
-3. What is a class specification file? What is a class implementation
-   file?
-   #+begin_quote
-   The ~class~ specification file (class.h) contains the ~class~ declaration
-   and prototypes (signatures) of ~public~ member functions and the
-   ~private~ member data.
-
-   The ~class~ implementation file (.cpp) contains the ~class~ member
-   function definitions, identified as belonging to the class by the
-   class name followed by the scope resolution operator before the
-   function name.
-   #+end_quote
-4. What is the purpose of an include guard?
-   #+begin_quote
-   An include guard starting with ~#ifndef~ protects class
-   specifications from being included multiple times.
-   #+end_quote
-5. Assume the following class components exist in a program:
-
-   | =BasePay= ~class~ declaration            | BasePay.h    |
-   | =BasePay= member function definition   | BasePay.cpp  |
-   | =Overtime= ~class~ declaration           | Overtime.h   |
-   | =Overtime= member function definitions | Overtime.cpp |
-
-   In what files would you store each of these components?
-
-6. What is an inline member function? What's the effect of using an
-   inline member function instead of a regular (external) definition?
-
 * Constructors
 
 - What is a constructor?
   #+begin_quote
-  A constructor is a member function that is automatically called when
-  a ~class~ object is created. It has the same name as the ~class~ and it
-  does not have a ~return~ type.
+  
   #+end_quote
 
-- Example:
+- Simple example:
+  #+begin_example 
+  A constructor is a member function that is automatically called when
+  a class object is created. It has the name as the class, and it does
+  not return anything.
+  #+end_example
+
+- Demo example:
   #+begin_src C++ :main no :includes :results output :exports both
     #include <iostream>
+    #include <string>
     using namespace std;
 
-    class Demo
+    // declaration -> Demo.h
+    class Demo 
     {
     public:
-      Demo(); // Constructor
+      Demo(); // constructs a Demo object = prototype
+      Demo(string);
     };
 
+    // implementation -> Demo.cpp
     Demo::Demo()
     {
       cout << "Welcome to the Demo constructor!\n";
     }
+    Demo::Demo(string property)
+    {
+      cout << "I am " << property;
+    }
 
+    // test file -> DemoTest.cpp
     int main()
     {
       Demo hello;
+      Demo goodbye("tired");
       return 0;
     }
   #+end_src
 
   #+RESULTS:
   : Welcome to the Demo constructor!
+  : I am tired
 
-* PRACTICE Improving =Rectangle= with a constructor
+* PRACTICE Improving =Rectangle= with a new explicit constructor
+
+- To change the code on Google Cloud Shell, use the ~nano~ editor.
 
 - We're going to make two improvements:
   1) Make the code safer against invalid data entry (implementation).
@@ -2165,7 +1262,7 @@ Let's use a *bank account* as an example (since everyone has got one).
 - We'll keep the specification and the implementation apart in a .h
   and a .cpp file, and we'll test with a Makefile on the shell.
 
-- =Rectangle.h= (with ~#include~ guard) - tangles but does not evaluate.
+- =Rectangle.h= (with ~#include~ guard) - add new default constructor:
   #+begin_src C++ :tangle ../src/Rectangle.h :main no :includes :noeval
     // Specification file for the Rectangle class
     #ifndef RECTANGLE_H
@@ -2189,8 +1286,7 @@ Let's use a *bank account* as an example (since everyone has got one).
     #endif
   #+end_src
 
-- =Rectangle.cpp= (with =#include "Rectangle.h"=) - tangles but does not
-  evaluate.
+- =Rectangle.cpp= (with =#include "Rectangle.h"=) - with data check:
   #+begin_src C++ :flags -I ../src :tangle ../src/Rectangle.cpp :main no :includes :noeval
     #include "Rectangle.h"
     #include <iostream>
@@ -2200,8 +1296,12 @@ Let's use a *bank account* as an example (since everyone has got one).
     //**************************************************************
     // The constructor initializes width and length to 0.0
     //**************************************************************
-    Rectangle::Rectangle() :
-      width(0.0), length(0.0) {}
+    Rectangle::Rectangle()
+    //: width(0.0), length(0.0) {}  // initialized with a list
+    {
+      width = 0.0;
+      length = 0.0;
+    }
     //**************************************************************
     // setWidth sets the value of the member variable width
     //**************************************************************
@@ -2212,7 +1312,7 @@ Let's use a *bank account* as an example (since everyone has got one).
       else
         {
           cout << "Invalid width.\n";
-          exit(EXIT_FAILURE);
+          exit(EXIT_FAILURE);           // or: return 1;
         }
     }
     //**************************************************************
@@ -2230,8 +1330,7 @@ Let's use a *bank account* as an example (since everyone has got one).
     }
   #+end_src
 
-- =RectangleTest.cpp= (with =#include "Rectangle.h"=) - tangles but does
-  not evaluate.
+- =RectangleTest.cpp= (with =#include "Rectangle.h"=) - make a rectangle:
   #+begin_src C++ :flags -I ../src :tangle ../src/RectangleTest.cpp :main no :includes :noeval
     #include <iostream>
     #include "Rectangle.h"
@@ -2250,50 +1349,19 @@ Let's use a *bank account* as an example (since everyone has got one).
     }
   #+end_src
 
-- In class (without Makefile): Test the new setup on the command-line:
+- Test the new setup on the command-line:
   #+begin_src bash :results output :exports both
     cd ../src
     g++ -c Rectangle.cpp -o Rectangle.o # produce Rectangle.o
     g++ RectangleTest.cpp Rectangle.o -o rect # produce executable
     ./rect
-  #+end_src  
+  #+end_src
 
   #+RESULTS:
   : Here is the rectangle's data:
   : Width: 0
   : Length: 0
   : Area: 0
-
-- =Makefile= with targets for the executable =rectangle=, and the object
-  file with our definitions (from =Rectangle.cpp=), =Rectangle.o=, and a
-  ~PHONY~ target to ~clean~ up afterwards.
-    #+begin_src sh :tangle ../src/Makefile
-    rectangle6: Rectangle.o Rectangle.h
-    g++ RectangleTest.cpp Rectangle.o -o rectangle6
-
-    Rectangle.o: Rectangle.cpp Rectangle.h
-    g++ -c Rectangle.cpp -o Rectangle.o
-
-    clean:
-    rm *.o rectangle6
-  #+end_src
-
-- Testing: Running ~make~ with the =Makefile= on the shell.
-  #+begin_src bash :results output :exports both
-    cd ../src
-    make rectangle6
-    ./rectangle6
-    make clean
-  #+end_src
-
-  #+RESULTS:
-  : g++ -c Rectangle.cpp -o Rectangle.o
-  : g++ RectangleTest.cpp Rectangle.o -o rectangle6
-  : Here is the rectangle's data:
-  : Width: 0
-  : Length: 0
-  : Area: 0
-  : rm *.o rectangle6
 
 - From C++11, you can also initialize a member variable in-place,
   namely when the variables are defined:
@@ -2306,40 +1374,6 @@ Let's use a *bank account* as an example (since everyone has got one).
   };
   #+end_example
 
-* C++urious George: RAII, object lifecycle
-#+attr_html: :width 400px :float nil:
-[[../img/curious5.png]]
-
-- What is the RAII principle?
-  #+begin_quote
-  "Resource Allocation Is Initialization:" Introduced by Stroustrup
-  with C++. The constructor initializes resources (memory, file
-  handles, etc.), and the destructor releases them when the object has
-  reached the end of its lifetime (when it goes out of scope).
-  #+end_quote
-
-- Why did the =Rectangle= class (in [[RECTANGLE_H]]) not need a constructor?
-  #+begin_quote
-  In C++, if you don't declare a constructor, the compiler provides a
-  *default constructor* that initializes built-in types to arbitrary
-  values and calls default constructors for any member objects.
-
-  The =Rectangle= class should have a constructor, otherwise
-  e.g. calling the member function =getArea()= before setting =length= and
-  =width= would return garbage results.
-  #+end_quote
-
-- Why are the =Rectangle= mutator functions defined in the
-  implementation file but the ~const~ accessor functions are defined
-  inline in the specification file?
-  #+begin_quote
-  - Small simple and ~const~ member functions can be defined inline in
-    the header file (.h) without performance cost.
-  - This avoids the function call overhead for trivial operations.
-  - Larger functions are moved to the implementation (.cpp) file to
-    improve readability and avoid recompilation.
-  #+end_quote
-
 * Passing Arguments to Constructors
 
 - A constructor can have parameters and can accept arguments when an
@@ -2348,12 +1382,12 @@ Let's use a *bank account* as an example (since everyone has got one).
 - Example: Here is a constructor with parameters for the =Rectangle=
   class.
 
-  1) =Rectangle.h=
+  1) =Rectangle.h= - A =Rectangle= with undefined =width= and =length=
      #+begin_example C++
      Rectangle(double,double);
      #+end_example
 
-  2) =Rectangle.cpp=
+  2) =Rectangle.cpp= - A =Rectangle= with defined =width= and =length=
      #+begin_example C++
      Rectangle::Rectangle(double w, double l)
      {
@@ -2367,7 +1401,7 @@ Let's use a *bank account* as an example (since everyone has got one).
        width(w), length(l);
      #+end_example
 
-  3) =RectangleTest.cpp=:
+  3) =RectangleTest.cpp=: Creating a =Rectangle= with =width= and =length=
      #+begin_example C++
      Rectangle box(10.0, 12.0); // creates 10 x 12 rectangle
      #+end_example
@@ -2385,41 +1419,38 @@ Let's use a *bank account* as an example (since everyone has got one).
   Sale itemSale(cost); // The Sale item has rate = 0.05
   #+end_example
 
-- If a constructor has default arguments for all its parameters, it
-  can be called without explicit arguments. It then becomes the
-  default constructor.
+- What if a constructor has default arguments for all its parameters?
+  #+begin_quote
 
-- When all constructors of a ~class~ require arguments, there is no
-  default constructor. If you don't pass arguments, you get an error.
+  #+end_quote
 
-* PRACTICE =Rectangle= ~class~ with parameter constructor [TO DO]
+  In =Rectangle.h=:
+  #+begin_example C++
+  Rectangle(double w=0, double l=0); // Rectangle declaration
+  #+end_example
 
-- *Task*: Update and test the =Rectangle= class with a constructor that
-  takes =width= and =length= as ~double~ parameters.
-  1. Get the width and length of the house in feet from the user.
-  2. Create a =Rectangle= object =house= with these measures.
-  3. Display =house='s =width=, =length=, and =area=.
+  In =RectangleTest.cpp=:
+  #+begin_example C++
+  // This works if either there is no default constructor, or
+  // your default constructor's parameters are all initialized.
+  Rectangle box;
+  #+end_example
 
-  #+name: Program 13-8 Gaddis page 793
-  #+begin_src C++
+- What if all constructors of a ~class~ require arguments?
+  #+begin_quote
 
-  #+end_src
-
-* Home assignment: =Sale= class
-
-Solution in Gaddis, p. 795.
+  #+end_quote
 
 * The Default Constructor and the RAII object lifecycle
 
-- A *destructor* is a member function that is automatically called when
-  an object is destroyed.
+- What is a destructor?
+  #+begin_quote
+
+  #+end_quote
 
 - When is an object destroyed?
   #+begin_quote
-  Objects are destroyed when they go out of scope - for example at the
-  end of a function if the objects are local - or when they are
-  deleted with ~delete~ (or ~delete []~) after being dynamically
-  allocated.
+
   #+end_quote
 
 - A demo example:
@@ -2428,553 +1459,14 @@ Solution in Gaddis, p. 795.
     #include <iostream>
     using namespace std;
 
-    // class interface
-    class Demo
-    {
-    public:
-      Demo();
-      ~Demo();
-    };
-
-    // class implementation
-    Demo::Demo() { cout << "Welcome to the constructor!\n"; }
-    Demo::~Demo() { cout << "The destructor is now running.\n"; }
-
-    // main function
-    // demonstrates an object wxith a constructor and a destructor
     int main()
-    {
-      Demo demoObject;
-      return 0;
-    }
-  #+end_src
+      {
 
-#+RESULTS:
-: Welcome to the constructor!
-: The destructor is now running.
+        return 0;
+      }
+  #+end_src
 
 - What is the RAII principle?
   #+begin_quote
-  "Resource Allocation Is Initialization:" Introduced by Stroustrup
-  with C++. The constructor initializes resources (memory, file
-  handles, etc.), and the destructor releases them when the object has
-  reached the end of its lifetime (when it goes out of scope).
+
   #+end_quote
-
-* PRACTICE Destructors
-
-- The extended example uses the =ContactInfo= ~class~, which holds =name=
-  and =phone= data about a contact.
-
-- This program also serves as an introduction to some ~string~
-  functions. Since names and hone numbers may not have the same length
-  everywhere, they are allocated dynamically. All member functions are
-  defined inline.
-
-- =ContactInfo.h=:
-  #+begin_src C++ :tangle ../src/ContactInfo.h :main no :noeval :results none
-    #ifndef CONTACTINFO_H
-    #define CONTACTINFO_H
-    #include <cstring>    // needed for strlen and strcpy
-
-    // ContactInfo interface
-    class ContactInfo
-    {
-    private:
-      char *name;
-      char *phone;
-    public:
-      ContactInfo(const char *n, const char *p) // constructor
-      {
-        name = new char[strlen(n)+1]; // allocate memory for name
-        phone = new char[strlen(p)+1]; // allocate memory for phone
-        strcpy(name, n); // copy name to allocated memory
-        strcpy(phone, p); // copy phone to allocated memory
-      }
-      ~ContactInfo()
-      {
-        delete [] name;
-        delete [] phone;
-      }
-      const char *getName() const { return name; }
-      const char *getPhoneNumber() const { return phone; }
-    };
-    #endif
-  #+end_src
-
-- Notice that the getter functions return a pointer to a ~const char~ -
-  this prevents code from changing the string that the pointer points
-  to. This is useful for pointers and references.
-
-- Testing the =ContactInfo= class after (org-babel-tangle):
-  #+name: Program 13-12 Gaddis page 801
-  #+begin_src C++ :flags -I ../src :main no :results output
-    #include <iostream>
-    #include "ContactInfo.h"
-    using namespace std;
-
-    int main()
-    {
-      ContactInfo entry("Kristen Lee", "555-2021");
-
-      cout << "Name: "         << entry.getName()        << endl
-           << "Phone Number: " << entry.getPhoneNumber() << endl;
-
-      return 0;
-    }
-  #+end_src
-
-  #+RESULTS: Program 13-12 Gaddis page 801
-  : Name: Kristen Lee
-  : Phone Number: 555-2021
-
-* PRACTICE From C-style strings to the ~string~ ~class~
-
-- [[Program 13-12 Gaddis page 801]] code uses C-style strings. Change this
-  to C++ style strings!
-
-- Solution:
-
-  Header file:
-  #+begin_src C++ :tangle ../src/ContactInfo2.h :main no :noeval :results none
-    #ifndef CONTACTINFO2_H
-    #define CONTACTINFO2_H
-    #include <string>
-
-    // ContactInfo interface
-    class ContactInfo
-    {
-    private:
-      std::string name;
-      std::string phone;
-    public:
-      ContactInfo(const std::string& n,
-                  const std::string& p) :
-        name(n),phone(p){}
-      const std::string& getName() const { return name; }
-      const std::string& getPhoneNumber() const { return phone; }
-    };
-    #endif
-  #+end_src
-
-  Test file: Uses =ContactInfo2.h=, that's the only difference.
-  #+begin_src C++ :flags -I ../src :main no :results output
-    #include <iostream>
-    #include "ContactInfo2.h"
-    using namespace std;
-
-    int main()
-    {
-      ContactInfo entry("Kristen Lee", "555-2021");
-
-      cout << "Name: "         << entry.getName()        << endl
-           << "Phone Number: " << entry.getPhoneNumber() << endl;
-
-      return 0;
-    }
-  #+end_src
-
-  #+RESULTS:
-  : Name: Kristen Lee
-  : Phone Number: 555-2021
-
-- Notice that using reference parameters (=string&=) avoids unnecessary
-  copies.
-
-* Overloading Constructors
-
-- A class can have more than one constructor. Just like with
-  functions, the compiler will tell them apart as long as the
-  parameter lists are different.
-
-- Example: The ~string~ class ([[https://en.cppreference.com/w/cpp/string/basic_string.html][doc]]).
-  #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results none
-    string str; // default constructor
-    string str("Hello"); // overloaded constructor
-  #+end_src
-
-- One constructor can call another constructor in the same class
-  ("constructor delegation"). In the example, the default constructor
-  =Contact()= calls another constructor to initialize the object:
-
-  #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results none
-    class Contact
-    {
-    private:
-      string name;
-      string email;
-      string phone;
-    public:
-      Contact() : Contact("","","") // initialize Contact with empty chars
-      {}
-      Contact(string n, string e, string p) :
-        name(n), email(e), phone(p)
-      {}
-    };
-  #+end_src
-
-- There can be only one default constructor and one destructor: If
-  there was more than one constructor without parameters, or more than
-  one destructor (without arguments by design) the compiler would not
-  know which one to execute.
-
-- Member functions other than constructors can also be
-  overloaded. This can be useful if you want to define different ways
-  to perform the same operation.
-
-- Example: The second =setCost= function could be used if =cost= is stored
-  in a ~string~ object. The function ~stod~ converts a ~string~ to a ~double~.
-  #+begin_example C++
-  void setCost(double c) { cost = c; }
-  void setCost(string s) { cost = stod(s); }
-  #+end_example
-
-* PRACTICE Overloading constructors
-
-- Write an interface for a ~class~ =InventoryItem=. The member data are a
-  description (~string~), the item =cost= (~double~), and the number of
-  =units= on hand (~int~). Define all member functions inline and store
-  the ~class~ interface in =InventoryItem.h= with an include guard.
-
-- The class should have three constructors:
-
-  1. A default constructor with an empty description, and zero values
-     for the numeric data.
-
-  2. A constructor that accepts a description as an argument and
-     initializes =cost= and =units= to zero.
-
-  3. A constructor that accepts all data members as arguments
-
-- Mutators: =setDescription=, =setCost=, =setUnits=
-
-- Accessors: =getDescription=, =getCost=, =getUnits=
-
-- Sample output:
-  #+begin_example
-  The following items are in inventory:
-
-  Description: Hammer
-  Cost: $6.95
-  Units: 12
-
-  Description: Pliers
-  Cost: $0
-  Units: 0
-
-  Description: Wrench
-  Cost: $8.75
-  Units: 20
-  #+end_example
-
-- Solution:
-
-  =InventoryItem.h=:
-  #+name: INVENTORYITEM_H
-  #+begin_src C++ :flags -I ../src/ :tangle ../src/InventoryItem.h :main no :includes :results none :noeval
-    #ifndef INVENTORYITEM_H
-    #define INVENTORYITEM_H
-    #include <string>
-    using std::string;
-
-    class InventoryItem
-    {
-    private:
-      string description;
-      double cost;
-      int units;
-    public:
-
-      // Constructor #1
-      InventoryItem()
-      {
-        description = "";
-        cost = 0.0;
-        units = 0;
-      }
-      // Constructor #2
-      InventoryItem(string d)
-      {
-        description = d;
-        cost = 0.0;
-        units = 0;
-      }
-
-      // Constructor #3
-      InventoryItem(string d, double c, int u)
-      {
-        description = d;
-        cost = c;
-        units = u;
-      }
-
-      // Mutators
-      void setDescription(string d) { description = d; }
-      void setCost(double c) { cost = c; }
-      void setUnits(int u) { units = u; }
-      // Accessors
-      string getDescription() { return description; }
-      double getCost() { return cost; }
-      int getUnits() { return units; }
-    };
-    #endif
-  #+end_src
-
-- Testing ~main~ function:
-  #+name: Testing InventoryItem
-  #+begin_src C++ :flags -I ../src/ :main no :includes :results output :exports both
-    #include <iostream>
-    #include "InventoryItem.h"
-    using std::cout;
-
-    int main()
-    {
-      InventoryItem item1; // constructor #1
-      item1.setDescription("Hammer");
-      item1.setCost(6.95);
-      item1.setUnits(12);
-
-      InventoryItem item2("Pliers"); // constructor #2
-
-      InventoryItem item3("Wrench",8.75,20); // constructor #3
-
-      // Display inventory data
-      cout << "The following items are in inventory:\n\n";
-
-      cout << "Description: " << item1.getDescription() << '\n'
-           << "Cost: $"       << item1.getCost()        << '\n'
-           << "Units: "       << item1.getUnits()       << "\n\n";
-
-      cout << "Description: " << item2.getDescription() << '\n'
-           << "Cost: $"       << item2.getCost()        << '\n'
-           << "Units: "       << item2.getUnits()       << "\n\n";
-
-      cout << "Description: " << item3.getDescription() << '\n'
-           << "Cost: $"       << item3.getCost()        << '\n'
-           << "Units: "       << item3.getUnits()       << '\n';
-
-      return 0;
-    }
-  #+end_src
-
-#+RESULTS: Testing InventoryItem
-#+begin_example
-The following items are in inventory:
-
-Description: Hammer
-Cost: $6.95
-Units: 12
-
-Description: Pliers
-Cost: $0
-Units: 0
-
-Description: Wrench
-Cost: $8.75
-Units: 20
-#+end_example
-
-* PRACTICE Review Questions
-
-1. Constructors may have default arguments. (true)
-
-2. All member functions can be initialized with lists (false)
-
-3. In the following code fragment, what is the value of =age= for
-   =voter2=?
-
-   #+name: Program 13.8-3 Gaddis page 797
-   #+begin_src C++ :main no :includes :results output :exports both
-     #include <string>
-     #include <iostream>
-     using namespace std;
-
-     class Person
-     {
-     private:
-       string name;
-       int age;
-     public:
-       Person(string n, int a = 18) :
-         name(n), age(a) {}
-       void setName(string n) {name=n;}
-       void setAge(int a) {age=a;}
-       string getName() const {return name;}
-       int getAge() const {return age;}
-     };
-
-     int main()
-     {
-       Person voter1 ("Lyndon Taft", 47);
-       Person voter2 ("Timothy Burke");
-
-       cout << "-- Information for voter #1 --\n"
-            << "Name: " << voter1.getName() << endl
-            << "Age: "  << voter1.getAge()  << endl;
-
-       cout << "-- Information for voter # --\n"
-            << "Name: " << voter2.getName() << endl
-            << "Age: "  << voter2.getAge()  << endl;
-
-       return 0;
-     }
-   #+end_src
-
-   #+RESULTS: Program 13.8-3 Gaddis page 797
-   : -- Information for voter #1 --
-   : Name: Lyndon Taft
-   : Age: 47
-   : -- Information for voter # --
-   : Name: Timothy Burke
-   : Age: 18
-
-   - [ ] -1
-   - [ ] 0
-   - [X] 18
-   - [ ] 47
-
-4. A constructor whose arguments all have default values is a default
-   constructor. (true)
-
-5. When all constructors of a class require arguments, then the class
-   does not have a default constructor. (true)
-
-6. Destructors are never called with a ~return~ type. (true)
-
-7. Destructors may take any number of arguments. (false)
-
-8. Which of these leads to automatic deletion of an object by calling
-   a destructor when the object goes out of scope?
-
-   - [ ] String literal
-   - [ ] Pointer to a C-string
-   - [ ] ~new~ operator
-   - [X] Smart pointer
-
-9. Briefly describe the purpose of a constructor.
-   #+begin_quote
-
-   #+end_quote
-
-10. Briefly describe the purpose of a destructor.
-    #+begin_quote
-
-    #+end_quote
-
-11. Which of these is a member function that is never declared with a
-    ~return~ data type but that may have arguments:
-
-    - [X] The constructor
-    - [ ] The destructor
-    - [ ] Both the constructor and the destructor
-    - [ ] Neither the constructor nor the destructor
-
-12. Which of these is a member function that is never declared with a
-    ~return~ data type and that can never have arguments:
-
-    - [ ] The constructor
-    - [X] The destructor
-    - [ ] Both the constructor and the destructor
-    - [ ] Neither the constructor nor the destructor
-
-13. Destructor function names always start with a:
-
-    - [X] Tilde character ~~~
-    - [ ] A number
-    - [ ] A data type name
-    - [ ] None of the above
-
-14. A constructor that requires no arguments is called:
-
-    - [X] A default constructor
-    - [ ] An overloaded constructor
-    - [ ] A null constructor
-    - [ ] None of the above
-
-15. Which of these ~class~ member functions returns a pointer to a ~const
-    char~ and does not change the value of its argument?
-
-    - [X] =const char* Person(const char *) const;=
-    - [ ] =char* Person(const char *);=
-    - [ ] =const char* Person(const char *);=
-    - [ ] None of the above
-
-16. A class may have more than one constructor, as long as each has a
-    different
-
-    - [ ] return type
-    - [X] list of parameters
-    - [ ] instance
-    - [ ] name
-
-17. It would be an error to create a constructor that accepts no
-    parameters along with another constructor that has default
-    arguments for all its parameters. (true)
-    #+begin_quote
-    This is ~true~ because a constructor that has default parameters for
-    all its arguments can be called without arguments and therefore
-    cannot be distinguished from the default constructor.
-    #+end_quote
-
-18. Classes may have only one destructor. (true)
-
-19. Member functions other than the constructor cannot be overloaded. (false)
-
-20. A constructor can call another constructor in the same class. (true)
-
-21. What will the following program display on the screen?
-    #+attr_html: :width 400px :float nil:
-    [[../img/gaddis_13.21.png]]
-
-22. What will the following program display on the screen?
-    #+attr_html: :width 400px :float nil:
-    [[../img/gaddis_13.22.png]]
-
-* SOMEDAY Private Member Functions
-
-#+name: ContactInfo.h Version 2 (page 808)
-
-* SOMEDAY Arrays of Objects
-
-#+name: InventoryItem.h Version 2 (page 809-811)
-
-With animation/walk-through
-
-Defines an array of =InventoryItem= objects:
-#+begin_example C++
-  const int ARRAY_SIZE = 40;
-  InventoryItem inventory[ARRAY_SIZE];
-#+end_example
-
-* SOMEDAY Review questions
-
-Page 812
-
-* PRACTICE OOP Case Study: Bank =Account= [turn this into a lab?]
-
-* PRACTICE OOP Case Study: Simulating Dice with =Die= [turn this into a lab?]
-
-* SOMEDAY Object-Oriented Design with UML
-
-#+attr_html: :width 400px :float nil:
-[[../img/uml.png]]
-
-* Programming Challenges
-
-* SOMEDAY Instance and static members
-
-Each instance of a ~class~ has its own copies of the ~class~ instance
-variables. If a member variable is declared ~static~, however, all
-instances of that ~class~ have access to that variable. If a member
-function is declared ~static~, it may be called without any instances of
-the ~class~ being defined.
-
-* SOMEDAY Friends of classes
-
-A ~friend~ is a function or ~class~ that is not a member of a ~class~, but
-has access to the private members of the ~class~.
-
-* Footnotes
-
-[fn:1] See here for a more generic version of this Makefile:
-tinyurl.com/Makefile-template

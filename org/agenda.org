@@ -1,4 +1,4 @@
-#+title: Agenda Notebook
+n#+title: Agenda Notebook
 #+author: Marcus Birkenkrahe
 #+subtitle: CS 101 - Catholic Polytechnic University - Spring 2026
 #+SEQ_TODO: TODO NEXT IN-PROGRESS | DONE CANCELLED
@@ -1634,11 +1634,42 @@ the videos.
 
 * Week 10 - OOP in C++ / STL
 
+- [X] Review: Classes and objects
+- [X] C++ ~string~ class
+- [X] Example: =BankAccount= ~class~
+- [X] Separation of interface and implementation
+- [X] Example: =Rectangle= ~class~
+- [X] Home assignment: Extend the =Rectangle= ~class~ by =getArea=
+- [X] Pointers to ~class~ objects
+- [X] Constructors +and destructors+
+
+** Opening prayer in Easter week - Regina Caeli
+
+[[../img/regina_caeli.png]]
 
 
 ** Summary - what did you learn last time?
 
+- I like Java more than I thought I would.
+- Object-orientation & getting back to Java is harder than I
+  remembered it.
+- ~public~, ~private~ and ~static~ are confusing (when to use).
+
 ** Summary - what did you learn this time?
+
+- Remembered by =cout << account.deposit(100.)= is illegal:
+  #+begin_quote
+  =cout << void= is illegal - you cannot pass nothing to the input
+  stream.
+  #+end_quote
+
+- How ~make~ compiles everything and keeps track of dependencies.
+
+- Separation of interface and implementation corresponds to inline
+  vs. explicit methods and header/cpp files vs. test files.
+** Closing prayer in Easter week - Our Father
+
+[[../img/Our_Father.png]]
 
 * Week 11 - STL vector class I
 * Week 12 - STL vector class II
