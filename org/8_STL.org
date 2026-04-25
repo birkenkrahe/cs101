@@ -1,6 +1,6 @@
 #+TITLE: Introduction to the Standard Template Library (STL)
 #+AUTHOR: Marcus Birkenkrahe
-#+SUBTITLE: CSC 240 Data Structures Fall 2025
+#+SUBTITLE: CS101 Introduction to Intermediate Programming CPU Spring 2026
 #+OPTIONS: toc:1 num:1 ^:nil:
 #+STARTUP: overview hideblocks indent entitiespretty:
 * Objectives

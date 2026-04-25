@@ -1,6 +1,6 @@
 #+TITLE: The STL Vector Class
 #+AUTHOR: Marcus Birkenkrahe
-#+SUBTITLE: CSC 240 Data Structures Fall 2025
+#+SUBTITLE: CS101 Introduction to Intermediate Programming CPU Spring 2026
 #+OPTIONS: toc:1 num:1 ^:nil:
 #+STARTUP: overview hideblocks indent entitiespretty:
 * Objectives
@@ -211,7 +211,7 @@ are really critical for competently using ~vector~ containers:
 |  9 | Modification | clear()        | Remove all elements  |
 | 10 | Iteration    | begin(), end() | Traverse elements    |
 
-* PRACTICE Review of basic ~vector~ operations
+* PRACTICE Review of basic ~vector~ operations [skip]
 
 - Read and understand the following program, run it, and then comment
   each section.
@@ -388,7 +388,7 @@ are really critical for competently using ~vector~ containers:
   : 11111
   : 11111
 
-- Where does =it= point? How many times does the loop run?
+- Where does =it= point when =num= is empty? How many times does the loop run?
   #+begin_quote
   Since =num= is empty, =num.begin()= equals =num.end()= and the loop never
   runs. =it= does not point to any valid element. No memory is reserved
@@ -443,11 +443,11 @@ are really critical for competently using ~vector~ containers:
   [[https://en.cppreference.com/w/cpp/container/vector/insert][cppreference.com]])!
 
 - There are multiple overloads (alternative uses) but these three are
-  most common:
+  most common - they are presented here as prototypes:
 
   1. Insert a single =value= of type =T= at the specified position:
      #+begin_example C++
-     iterator insert(iterator pos, const T& value);
+     iterator insert(iterator pos, const T& value); // T& = pass-by-reference
      #+end_example
 
   2. Insert =count= copies of a =value=:
