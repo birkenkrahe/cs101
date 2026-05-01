@@ -8,7 +8,11 @@ n#+title: Agenda Notebook
 #+property: header-args:R      :session *R* :results graphics output file :exports both
 #+property: header-args:C++    :main yes :includes <iostream> :results output :exports both
 * Opening and Closing Prayers
-** *Opening Prayer (Regina Caeli)
+** Opening Prayer (Standard)
+#+attr_html: :width 550px :float nil:
+[[../img/opening_prayers.png]]
+
+** Opening Prayer (Regina Caeli)
 
 In the name of the Father, and of the Son, and of the Holy Ghost.
 
@@ -26,15 +30,11 @@ Amen.
 ** Opening Prayer (Angelus)
 #+attr_html: :width 600px :float nil:
 [[../img/angelus.png]]
-** Opening Prayer (Standard)
-#+attr_html: :width 550px :float nil:
-[[../img/opening_prayers.png]]
-
 ** Closing Prayer (Aquinas)
 #+attr_html: :width 550px :float nil:
 [[../img/closing_prayers.png]]
 
-** *Closing Prayer (Memorare)
+** Closing Prayer (Memorare)
 
 In the name of the Father, and of the Son, and of the Holy Ghost.
 
@@ -1698,14 +1698,255 @@ the videos.
 
 [[../img/Our_Father.png]]
 
-* Week 11 - STL and STL vector class I
+* DONE Week 11 - C++ Standard Template Library / Iterators
 
-- [ ] My C++ class videos from week 9 (I completely forgot about them)
-- [ ] Podcast (11') with Bjarne Stroustrup on C++, safety, and AI
-- [ ] Introduction to the standard template library
+- [X] My C++ class videos from week 9 (I completely forgot about them)
+- [X] Podcast (11') with Bjarne Stroustrup on C++, safety, and AI
+- [X] Introduction to the Standard Template Library
 - [ ] Introduction to the STL ~<vector>~ ~class~
 
-* Week 12 - STL vector class II
-* Week 13 - STL map class I
-* Week 14 - STL map class II
+- What are you taking away from today: 
+  + Reverse iterator mechanism
+  + Iterators are pointers
+  + ~sort~ using the STL ~<algorithm>~ library
+  + Standard Template Library
+
+* DONE Week 12 - STL vector class
+
+- [X] No more quizzes or assignments.
+- [X] You can still submit bonus assignments
+- [X] For a challenge, go to ~open.kattis.com~
+- [X] Final exam is optional (20 min conversation)
+
+** AI Summary (from lecture + session transcript):
+#+begin_quote
+The *Standard Template Library* introduces a unified abstraction for
+working with data through *containers*, *iterators*, and *algorithms*, with
+the session focusing on iterators as the central concept. Iterators
+behave like generalized *pointers*, supporting operations such as
+dereferencing (=*it=) and incrementing (=++it=), but abstract away the
+underlying data structure. Range-based loops are shown to be
+"syntactic sugar" over iterator-based traversal, reinforcing that
+iteration — not indexing — is the fundamental access pattern. The
+~string~ class serves as a bridge example, demonstrating how even
+non-container types expose iterator interfaces and participate in this
+uniform model.
+#+end_quote
+
+** Review questions
+
+1. What are the three main components of the Standard Template Library
+   (STL)?
+   #+begin_quote
+   Containers, iterators, and algorithms.
+   #+end_quote
+
+2. How does a range-based for loop relate to iterators in C++?
+   #+begin_quote
+   It is "syntactic sugar"; the compiler rewrites it into a loop using
+   iterators with ~begin()~, ~end()~, dereferencing (~*it~), and increment
+   (~++it~).
+   #+end_quote
+
+3. Could you do this right now (in OneCompiler):
+   1) Declare a vector of elements 100,200,300,400,500.
+   2) Print its elements using a range-based loop.
+   3) Show that the loop is really an iterator statement.
+      
+   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
+     vector<int> nums {100,200,300,400,500};
+     // loop over the vector elements using a range-based loop:
+     for (auto element : nums) cout << element << " "; cout << endl;
+     // underneath the loop is really an iterator-driven for loop:
+     for (auto it=nums.begin(); it != nums.end(); it++) cout << *it << " "; cout<<endl;
+     for (std::vector<int>::iterator it=nums.begin(); it != nums.end(); it++) cout << *it << " "; cout << endl;
+     for (int i=0; i<nums.size(); i++) cout << nums[i] << " ";
+   #+end_src
+
+   #+RESULTS:
+   : 100 200 300 400 500 
+   : 100 200 300 400 500 
+   : 100 200 300 400 500 
+   : 100 200 300 400 500 
+
+4. In what sense are iterators similar to pointers, and what is the
+   key difference?
+   #+begin_quote
+   Iterators behave like pointers because they support dereferencing
+   and incrementing, but they abstract away the underlying data
+   structure and are not necessarily raw memory addresses.
+   #+end_quote
+
+5. Why are iterators necessary instead of simply using indices for all
+   containers?
+   #+begin_quote
+   Not all containers support indexing (e.g., list, map), so iterators
+   provide a uniform way to traverse different container types
+   independent of their internal structure.
+   #+end_quote
+
+6. Why can the ~string~ class be used with iterators even though it is
+   not listed as a standard sequence container?
+   #+begin_quote
+   Because string provides an interface similar to containers,
+   including ~begin()~, ~end()~, ~size()~, and element access, allowing it
+   to work with iterators and STL algorithms.
+   #+end_quote
+
+7. Can you iterate over the ~string~ ="Hello, beautiful!"= to print it
+   character-wise? (In OneCompiler)
+   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
+     string hello {"Hello, beautiful!"};
+     for (auto it=hello.begin(); it!=hello.end();it++)
+       cout << *it << " ";
+   #+end_src
+
+   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
+     std::string hello {"Hello, beautiful!"};
+     for (auto it=hello.begin(); it != hello.end(); it++) cout << *it << " "; 
+   #+end_src
+
+   #+RESULTS:
+   : H e l l o ,   b e a u t i f u l ! 
+
+   Sample output:
+   #+begin_example
+   H e l l o ,   b e a u t i f u l ! 
+   #+end_example
+
+** Question about ~vector.max_size()~
+
+- For a vector, ~vector.max_size()~ returns the maximum number of
+  elements the vector could hold based on available address space,
+  allocator limits, and impelementation limits (compiler/STL).
+- Since address space is huge, ~max_size()~ is ultimately constrained by
+  hardware.
+- It's not a constant because it depends on the ~vector~ data type,
+  the compiler, the allocator, and the runtime reality.
+
+This is quite typical for other "constants" as well - because
+computing always involves many moving parts, you cannot rely on their
+value as for natural constants (though there's trouble in the water as
+well, see the ⁠recent difficulties to pin down the exact value of the
+gravitational constant Big G, [[https://www.nature.com/articles/d41586-026-01284-3][see here]]) - you need to "measure" or
+validate it before embarking on very memory-hungry adventures.
+
+** Your eminent most important take away
+
+- Competent use of iterators with vector objects
+- Making vectors with class objects (instead of basic
+  data types) is cooooool.
+
+
+* Week 13 - STL ~vector~ review / STP ~map~ class
+
+** Review: STL vector class
+
+1. Write a statement that defines an empty ~vector~ object named =avect=
+   that can hold strings. Show that the vector is actually empty.
+   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
+
+   #+end_src
+
+2. Write a statement that defines a ~vector~ object named =avect= that can
+   hold integers. The ~vector~ should have ten elements initialized with
+   the default value 1. Display the elements to show success.
+
+   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
+
+   #+end_src
+
+3. The program below should print
+   #+begin_example
+   1 1 1 1 1 1 1 1 1 1 
+   2 2 2 2 2 2 2 2 2 2 
+   #+end_example
+   But it does not even compile. What's wrong? Can you fix it?
+
+   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
+     vector<int> avect(10,1);
+     for (const auto element : avect) cout << element++ << " ";
+     cout << endl;
+     for (auto element : avect) cout << element << " ";
+   #+end_src
+
+4. Write a statement that defines a ~vector~ object named =avect= that can
+   hold integers. The ~vector~ should have 100 elements, each
+   initialized with the value 1. If this worked, print a success
+   message, but if any value is not 1, print an error message.
+
+   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
+
+   #+end_src
+
+5. Write a statement that defines a ~vector~ object named =v1= that can
+   hold integers. The vector should be a copy of another vector
+   =v2=. Display both vectors to show that the copying worked.
+
+   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
+
+   #+end_src
+
+6. What happens when you use an invalid index with the ~at~ function of
+   the ~vector~ class? Try it.
+
+   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
+
+   #+end_src
+
+7. If your program will add a lot of objects to a ~vector~, is it best
+   to use the ~insert~ member function, or the ~emplace~ member function,
+   and why?
+
+   #+begin_quote
+
+   #+end_quote
+
+8. Internally, how does a ~vector~ store its elements?
+   #+begin_quote
+
+   #+end_quote
+
+9. The ~vector~ class has a ~size~ and a ~capacity~ member function. What is
+   the difference between these two member functions?
+   #+begin_quote
+
+   #+end_quote
+
+   Code along:
+   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
+                         
+   #+end_src
+
+10. What is the difference between the ~vector~ class member functions
+    ~insert~ and ~push_back~? Show it with a program.
+
+    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
+      // Define an empty vector of integers.
+
+      // Add five numbers 1,2,3,4,5 to the vector.
+
+      // Display vector content.
+
+      // Create an iterator pointing at the position before 4
+
+      // Show the iterator value.
+
+      // Insert two numbers using the iterator.
+
+      // Display vector content.
+
+    #+end_src
+
+11. What happens here? Run it and explain it.
+   
+   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
+     vector<int> v {0};
+     for (auto it = v.begin(); it != v.end(); ++it) 
+       {
+         v.push_back(*it);
+       }
+   #+end_src
+
+* Week 14 - Summary and Outlook
 

@@ -1541,13 +1541,41 @@ Add question on header file location, relative and absolute path.
 
    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
      vector<int> avect(10,0);
-     for (const auto& element : avect) cout << element << " ";
+     for (const auto& element : avect) cout << element + 1 << " ";
    #+end_src
 
    #+RESULTS:
-   : 0 0 0 0 0 0 0 0 0 0
+   : 1 1 1 1 1 1 1 1 1 1 
 
-3. Write a statement that defines a ~vector~ object named =avect= that can
+3. The program below should print
+   #+begin_example
+   1 1 1 1 1 1 1 1 1 1 
+   2 2 2 2 2 2 2 2 2 2 
+   #+end_example
+   But it does not even compile. What's wrong? Can you fix it?
+
+   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
+     vector<int> avect(10,1);
+     for (const auto element : avect) cout << element++ << " ";
+     cout << endl;
+     for (auto element : avect) cout << element << " ";
+   #+end_src
+
+   Fix:
+   1) Remove the ~const~ so that =element= can change.
+   2) Reference =element= so that =avect= can change.
+   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
+     vector<int> avect(10,1);
+     for (auto &element : avect) cout << element++ << " ";
+     cout << endl;
+     for (auto element : avect) cout << element << " ";
+   #+end_src
+
+   #+RESULTS:
+   : 1 1 1 1 1 1 1 1 1 1 
+   : 2 2 2 2 2 2 2 2 2 2 
+
+4. Write a statement that defines a ~vector~ object named =avect= that can
    hold integers. The ~vector~ should have 100 elements, each
    initialized with the value 1. If this worked, print a success
    message, but if any value is not 1, print an error message.
@@ -1562,7 +1590,7 @@ Add question on header file location, relative and absolute path.
    #+RESULTS:
    : Initialized to 1!
 
-4. Write a statement that defines a ~vector~ object named =v1= that can
+5. Write a statement that defines a ~vector~ object named =v1= that can
    hold integers. The vector should be a copy of another vector
    =v2=. Display both vectors to show that the copying worked.
 
@@ -1578,7 +1606,7 @@ Add question on header file location, relative and absolute path.
    : 1 2 3
    : 1 2 3
 
-5. What happens when you use an invalid index with the ~at~ function of
+6. What happens when you use an invalid index with the ~at~ function of
    the ~vector~ class? Try it.
 
    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
@@ -1593,7 +1621,7 @@ Add question on header file location, relative and absolute path.
    what():  vector::_M_range_check: __n (which is 3) >= this->size() (which is 3)
    #+end_example
 
-6. If your program will add a lot of objects to a ~vector~, is it best
+7. If your program will add a lot of objects to a ~vector~, is it best
    to use the ~insert~ member function, or the ~emplace~ member function,
    and why?
 
@@ -1610,7 +1638,7 @@ Add question on header file location, relative and absolute path.
    constructor arguments.
    #+end_quote
 
-7. Internally, how does a ~vector~ store its elements?
+8. Internally, how does a ~vector~ store its elements?
    #+begin_quote
    A ~vector~ stores its elements in a contiguous block of memory on the
    heap (the "free store") just like a dynamically allocated C-style
@@ -1619,7 +1647,7 @@ Add question on header file location, relative and absolute path.
    ~capacity~ is exceeded.
    #+end_quote
 
-8. The ~vector~ class has a ~size~ and a ~capacity~ member function. What is
+9. The ~vector~ class has a ~size~ and a ~capacity~ member function. What is
    the difference between these two member functions?
    #+begin_quote
    The ~size~ function returns the current size of the ~vector~ (in number
@@ -1628,43 +1656,85 @@ Add question on header file location, relative and absolute path.
    changed with the ~reserve~ function.
    #+end_quote
 
-9. What is the difference between the ~vector~ class member functions
-   ~insert~ and ~push_back~? Show it with a program.
-
+   Code along:
    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-     // Define an empty vector of integers.
      vector<int> v;
-     // Add five numbers 1,2,3,4,5 to the vector.
-     for(int i=0;i<5;i++) v.push_back(i+1);
-     // Display vector content.
-     for(const auto& elem : v) cout << elem << " ";
-     // Create an iterator pointing at the position before 4
-     auto it = v.begin() + 2;
-     // Show the iterator value.
-     cout << "\nIterator positioned before: " << v.at(*it);
-     // Insert two numbers using the iterator.
-     v.insert(it, {40,50});
-     // Display vector content.
-     cout << endl;
-     for(const auto& elem : v) cout << elem << " ";
+
+     cout << "Size = " << v.size() <<
+             ", capacity = " << v.capacity() << endl;
+
+     v.push_back(10);
+
+     cout << "Size = " << v.size() <<
+             ", capacity = " << v.capacity() << endl;
+
+     v.push_back(20);
+     v.push_back(30);
+
+     cout << "Size = " << v.size() <<
+             ", capacity = " << v.capacity() << endl;
+
+     vector<int> v2;
+     v2.reserve(10);
+
+     cout << "Size = " << v2.size() <<
+             ", capacity = " << v2.capacity() << endl;
+                         
    #+end_src
 
    #+RESULTS:
-   : 1 2 3 4 5
-   : Iterator positioned before: 4
-   : 1 2 40 50 3 4 5
+   : Size = 0, capacity = 0
+   : Size = 1, capacity = 1
+   : Size = 3, capacity = 4
+   : Size = 0, capacity = 10
 
-   Careful: ~push_back~ dynamically changes the underlying array. As a
-   result, iterators are invalidated. So this leads to segmentation
-   fault:
+10. What is the difference between the ~vector~ class member functions
+    ~insert~ and ~push_back~? Show it with a program.
+
+    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
+      // Define an empty vector of integers.
+      vector<int> v;
+      // Add five numbers 1,2,3,4,5 to the vector.
+      for(int i=0;i<5;i++) v.push_back(i+1);
+      // Display vector content.
+      for(const auto& elem : v) cout << elem << " ";
+      // Create an iterator pointing at the position before 4
+      auto it = v.begin() + 2;
+      // Show the iterator value.
+      cout << "\nIterator positioned before: " << v.at(*it);
+      // Insert two numbers using the iterator.
+      v.insert(it, {40,50});
+      // Display vector content.
+      cout << endl;
+      for(const auto& elem : v) cout << elem << " ";
+    #+end_src
+
+    #+RESULTS:
+    : 1 2 3 4 5
+    : Iterator positioned before: 4
+    : 1 2 40 50 3 4 5
+
+11. What happens here?
 
    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
      vector<int> v {0}; // vector has one element v[0]=0
-     for (auto it = v.begin(); it != v.end(); ++it) // iterator points at end
+     for (auto it = v.begin(); it != v.end(); ++it) // iterator points at start
        {
          v.push_back(*it); // modifies the vector while iterating over it
        }
    #+end_src
+
+This program has *undefined behavior*. It may result in a segmentation
+fault, an infinite loop, or appear to work briefly.
+
+The vector starts with one element, ~v[0] = 0~. The loop iterator ~it~
+initially points to ~v.begin()~. Inside the loop, ~v.push_back(*it)~
+modifies the vector while the loop is using an iterator into that same
+vector.
+
+If ~push_back~ causes the vector to reallocate its storage, existing
+iterators become invalid. After that, ~++it~ or ~*it~ uses an invalid
+iterator, which is undefined behavior.
 
 * Glossary
 
