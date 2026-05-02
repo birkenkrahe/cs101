@@ -2,6 +2,7 @@
 #+AUTHOR: Marcus Birkenkrahe
 #+SUBTITLE: CS101 Introduction to Intermediate Programming CPU Spring 2026
 #+OPTIONS: toc:1 num:1 ^:nil:
+#+SEQ: PRACTICE
 #+STARTUP: overview hideblocks indent entitiespretty:
 * Objectives
 
@@ -53,19 +54,29 @@ The ~map~ data structure is a *balanced binary search tree*.
   ~std::map<Key,Value>~ syntax.
   #+end_quote
 
-- Conceptual ideas:
+- You can apply four object-oriented design lenses:
   #+begin_quote
-  - *Abstraction* gives you the tree: the idea or interface of a =Product=
-    without its implementation details.
-  - *Encapsulation* protects the tree, controlling access to internal
-    structure through ~public~ member functions.
-  - *Generalization* gives you many different trees, e.g. a ~map~ of
-    =Product= objects, a ~vector~ of =Product= pointers etc.
-  - *Specialization* lets you refine the tree, e.g. =PerishableProduct=,
-    or =DigitalProduct= by extending =Product= with special attributes.
+  - *Abstraction* gives you the tree (what you can see): the idea or
+    interface of a =Product= without its implementation details. You
+    interact with the idea of a key-value structure, not its
+    mechanics. For ~<map>~, you use ~insert(key,value)~, ~find(key)~, and
+    ~operator[]~.
+    
+  - *Encapsulation* protects the tree (what you cannot break),
+    controlling access to internal structure through safe ~public~
+    member functions.
+    
+  - *Generalization* gives you many different trees (reuse across
+    types), e.g. a ~map~ of =Product= objects, a ~vector~ of =Product=
+    pointers etc. ~map<Key,Value>~ works for: ~map<int,string>~,
+    ~map<string,double>~, ~map<MyClass,vector<int>~.
+    
+  - *Specialization* lets you refine the tree (controlled variation),
+    e.g. =PerishableProduct=, or =DigitalProduct= by extending =Product=
+    with special attributes.
   #+end_quote
 
-* Simple example
+* PRACTICE Simple example
 
 - This program generates the map shown in the figure earlier.
 
@@ -118,7 +129,7 @@ The ~map~ data structure is a *balanced binary search tree*.
   iter->second == (*iter).second
   #+end_example
 
-* How to get a ~map~
+* PRACTICE How to get a ~map~
 
 You can get a ~map~ in three ways:
 
@@ -159,12 +170,23 @@ You can get a ~map~ in three ways:
 
    Example:
    #+begin_src C++ :main yes :includes <iostream> <string> <map> :namespaces std :results output
-     map<int,string> map2 {{1,"jack"},{2,"millie"},{3,"nanny"},{4,"poppy"},{5,"rosie"}};
+     map<int,string> map2 {{1,"jack"},
+     		      {2,"millie"},
+     		      {3,"nanny"},
+     		      {4,"poppy"},
+     		      {5,"rosie"}};
      map<int,string> map1(map2);
      map<int,string>::iterator it;
      for (auto iter=map1.begin();iter!=map1.end();iter++)
        cout << iter->first << ", " << iter->second << endl;
    #+end_src
+
+   #+RESULTS:
+   : 1, jack
+   : 2, millie
+   : 3, nanny
+   : 4, poppy
+   : 5, rosie
 
 * Member functions of ~std::map~
 
@@ -188,6 +210,12 @@ See [[https://en.cppreference.com/w/cpp/container/map.html][cppreference.com]] f
    - ~clear()~ :: remove all elements
    - ~swap(other_map)~ :: exchange contents with another map
 
+   In case you wonder about the difference between copying and
+   swapping: Copying duplicates an object (O(n)), swapping only
+   exchanges content (O(1)). No elements are actually copied, but
+   internal pointers are swapped. Rebuilding an entire tree is
+   expensive, so swapping is cheap and preferred.
+
 4. Lookup
    - ~find(key)~ :: returns iterator to key or ~end()~
    - ~count(key)~ :: returns 1 if key exists, else 0
@@ -201,7 +229,7 @@ See [[https://en.cppreference.com/w/cpp/container/map.html][cppreference.com]] f
    - ~upper_bound(key)~ :: first key > given key
    - ~equal_range(key)~ :: pair of lower/upper bound iterators
 
-* PRACTICE Initialize a map
+* WAITING PRACTICE Initialize a map
 
 - *Task:* Create a ~map~ called ~capitals~ that stores the capital cities of
   three countries, for example Germany, France, Italy. Then, use a ~for~
@@ -382,7 +410,7 @@ See [[https://en.cppreference.com/w/cpp/container/map.html][cppreference.com]] f
 - Add meaningful comments where indicated (=//...=) to explain what
   exactly is going on.
 
-- Starter code: [[onecompiler.com/cpp/43rf6buvu][tinyurl.com/operator-map]]
+- Starter code: [[https://onecompiler.com/cpp/43rf6buvu][tinyurl.com/operator-map]]
   #+name: onecompiler.com/cpp/43rf6buvu
   #+begin_src C++ :main no :includes :results output :exports both
     #include <iostream>
@@ -440,6 +468,7 @@ See [[https://en.cppreference.com/w/cpp/container/map.html][cppreference.com]] f
   : 102, Adam Miller
   : 103, Abigail Smith
   : 104, Jenna James
+
 * Adding values to a ~map~ with ~insert~
 
 - ~std::pair~ can store two heterogenous objects as a single unit. It's
@@ -545,13 +574,13 @@ See [[https://en.cppreference.com/w/cpp/container/map.html][cppreference.com]] f
 - Code example:
   #+name: retrieve with find
   #+begin_src C++ :main yes :includes <map> <iostream> <string> :namespaces std :results output :exports both :noweb yes
-    const map<int,string> students =
+    const map<int,string> students = // create a map
       {{1, "Alice"}, {2, "Bob"}, {3, "Charlie"}};
 
-    auto it = students.find(2);   // returns iterator to key=2
+    auto it = students.find(2);   // returns iterator to specific key
 
     if (it != students.end())     // check if it's in the map
-      cout << it->second << endl;
+      cout << it->second << endl; // return value to key
      else
        cout << "Key not found." << endl;
   #+end_src
