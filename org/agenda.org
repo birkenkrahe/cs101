@@ -1834,8 +1834,7 @@ validate it before embarking on very memory-hungry adventures.
 - Making vectors with class objects (instead of basic
   data types) is cooooool.
 
-
-* Week 13 - STL ~vector~ review / STP ~map~ class I
+* DONE Week 13 - STL ~vector~ review / STP ~map~ class I
 
 - [ ] Review ~std::vector~ class
 - [ ] The STL's ~std::map~ class
@@ -1843,19 +1842,39 @@ validate it before embarking on very memory-hungry adventures.
 
 ** Review: STL vector class
 
+You find the answers to these questions in the =STL_vector.org= lecture.
+
 1. Write a statement that defines an empty ~vector~ object named =avect=
    that can hold strings. Show that the vector is actually empty.
    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-
+     vector<string> avect; // empty vector
+     cout << boolalpha << "The vector is empty: " << avect.empty(); // with std::vector.empty()
+     for (vector<string>::iterator it=avect.begin(); // with a for loop iterator
+          it!=avect.end();
+          it++) cout << *it << " ";
+     for (auto element : avect) cout << element; // range based for loop
+     cout << "\nThe vector is empty: size() = " << avect.size(); // with .size()
    #+end_src
 
-2. Write a statement that defines a ~vector~ object named =avect= that can
+   #+RESULTS:
+   : The vector is empty: true
+   : The vector is empty: size() = 0
+
+2. Write a statement that defines a ~vector~ object named =avect2= that can
    hold integers. The ~vector~ should have ten elements initialized with
    the default value 1. Display the elements to show success.
 
    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-
+     // using the fill constructor
+     vector<int> avect2(10,1);
+     for (const auto element : avect2) cout << element << " "; cout << endl;
+     vector<int> avect3(10,0);
+     for (const auto element : avect3) cout << element + 1 << " ";     
    #+end_src
+
+   #+RESULTS:
+   : 1 1 1 1 1 1 1 1 1 1 
+   : 1 1 1 1 1 1 1 1 1 1 
 
 3. The program below should print
    #+begin_example
@@ -1866,78 +1885,148 @@ validate it before embarking on very memory-hungry adventures.
 
    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
      vector<int> avect(10,1);
-     for (const auto element : avect) cout << element++ << " ";
+     for (const auto element : avect)
+       {
+         cout << element++ << " ";
+       }
      cout << endl;
-     for (auto element : avect) cout << element << " ";
+     for (auto element : avect)
+       {
+         cout << element << " ";
+       }
    #+end_src
 
-4. Write a statement that defines a ~vector~ object named =avect= that can
+   - Cannot change ~const auto element~ (must be ~auto element~) to compile
+   - Cannot change =avect= outside ~for~ loop unless I use reference: =auto
+     &element=.
+
+4. Write a statement that defines a ~vector~ object named =avect4= that can
    hold integers. The ~vector~ should have 100 elements, each
    initialized with the value 1. If this worked, print a success
    message, but if any value is not 1, print an error message.
 
    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-
+     vector<int> avect4(100,1);
+     // for loop to check that vector is initialized to 1
+     for (const auto element : avect4)
+       {
+         // if element is not 1 print ERROR!
+         if (element != 1) cout << "ERROR!" << endl;
+       }
+     // print success message
+     cout << "Initialized to 1!" << endl;
    #+end_src
+
+   #+RESULTS:
+   : Initialized to 1!
 
 5. Write a statement that defines a ~vector~ object named =v1= that can
    hold integers. The vector should be a copy of another vector
-   =v2=. Display both vectors to show that the copying worked.
+   =v2=. Display both vectors to show that the copying worked. Use the
+   copy constructor to create =v1=.
 
    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-
+     vector<int> v2 {100,200,300}; // integer vector with three elements
+     vector<int> v1(v2); // copies v2 into v1
+     for(const auto& element: v1) cout << element << " "; cout<<endl;
+     for(const auto& element: v2) cout << element << " "; cout<<endl;     
    #+end_src
+
+   #+RESULTS:
+   : 100 200 300 
+   : 100 200 300 
 
 6. What happens when you use an invalid index with the ~at~ function of
-   the ~vector~ class? Try it.
+   the ~vector~ class? Try it. Define a vector =names= with three names,
+   Aliana, Tory, Sam - then print an invalid index with
+   ~std::vector.at(index)~.
 
    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-
+     vector<string> names {"Aliana","Tory","Sam"};
+     cout << names.at(3);
    #+end_src
+
+   #+RESULTS:
 
 7. If your program will add a lot of objects to a ~vector~, is it best
    to use the ~insert~ member function, or the ~emplace~ member function,
    and why?
 
    #+begin_quote
-
+   ~insert~, ~push_back~ create copies of the objects when elements are
+   inserted (or appended). ~emplace~ constructs the object in-place.
    #+end_quote
 
 8. Internally, how does a ~vector~ store its elements?
    #+begin_quote
-
+   Contiguously on the heap ("free store"). It resizes as needed when
+   its ~capacity~ is exceeded.
    #+end_quote
 
 9. The ~vector~ class has a ~size~ and a ~capacity~ member function. What is
    the difference between these two member functions?
    #+begin_quote
-
+   ~size~ returns the current number of allocated elements, while the
+   ~capacity~ function returns the number of elements that can be stored
+   before resizing is needed. Can be changed with ~reserve~.
    #+end_quote
 
    Code along:
    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-                         
+     vector<int> v;
+
+     cout << "Size = " << v.size() <<
+             ", capacity = " << v.capacity() << endl;
+
+     v.push_back(10); // append one element
+     cout << "Size = " << v.size() <<
+             ", capacity = " << v.capacity() << endl;
+
+     v.push_back(20);
+     v.push_back(30); // append two elements
+     cout << "Size = " << v.size() <<
+             ", capacity = " << v.capacity() << endl;
+
+     vector<int> v2;
+     v2.reserve(10);
+     cout << "Size = " << v2.size() <<
+             ", capacity = " << v2.capacity() << endl;
    #+end_src
+
+   #+RESULTS:
+   : Size = 0, capacity = 0
+   : Size = 1, capacity = 1
+   : Size = 3, capacity = 4
+   : Size = 0, capacity = 10
 
 10. What is the difference between the ~vector~ class member functions
     ~insert~ and ~push_back~? Show it with a program.
 
+    For ~insert~, you need an iterator position:
+    ~std::vector.insert(iterator,{values})~
+
     #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
       // Define an empty vector of integers.
-
-      // Add five numbers 1,2,3,4,5 to the vector.
-
+      vector<int> v;
+      // Add five numbers 1,2,3,4,5 to the vector using push_back
+      for(int i=0; i<5; i++) v.push_back(i+1);
       // Display vector content.
-
+      for (const auto &element: v) cout << element << " ";
       // Create an iterator pointing at the position before 4
-
-      // Show the iterator value.
-
-      // Insert two numbers using the iterator.
-
+      vector<int>::iterator it = v.begin() + 2;
+      // Show the iterator value - for example with at()
+      cout << "\nIterator positioned before: " << v.at(*it);
+      // Insert two numbers 40,50 using the iterator.
+      v.insert(it, {40,50}); // price to be paid: rejigging of all indices < 4
       // Display vector content.
-
+      cout << endl;
+      for (const auto &element: v) cout << element << " ";
     #+end_src
+
+    #+RESULTS:
+    : 1 2 3 4 5 
+    : Iterator positioned before: 4
+    : 1 2 40 50 3 4 5 
 
 11. What happens here? Run it and explain it.
    
@@ -1945,16 +2034,27 @@ validate it before embarking on very memory-hungry adventures.
      vector<int> v {0};
      for (auto it = v.begin(); it != v.end(); ++it) 
        {
-         v.push_back(*it);
+         v.push_back(*it); // modifies memory & invalidates iterators
        }
    #+end_src
+
+   Answer: 
 
 12. What happens if you accidentally write the following but =v1= only
     has 10 elements?
 
     #+begin_example C++
-    vector<int> v2(v1.begin(),  v1.begin()+10);
+    vector<int> v2(v1.begin(), v1.begin()+10); // range-based copy constructor
+    vector<int> v2(v1.begin(), v1.begin() + v1.size()) // arithmetic
+    vector<int> v2(v1.begin(), v1.end()) // arithmetic    
     #+end_example
+
+
+** Lessons learnt:
+
+- How to arrays -> vectors -> maps
+- How to iterate over constant values
+- How to access keys and values of a map
 
 
 * Week 14 - ~std::map~ II / Summary / Outlook
@@ -1962,10 +2062,99 @@ validate it before embarking on very memory-hungry adventures.
 - [ ] Review bonus programs
 - [ ] Review STL map class
 - [ ] Finish the STL ~map~ class
-- [ ] Summary of class
-- [ ] Outlook
+- [ ] How did we do?
+- [ ] Where could you go next?
 
-** Review: Bonus programs
+** Review: Bonus programs: ~vector~ and ~map~
 
-** Review: STL map class
+** Review: STL map class (code reading)
 
+** How did we do? (AI course result reflection)
+
+Prompt:
+#+begin_quote
+I want a reflection on the success of this class in the light of the
+uploaded material. The course - for undergraduate and graduate
+students, was called "introduction to programming II", a form of
+intermediate programming. Did I fulfill this promise, what do you
+think? And if not 100%, to which extent?
+#+end_quote
+
+| Axis                | Covered                             | Level   | %     |
+|---------------------+-------------------------------------+---------+-------|
+| Memory Model        | Pointers, stack/heap, arithmetic    | Strong  | 90–95 |
+| Data Structures     | vector, map, STL, iterators         | Strong  | 80–85 |
+| Abstraction (OOP)   | Classes, encapsulation, constructors| Moderate| 70–80 |
+| Algorithmic Thinking| Iterators, basic complexity         | Moderate| 60–70 |
+| Integration         | Memory → STL → OOP                  | Strong  | 85–90 |
+
+| Overall Outcome     | Description                    |
+|---------------------+--------------------------------|
+| Fulfillment         | Substantially achieved         |
+| Completion Estimate | ~80–85% of expectations        |
+| Course Identity     | Systems-aware intermediate C++ |
+| Main Strength       | Memory + STL abstraction       |
+| Main Gap            | Algorithms, advanced OOP       |
+
+| You Should Now Be Able To          |
+|------------------------------------|
+| Use pointers and understand memory |
+| Work with vector and map           |
+| Use iterators effectively          |
+| Write basic classes                |
+| Connect memory and abstraction     |
+
+| What Comes Next                |
+|--------------------------------|
+| Data structures (lists, trees) |
+| Algorithm design               |
+| Advanced OOP                   |
+| Systems programming            |
+
+| Key Takeaway                                                  |
+|---------------------------------------------------------------|
+| Bridge from basic to structured  and memory-aware programming |
+
+Overall score: 80-82% because
+- algorithmic depth is limited
+- OOP is foundational but not complete
+
+** Where could you go next?
+
+- Study core data structures explicitly: linked lists, stacks, queues,
+  trees
+
+- Learn algorithm design: sorting, searching, recursion, problem
+  solving patterns
+
+- Practice time complexity: Big-O reasoning for code and data
+  structures
+
+- Deepen C++ knowledge: memory management, references vs pointers,
+  RAII
+
+- Extend OOP: inheritance, polymorphism, class hierarchies
+
+- Build small projects: combine STL, classes, and file I/O
+
+- Solve programming problems regularly: focus on translating ideas
+  into working code
+
+*What to do not to lose the skills you gained:*
+
+- Minimum (maintenance): 2–3 hours/week
+  Enough to avoid forgetting syntax and basic patterns
+
+- Recommended (retain + improve): 4–6 hours/week
+  Keeps mental models (pointers, STL, OOP) active
+
+- Strong growth: 6–10 hours/week
+  Needed if you want to move into data structures/algorithms
+
+- Structure suggestion:
+  - 2–3 short sessions (45–90 min each)
+  - mix: coding + small problem solving
+
+- What matters more than time:
+  - consistency (every week)
+  - active coding (not just reading)
