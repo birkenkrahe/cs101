@@ -2,6 +2,8 @@
 
 * Bonus: Movie watchlist with ~std::vector~
 
+Write a program that stores a mutable movie watchlist.
+
 ** Learning goals
 
 - Create and use a ~vector<string>~
@@ -27,6 +29,19 @@ Write a program that does the following:
 6. Print the final watchlist using an ~iterator~.
 7. Print the vector ~size~ and ~capacity~.
 
+** Sample output:
+
+#+begin_example
+Movie watchlist:
+1. Thomas Becket
+2. The Island
+3. Pride and Prejudice
+4. The Robe
+
+Size: 4
+Capacity: 10
+#+end_example
+
 ** Solution
 
 #+begin_src C++ :main no :includes :results output :exports both
@@ -35,7 +50,7 @@ Write a program that does the following:
   #include <string>
   using namespace std;
 
-  // Print vector elements
+  // Print vector elements using an iterator
   void printVector(vector<string>);
 
   int main()
@@ -60,21 +75,22 @@ Write a program that does the following:
     cout << "Capacity: " << watchlist.capacity() << endl;
     return 0;
   }
-
+  
+  // Print vector elements using an iterator
   void printVector(vector<string> movies)
-    {
-      // Create string vector iterator
-      vector<string>::iterator it;
-      // Loop counter
-      int i=0;
-      // Print header
-      cout << "Movie watchlist:" << endl;
-      for (it = movies.begin(); it != movies.end(); it++)
-        {
-  	cout << (i+1) << ". " << *it << endl;
-  	i++;
-        }
+  {
+    // Create string vector iterator
+    vector<string>::iterator it;
+    // Loop counter
+    int i=0;
+    // Print header
+    cout << "Movie watchlist:" << endl;
+    for (it = movies.begin(); it != movies.end(); it++)
+      {
+        cout << (i+1) << ". " << *it << endl;
+        i++;
       }
+  }
 #+end_src
 
 #+RESULTS:
@@ -87,5 +103,113 @@ Write a program that does the following:
 : Size: 4
 : Capacity: 10
 
+* Bonus: Course Enrollment Directory with ~std::map~
 
-     
+Write a C++ program that simulates a simple course enrollment system.
+
+** Learning goals
+
+- Create and use ~map<int,string>~
+- Insert elements using ~operator[]~
+- Traverse a map using an ~iterator~
+- Access key-value pairs using ~it->first~ and ~it->second~
+- Observe that maps store keys in sorted order
+
+** Task
+
+You are given a list of students enrolling in a course. Each student
+has a unique ID and a name. Your task is to build and display the
+enrollment list.
+
+1. Create an empty map called =enrollment= that maps student IDs to
+   names.
+2. Add the following students using ~operator[]~ in this order:
+    -3003 -> "Charlie"
+   - 3001 -> "Alice"
+   - 3004 -> "Diana"
+   - 3002 -> "Bob"
+3. Print the enrollment list using an ~iterator~.
+4. Number the students starting from 1 when printing.
+5. Include a comment in your code that answers this question: Why is
+   "Alice" printed before "Charlie" even though she was added later?
+6. Create a second map =lateEnrollment= using an initializer list:
+   - 4002 -> "Evan"
+   - 4001 -> "Fiona"
+7. Print the second map in the same format.
+
+** Expected output:   
+
+#+begin_example
+Enrollment list:
+1. ID 3001: Alice
+2. ID 3002: Bob
+3. ID 3003: Charlie
+4. ID 3004: Diana
+
+Late enrollment list:
+1. ID 4001: Fiona
+2. ID 4002: Evan
+#+end_example
+
+** Solution:
+
+#+begin_src C++ :results output :main :includes :export both
+  #include <iostream>
+  #include <map>
+  #include <string>
+  using namespace std;
+
+  // PRINT map prototype: student <ID,name>,title
+  void printMap(map<int,string>,string);
+
+  // MAIN program
+  int main()
+  {
+    // Create enrollment map <student ID, student name>
+    map<int,string> enrollment;
+    // Add students
+    enrollment[3003] = "Charlie";
+    enrollment[3001] = "Alice";
+    enrollment[3004] = "Diana";
+    enrollment[3002] = "Bob";
+    // Print enrollment map
+    printMap(enrollment,"Enrollment"); // map sorted alphabetically by key
+    // Late enrollment students
+    map<int,string> lateEnrollment {
+      {4002,"Evan"},
+      {4001,"Fiona"}
+    };
+    // Print lateEnrollment map
+    printMap(lateEnrollment, "Late enrollment"); 
+    return 0;
+  } // END of MAIN
+
+  // PRINT map using an iterator
+  void printMap(map<int,string> roster, string title)
+  {
+    map<int,string>::iterator it;
+    int i = 0;
+    cout << title << " list:\n";
+    for (it = roster.begin(); it != roster.end(); it++)
+      {
+        cout << (i+1) << ". ID " << it->first
+  	   << ": "    << it->second << endl;
+        i++;
+      }
+    cout << endl;
+  }
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Enrollment list:
+1. ID 3001: Alice
+2. ID 3002: Bob
+3. ID 3003: Charlie
+4. ID 3004: Diana
+
+Late enrollment list:
+1. ID 4001: Fiona
+2. ID 4002: Evan
+
+#+end_example
