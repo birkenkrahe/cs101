@@ -1,0 +1,91 @@
+#+STARTUP: overview hideblocks indent entitiespretty:
+
+* Bonus: Movie watchlist with ~std::vector~
+
+** Learning goals
+
+- Create and use a ~vector<string>~
+- Add elements with ~push_back~
+- Insert one element with ~insert~
+- Remove one element with ~erase~
+- Traverse a vector with an ~iterator~
+- Use ~size~, ~capacity~, and ~reserve~
+
+** Task
+
+Write a program that does the following:
+
+1. Create an empty ~vector<string>~ called =watchlist=.
+2. Reserve space for 10 movies.
+3. Add these movies using ~push_back~:
+   - ="Thomas Becket"=
+   - ="The Island"=
+   - ="Pride and Prejudice"=
+   - ="The Reluctant Saint"=
+4. Insert ="The Robe"= before ="The Reluctant Saint"=.
+5. Remove ="Pride and Prejudice"= from the list.
+6. Print the final watchlist using an ~iterator~.
+7. Print the vector ~size~ and ~capacity~.
+
+** Solution
+
+#+begin_src C++ :main no :includes :results output :exports both
+  #include <iostream>
+  #include <vector>
+  #include <string>
+  using namespace std;
+
+  // Print vector elements
+  void printVector(vector<string>);
+
+  int main()
+  {
+    // Create empty vector
+    vector<string> watchlist;
+    // Reserve space for 10 movies
+    watchlist.reserve(10);
+    // Add four movies
+    watchlist.push_back("Thomas Becket");
+    watchlist.push_back("The Island");
+    watchlist.push_back("Pride and Prejudice");
+    watchlist.push_back("The Reluctant Saint");
+    // Insert "The Robe" before "The Reluctant Saint"
+    watchlist.insert(watchlist.begin()+3,"The Robe");
+    // Remove "Pride and Prejudice"
+    watchlist.erase(watchlist.end());
+    // Print content of watchlist
+    printVector(watchlist);
+    // Print size() and capacity()
+    cout << "\nSize: " << watchlist.size() << endl;
+    cout << "Capacity: " << watchlist.capacity() << endl;
+    return 0;
+  }
+
+  void printVector(vector<string> movies)
+    {
+      // Create string vector iterator
+      vector<string>::iterator it;
+      // Loop counter
+      int i=0;
+      // Print header
+      cout << "Movie watchlist:" << endl;
+      for (it = movies.begin(); it != movies.end(); it++)
+        {
+  	cout << (i+1) << ". " << *it << endl;
+  	i++;
+        }
+      }
+#+end_src
+
+#+RESULTS:
+: Movie watchlist:
+: 1. Thomas Becket
+: 2. The Island
+: 3. Pride and Prejudice
+: 4. The Robe
+: 
+: Size: 4
+: Capacity: 10
+
+
+     
