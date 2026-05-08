@@ -137,7 +137,7 @@ enrollment list.
    - 4001 -> "Fiona"
 7. Print the second map in the same format.
 
-** Expected output:   
+** Expected output:
 
 #+begin_example
 Enrollment list:
@@ -153,7 +153,7 @@ Late enrollment list:
 
 ** Solution:
 
-#+begin_src C++ :results output :main :includes :export both
+#+begin_src C++ :results output :main :includes :exports both
   #include <iostream>
   #include <map>
   #include <string>
