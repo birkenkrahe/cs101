@@ -2056,16 +2056,15 @@ You find the answers to these questions in the =STL_vector.org= lecture.
 - How to iterate over constant values
 - How to access keys and values of a map
 
+* DONE Week 14 - ~std::map~ II / Review / Summary / Outlook
 
-* Week 14 - ~std::map~ II / Review / Summary / Outlook
-
-- [ ] Opening prayer (Our Father / Hail Mary)
-- [ ] Has AI killed programming (blog post)
-- [ ] End-of-course self-assessment exercise
+- [X] Opening prayer (Our Father / Hail Mary)
+- [X] Has AI killed programming (blog post)
+- [X] End-of-course self-assessment exercise
 - [ ] Review two bonus programs
 - [ ] Finish the STL ~map~ class
-- [ ] How did we do?
-- [ ] Where could you go next?
+- [X] How did we do?
+- [X] Where could you go next?
 - [ ] Closing prayer (Aquinas' Students prayer)
 
 ** End-of-course self-assessment
@@ -2095,36 +2094,36 @@ https://is.gd/u7h2sE
 Write a C++ program that analyzes quiz scores.
 
 Requirements:
-   1. Store these scores in a ~vector<int>~:
-      #+begin_example
-         72 95 81 60 88 70
-      #+end_example
-
-   2. Write a function =printScores= that:
-      - takes the vector by ~const~ reference
-      - prints all scores
-
-   3. Write a function =averageScore= that:
-      - takes the vector by const reference
-      - returns the average score
-
-   4. In main:
-      - print all scores
-      - print the average
-      - print all scores above the average
-
-   5. Add a short comment answering: Why is a range-based ~for~ loop
-      sufficient for =printScores=? When might an explicit ~iterator~ or
-      index-based ~for~ loop be preferable?
-
-      Sample output:
-      #+begin_example
+1. Store these scores in a ~vector<int>~:
+   #+begin_example
       72 95 81 60 88 70
-      Average score: 77
+   #+end_example
 
-      Scores above the average:
-      95 81 88
-      #+end_example
+2. Write a function =printScores= that:
+   - takes the ~vector~ by ~const~ reference (~&~)
+   - prints all =scores=
+
+3. Write a function =averageScore= that:
+   - takes the ~vector~ by ~const~ reference (~&~)
+   - returns the =average= score
+
+4. In ~main~:
+   - print all =scores=
+   - print the =average=
+   - print all =scores= above the =average=
+
+5. Add a short comment answering: Why is a range-based ~for~ loop
+   sufficient for =printScores=? When might an explicit ~iterator~ or
+   index-based ~for~ loop be preferable?
+
+Sample output:
+#+begin_example
+   72 95 81 60 88 70
+   Average score: 77
+
+   Scores above the average:
+   95 81 88
+#+end_example
 
 *** Code reading and explanation [10 min]
 
@@ -2139,7 +2138,7 @@ Then answer the questions below (put your answers in comments).
   #include <vector>
   using namespace std;
 
-  int compute(vector<int>& data)
+  int compute(const vector<int>& data)
   {
     int total = 0;
 
@@ -2165,32 +2164,64 @@ Then answer the questions below (put your answers in comments).
 
 1. What does the function =compute= do?
 
-2. Why use =const vector<int>&=
+2. What changes if ===0= becomes =!=0= ?
 
-3. What changes if ===0= becomes =!=0= ?
-
-4. Can you think of one possible improvement to make the program more
+3. Can you think of one possible improvement to make the program more
    flexible and more general?
 
-5. Can you think of one possible improvement to make the program more
-   safe?
+4. Can you think of one possible improvement to make the program
+   safer?
 
 *** Closing Reflection (10 min)
 
 Answer briefly:
 
 1. What is one thing you can now do that you could not do at the start
-   of the course?
+   of the course (or not very well, or didn't know why)?
+
+   1) Make a ~std::vector~
+   2) Why using different programming languages
+   3) Computer architecture blueprints
+   4) How (or why to) use pointers
+   5) How (or why to) use iterators
+   6) Range-based loops!
 
 2. What topic would you study next if you continued programming?
+
+   - Machine learning (in Python!) - containers & functions -> CS540
+   - Learn how to make code interact across applications: API,
+     bash/shell computing (command-line) -> book
+   - Using containerization (Docker) -> DataCamp
+   - Website making ("Full stack web development") -> AI, Google Cloud
+     Shell
+   - Database programming (querying and analysis) -> DataLab
 
 3. Why might programming still matter even when AI tools can generate
    code?
 
+   1) You need to know if the responses are valid or made up
+   2) AI will (by design) regress to the mean ("not creative")
+   3) Someone still has to develop AI platforms (and services)
+   4) AI has no direct access to analogue reality (1%-5% digitized)
+   5) Someone needs to maintain the infrastructure
+   6) If everybody builds stuff, who maintains that stuff
+
 4. What did this course teach you besides syntax?
 
-5. What advice would you give the students of the next course?
+   - Time complexity and Big-O
+   - Difference between secular UG and Catholic (under)graduate
+     students
+   - Importance of praying (esp. Aquinas' students prayer)
+   - Lots of tools (OneCompiler, Jupyter, Google Cloud Shell)
 
+5. What advice would you give the students or me for the next course?
+
+   - Following a book would be nice (warm up and independence)
+   - Don't give me books, I don't want to read (rather try things)
+   - Instructor wishes he had scheduled shorter sessions
+   - Do the bonus programs on your own
+   - Use the custom GPT or generative AI (use carefully)
+   
 ** Review: Bonus programs: ~vector~ and ~map~ (show)
 
 - You find my solutions at GitHub: [[https://is.gd/MBGpCf][is.gd/MBGpCf]]
