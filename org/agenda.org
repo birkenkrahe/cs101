@@ -38,7 +38,7 @@ Amen.
 
 In the name of the Father, and of the Son, and of the Holy Ghost.
 
-#+attr_html: :width 500px :float nil: 
+#+attr_html: :width 500px :float nil:
 [[../img/memorare.png]]
 
 Glory be to the Father, and to the Son, and to the Holy Ghost,
@@ -1451,14 +1451,14 @@ since OS makes more sense once you understand the underlying hardware.
 
 2. Define an integer variable =foo= and a pointer-to-int variable
    =ptr=. Write a statement that assigns the address of the =foo= variable
-   to the =ptr= variable. 
+   to the =ptr= variable.
    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :efooports both :noweb yes
      int foo;  // Does not have a defined value.
      int *ptr=nullptr; // Points towards 0 or NULL.
      ptr = &foo;  // Store address of foo in ptr.
    #+end_src
 
-3. Does =foo= have to have a value for this to work? 
+3. Does =foo= have to have a value for this to work?
    #+begin_quote
    No, =foo= does not have to have a value for this to work. =ptr= holds
    the value of the *address* of =foo=. The value =*ptr= is undefined.
@@ -1590,19 +1590,19 @@ Sources:
   #+begin_src java :noweb yes :classname CounterDemo :dir ../src :results output
     <<Counter class>>
 
-    // CounterDemo.java tests the Counter class        
-    public class CounterDemo {
+     // CounterDemo.java tests the Counter class
+        public class CounterDemo {
         public static void main(String[] args) {
-        Counter c; // reference variable declaration (no counter)
-        c = new Counter(); // construct new counter, assign ref to c
-        c.increment(); // increase counter by 1
-        c.increment(3); // increase counter by 3 (now it's 4)
-        int temp = c.getCount(); // temp stores 4
-        c.reset(); // counter is set back to 0
+            Counter c; // reference variable declaration (no counter)
+            c = new Counter(); // construct new counter, assign ref to c
+            c.increment(); // increase counter by 1
+            c.increment(3); // increase counter by 3 (now it's 4)
+            int temp = c.getCount(); // temp stores 4
+            c.reset(); // counter is set back to 0
 
-        System.out.println("Counter is " + temp);
+            System.out.println("Counter is " + temp);
         }
-    }
+        }
   #+end_src
 
 - Final code in [[https://tinyurl.com/Counter-Demo-java][tinyurl.com/counter-demo-java]]
@@ -1702,7 +1702,7 @@ the videos.
 - [X] Introduction to the Standard Template Library
 - [ ] Introduction to the STL ~<vector>~ ~class~
 
-- What are you taking away from today: 
+- What are you taking away from today:
   + Reverse iterator mechanism
   + Iterators are pointers
   + ~sort~ using the STL ~<algorithm>~ library
@@ -1749,7 +1749,7 @@ uniform model.
    1) Declare a vector of elements 100,200,300,400,500.
    2) Print its elements using a range-based loop.
    3) Show that the loop is really an iterator statement.
-      
+
    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
      vector<int> nums {100,200,300,400,500};
      // loop over the vector elements using a range-based loop:
@@ -1761,10 +1761,10 @@ uniform model.
    #+end_src
 
    #+RESULTS:
-   : 100 200 300 400 500 
-   : 100 200 300 400 500 
-   : 100 200 300 400 500 
-   : 100 200 300 400 500 
+   : 100 200 300 400 500
+   : 100 200 300 400 500
+   : 100 200 300 400 500
+   : 100 200 300 400 500
 
 4. In what sense are iterators similar to pointers, and what is the
    key difference?
@@ -1800,15 +1800,15 @@ uniform model.
 
    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
      std::string hello {"Hello, beautiful!"};
-     for (auto it=hello.begin(); it != hello.end(); it++) cout << *it << " "; 
+     for (auto it=hello.begin(); it != hello.end(); it++) cout << *it << " ";
    #+end_src
 
    #+RESULTS:
-   : H e l l o ,   b e a u t i f u l ! 
+   : H e l l o ,   b e a u t i f u l !
 
    Sample output:
    #+begin_example
-   H e l l o ,   b e a u t i f u l ! 
+   H e l l o ,   b e a u t i f u l !
    #+end_example
 
 ** Question about ~vector.max_size()~
@@ -1869,17 +1869,17 @@ You find the answers to these questions in the =STL_vector.org= lecture.
      vector<int> avect2(10,1);
      for (const auto element : avect2) cout << element << " "; cout << endl;
      vector<int> avect3(10,0);
-     for (const auto element : avect3) cout << element + 1 << " ";     
+     for (const auto element : avect3) cout << element + 1 << " ";
    #+end_src
 
    #+RESULTS:
-   : 1 1 1 1 1 1 1 1 1 1 
-   : 1 1 1 1 1 1 1 1 1 1 
+   : 1 1 1 1 1 1 1 1 1 1
+   : 1 1 1 1 1 1 1 1 1 1
 
 3. The program below should print
    #+begin_example
-   1 1 1 1 1 1 1 1 1 1 
-   2 2 2 2 2 2 2 2 2 2 
+   1 1 1 1 1 1 1 1 1 1
+   2 2 2 2 2 2 2 2 2 2
    #+end_example
    But it does not even compile. What's wrong? Can you fix it?
 
@@ -1929,12 +1929,12 @@ You find the answers to these questions in the =STL_vector.org= lecture.
      vector<int> v2 {100,200,300}; // integer vector with three elements
      vector<int> v1(v2); // copies v2 into v1
      for(const auto& element: v1) cout << element << " "; cout<<endl;
-     for(const auto& element: v2) cout << element << " "; cout<<endl;     
+     for(const auto& element: v2) cout << element << " "; cout<<endl;
    #+end_src
 
    #+RESULTS:
-   : 100 200 300 
-   : 100 200 300 
+   : 100 200 300
+   : 100 200 300
 
 6. What happens when you use an invalid index with the ~at~ function of
    the ~vector~ class? Try it. Define a vector =names= with three names,
@@ -2024,21 +2024,21 @@ You find the answers to these questions in the =STL_vector.org= lecture.
     #+end_src
 
     #+RESULTS:
-    : 1 2 3 4 5 
+    : 1 2 3 4 5
     : Iterator positioned before: 4
-    : 1 2 40 50 3 4 5 
+    : 1 2 40 50 3 4 5
 
 11. What happens here? Run it and explain it.
-   
-   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-     vector<int> v {0};
-     for (auto it = v.begin(); it != v.end(); ++it) 
-       {
-         v.push_back(*it); // modifies memory & invalidates iterators
-       }
-   #+end_src
 
-   Answer: 
+    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
+      vector<int> v {0};
+      for (auto it = v.begin(); it != v.end(); ++it)
+        {
+          v.push_back(*it); // modifies memory & invalidates iterators
+        }
+    #+end_src
+
+    Answer:
 
 12. What happens if you accidentally write the following but =v1= only
     has 10 elements?
@@ -2046,7 +2046,7 @@ You find the answers to these questions in the =STL_vector.org= lecture.
     #+begin_example C++
     vector<int> v2(v1.begin(), v1.begin()+10); // range-based copy constructor
     vector<int> v2(v1.begin(), v1.begin() + v1.size()) // arithmetic
-    vector<int> v2(v1.begin(), v1.end()) // arithmetic    
+    vector<int> v2(v1.begin(), v1.end()) // arithmetic
     #+end_example
 
 
@@ -2057,21 +2057,156 @@ You find the answers to these questions in the =STL_vector.org= lecture.
 - How to access keys and values of a map
 
 
-* Week 14 - ~std::map~ II / Summary / Outlook
+* Week 14 - ~std::map~ II / Review / Summary / Outlook
 
-- [ ] Review bonus programs
-- [ ] Review STL map class
+- [ ] Opening prayer (Our Father / Hail Mary)
+- [ ] Has AI killed programming (blog post)
+- [ ] End-of-course self-assessment exercise
+- [ ] Review two bonus programs
 - [ ] Finish the STL ~map~ class
 - [ ] How did we do?
 - [ ] Where could you go next?
+- [ ] Closing prayer (Aquinas' Students prayer)
 
-** Review: Bonus programs: ~vector~ and ~map~
+** End-of-course self-assessment
+*** Open the self-assessment sheet
 
-** Review: STL map class (code reading)
+https://is.gd/u7h2sE
+
+*** Rate yourself from 0-10 for each skill [5 min]
+
+| Skill                                           |
+|-------------------------------------------------|
+| Reading and understanding code                  |
+| Writing small programs from scratch             |
+| Debugging errors                                |
+| Using functions                                 |
+| Using loops and conditionals                    |
+| Working with arrays/vectors                     |
+| Understanding pointers/references               |
+| Understanding classes/objects                   |
+| Using STL containers                            |
+| Explaining what code does                       |
+| Breaking problems into steps                    |
+| Learning new programming concepts independently |
+
+*** Independent coding task [15 min]:
+
+Write a C++ program that analyzes quiz scores.
+
+Requirements:
+   1. Store these scores in a ~vector<int>~:
+      #+begin_example
+         72 95 81 60 88 70
+      #+end_example
+
+   2. Write a function =printScores= that:
+      - takes the vector by ~const~ reference
+      - prints all scores
+
+   3. Write a function =averageScore= that:
+      - takes the vector by const reference
+      - returns the average score
+
+   4. In main:
+      - print all scores
+      - print the average
+      - print all scores above the average
+
+   5. Add a short comment answering: Why is a range-based ~for~ loop
+      sufficient for =printScores=? When might an explicit ~iterator~ or
+      index-based ~for~ loop be preferable?
+
+      Sample output:
+      #+begin_example
+      72 95 81 60 88 70
+      Average score: 77
+
+      Scores above the average:
+      95 81 88
+      #+end_example
+
+*** Code reading and explanation [10 min]
+
+Open the program: [[https://is.gd/JmoaiG][is.gd/JmoaiG]] and run it.
+
+Then study the program carefully.
+
+Then answer the questions below (put your answers in comments).
+
+#+begin_src C++ :main no :includes :exports both :results output
+  #include <iostream>
+  #include <vector>
+  using namespace std;
+
+  int compute(vector<int>& data)
+  {
+    int total = 0;
+
+    for (int value : data)
+      {
+        if (value % 2 == 0)
+          total += value;
+      }
+    return total;
+  }
+
+  int main()
+  {
+    vector<int> nums {3,8,5,2,10};
+
+    int result = compute(nums);
+
+    cout << "Result = " << result << endl;
+
+    return 0;
+  }
+#+end_src
+
+1. What does the function =compute= do?
+
+2. Why use =const vector<int>&=
+
+3. What changes if ===0= becomes =!=0= ?
+
+4. Can you think of one possible improvement to make the program more
+   flexible and more general?
+
+5. Can you think of one possible improvement to make the program more
+   safe?
+
+*** Closing Reflection (10 min)
+
+Answer briefly:
+
+1. What is one thing you can now do that you could not do at the start
+   of the course?
+
+2. What topic would you study next if you continued programming?
+
+3. Why might programming still matter even when AI tools can generate
+   code?
+
+4. What did this course teach you besides syntax?
+
+5. What advice would you give the students of the next course?
+
+** Review: Bonus programs: ~vector~ and ~map~ (show)
+
+- You find my solutions at GitHub: [[https://is.gd/MBGpCf][is.gd/MBGpCf]]
+
+** More about ~std::map~
+
+More information about the STL's ~map~ class:
+→ traversal
+→ structured bindings
+→ nested containers
+→ abstraction
+→ realistic data modeling
 
 ** How did we do? (AI course result reflection)
 
-Prompt:
+*** Prompt for ChatGPT:
 #+begin_quote
 I want a reflection on the success of this class in the light of the
 uploaded material. The course - for undergraduate and graduate
@@ -2080,13 +2215,14 @@ intermediate programming. Did I fulfill this promise, what do you
 think? And if not 100%, to which extent?
 #+end_quote
 
-| Axis                | Covered                             | Level   | %     |
-|---------------------+-------------------------------------+---------+-------|
-| Memory Model        | Pointers, stack/heap, arithmetic    | Strong  | 90–95 |
-| Data Structures     | vector, map, STL, iterators         | Strong  | 80–85 |
-| Abstraction (OOP)   | Classes, encapsulation, constructors| Moderate| 70–80 |
-| Algorithmic Thinking| Iterators, basic complexity         | Moderate| 60–70 |
-| Integration         | Memory → STL → OOP                  | Strong  | 85–90 |
+*** Answer
+| Axis                 | Covered                              | Level    | %     |
+|----------------------+--------------------------------------+----------+-------|
+| Memory Model         | Pointers, stack/heap, arithmetic     | Strong   | 90–95 |
+| Data Structures      | vector, map, STL, iterators          | Strong   | 80–85 |
+| Abstraction (OOP)    | Classes, encapsulation, constructors | Moderate | 70–80 |
+| Algorithmic Thinking | Iterators, basic complexity          | Moderate | 60–70 |
+| Integration          | Memory → STL → OOP                   | Strong   | 85–90 |
 
 | Overall Outcome     | Description                    |
 |---------------------+--------------------------------|
@@ -2142,19 +2278,26 @@ Overall score: 80-82% because
 
 *What to do not to lose the skills you gained:*
 
-- Minimum (maintenance): 2–3 hours/week
-  Enough to avoid forgetting syntax and basic patterns
+- Minimum (maintenance): 2 hours/week are enough to avoid forgetting
+  syntax and basic patterns
 
-- Recommended (retain + improve): 4–6 hours/week
-  Keeps mental models (pointers, STL, OOP) active
+- Recommended (retain + improve): 4 hours/week to keep mental models
+  (pointers, STL, OOP) active
 
-- Strong growth: 6–10 hours/week
-  Needed if you want to move into data structures/algorithms
+- Strong growth: >4 hours/week if you want to move into data
+  structures/algorithms
 
 - Structure suggestion:
-  - 2–3 short sessions (45–90 min each)
-  - mix: coding + small problem solving
+  + 2–3 short sessions (45–90 min each)
+  + mix: coding + small problem solving
 
+- Community suggestion:
+  + Stack Overflow (read and post)
+  + GitHub (read, follow, contribute)
+  + Leetcode or open.kattis.com for small exercises
+  + Start a programming project and publish it on GitHub
+    
 - What matters more than time:
-  - consistency (every week)
-  - active coding (not just reading)
+  + consistency (every week)
+  + active coding (not just reading)
+  + using =cppreference.com= extensively

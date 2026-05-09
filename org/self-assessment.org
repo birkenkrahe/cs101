@@ -1,0 +1,254 @@
+#+TITLE: End-of-Course Programming Diagnostic Activity
+#+AUTHOR: CSC/CS101
+#+OPTIONS: toc:nil num:t
+#+STARTUP: overview hideblocks indent entitiespretty:
+* End-of-Course Diagnostic Activity
+
+Purpose:
+- Assess current programming understanding
+- Identify strengths and weak areas
+- Practice reading and reasoning about code
+- Reflect on future learning goals
+- Reinforce why programming remains valuable
+
+This is *not* a graded test. The goal is honest self-evaluation.
+
+* Suggested Timing (50 minutes)
+
+| Activity                  | Time   |
+|---------------------------+--------|
+| Self-assessment           | 5 min  |
+| Independent coding task   | 15 min |
+| Code-reading activity     | 20 min |
+| Group discussion / review | 5 min  |
+| Final reflection          | 5 min  |
+
+* Part 1 — Self-Assessment (5 min)
+
+Rate yourself from 0–10 for each skill.
+
+0 = "I cannot do this yet"
+10 = "I can do this independently and explain it to someone else"
+
+| Skill                                           |
+|-------------------------------------------------|
+| Reading and understanding code                  |
+| Writing small programs from scratch             |
+| Debugging errors                                |
+| Using functions                                 |
+| Using loops and conditionals                    |
+| Working with arrays/vectors                     |
+| Understanding pointers/references               |
+| Understanding classes/objects                   |
+| Using STL containers                            |
+| Explaining what code does                       |
+| Breaking problems into steps                    |
+| Learning new programming concepts independently |
+
+Short answer:
+1. What topic do you feel strongest in?
+2. What topic still confuses you?
+3. What programming task feels easiest to you now compared to the
+   beginning of the course?
+
+* Part 2 — Independent Coding Task (15 min)
+
+Write a C++ program that analyzes quiz scores.
+
+Requirements:
+1. Store these scores in a ~vector<int>~:
+   #+begin_example
+      72 95 81 60 88 70
+   #+end_example
+
+2. Write a function =printScores= that:
+   - takes the vector by ~const~ reference
+   - prints all scores
+
+3. Write a function =averageScore= that:
+   - takes the vector by ~const~ reference
+   - returns the average score
+
+4. In main:
+   - print all scores
+   - print the average
+   - print all scores above the average
+
+5. Add one comment explaining why ~const~ reference is used in the
+   function parameters.
+   #+begin_quote
+   A const reference allows the function to use the vector
+   without making a copy of it, which is more efficient.
+   The const keyword also prevents the function from
+   accidentally modifying the original vector.
+   #+end_quote
+
+6. Add a short comment answering: Why is a range-based ~for~ loop
+   sufficient for =printScores=? When might an explicit ~iterator~ or
+   index-based ~for~ loop be preferable?
+   #+begin_quote
+   A range-based loop is sufficient for ~printScores~ because we
+   only need to visit and print each element in the vector.
+
+   An explicit iterator or index-based loop is preferable when
+   we need more control over traversal, need element positions
+   (indices), or need to modify the container while iterating.
+   #+end_quote
+
+Sample output:
+#+begin_example
+72 95 81 60 88 70
+Average score: 77
+
+Scores above the average:
+95 81 88
+#+end_example
+
+** Solution
+
+#+begin_src C++ :main yes :includes :results output :exports both
+  #include <iostream>
+  #include <vector>
+  using namespace std;
+
+  // prototypes:
+  // print all scores
+  void printScores(const vector<int>&);
+  // return average score
+  double averageScore(const vector<int>&);
+
+  // main program:
+  int main()
+  {
+    // STORE scores in vector
+    vector<int> scores {72,95,81,60,88,70};
+    // PRINT all scores
+    printScores(scores);
+    // AVERAGE scores and PRINT it
+    double avg = averageScore(scores);
+    cout << "\nAverage score: " << avg << endl;
+    // PRINT all scores above the average
+    cout << "\nScores above the average:" << endl;
+    for (auto score : scores)
+      {
+        if (score > avg)
+        {
+          cout << score << " ";
+        }
+      }
+    return 0;
+  }
+
+  // printScores(): print all scores
+  void printScores(const vector<int> &s)
+  {
+    for (auto score : s)
+      {
+        cout << score << " ";
+      }
+  }
+  // averageScore(): return average score
+  double averageScore(const vector<int> &s)
+  {
+    int sum=0; // initialize sum
+    for (auto score : s)
+      {
+        sum+=score;
+      }
+    return sum/s.size();
+  }
+#+end_src
+
+#+RESULTS:
+: 72 95 81 60 88 70
+: Average score: 77
+:
+: Scores above the average:
+: 95 81 88
+
+* Part 3 — Code Reading and Explanation (15 min)
+
+Study the following program carefully.
+
+#+begin_src cpp
+  #include <iostream>
+  #include <vector>
+  using namespace std;
+
+  int compute(const vector<int>& data)
+  {
+    int total = 0;
+
+    for (int value : data)
+      {
+        if (value % 2 == 0)
+        total += value;
+      }
+
+    return total;
+  }
+
+  int main()
+  {
+    vector<int> nums = {3, 8, 5, 2, 10};
+
+    int result = compute(nums);
+
+    cout << "Result = " << result << endl;
+
+    return 0;
+  }
+#+end_src
+
+Answer the following questions in complete sentences.
+
+1. What does the function ~compute~ do?
+   #+begin_quote
+   The function loops through the vector and adds together all even
+   numbers. It returns the total sum of the even values.
+   #+end_quote
+
+2. Why use ~const vector<int>&~?
+   #+begin_quote
+   The parameter is passed by reference so the entire vector is not
+   copied. Using const prevents the function from accidentally changing
+   the vector contents.
+   #+end_quote
+
+3. What changes if ~== 0~ becomes ~!= 0~?
+   #+begin_quote
+   The function would add the odd numbers instead of the even
+   numbers. The odd numbers are 3 and 5, so the result would become 8.
+   #+end_quote
+
+4. One possible improvement?
+   #+begin_quote
+   One improvement would be to let the user enter the numbers instead of
+   hard-coding them. This would make the program more flexible and
+   reusable.
+   #+end_quote
+
+5. Can you think of one possible improvement to make the program more
+   safe?
+   #+begin_quote
+   - Checking whether the vector is empty before computing values from
+     it. This prevents invalid access or division by zero.
+   - Using ~const~ in the argument of =compute=.
+   #+end_quote
+
+* Closing Reflection (5 min)
+
+Answer briefly:
+
+1. What is one thing you can now do that you could not do at the start
+   of the course?
+
+2. What topic would you study next if you continued programming?
+
+3. Why might programming still matter even when AI tools can generate
+   code?
+
+4. What did this course teach you besides syntax?
+
+5. What advice would you give the students of the next course?
+

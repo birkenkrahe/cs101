@@ -1,5 +1,4 @@
 #+STARTUP: overview hideblocks indent entitiespretty:
-
 * Bonus: Movie watchlist with ~std::vector~
 
 Write a program that stores a mutable movie watchlist.
