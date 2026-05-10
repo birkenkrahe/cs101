@@ -131,9 +131,9 @@ Scores above the average:
     cout << "\nScores above the average:" << endl;
     for (auto score : scores)
       {
-        if (score > avg)
-        {
-          cout << score << " ";
+        if (score > avg) // check if score > avg
+        { 
+          cout << score << " "; // PRINT score
         }
       }
     return 0;
@@ -142,7 +142,7 @@ Scores above the average:
   // printScores(): print all scores
   void printScores(const vector<int> &s)
   {
-    for (auto score : s)
+    for (auto score : s) // for (int i=0;i<s.size();i++)
       {
         cout << score << " ";
       }
@@ -155,16 +155,16 @@ Scores above the average:
       {
         sum+=score;
       }
-    return sum/s.size();
+    return sum/s.size(); // divide vector sum over length
   }
 #+end_src
 
 #+RESULTS:
-: 72 95 81 60 88 70
+: 72 95 81 60 88 70 
 : Average score: 77
-:
+: 
 : Scores above the average:
-: 95 81 88
+: 95 81 88 
 
 * Part 3 — Code Reading and Explanation (15 min)
 
@@ -221,15 +221,15 @@ Answer the following questions in complete sentences.
    numbers. The odd numbers are 3 and 5, so the result would become 8.
    #+end_quote
 
-4. One possible improvement?
+4. One possible improvement to make the program more flexible and
+   more general?
    #+begin_quote
    One improvement would be to let the user enter the numbers instead of
    hard-coding them. This would make the program more flexible and
    reusable.
    #+end_quote
 
-5. Can you think of one possible improvement to make the program more
-   safe?
+5. Can you think of one possible improvement to make the program safer?
    #+begin_quote
    - Checking whether the vector is empty before computing values from
      it. This prevents invalid access or division by zero.
@@ -252,3 +252,18 @@ Answer briefly:
 
 5. What advice would you give the students of the next course?
 
+* Instructor Notes
+
+Possible follow-up discussion topics:
+- Programming as problem decomposition
+- Reading code vs. writing code
+- Why debugging is a professional skill
+- AI tools still require human judgment
+- Programming develops precision, abstraction, and reasoning
+- Software systems are built and maintained by people who understand logic, structure, and tradeoffs
+
+Success criteria for this activity:
+- Students can explain code behavior
+- Students can reason about data flow
+- Students recognize their own strengths and gaps
+- Students leave understanding that programming is about thinking, not memorization
