@@ -1,54 +1,16 @@
-#+title: Agenda Notebook
-#+author: Marcus Birkenkrahe
-#+subtitle: CS 101 - Catholic Polytechnic University - Spring 2026
-#+SEQ_TODO: TODO NEXT IN-PROGRESS | DONE CANCELLED
-#+startup: overview hideblocks indent entitiespretty
-#+property: header-args:C      :main yes :includes <stdio.h> :results output :exports both
-#+property: header-args:python :session *Python* :python python3 :results output :exports both
-#+property: header-args:R      :session *R* :results graphics output file :exports both
-#+property: header-args:C++    :main yes :includes <iostream> :results output :exports both
-* Opening and Closing Prayers
+#+TITLE:Agenda - Intro to Programming (Python)
+#+AUTHOR:Marcus Marcus Birkenkrahe
+#+SUBTITLE:CS CS 100, Catholic Polytechnic University
+#+STARTUP: overview hideblocks indent entitiespretty:
+#+attr_html: :width 600px :float nil:
+[[../img/breughel_babel_1563.jpg]]
+* Prayers
 ** Opening Prayer (Standard)
 #+attr_html: :width 550px :float nil:
-[[../img/opening_prayers.png]]
-
-** Opening Prayer (Regina Caeli)
-
-In the name of the Father, and of the Son, and of the Holy Ghost.
-
-#+attr_html: :width 500px :float nil:
-[[../img/regina_caeli.png]]
-
-Glory be to the Father, and to the Son, and to the Holy Ghost,
-
-As it was in the beginning, is now, and ever shall be,
-
-world without end,
-
-Amen.
-
-** Opening Prayer (Angelus)
-#+attr_html: :width 600px :float nil:
-[[../img/angelus.png]]
+[[../../img/opening_prayers.png]]
 ** Closing Prayer (Aquinas)
 #+attr_html: :width 550px :float nil:
-[[../img/closing_prayers.png]]
-
-** Closing Prayer (Memorare)
-
-In the name of the Father, and of the Son, and of the Holy Ghost.
-
-#+attr_html: :width 500px :float nil:
-[[../img/memorare.png]]
-
-Glory be to the Father, and to the Son, and to the Holy Ghost,
-
-As it was in the beginning, is now, and ever shall be,
-
-world without end,
-
-Amen.
-
+[[../../img/closing_prayers.png]]
 ** Why these prayers?
 
 - *The "Our Father"*, because we learn everything through him.
@@ -61,2274 +23,1411 @@ Amen.
   scholars, the internet, computer users and encyclopedias.
 - *A student's prayer* is by St. Thomas Aquinas.
 
-* DONE Week 1 - Course overview and first steps
+* DONE Week 1 - Overview and Getting Started with Python in Colab
 
-- [X] *Opening prayer* 5'
-- [X] *Introductions*: Say a few words about yourself!
-- [X] *Discussion*: Way of the course (review entry survey) - Times?
-- [X] *Lecture:* [[file:0_overview.org][Course overview]] (see also syllabus) 75' + 15'
-- [X] *Practice*: Tooling (OneCompiler, Google Cloud Shell) 60'
-- [X] *Dark horse tip*: Emacs + Org-mode (optional but useful).
+- [X] Opening prayer
+- [X] About your instructor
+- [X] Syllabus walk-through
+- [X] Course infrastructure
+- [X] Assigned reading
+- [X] Class workflow
+- [X] Programming assignments
+- [X] DataCamp assignments and walk-through
+- [X] Getting started with Colab
+- [X] Next assignments
+- [X] Wrap-up
+- [X] Closing prayer
 
-** Summary of the tool session
+** About your instructor
 
-- You have to include ~<iostream>~ to print or get data.
-- In C++, data can be streamed anywhere (using ~std::cout~).
-- OneCompiler.com is useful because it offers multiple languages.
-- With Google Cloud Shell you can spin up a Linux VM fast.
-- You should always ask students to fix other students' mistakes.
+- Google me or ask AI.
 
-* DONE Week 2 - First assignment feedback & C++ tutorial
+- Ask me about anything you'd like to know.
 
-- [ ] *Opening prayer* 5'
-- [ ] *Housekeeping*
-- [ ] *Practice*: 10 simple C++ vs. Java vs. Python programs
-- [ ] *Asynchronous:* Watch remaining Java vs. C++ demos?
-- [ ] *Assignment*: Finish remaining practice problems?
-- [ ] *Bonus Assignment*: 10 more super simple C++ sample programs
-- [ ] *Quiz 2*: MPC questions based on lecture and practice content
-- [ ] *Session summary* (together)
-- [ ] *Closing prayer* 5'
+** Syllabus walk-through
 
-** Housekeeping
-
-I will always summarize the session and assignments on Saturday.
-
-I will attempt to give you feedback during the week. Try me!
-
-- [X] *Canvas:* Post-mortem message: Assignment/session summary
-- [X] *Books* on C and C++
-- [X] Further reading: *Linux* command-line, Literate programming
-- [X] How *AI* use affects coding skills (of professionals)
-- [X] The complete compiler chain - BPMN diagram (~gcc~ / ~g++~)
-- [X] *Video*: How to compile "Hello, world!" on a Linux terminal
-- [X] Reminder for quiz 1 (is an announcement/email better?)
-- [X] Manager position for AI bot team (job advert)
-- [X] "Occasional discomfort with being a product" (AI = machine)
-
-** Review: session 1
-
-I put these together after looking at the *compilation practice* script.
-
-1. What does ~OneCompiler.com~ not show?
-   #+begin_quote
-   The compilation of the program. It's an IDE that gives you the
-   illusion that C++ is an interpreted language (like Python).
-   #+end_quote
-
-2. What does the command =./a.out= mean precisely?
-   #+begin_quote
-   To the *shell* program, it means to look for =a.out= in the current (=.=)
-   directory if the current directory is not already in the ~$PATH~.
-   #+end_quote
-
-3. Can you remember one true Linux command and what it means?
-   #+begin_src bash :results output :exports both
-     ls              # `ls` lists files
-     cd ..           # `cd` changes directory (.. -> next up)
-   #+end_src
-
-   #+RESULTS:
-   #+begin_example
-   0_overview.org
-   0_practice.org
-   1_java2cpp.org
-   agenda25.org
-   agenda.html
-   agenda.org
-   architecture.org
-   args
-   args.cpp
-   compare
-   cpp_study_sheet.org
-   cpp_study_sheet.pdf
-   entry_pgm_solutions.org
-   input
-   java2cpp_class.org
-   Main.class
-   main.cpp
-   Main.java
-   syllabus.html
-   syllabus.org
-   tests.org
-   #+end_example
-
-4. Does every C++ program have to have ~main~? What is ~main~?
-   #+begin_quote
-   Yes. ~main~ is a function and the entry point to the program proper,
-   preceeded by the preprocessor directives (like ~#include~).
-   #+end_quote
-
-6. What does ~void~ mean and where does it occur?
-   #+begin_quote
-   ~void~ as in ~main(void)~ means that no arguments will be expected. As
-   a ~return~ value, ~void~ means "do not ~return~ any value."
-   #+end_quote
-
-** Bonus assignment "Program translator" (Q&A)
-
-You had to translate a Java (or a Python) program into C++. The
-program defined two variables and printed them using ~std::cout~.
-
-- Your question (paraphrased):
+- Where can you find the syllabus?
   #+begin_quote
-  What is the ~<<~ doing?
+  You find the syllabus in Teams > General (main channel)
   #+end_quote
 
-- *Answer:* We'll discuss this later in class: ~<<~ is the stream
-  insertion operator. It inserts data into the output stream (that
-  streams data to any device, e.g. a screen), represented by ~cout~, the
-  standard output (~stdout~) object.
-
-  So the chain printout command ~cout << "Hello" << 42 << endl;~
-  1. inserts the string "Hello" into ~cout~
-  2. inserts the integer 42 into ~cout~
-  3. inserts ~endl~ (= newline + flush) into ~cout~.
-
-  The idea of using a data stream makes data transfer (to the outside
-  world) more general but also conceptually more difficult than just a
-  C-style function like ~printf~, or a Java function like ~println~.
-
-- Your question (paraphrased):
+- What does your grade depend on?
   #+begin_quote
-  For the ~main~ program, I didn't use an argument like ~String[] args~. Why
-  don't I need that in C++? Or should I have included it?
+  Your grade depends on weekly online lessons, programming
+  assignments, multiple-choice quizzes, and monthly mini-projects.
   #+end_quote
 
-- *Answer:* You don't need it in C++, and you also don't need it in Java
-  unless you want to pass arguments on the command-line to the program.
-
-  The ~main~ function has an equivalent to the Java class argument
-  ~String[] args~. It is ~main(int argc, char* argv[])~, and has two
-  arguments that are actually easy to understand:
-  1. ~argc~ is the number of arguments fed to the program
-  2. ~argv[]~ is an array of strings that holds the arguments (an array
-     of pointers to the beginning of each argument string) beginning
-     with ~argv[0]~, which is the name of the program, and continuing
-     with as many arguments that are passed to ~main~.
-
-  *Background:* Java is tightly coupled to the JVM, the system that is
-  shipped with it and ensures its portability (but also its
-  slowness). C++ is closer to the operating system, which simply
-  starts your program and optionally provides arguments.
-
-- A *code example* use with command-line arguments looks like this:
-
-  First the source code:
-  #+begin_src C++ :tangle args.cpp :results none
-    #include <iostream>
-    #include <string>
-
-    int main(int argc, char* argv[]) {
-      // declare two strings
-      std::string firstName, lastName;
-
-      // print first command-line argument
-      std::cout << "First name: " << argv[1] << std::endl
-                << "Last name: "  << argv[2] << std::endl;
-    }
-  #+end_src
-
-  The source code file =args.cpp= (tangled from the code cell above) is
-  compiled, and then run on the command-line with two string
-  arguments:
-
-  #+begin_src bash :results output :exports both
-    ls -l args.cpp  # check if the file exists
-    g++ args.cpp  -o args # compile and output executable `args`
-    ./args Marcus Birkenkrahe
-  #+end_src
-
-  #+RESULTS:
-  : -rw-rw-r-- 1 aletheia aletheia 285 Feb  2 21:18 args.cpp
-  : First name: Marcus
-  : Last name: Birkenkrahe
-
-** 10 super simple sample C++ programming problems
-
-Topics to cover:
-1. Variable declarations
-2. Integer and floating-point arithmetic
-3. Formatting output (~cout~, ~printf~)
-4. Handling user input (~cin~)
-5. Variable type conversion (un/safe)
-6. Conditionals (~if~, ~else~, ~else if~, ~switch~)
-7. Loops (aka *iterators* - ~for~, ~while~, ~do-while~)
-8. Arrays (aka *containers* of collections)
-9. Functions (aka *transformations*)
-10. Libraries (~<iostream>~, ~<string>~, ~<iomanip>~)
-
-How we will cover them:
-- Demo from me (Java + C++)
-- You practice a simple example
-
-What you will get later:
-- Study sheet (PDF)
-- Video if we don't finish today (likely)
-- Bonus assignment: 10 more simple sample programs
-- Quiz to test your understanding
-- Assignment: submit ZIP file with all solutions
-
-** Notes
-
-- [ ] Send NotebookLM demo script
-- [ ] Send information on input/output streams
-- [ ] More information on why programming languages for what
-- [ ] Do a demo of pythontutor.com (online debugger)
-
-** Summary - one thing you learnt today
-
-- ~printf~ requires specific format codes to print certain types:
-  e.g. ~%i~ for ~int~, and ~%f~ for ~float~.
-
-- Programming languages are created for a specific purposes, e.g.
-  Python to do everything badly (but good enough mostly), or C++ to
-  work with computer memory.
-
-- C++ is a lot faster than all other languages (except C) - I'll send
-  an illustration for that.
-
-- The streaming operator ~<<~ or ~>>~ depends on what you want to do: ~cin
-  >>~ for input and ~cout <<~ for output (like a pipe).
-
-- All files are in github.com/birkenkrahe/cs101
-
-* DONE Week 3 - C-style and C++ Arrays Part 1
-
-- [X] Opening prayer -
-- [X] Review: quiz 1, quiz 2 - your input is needed!
-- [ ] Video lecture - yay or nay?
-- [ ] Using AI, time management for home assignments
-- [ ] Review: programming assignment - feedback?
-- [ ] Review: introductory lecture
-- [ ] Lecture + code along + practice: Arrays and vectors
-- [ ] Closing prayer -
-
-** Review: Quiz 1
-
-- Which activity most directly relies on *abstraction*?
-
-  Choices were:
-  1. Turning a computer on and off
-  2. Typing source code into an editor
-  3. Installing an operating system
-  4. Using a data structure without knowing its internal implementation
-
-
-In C++ a data structure with its operations and interface is called
-"Abstract Data Type" (ADT). Using a data structure without knowing
-its internal implementation directly relies on abstraction, because:
-1. You use the public interface.
-2. You do not depend on the implementation details.
-3. The representation is hidden.
-
-   All four activities involve abstraction but only 4 directly relies
-   on the abstraction boundary itself:
-
-   1. Turning a computer on/off: The power button abstracts voltage regulation, firmware
-      bootstrapping, hardware initialization, kernel loading. You do
-      not see what is happening electrically or at the BIOS/UEFI level.
-   2. Typing code in an editor: The editor abstracts memory buffers,
-      file systems, rendering engines, input handling, OS calls.
-   3. Installing an operating system: This is extremely abstracted. You
-      do not see partition tables, boot sectors, driver negotiation,
-      kernel configuration, etc.
-
-- Which command compiles a C++ source file?
-  1. execute
-  2. g++
-  3. gcc-run
-  4. make
-
-  Of these, only ~g++~ and ~make~ are commands. ~g++~ is the compiler. ~make~
-  is a special program that requires a configuration file called
-  ~Makefile~, and it can, but does not have to compile a file.
-
-- Example:
-  #+begin_src bash :results output :exports both
-    echo -e '#include<iostream>\nint main(){std::cout<<"hello world"<<"\\n";return 0;}' > hello.cpp
-    cat hello.cpp  # view the program
-    g++ hello.cpp -o hello # compile & name output
-    ls hello* # check for files starting with `hello`
-    ./hello   # run it in the current (.) directory
-  #+end_src
-
-  #+RESULTS:
-  : #include<iostream>
-  : int main(){std::cout<<"hello world"<<"\n";return 0;}
-  : hello
-  : hello.cpp
-  : hello world
-
-** Review: Quiz 2
-
-What is the value of =result=?
-#+begin_src cpp
-  double x = 3.5, y = 2.0, result = 0.0;
-  result = x * y;
-#+end_src
-- [X] 7.0
-- [ ] 7
-- [ ] 5.5
-- [ ] 0
-
-  #+begin_src C++ :main yes :includes <iostream> <iomanip> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-    double x = 3.5, y = 2.0, result = 0.0;
-    result = x * y;
-    std::cout << result << std::endl; // truncates by default to minimum
-    // number of non-zero decimals
-    std::cout << std::fixed << std::setprecision(1); // set precision explicitly
-    std::cout << result;
-  #+end_src
-
-  #+RESULTS:
-  : 7
-  : 7.0
-
-** Using AI, and time management for home assignments
-
-1) *Using AI:* Using AI for aid is perfectly fine. If you still have
-   access to the conversation: you could ask the AI (in the same
-   session) to give you a summary of the difficulties you
-   encountered. If you bring these to class, it will give me something
-   to work with - I'll know more about what you specifically need.
-
-2) *Time management for home assignments:* As for the time - I promised
-   you could cut off at 2 hours (without the AI though)., and I stand
-   by it. Anything that you didn't get done in that time is on me! I
-   don't grade for mastery but for engagement & time put into solving
-   a problem is a direct proof of engagement.
-
-3) *AI and time management*: It is not guaranteed that using AI will
-   save you time. In my experience, especially for new topics, it is
-   the opposite, because you cannot correct the AI or see where it
-   suggests the wrong route or just lies through its iron teeth. It is
-   almost almost better for your time management if you spend some
-   time *doing the work yourself* before turning to AI. Also:
-   dependencies on newer models, and lack of personalization will cost
-   you time.
-
-** Review: Programming assignment
-
-- Let's revisit the solution & you tell me about your issues.
-
-- *Problem:* Prompt user to enter their name and two integer numbers,
-  print name, input numbers, their sum, difference, and product.
-
-- *Sample output (exactly):*
-  #+begin_example
-  Enter your name and two integers:
-  Hello Alice
-  a = 7, b = 3
-  sum = 10
-  diff = 4
-  prod = 21
-  #+end_example
-
-- *Solution:*
-  #+begin_src C++ :tangle assignment1.cpp :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-    // 1) declare variables: name, a, b, sum, diff, prod
-    string name;
-    int a=0,b=0,sum=0,diff=0,prod=0; // always initialize vars
-    // 2) print the prompt
-    cout << "Enter your name and two integers:" << endl;
-    // 3) read name, a, b
-    cin >> name >> a >> b; // using input stream object/operator cin >>
-    // 4) compute sum, diff, prod
-    sum = a + b;
-    diff = a - b;
-    prod = a * b;
-    // 5) print the formatted report
-    cout << "Hello " << name << "\n";
-    cout << "a = " << a << ", b = " << b << "\n";
-    cout << "sum = "  << sum  << endl
-    << "diff = " << diff << endl
-    << "prod = " << prod << endl;
-  #+end_src
-
-- Test the file =assignment1.cpp= on the command-line:
-  #+begin_src bash :results output :exports both
-    ls  ass*.cpp  # listing with wildcard *
-    g++ ass*.cpp -o example # compiling and naming output
-    ls -l example # check if the output file was produced
-    echo "Alice 7 3" | ./example # run executable with pipeline
-  #+end_src
-
-  #+RESULTS:
-  : assignment1.cpp
-  : -rwxrwxr-x 1 aletheia aletheia 17440 Feb 13 19:35 example
-  : Enter your name and two integers:
-  : Hello Alice
-  : a = 7, b = 3
-  : sum = 10
-  : diff = 4
-  : prod = 21
-
-- Check out https://open.kattis.com (competitive site)
-
-** Review: Introductory lecture
-
-- What did you think of the recording (or the lecture)?
-
-- What do you remember (from the recording/lecture)?
-  1) Differences in data structures in different languages
-
-- My summary (via ChatGPT who analysed the transcript):
-  1. Learn concepts top-down, bottom-up, or by analogy.
-  2. Data structures organize and manage data.
-  3. They enable storage, access, modification, and search.
-  4. Data structures are everywhere in computing.
-  5. Same structure, different names across disciplines.
-  6. Arrays: fixed size collections, fixed compile-time.
-  7. Vectors: dynamically sized containers, fixed at runtime.
-  8. Data structure = noun; algorithm = verb.
-  9. Scale changes what solutions are acceptable.
-  10. Language choice affects available abstractions.
-  11. Choose structure after understanding the problem.
-  12. Design is planned and iterative, not random tinkering.
-  13. Wrong structure can make problem unsolvable.
-  14. Priority queues handle urgency better than FIFO/LIFO.
-15. Programming starts with modeling, not syntax (pseudocode).
-
-** Arrays and vectors
-
-What did you learn (or remember) today?
-1) ~auto~
-2) partial initialization with a list ~{...}~
-3) putting ~string~ values into an array
-
-* DONE Week 4 - C-style and C++ Arrays Part 2
-
-- [X] Feedback on the recording? [or lecture script]
-- [X] Feedback on quizzes? [one attempt only]
-- [X] Feedback on assignments?
-- [X] Feedback on the teaching speed?
-- [X] Feedback on your learning progress?
-
-- [ ] Reference variables
-- [ ] Reading input from files with ~fstream~
-- [ ] Converting index-based ~for~ loops to range-based ~for~ loops
-- [ ] Processing array contents
-- [ ] Assigning arrays
-- [ ] Summing array elements
-- [ ] Arrays as function arguments
-
-** Review: C-Style arrays
-
-- We begin each session with a (mostly) short review of recent material.
-- You should know at least some if not all answers given.
-- If you don't, you should at least understand the answer.
-- Being able to read code is an important, trainable skill.
-
------
-
-1) What do we want to know about a data structure?
-   #+begin_quote
-   1. What is its purpose?
-   2. How are the data stored?
-   3. How do you define it?
-   4. How do you access it?
-   5. How do you copy it?
-   6. How do you extend it?
-   7. How do you delete it?
-   8. What else is worth knowing about it?
-   #+end_quote
-
-2) Can you answer these questions for C-style arrays?
-
-   1. What is the purpose of an array?
-      #+begin_quote
-      An array stores values of only *one* data type (e.g. ~double~).
-      #+end_quote
-
-   2. How are data in an array stored (in memory)?
-      #+begin_quote
-      An array stores its elements *contiguously* in memory, i.e. one
-      memory cell directly on the next until the end is reached.
-      #+end_quote
-
-   3. How do you declare and define an array?
-      #+begin_src C++ :main yes :includes :results none :exports both :noweb yes
-        // data type + name + size = value list
-        int array[5] {10, 20, 30, 40, 50};
-      #+end_src
-
-   4. How do you access an array?
-      #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-        int numbers[6] {0};
-        // loop over array indices
-        for (int i = 0; i < 6; i++)
-          cout << numbers[i] << " ";
-        puts("");
-        // loop over the range of values
-        for (auto num : numbers)
-          cout << num << " ";
-      #+end_src
-
-      #+RESULTS:
-      : 0 0 0 0 0 0
-      : 0 0 0 0 0 0
-
-      If I leave out =numbers[6]= and write =numbers[]= instead (which is
-      okay as long as I initialize it, will this affect performance?
-      #+begin_quote
-      The compiler substitutes the =6= and the executable (at run-time)
-      will be exactly the same.
-      #+end_quote
-
-      The preprocessor is another part of the compiler chain.
-      #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-        #define PI 3.14  // preprocessor
-
-        cout << PI;  // statement
-      #+end_src
-
-      #+RESULTS:
-      : 3.14
-
-      Test this yourself, take a =hello.cpp= and compile it with
-      =g++ hello.cpp -i= and then look at the result.
-
-      Only two ways to improve program performance:
-      1. algorithm (logical changes)
-      2. memory (not possible by design in Java/Python)
-
-   5. How do you copy an array?
-      #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-        int numbers1[] {100,200,300}; // declare & define a 3-element array
-        int numbers2[3]; // must specify size - declare another 3-element array
-        //numbers2 = numbers1; // not allowed
-        for (int i=0; i<3; i++)   // index-based for loop
-          numbers2[i]=numbers1[i]; // element-wise copy
-        for (auto num : numbers2) // range-based for loop
-          cout << num << " ";      // print values
-      #+end_src
-
-      #+RESULTS:
-      : 100 200 300
-
-   6. How do you extend an array?
-      #+begin_quote
-      You cannot extend an array at *run-time*, when the compiled
-      program is executed, only at *compile-time* (in the source
-      code). Alternative: use ~std::vector~.
-      #+end_quote
-
-      What happened in Y2K - did it have to do with arrays?
-
-   7. How do you delete an array?
-      #+begin_quote
-      An array is deleted automatically when it goes out of *scope*.
-      #+end_quote
-
-      #+begin_src C++ :main no :includes <iostream>  :namespaces std :results output :exports both
-        #include <iostream>
-        int main() {
-          { // scope begins
-            int num[3]={10,20,30}; // exists in memory now
-            cout << num[0] << " " << num[1] << " " << num[2];
-          } // scope ends
-          cout << num[0] << " " << num[1] << " " << num[2]; // error: num is
-                                                            // no longer defined
-          return 0;
-        }
-      #+end_src
-
-   8. Where are arrays defined in C++?
-      #+begin_quote
-      C-style arrays are *built-in data structures*, no library is
-      required. However, there is a special ~std::array~ container
-      class, too, in the Standard Template Library (STL), which knows
-      its ~size~, and can be copied as a whole.
-      #+end_quote
-
-   9. What else is worth knowing about arrays?
-
-      - Out of bounds errors:
-      #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-        int array[6] {10, 20, 30, 40, 50, 60};
-        // loop over array indices
-        for (int i = 0; i < 6; i--)
-          cout << array[i] << " ";
-        // cout << array[6]; // segmentation fault
-      #+end_src
-
-3) On which different levels does C++ work with arrays?
-
-   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-     std::string names[] {"James","Tori","Sam","Aliana", "Marcus"}; // defining a string array
-
-     // Print strings using index [] operator
-     for (int i=0;i<5;i++) cout << names[i] << " "; puts(""); // index level
-
-     // Print string addresses using pointers to memory locations
-     for (int i=0;i<5;i++) cout << names << " "; puts(""); // address (memory) level
-
-     // Print array values using a range-based loop
-     for (std::string name : names) cout << name << " "; // value (element) level
-   #+end_src
-
-   #+RESULTS:
-   : James Tori Sam Aliana Marcus
-   : 0x7ffeb6f2f9b0 0x7ffeb6f2f9b0 0x7ffeb6f2f9b0 0x7ffeb6f2f9b0 0x7ffeb6f2f9b0
-   : James Tori Sam Aliana Marcus
-
-4) What is GNU ~make~?
-
-   #+begin_quote
-   A smart program that builds executables.
-
-   Example: if you have a source code file =hello.cpp=, running =make
-   hello= on the command-line will build the executable =hello=.
-   #+end_quote
-
-   Demo: on the Linux command-line
-   #+begin_src bash :results output :exports both
-     touch hello.cpp
-     ls -l hello.cpp
-     make hello
-     ./hello
-   #+end_src
-
-   #+RESULTS:
-   : -rw-rw-r-- 1 aletheia aletheia 72 Feb 20 19:59 hello.cpp
-   : g++     hello.cpp   -o hello
-   : hello world
-
-** Assignment solution: Store and display product prices in an array
-
-I created a [[https://colab.research.google.com/drive/1_nYn2yO19m-gllVe1kOUl9P-zfxrbPME?usp=sharing][notebook]] for this assignment ([[https://youtu.be/7hqpj9092nI][YouTube]]).
-
-- *Problem:* Change the program we completed in class to store and
-  display product prices, so that it:
-
-  1) Lets a user enter 5 product prices instead of hardcoding them in
-     the program.
-
-  2) Validates that each input is a positive number (greater than
-     zero). If the test fails, print a warning message and abort
-     gracefully using =std::exit(EXIT_FAILURE)= from ~<cstlib>~.
-
-- *Starter program completed in class:*
-  #+begin_src C++ :main no :includes :namespaces std :results output :exports both
-    // Store product prices in an array
-    // Input: None
-    // Author: Marcus Birkenkrahe
-
-    #include <iostream>
-    #include <iomanip>
-    using namespace std;
-
-    int main()
-    {
-      // Set SIZE of array
-      const int SIZE = 5;
-      // Define array `prices` and assign product prices
-      double prices[SIZE] {10.0,100.0,45.99,30.00,200.00};
-      // Set precision
-      cout << fixed << setprecision(2);
-      // Print prices on one line
-      for (int i=0; i<SIZE; i++)
-        cout << prices[i] << " ";
-      return 0;
-    }
-  #+end_src
-
-- *Solution:*
-  #+begin_src C++ :tangle prices.cpp :main no :includes :namespaces std :results output :exports both
-    // Store product prices in an array with input validation
-    // Input: 5 product prices (double)
-    // Output: print prices with precision 2 on one line if input OK
-    //         abort gracefully if input not OK.
-    // Author: Marcus Birkenkrahe
-
-    #include <iostream>
-    #include <iomanip>
-    #include <cstdlib>
-    using namespace std;
-
-    int main()
-    {
-      // Set SIZE of array
-      const int SIZE = 5;
-      // Declare array `prices`.
-      double prices[SIZE];
-      // Ask user for input
-      cout << "Enter " << SIZE << " product prices:\n";
-      // Input the array elements
-      cin >> prices[0] >> prices[1] >> prices[2] >> prices[3] >> prices[4];
-      // Loop over array to validate elements are positive
-      for (int i=0; i<SIZE; i++) {
-        if (prices[i] <= 0) {
-          cout << "ERROR: Product price must be positive. Abort.\n";
-          std::exit(EXIT_FAILURE);
-        }
-      }
-      // Set precision for output
-      cout << fixed << setprecision(2);
-      // Print prices on one line
-      for (int i=0; i<SIZE; i++)
-        cout << prices[i] << " ";
-      puts("");
-      return 0;
-    }
-  #+end_src
-
-  #+RESULTS:
-  : Enter 5 product prices:
-
-- Test the program =prices.cpp= on the command-line:
-  #+begin_src bash :results output :exports both
-    ls -l prices.cpp
-    make prices
-    echo "10.00 100.00 45.99 30.00 200.00 " | ./prices
-    echo "10.00 100.00 45.99 30.00 0 " | ./prices
-    echo "10.00 100.00 -45.99 30.00 0 " | ./prices
-  #+end_src
-
-  #+RESULTS:
-  : -rw-rw-r-- 1 aletheia aletheia 1028 Feb 14 18:07 prices.cpp
-  : make: 'prices' is up to date.
-  : Enter 5 product prices:
-  : 10.00 100.00 45.99 30.00 200.00
-  : Enter 5 product prices:
-  : ERROR: Product price must be positive. Abort.
-  : Enter 5 product prices:
-  : ERROR: Product price must be positive. Abort.
-
-- The best way to learn fast new ways is to learn to navigate
-  [[https://cppreference.com][cppreference.com]].
-
-* DONE Week 5 - Arrays as function arguments and vectors
-
-- [X] *Time check*: We are 1/3 through the term! Hoorah!
-- [X] *This week*: Delayed grading & assignments (I'm traveling).
-- [X] *Assignments deadlines*: Now Friday at midnight.
-- [X] *Review:* What affects program performance?
-- [ ] *Review:* Arrays part 2 - references and operators.
-- [ ] *Lecture:* Arrays as function arguments, and vectors.
-
-** DONE What affects program performance
-
-I said summarily that only algorithmic changes and memory manipulation
-affect program performance. This was perhaps a little too short. The
-whole story is a tad longer:
-
-The hierarchy of run-time performance impact roughly looks like this:
-1. *Algorithmic time complexity* (how long it takes to solve a problem
-   step-by-step)
-2. *Choice of data structure* (what container you pick for your numbers
-   for example)
-3. *Memory access patterns* (which locations are accessed, in what
-   sequence, how often, and in which spatial proximity)
-4. *Avoiding unnecessary copies* (especially important for functions)
-5. *Compiler optimization friendliness* (for example program order,
-   defining prototypes before the definition etc.)
-
-*What is correct:* You cannot optimize performance by rearranging
-punctuation, and compile-time syntax differences (like =num[]= instead
-of =num[6]=) alone do not improve run-time.
-
-You'll have a better understanding of this once we've covered time
-*complexity*, *pointers*, and other *container* types.
-
-A good book on this efficiency stuff in C++ is the open content
-textbook by Pat Morin, "[[https://opendatastructures.org/][Open Data Structures]]". The gold standard is
-the fat tome of a book by Bryant/O'Halloran, which I also use in my
-computer architectures class, "[[https://www.csapp.cs.cmu.edu/][CS:APP]]" (Computer systems: A
-Programmer's Perspective). A classic is Brooks' "[[https://archive.org/details/MythicalManMonth/][The Mythical
-Man-Month]]" (Software Engineering and it stresses).
-
-Donald Knuth, the inventor of "[[http://literateprogramming.com/][Literate Programming]]", said: "Premature
-optimization is the root of all evil." At this point in your journey,
-you should worry more about syntax and readability than performance.
-
-** DONE Review: Arrays part 2
-
-1. What is a *reference* in C++?
-   #+begin_quote
-   A reference is an *alias* for an existing variable. Any operation on
-   the reference affects the original variable.
-   #+end_quote
-
-2. What symbol is used to declare a reference variable?
-   #+begin_quote
-   The ampersand symbol: ~&~, or the address-of operator. So you say
-   =&foo= is "address-of foo", short for "memory address of foo".
-   #+end_quote
-
-3. Why must a reference be initialized when declared?
-   #+begin_quote
-   Because a reference must immediately refer to an existing variable
-   and cannot remain unbound. *It's not a variable*, only looks like it.
-   #+end_quote
-
-   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results none :exports both :noweb yes
-     int x=10;
-     int &ref;
-   #+end_src
-
-4. Can a reference be changed to refer to another variable?
-   #+begin_quote
-   No. After initialization, a reference cannot be reseated to
-   refer to a different variable.
-   #+end_quote
-
-   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results none :exports both :noweb yes
-     int x, y;
-     int &ref = x;
-     int &ref = y;
-   #+end_src
-
-5. Does a reference require additional storage?
-   #+begin_quote
-   No. A reference does not require extra storage. At run-time, it is
-   optimized away entirely by the compiler.
-   #+end_quote
-
-6. Is the ampersand ~&~ symbol overloaded?
-   #+begin_quote
-   Yes. It is also used as a *logical/bitwise* operator, and to
-   declaring references and *address-of* operations.
-   #+end_quote
-
-   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-     cout << boolalpha << ("red"=="blue" && 1 == 0);
-   #+end_src
-
-7. In a range-based for loop, what does the loop variable receive by
-   default?
-   #+begin_quote
-   A copy of each array element. If it changes, the original array
-   is not changed.
-   #+end_quote
-
-8. Why must the loop variable be declared with ~&~ to modify elements?
-   #+begin_quote
-   Because only a reference allows direct modification of the original
-   array elements (via the address-of the array elements).
-   #+end_quote
-
-9. What is the effect of =++score[2]=?
-   #+begin_quote
-   It increments score[2] before printing or using its value. The
-   increment is seen before the subscript operator is applied.
-   #+end_quote
-
-10. What is the effect of =score[4]++=?
-    #+begin_quote
-    It prints or uses the original value, then increments it. The
-    subscript operator is seen before the increment is applied.
-    #+end_quote
-
-11. What does =value[count--];= do?
-    #+begin_quote
-    It accesses =value[count]=, then decreases count by one. So for
-    =value[1]=, this becomes =value[0]=.
-    #+end_quote
-
-12. What does =value[count]--;= do?
-    #+begin_quote
-    It decreases the value stored at index count by one. So if
-    =value[1]= is =1=, then =value[1]= becomes =0=.
-    #+end_quote
-
-13. What does an *array name* represent in an expression?
-    #+begin_quote
-    It represents the *starting memory address* of the array.
-    #+end_quote
-
-14. Why does =array2 = array2;= not work to copy one array into
-    another?
-    #+begin_quote
-    Because C-style arrays cannot be assigned directly; their starting
-    memory address cannot be changed - the compiler sees this:
-    =&array2[0]= = =&array1[0]=. That's like saying that the address for
-    two physically different houses is identical.
-    #+end_quote
-
-15. What does =cout << num;= print for an =int= array?
-    #+begin_quote
-    It prints the starting memory address of the array.
-    #+end_quote
-
-    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-      int num[2] {100,200};
-      cout << num << endl;
-      cout << &num[0];
-    #+end_src
-
-16. Why is =&num[1]= four bytes ahead of =&num[0]=?
-    #+begin_quote
-    Because an =int= typically occupies 4 bytes in memory. "Typically",
-    because the exact size depends on the computer architecture.
-    #+end_quote
-
-17. What is wrong with this program?
-
-    #+begin_src C++
-      int x = 10;
-      int &ref;
-      ref = x;
-    #+end_src
-
-    #+begin_quote
-    The reference is not initialized when declared. A reference
-    must immediately bind to an existing variable.
-    #+end_quote
-
-18. What is wrong with this program?
-
-    #+begin_src C++
-      int a = 5;
-      int b = 10;
-      int &ref = a;
-      ref = b;
-    #+end_src
-
-    #+begin_quote
-    The reference does not reseat to b. Instead, the assignment
-    stores the value of b into a, because ref is an alias for a.
-    #+end_quote
-
-19. What is wrong with this program?
-
-    #+begin_src C++
-      int arr[3] = {1,2,3};
-      for (int x : arr) {
-        x = x * 2;
-       }
-    #+end_src
-
-    #+begin_quote
-    The loop variable x is a copy of each element. The original
-    array elements are not modified because no reference is used.
-    #+end_quote
-
-20. What is wrong with this program?
-
-    #+begin_src C++
-      int a[3] = {1,2,3};
-      int b[3];
-      b = a;
-    #+end_src
-
-    #+begin_quote
-    C-style arrays cannot be assigned directly. The array name
-    represents a fixed starting address that cannot be changed.
-    Elements must be copied individually.
-    #+end_quote
-
-** +Lecture and codealong in Colab+ (next week perhaps)
-
-Today, we're going to experiment with literate programming: Instead of
-using OneCompiler.com, we're going to use Colab and you code along and
-solve problems in a Jupyter notebook instead of in an IDE.
-
-** Notes: Memory management in the computer
-
-Following on from James' question: How exactly does the computer
-manage the memory when arrays are defined?
-
-[This is stuff you'll learn in detail in the courses on operating
-systems [year 4] and computer architecture [year 2] both of which I'll
-probably be teaching.]
-
-1. The most important fact: To the normal user, the computer maintains
-   the illusion that memory (as in RAM, not hard disk persistent
-   memory) is *infinite*.
-
-2. In fact, behind the lines, the *kernel* of the operating system
-   manages the memory allocation so that programs (or applications)
-   that currently are not doing anything, must return their memory
-   allocations until they've got work again.
-
-3. Independent of this memory management for multiple applications,
-   for every individual program, memory can only be allocated once:
-   when you define an array =a=, it begins at an address =&a[0]=, and
-   every other array =b= defined afterwards, is at a different address,
-   =&b[0]=.
-
-4. This is why arrays cannot be copied over just by name (=b==a=). The
-   way you see this in the documentation (e.g. =cppreference.com=) is:
-   "The name =a= is not a modifiable lvalue", or "arrays decay to
-   pointers."
-
-5. Preview: a ~vector~ can be copied because it is a ~class~ and has a
-   "copy constructor", and a "copy assignment operator" - functions
-   that basically do the element-by-element copying without you seeing
-   it in a very efficient way (it is "cache-friendly", reallocates
-   infrequently, and exploits bulk memory operations - "all-in-one").
-
-[Copied to the Teams-General channel]
-
-** Lessons learnt / Take-aways
-
-- MB: I need to start with simpler examples. And pay even more
-  attention to memory management questions.
-
-- How to use function to pass and loop over (C-style) arrays
-
-- How to write functions efficiently in C++ (declaring/defining/using)
-
-- I learnt the functions of functions & how to use it with containers
-
-* DONE Week 6 - Vectors (first encounter)
-
-- [X] Can you confirm: End of term = May 8. Summer term = May 18?
-- [X] Review: Functions and arrays ("What's wrong with this code?")
-- [X] Next assignment: Inventory management with vectors
-- [X] C++ vectors: ~size()~, ~push_back~, ~pop_back()~, ~clear()~, ~empty()~
-- [X] Next lecture: Time and space complexity (Big-O) [online lecture]
-- [X] Next lecture + practice: Pointers (memory manipulation)
-
-** From the Teams General Channel
-
-*** Memory management in the computer
-Following on from James' question: How exactly does the computer
-manage the memory when arrays are defined?
-
-[This is stuff you'll learn in detail in the courses on operating
-systems and computer architecture.]
-
-1. The most important fact: To the normal user, the computer maintains
-   the illusion that memory (as in RAM, not hard disk persistent
-   memory) is *infinite*.
-2. In fact, behind the lines, the *kernel* of the operating system
-   manages the memory allocation so that programs (or applications)
-   that currently are not doing anything, must return their memory
-   allocations until they've got work again.
-3. Independent of this memory management for multiple applications,
-   for every individual program, memory can only be allocated once:
-   when you define an array =a=, it begins at an address =&a[0]=, and
-   every other array =b= defined afterwards, is at =a= different address,
-   =&b[0]=.
-4. This is why arrays cannot be copied over just by name (=b==a=). The
-   way you see this in the documentation (e.g. [[https://cppreference.com][cppreference.com]]) is:
-   "The name a is not a modifiable lvalue", or "arrays decay to
-   pointers."
-5. Preview: a ~vector~ can be copied because it is a ~class~ and has a
-   "copy constructor", and a "copy assignment operator" - functions
-   that basically do the element-by-element copying without you seeing
-   it in a very efficient way (it is "cache-friendly", reallocates
-   infrequently, and exploits bulk memory operations - "all-in-one").
-
-*** Coding in class
-
-What if you're struggling to code in class on command as it were? Not
-worry for several reasons:
-- There are three important skills related to programming: being able
-  to *read* and understand programs, being able to *fix* programs, and
-  being able to *write* programs.
-- Of these, being able to write programs may be the least important,
-  especially in an AI-infested (or -blessed?) future when *AI tools*
-  will write most of the code.
-- To learn to read and fix programs, you need to *practice* a lot of
-  reading and fixing but you don't need to be able to program
-  competitively (I am not very good at it myself).
-- The assignments, for which you should take all the time you need,
-  look stuff up, wrestle with etc. are the best way to train what you
-  need to learn right now. Everything else is icing on the cake.
-- So when I ask "are you done?", "do you need more time?" etc. don't
-  worry if you cannot get the finished code to run. Instead, focus on
-  understanding and on where your difficulties may lie, and ask.
-- Apart from that, if you want to drill *competitive* programming, go to
-  [[https://open.kattis.com][open.kattis.com]] and begin to solve easy problems. I even offered a
-  course like that last term, and it was actually fun.
-- For further reading and training, take a look at the competitive
-  programmers handbook - [[https://cses.fi/book/book.pdf][free PDF here]].
-
-*** Visualizing program progress
-
-In the last session, we looked at [[https://pythontutor.com][pythontutor.com]] to visualize walking
-through a program. The dashboard showed the variables appearing on the
-"stack" (when we work with dynamic structures like the vector, they
-will appear on the "heap"), how the program moves into the function
-scope and out of it again, creating and deleting memory as it
-proceeds.
-
-Pythontutor is excellent for small programs to identify logical
-errors - problems with your algorithm. For large programs, and for a
-lot more information, you need a professional debugging tool like
-~gdb~. While I would run it on the command-line (e.g. in Google Cloud
-Shell or Google Colab), there is an online version of gdb,
-[[https://onlinegdb.com][onlinegdb.com]] (with a [[https://www.onlinegdb.com/blog/brief-guide-on-how-to-use-onlinegdb-debugger/][tutorial]]). In the course, we'll use gdb soon to
-give you an idea on how to do it.
-
-** Review: Functions and arrays - What's wrong with this code?
-
-1. What's wrong with this code?
-   #+begin_src cpp :main no :includes :results none
-     #include <iostream>
-     int add(int a, int b)
-     {
-       std::cout << a + b << std::endl;
-     }
-     int main() {return 0;}
-   #+end_src
-
-   #+begin_quote
-   The function is declared to return =int=, but it does not return a
-   value.  A return statement such as =return a + b;= is required.
-   #+end_quote
-
-2. What's wrong with this code?
-   #+begin_src cpp :main no :includes :results none
-     #include <iostream>
-     int main()
-     {
-       std::cout << add(5,12);
-       return 0;
-     }
-   #+end_src
-
-   #+begin_quote
-   The function =add= is used before it is declared or defined. A
-   function prototype like =int add(int, int);= must appear before =main=.
-   #+end_quote
-
-3. What's wrong with this code?
-   #+begin_src cpp :main no :includes :results none
-     void showValues(int num[])
-     {
-       for (int i = 0; i < num; i++)
-         cout << num[i] << endl;
-     }
-   #+end_src
-
-   #+begin_quote
-   =num= is a pointer to the first element of the array, not the array
-   size. The function must receive the size as a separate parameter.
-   #+end_quote
-
-4. What's wrong with this code?
-   #+begin_src cpp :main no :includes :results none
-     #include <iostream>
-
-     void showValues(int num[])
-     {
-       for (int val : num)
-         std::cout << val << std::endl;
-     }
-
-     int main() {return 0;}
-   #+end_src
-
-   #+begin_quote
-   The parameter =num= is treated as a pointer, not a full array. A
-   range-based loop cannot determine the beginning and end of the
-   range.
-   #+end_quote
-
-5. What's wrong with this code?
-   #+begin_src cpp :main no :includes :results output
-     #include <iostream>
-
-     void showValues(const int num[], int size)
-     {
-       for (int i = 1; i <= size; i++)
-         std::cout << num[i] << std::endl;
-     }
-
-     int main()
-     {
-       const int SIZE=4;
-       int arr[SIZE] {100,200,300,400};
-       showValues(arr,SIZE);
-       return 0;
-     }
-   #+end_src
-
-   #+begin_quote
-   Array indexing starts at 0.  The loop accesses =num[size]=, which is
-   outside the array bounds.  The correct range is =i = 0= to =i < SIZE=.
-   #+end_quote
-
-* DONE Week 7 - Time Complexity (Big-O)
-
-- [X] Review: ~at~, ~resize~, ~swap~, ~clear~, ~empty~, ~pop_back~, ~push_back~
-- [X] Chat: Python vs. Java vs. C++
-- [X] Time and Space Complexity
-- [X] Summer trimester schedule (graduate)
-- [ ] Starting with pointers
-
-** Chat: Python vs. Java vs. C++
-
-Believe it or not - I am finally learning Java properly - because in
-my new job, I was told, all intro courses use Java. I'm using the book
-"Algorithms" by Wayne and Sedgewick ([[https://algs4.cs.princeton.edu][see here]]), which is of
-intermediate difficulty. I was interested in listing the differences
-between Python, C++ and Java, and especially AI's recommendation for
-the beginner courses, and it confirmed my choice (C++) for the
-intermediate course (CS 101). For algorithms, AI recommended to switch
-to Python (there is a nice book on this: [[https://nostarch.com/Dive-Into-Algorithms][Dive into algorithms]], by
-Tuckfield, NoStarch 2021).
-
-I am inclined to follow the AI recommendation for courses I+II but to
-revert to Java for III because the argument of the Princeton book
-(from 2011) convinces me: Java provides a balance between *abstraction*
-(Python) and *control* (C++) that fits algorithm instruction.
-
-Here is the breakdown for what it's worth:
-
-1. First programming course (Introduction to programming)
-
-   | Language | Pros (First Programming Course)      | Cons                       |
-   |----------+--------------------------------------+----------------------------|
-   | Python   | Very simple syntax; quick results;   | Hides types and memory;    |
-   |          | minimal boilerplate; large ecosystem | transition to systems hard |
-   |----------+--------------------------------------+----------------------------|
-   | Java     | Strong typing; structured programs;  | Verbose syntax; slower     |
-   |          | clear OOP model; widely documented   | feedback for beginners     |
-   |----------+--------------------------------------+----------------------------|
-   | C++      | Close to hardware; good foundation   | Complex syntax; pointers;  |
-   |          | for systems programming              | steep learning curve       |
-
-   *ChatGPT recommends: Python.*
-
-2. Data structures (Intermediate programming)
-
-   | Language | Pros                               | Cons                       |
-   |----------+------------------------------------+----------------------------|
-   | Python   | Simple syntax; fast coding; widely | Built-ins hide structures; |
-   |          | known; good for prototyping ideas  | dynamic typing; slower     |
-   |----------+------------------------------------+----------------------------|
-   | Java     | Strong typing; clean OOP; stable   | Verbose; limited control   |
-   |          | APIs; memory mgmt simpler than C++ | over memory; less used now |
-   |----------+------------------------------------+----------------------------|
-   | C++      | High performance; templates; STL;  | Complex language; harder   |
-   |          | explicit memory model; close to hw | for beginners; more bugs   |
-
-   *ChatGPT recommends: C++*
-
-3. Algorithms course
-
-   | Language | Pros (Algorithms Course)            | Cons                       |
-   |----------+-------------------------------------+----------------------------|
-   | Python   | Rapid experimentation; concise code | Built-ins hide structures; |
-   |          | easy visualization and notebooks    | slower for large inputs    |
-   |----------+-------------------------------------+----------------------------|
-   | Java     | Strong typing; good ADT design;     | Verbose; less control over |
-   |          | stable libraries; predictable perf. | memory/layout              |
-   |----------+-------------------------------------+----------------------------|
-   | C++      | High performance; templates; STL;   | Complex language features; |
-   |          | explicit memory model               | harder for weaker students |
-
-   *ChatGPT recommends: Python*
-
-** C++ AI tutor
-
-I created an AI tutor for our course. [[https://chatgpt.com/g/g-69b1567d28bc8191b261ebca7aa0ef38-c-pdf-quiz-tutor][Check it out here]] and let me
-know what you think. It'll quiz you based on all the content we've
-covered so far.
-
-** Summer 2026 trimester schedule
-
-*Graduate classes:*
-- CS530: Computer Architecture (Sonnier)
-- CS550: Operating Systems (Birkenkrahe)
-- CS67x – History of Technology (Whiskeyman)
-
-*Undergraduate classes:*
-- CS100: Introduction to Programming I (Marcus)
-- MATH201: Discrete Mathematics (Sonnier)
-- PHIL200: Philosophy & Logic (Weitzel)
-
-* DONE Week 8 - Pointers
-
-- [X] Quiz: Time complexity & vector methods
-- [X] Assignment: Vectors and functions (need access)
-- [X] Assignment [[https://youtu.be/jgqaOubk0nA?si=2dv6GUoxAOK19Ek_][solution on YouTube]]: Inventory management w/vectors
-- [X] Big-O notation videos
-- [X] Hunt for more digits of \pi
-- [X] My summer course: Principles of AI
-- [X] Memory manipulation with pointers
-
-** Big-O notation videos
-
-You asked for an "approved" videon on Big-O notation. [[https://youtu.be/g2o22C3CRfU?si=BjptgLjTE235iMRF][This one by
-fireship]] covers the topic in 100 seconds - that's more than I could
-ever do but I covered similar content. At the opposite end of the
-spectrum is [[https://youtu.be/Mo4vesaut8g?si=-decUX_HwcxQ1etx][this full course (120 min) on Big-O]] by FreeCodeCamp. It
-covers Big-O for multiple algorithms using JavaScript - it's easy to
-understand, looks like Python (but is even simpler to
-learn). JavaScript got nothing to do with Java, btw. Here is a [[https://youtu.be/BgLTDT03QtU?si=91uIGyF_SiLHzi1n][video
-of medium length (20 min)]] specifically for coding interviews using
-Python that goes quite a bit more deeply into identifying Big-O for
-different algorithms.
-
-At this point, you only have to get the basic ideas right - I'll put
-some of that in a new quiz, and we'll finish up next week reviewing
-this by looking at Big-O specifically for C++ vectors.
-
-** \pi - the obsessive hunt for more digits
-
-This is an interesting article about pi and the hunt for more digits
-of this irrational, transcendental number:
-
-It is astonishing to me, especially in the light of our short
-discussion, how this article manages to completely avoid God and
-divinity. Here is one of the weaker passages - can you see how
-superficial it is because it comes infinity close to Him but still
-make itself embrace Him?
-
-"The obsessive pursuit of more digits is not engineering. It is
-something closer to a philosophical statement. Mathematicians and
-computer scientists keep computing pi not because the digits are
-useful but because pi refuses to end, and humans apparently cannot
-make peace with that. Every new record is a confrontation with the
-infinite, a deliberate act of measuring something that cannot be fully
-measured, knowing that and doing it anyway."
-
-https://x.com/i/status/2032852857133871293
-
-** Summer schedule 2026 - my courses
-
-I've changed the course that I'll teach in the graduate program this
-summer -
-
-CS 540 Principles of Artificial Intelligence - every Wednesday from 6
-pm PDT. This class will include a selection of topics:
-
-1. What is machine learning?
-2. Classification algorithms
-3. Linear and logistic regression
-4. Support Vector Machines
-5. Decision trees
-6. Ensemble learning (random forest)
-7. Dimensionality reduction
-8. Unsupervised learning
-9. Neural networks and deep learning
-10. Convolutional Neural Networks (CNN)
-
-With examples from natural language processing, image recognition, and
-feature various Python ML libraries. The textbook is "[[https://www.amazon.com/Hands-Machine-Learning-Scikit-Learn-PyTorch/dp/B0F2SG98Q9][Hands-on Machine
-learning with Scikit-Learn, Keras, and TensorFlow]]" by Aurelien Geron
-(3e, O'Reilly, 2025). The book is supported by my literate programming
-tool of choice, Google Colab notebooks.
-
-I am quite excited about this - I have taught this course only in R
-before, never in Python, but I am due to teach it in Python this fall,
-and I want to test drive it with you if you're game. This means it
-might be a little rocky but you also have my full attention, no holds
-barred, full throttle ahead!
-
-For the UG curriculum, I'll teach CS 100 (Intro to programming) every
-Friday 5 pm PDT. This class will also be a Python class instead of
-Java. I want to try to record these sessions so that you can also
-benefit from them if you like. The coding will also be done
-exclusively using Google Colab.
-
-I'm curious how much you already know of the topics that I listed
-above - answer in the reply to this message ("None whatsoever" is fine
-and is to be expected). As soon as I have worked out the syllabus,
-I'll write to all graduate students, but you're getting the new first.
-
-For graduate students, this also means that you get to learn CS 530
-Computer architecture (with David Sonnier) this summer before CS 550
-(Operating Systems) in the fall. That is a more logical sequence,
-since OS makes more sense once you understand the underlying hardware.
-
-* DONE Week 9 - C++ to Java / OOP
-#+attr_html: :width 400px :float nil:
-[[../img/cpp_to_java.png]]
-
-- [X] Review: Pointer challenge
-- [X] Hard pivot: From C++ back to Java!
-- [X] From procedural to object-oriented programming
-- [X] Home assignment: Procedural version of =Light Switch=
-- [ ] In-class practice: Create OOP version of an Adder ~class~
-- [ ] Home bonus assignment: Handling exceptions (=Rectangle= ~class~)
-
-** Review: Pointer challenge
-
-1. Write a statement that defines a pointer variable named =fltPtr=. The
-   variable should be a pointer to a ~float~. Be sure to properly
-   initialize the variable.
-   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-     float *fltPtr = nullptr;
-   #+end_src
-
-2. Define an integer variable =foo= and a pointer-to-int variable
-   =ptr=. Write a statement that assigns the address of the =foo= variable
-   to the =ptr= variable.
-   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :efooports both :noweb yes
-     int foo;  // Does not have a defined value.
-     int *ptr=nullptr; // Points towards 0 or NULL.
-     ptr = &foo;  // Store address of foo in ptr.
-   #+end_src
-
-3. Does =foo= have to have a value for this to work?
-   #+begin_quote
-   No, =foo= does not have to have a value for this to work. =ptr= holds
-   the value of the *address* of =foo=. The value =*ptr= is undefined.
-   #+end_quote
-
-4. Define =ptr= as a pointer variable that points to another variable
-   =foo=. Write a ~cout~ statement that displays the value that =ptr= points
-   to.
-   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-     int foo;
-     int *ptr = &foo; // the asterisk indicates that ptr is a pointer variable
-     cout << *ptr; // the asterisk dereferences the pointer to access the
-                   // value of the variable the pointer points to
-   #+end_src
-
-5. List three uses of the ~*~ (asterisk) symbol in C++.
-   #+begin_quote
-   1) Multiplication symbol.
-   2) Pointer definition symbol.
-   3) Indirection operator (dereferencing symbol).
-   #+end_quote
-
-6. What is the output of the following code?
-   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-     int x=50, y=60, z=70;
-     int *ptr = nullptr;
-
-     cout << x << " " << y << " " << z << endl; // 50 60 70
-
-     ptr = &x;
-     (*ptr) *= 10; // 500
-     ptr = &y;
-     (*ptr) *= 5;  // 300
-     ptr = &z;
-     (*ptr) *= 2;  // 140
-
-     cout << x << " " << y << " " << z << endl; // 500 300 140
-   #+end_src
-
-   #+RESULTS:
-   : 50 60 70
-   : 500 300 140
-
-** Comparison: Original C++ Plan vs Revised Java Plan
-
-|--------+---------------------------------+-----------------------------------------|
-| Week   | C++ (original)                  | Java (revised, aligned with Downey)     |
-|--------+---------------------------------+-----------------------------------------|
-| 9      | Introduction to classes         | OOP: objects, references, encapsulation |
-| Mar 27 | and encapsulation               | Rectangle class (state + behavior)      |
-|--------+---------------------------------+-----------------------------------------|
-|        | NO CLASS (Good Friday)          | NO CLASS                                |
-|--------+---------------------------------+-----------------------------------------|
-| 10     | Constructors, destructors;      | Lists as ADT: ArrayList of objects      |
-| Apr 10 | STL containers                  | iteration, add/get/remove               |
-|--------+---------------------------------+-----------------------------------------|
-| 11     | STL vector revisited;           | LinkedList and Double-linked list       |
-| Apr 17 | iteration and idioms            | (LIFO/FIFO, real-world use)             |
-|--------+---------------------------------+-----------------------------------------|
-| 12     | STL map: associative containers | Tree traversal, search engines          |
-| Apr 24 |                                 | Parsing HTML, depth-first, stacks       |
-|--------+---------------------------------+-----------------------------------------|
-| 13     | map continued; keys, values     | Maps: key–value abstraction             |
-| May 1  | use cases                       | lookup vs search, hashing               |
-|--------+---------------------------------+-----------------------------------------|
-| 14     | Conceptual overview:            | HashMap, TreeMap, Binary Search Tree    |
-| May 8  | lists, stacks, queues           | Boolean search, sorting
-|--------+---------------------------------+-----------------------------------------|
-
-Sources:
-
-- Think Java and Think Data Structures by Allen Downey (free, concise)
-- JavaNotes by David Eck (free, exhaustive)
-- Data structures and algorithms in Java 6e by Goodrich et al.
-- Computer Science - An Interdisciplinary Approach by Sedgewick/Wayne
-- Algorithms 4e by Sedgewick/Wayne
-
-** Review: Java programs
-#+attr_html: :width 700px :float nil:
-#+caption: Source: Goodrich et al (2016)
-[[../img/java.png]]
-
-- Let's code this example together. Open Onecompiler.com/java
-  #+begin_src java :tangle ../src/Universe.java
-    public class Universe {
-        public static void main(String[] args) {
-        System.out.println("Hello, Universe!");
-        }
-    }
-  #+end_src
-
-- Reminder of how this is turned into machine code:
-  #+begin_src bash :results output :exports both
-    cd ../src
-    javac Universe.java # bytecode compilation to .class file
-    ls -lt Universe*
-    java Universe # run machine code
-  #+end_src
-
-  #+RESULTS:
-  : -rw-rw-r-- 1 aletheia aletheia 426 Mar 22 20:18 Universe.class
-  : -rw-rw-r-- 1 aletheia aletheia 121 Mar 22 20:17 Universe.java
-  : Hello, Universe!
-
-- Do you need a reminder of how a simple ~class~ looks like (in C++ or
-  Java)?
-
-  Code along mechanically for a simple example.
-
-  Open OneCompiler.com/java and delete all the sample code.
-
-- Example: =Counter.java=
-  #+name: Counter class
-  #+begin_src java :classname Counter :dir ../src
-    // Counter.java defines a counter
-    class Counter {
-        private int count; // integer instance variable
-        public Counter() {} // default constructor (count = 0)
-        public Counter(int initial) {count = initial;} // alternate constructor
-        public int getCount() {return count;} // accessor method
-        public void increment() {count++;} // update method (add 1)
-        public void increment(int delta) {count+=delta;} // update method
-        public void reset() {count=0;} // update method
-    }
-  #+end_src
-
-- Test: =CounterDemo.java=
-  #+name: CounterDemo class
-  #+begin_src java :noweb yes :classname CounterDemo :dir ../src :results output
-    <<Counter class>>
-
-     // CounterDemo.java tests the Counter class
-        public class CounterDemo {
-        public static void main(String[] args) {
-            Counter c; // reference variable declaration (no counter)
-            c = new Counter(); // construct new counter, assign ref to c
-            c.increment(); // increase counter by 1
-            c.increment(3); // increase counter by 3 (now it's 4)
-            int temp = c.getCount(); // temp stores 4
-            c.reset(); // counter is set back to 0
-
-            System.out.println("Counter is " + temp);
-        }
-        }
-  #+end_src
-
-- Final code in [[https://tinyurl.com/Counter-Demo-java][tinyurl.com/counter-demo-java]]
-
-- Tutor yourself with my [[https://chatgpt.com/g/g-69b05c7780f081918d89968850e50300-java-drill-coach][Java Drill Coach]] (AI)
-
-** Hard pivot from C++ to Jave (and back again)
-
-After giving it some thought, I’ve decided to make a small adjustment
-to the course for the remainder of the term.  We will stop our
-coverage of pointers where we left off. You’ve already seen the key
-ideas—memory, addresses, and representation—which was the main goal.
-This change is also connected to our recent discussion about
-abstraction layers in Java vs. C/C++ (from James’ question). In a
-sense, this pivot is the longer answer: we are moving from working
-close to memory toward working with higher-level abstractions.  From
-here on, we will switch to Java and focus on abstraction,
-object-oriented design, and data structures. The emphasis will shift
-from “where is the data?” to “what does the data do?”  This will
-require some work on my end as I translate the C++ material into Java,
-but I needed to do that anyway for my new teaching assignment in the
-fall.  More details next session.
-
-I asked ChatGPT for a motivating image for this message, "Catholic
-style". This is what I got: A transitional journey - kind of funny.
-#+attr_html: :width 400px :float nil:
-[[../img/catholic.png]]
-
-PS. I have created a Java Drill Coach for myself feeding it for now
-with standard literature. It's already done goog things for me. [[https://chatgpt.com/g/g-69b05c7780f081918d89968850e50300-java-drill-coach][Check
-it out here]]. Make sure it knows that you're a beginner. Just ask for a
-simple program exercise.
-
-PPS. Looked at my material again - and we'll revert back to C++ in the
-next sessions after all. I thought that this would be easier because
-you've got a strong Java foundation but the skills are a little too
-dispersed across the group. Also, I might have bit off more than I can
-chew in the middle of my upcoming move up North. Take it as a useful
-interlude - comparing Java and C++ and getting another AI tutor (which
-I wouldn't have created otherwise). Sorry for the confusion!
-
-** OOP in Python
-
-As I mentioned, DataCamp has a few courses on OOP in Python - they're
-not bad to get the basics and do a few exercises. This will be
-relevant for those who opt to follow my summer class "Principles of
-AI" because we'll do machine learning in Python, and you will get a
-free DataCamp subscription as well as weekly lesson assignments on the
-platform. Without the subscription, you can do the first lesson of any
-course for free - here is "[[https://campus.datacamp.com/courses/introduction-to-object-oriented-programming-in-python/oop-fundamentals-1?ex=11][Introduction to OOP in Python]]" - plenty of
-prerequisites, but you only need these for the exercises and not for
-the videos.
-
-* DONE Week 10 - OOP in C++ / STL
-
-- [X] Review: Classes and objects
-- [X] C++ ~string~ class
-- [X] Example: =BankAccount= ~class~
-- [X] Separation of interface and implementation
-- [X] Example: =Rectangle= ~class~
-- [X] Home assignment: Extend the =Rectangle= ~class~ by =getArea=
-- [X] Pointers to ~class~ objects
-- [X] Constructors +and destructors+
-
-** Opening prayer in Easter week - Regina Caeli
-
-[[../img/regina_caeli.png]]
-
-
-** Summary - what did you learn last time?
-
-- I like Java more than I thought I would.
-- Object-orientation & getting back to Java is harder than I
-  remembered it.
-- ~public~, ~private~ and ~static~ are confusing (when to use).
-
-** Summary - what did you learn this time?
-
-- Remembered by =cout << account.deposit(100.)= is illegal:
+- What's new in this course?
   #+begin_quote
-  =cout << void= is illegal - you cannot pass nothing to the input
-  stream.
+  + This is the first time that I'm using this textbook by Downey.
+  + This is the first time that I'm assigning reading every week.
+  + This is the first time that I'm asking you to do projects.
+  + This is the first time that I have taught CS100 online.
   #+end_quote
 
-- How ~make~ compiles everything and keeps track of dependencies.
+- What about AI? -> birkenkrahe.github.io
+  #+begin_quote
+  Use of AI is permitted and encouraged, with an important caveat: You
+  must be able to explain your code to the last detail.
+  #+end_quote
 
-- Separation of interface and implementation corresponds to inline
-  vs. explicit methods and header/cpp files vs. test files.
-** Closing prayer in Easter week - Our Father
+- How much time will you have to invest per week?
+  #+begin_quote
+  1) 90 minutes class meeting (this)
+  2) 90 minutes asynchronous lesson & practice (DataCamp)
+  3) 2 hours for quizzes and programming assignments
+  4) 1 hour for reading/working through the online notebooks/textbook
 
-[[../img/Our_Father.png]]
+  ...or about 1 hour per day every week (except Sunday).
+  #+end_quote
 
-* DONE Week 11 - C++ Standard Template Library / Iterators
+** Course infrastructure
 
-- [X] My C++ class videos from week 9 (I completely forgot about them)
-- [X] Podcast (11') with Bjarne Stroustrup on C++, safety, and AI
-- [X] Introduction to the Standard Template Library
-- [ ] Introduction to the STL ~<vector>~ ~class~
+- [X] MS Teams -> assignments, quiz, recordings, chat, grades
+- [X] GitHub -> class materials
+- [X] Google Colaboratory -> Jupyter notebooks
 
-- What are you taking away from today:
-  + Reverse iterator mechanism
-  + Iterators are pointers
-  + ~sort~ using the STL ~<algorithm>~ library
-  + Standard Template Library
+** Assigned reading
 
-* DONE Week 12 - STL vector class
+- You will be assigned one chapter per week of "Think Python" (3e) by
+  Allen B. Downey ([[https://github.com/TVsony/Complete-Python/blob/master/Think%20Python%20third%20Edition.pdf][PDF]])
 
-- [X] No more quizzes or assignments.
-- [X] You can still submit bonus assignments
-- [X] For a challenge, go to ~open.kattis.com~
-- [X] Final exam is optional (20 min conversation)
+- The book is free: [[https://allendowney.github.io/ThinkPython/][allendowney.github.io/ThinkPython/]], and it comes
+  with Colab notebooks, which means that you can run all code online.
 
-** AI Summary (from lecture + session transcript):
+- For each assigned chapter, you are expected to:
+  1. *Read* the text sections +carefully+ +(do not skim)+.
+  2. *Copy* the notebook so that you can edit it.
+  3. *Run *all* code cells in the corresponding notebook.
+  4. *Modify* examples to test your understanding.
+  5. *Take notes* on anything that is unclear.
+  6. Keep your notes in your notebook where the code is.
+- Estimated time to completion: *60-90 minutes.*
+- *Let's check out the first chapter to see what you're up against.*
+
+** Class workflow
+
+- Class time will *not* repeat the notebook content line-by-line.
+
+- Each session will (usually) include:
+  1. An opening prayer
+  2. A short review of what we did the last session.
+  3. A little coding to warm up the engines.
+  4. Some new concepts (or more on some old concepts).
+  5. Code along with me!
+  6. Practice the new concepts by solving an exercise.
+  7. A wrap-up to find out what you learnt.
+  8. A closing prayer.
+
+- You are expected to arrive having:
+  + Opened the notebook for the assigned textbook chapter
+  + Run the code at least once and read the chapter
+  + Identified at least one question or confusion
+
+** Programming Assignments
+
+- Weekly programming assignments are based on the textbook.
+
+- For each chapter, you will submit your own notebook with:
+  + 3–5 short written answers (explanations or predictions)
+  + 2–3 modified code examples (not identical to the notebook)
+
+- Typical required actions include:
+  + Predicting output before running code
+  + Modifying expressions and explaining the result
+  + Creating and fixing simple errors
+
+- Estimated time per assignment:
+  + 45–60 minutes for most students
+
+- Assignments are graded for:
+  + Completion of required tasks
+  + Evidence of engagement (not copy/paste)
+
+- The assignments are often co-developed with AI
+
+** DataCamp assignments & walk-through
+
+- You will complete one DataCamp lesson per week.
+
+- Timeframes are given (e.g. 1-4 hours) but actual time varies.
+
+- When working carefully—running code outside the platform, testing
+  variations, or researching errors—you should expect:~60–90 minutes
+  per lesson.
+
+- To get full value from DataCamp, you are expected to:
+  + Complete all exercises (not skip or guess)
+  + Re-run key examples outside the platform (e.g., Colab or local
+    Python)
+  + Experiment with small modifications
+  + Look up unfamiliar concepts or errors
+
+- DataCamp is used to:
+  + Reinforce syntax and patterns
+  + Provide additional guided practice
+  + Build fluency through repetition
+
+** Getting started with Python Colab
+
+- You'll learn Python through a form of "literate programming"
+  with *Jupyter notebooks* = text + Python code + output
+
+- Open colab.research.google.com in your browser
+
+- Now, open [[https://is.gd/6nAJtZ][is.gd/6nAJtZ]] and code along with me.
+
+- The full script with detailed annotations, is in GitHub:
+  1. As a PDF (=.pdf=) or an Org-mode (=.org=) file to read
+  2. As a Colab notebook (=.ipynb=) to run
+
+- To open GitHub, go to: [[https://github.com/birkenkrahe/cs100][github.com/birkenkrahe/cs100]]
+
+** Next Assignments
+
+You will get one message from me per week in the ~General~ Teams
+channel. Please read it carefully and get back to me with questions!
+
+*Mandatory:*
+
+1. *Read* chapter 1, "Programming as a Way of Thinking" (pp. 1-10).
+
+2. *Complete* lesson 1, "Python Basics" of the DataCamp course
+   "Introduction to Python" (1.5 hours available)
+
+3. *Complete* a multiple choice quiz on the course rules and the Colab +
+   Python demo.
+
+*Optional*:
+
+4. *Bonus assignment:* Abortion statistics in the US.
+
+5. *Play* through the Colab notebook for chapter 1
+   ([[https://tinyurl.com/downey-chap01-ipynb][tinyurl.com/downey-chap01-ipynb]]). It contains the text, too.
+
+- You can interact with an *"AI Coach"* while watching the videos.
+
+- Estimated time for reading + online lesson: at least 2.5 hours.
+
+- There will be a *weekly quiz* to check your understanding.
+
+- The *first quiz* will test DataCamp ch 1 and Think Python ch 1.
+
+- The *deadline* for the first quiz is June 5.
+
+- There will be no class on June 5th (I will record a session).
+
+** Wrap up
+
+- Google Colab notebooks runs on LinuxVM
+- Programming is getting the machine to do what you want it to do (for
+  that to work, you need to know how the machine sees what you see)
+- Using markdown and making Python plots
+- Python is easier to learn than Java
+- Python is good for scientific computing (using math functions)
+- New vocabulary
+
+* DONE Week 2 - Programming as a way of thinking (chapter 1)
+
+- [X] *Opening prayer*
+- [X] *Info:* Changes to the Teams dashboard
+- [X] *Review:* What did you achieve this week?
+- [X] *Review:* Code along as I explore Pythagoras' theorem
+- [X] *Info:* Next week (June 5th) there will be *no class meeting*
+- [X] *New assignments* for the next two weeks: reading + quiz + code
+- [X] *Closing prayer*
+
+** Opening prayer (Ps 126 + Our Father)
+
 #+begin_quote
-The *Standard Template Library* introduces a unified abstraction for
-working with data through *containers*, *iterators*, and *algorithms*, with
-the session focusing on iterators as the central concept. Iterators
-behave like generalized *pointers*, supporting operations such as
-dereferencing (=*it=) and incrementing (=++it=), but abstract away the
-underlying data structure. Range-based loops are shown to be
-"syntactic sugar" over iterator-based traversal, reinforcing that
-iteration — not indexing — is the fundamental access pattern. The
-~string~ class serves as a bridge example, demonstrating how even
-non-container types expose iterator interfaces and participate in this
-uniform model.
+Unless the Lord build the house,
+they labour in vain that build it.
+Unless the Lord keep the city,
+he watcheth in vain that keepeth it."
+— Psalm 126:1,
+
+---
+
+*Our Father, who art in heaven,*
+*hallowed be Thy name,*
+*Thy kingdom come,*
+*Thy will be done*
+*on Earth as it is in heaven.*
+
+Give us this day our daily bread
+and forgive us our trespasses,
+as we forgive those who trespass against us,
+and lead us not into temptation,
+but deliver us from evil.
+
+Amen.
+#+end_quote
+** Review: Textbook chapter 1 "Programming as a way of thinking" (5')
+
+- Did you read it? How? Interactive or reading only?
+- What did you think of it?
+- Did you do any of the exercises yet?
+- What do you think about the title of the textbook chapter?
+
+Content:
+- Arithmetic operators - standard and special
+- Arithmetic functions - ~round(), ~abs()~
+- Strings and string functions - ~str()~, ~len()~
+- Values and types - ~type()~, ~int()~, ~float()~
+- Formal vs. natural languages
+- Debugging
+- Exercises
+- Glossary
+
+*Next*:
+- Chapter 2, Variables and Statements (May 29 - June 5)
+- Chapter 3, Functions (June 5 - June 12)
+
+** Review: DataCamp "Intro to Python" lesson 1 "Python Basics" (5')
+#+attr_html: :width 600px :float nil:
+[[../img/datalab.png]]
+
+- How did you work through the lesson? Any questions?
+- Did you try the datalab workbook? (Jupyter notebook like Colab)
+- Did you do a practice exercise (nice way to keep streak fresh)?
+- Did you check out any other DataCamp courses?
+
+Content:
+- Printing to the display
+- Python as a calculator
+- Variables and types
+- Variable assignment
+- Calculations with variables
+
+** Warm up coding (in Colab)
+
+- Open the starter code in Colab: [[https://tinyurl.com/arithmetic-starter][tinyurl.com/arithmetic-starter]]
+
+- Copy the file to your GDrive to be able to edit it
+
+- Solve the exercises on your own (no AI), then let's compare
+
+- The last two exercises are given as a bonus assignment for home
+
+- There is another bonus assignment with tricky formulas,
+  "Formula translator" (graded)
+
+** Code along: Pythagoras in Python
+
+- Open the starter code in Colab: [[https://tinyurl.com/pythagoras-python][tinyurl.com/pythagoras-python]]
+
+- Copy the file to your GDrive to be able to edit it
+
+- Code along with me and ask questions along the way
+
+- Your programming assignment this week ("Pay stub") is very similar
+
+** New assignments
+
+*Week 2: May 29-June 5*
+
+1. *Submit* quiz 2
+2. *Complete* and submit a home programming assignment
+3. *Read* chapter 2 of the textbook, "Variables and statements"
+4. *Complete* lesson 2 of the DataCamp course "Python lists"
+
+*Week 3: June 5-June 12*
+
+1. *Submit* quiz 3
+2. *Complete* and submit a home programming assignment
+3. *Read* chapter 3 of the textbook, "Functions"
+4. *Complete* lesson 3 of the DataCamp course "Functions and packages"
+
+
+** Wrap-up
+
+- Pseudocode RULES
+- Variable separators
+- Limit the number of operations in your code
+- Rounding numbers
+- Pythagoras believed the number was the fabric of the universe
+- He was wrong, it's the WORD! (Not Microsoft)
+
+** Closing Prayer (1 Cor 13:11-12 + Hail Mary)
+
+#+begin_quote
+When I was a child, I spoke as a child,
+I understood as a child, I thought as a child.
+But, when I became a man,
+I put away the things of a child.
+
+We see now through a glass in a dark manner;
+but then face to face. Now I know in part;
+but then I shall know even as I am known."
+— 1 Cor 13:11-12
+
+---
+
+*Hail Mary, full of grace,*
+*the Lord is with Thee.*
+*Blessed art Though among women*
+*and blessed is the fruit of Thy womb, Jesus.*
+
+Holy Mary, Mother of God,
+pray for us sinners,
+now and in the our of our death.
+
+Amen.
 #+end_quote
 
-** Review questions
+* DONE Week 3 - [Moving] Variables & Types (chapter 2)
+* DONE Week 4 - Solemnity of the Sacred Heart of Jesus / Functions and Packages
+** Plan
 
-1. What are the three main components of the Standard Template Library
-   (STL)?
-   #+begin_quote
-   Containers, iterators, and algorithms.
-   #+end_quote
+| Activity                                     | Min |   |
+|----------------------------------------------+-----+---|
+| Opening prayer                               |   1 | x |
+| Projects intro (proposal)                    |   5 | x |
+| Review: Quiz 2 (Python basics)               |   5 | x |
+| Review: Paystub solution                     |   5 | x |
+| Review: Quiz 3 (variables and statements)    |   5 | x |
+| Review: Programming assignment (sphere/trig) |   5 | x |
+| Review: Python lists                         |   5 | x |
+| Variables & Statements (extension)           |  10 | x |
+| Warm-up: Euler's number (code-along)         |  10 | x |
+| Functions: Anatomy of a function             |  10 | x |
+| Functions: Traceback → pythontutor.com       |  10 | x |
+| Packages: NumPy preview                      |  10 |   |
+| Next assignments                             |   3 | x |
+| Checkout (takeaway)                          |   1 | x |
+| Closing prayer                               |   1 | x |
+|----------------------------------------------+-----+---|
 
-2. How does a range-based for loop relate to iterators in C++?
-   #+begin_quote
-   It is "syntactic sugar"; the compiler rewrites it into a loop using
-   iterators with ~begin()~, ~end()~, dereferencing (~*it~), and increment
-   (~++it~).
-   #+end_quote
+** Opening prayer
 
-3. Could you do this right now (in OneCompiler):
-   1) Declare a vector of elements 100,200,300,400,500.
-   2) Print its elements using a range-based loop.
-   3) Show that the loop is really an iterator statement.
+[[../img/memorare_to_the_Sacred_Heart_of_Jesus.png]]
 
-   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-     vector<int> nums {100,200,300,400,500};
-     // loop over the vector elements using a range-based loop:
-     for (auto element : nums) cout << element << " "; cout << endl;
-     // underneath the loop is really an iterator-driven for loop:
-     for (auto it=nums.begin(); it != nums.end(); it++) cout << *it << " "; cout<<endl;
-     for (std::vector<int>::iterator it=nums.begin(); it != nums.end(); it++) cout << *it << " "; cout << endl;
-     for (int i=0; i<nums.size(); i++) cout << nums[i] << " ";
-   #+end_src
+** Projects (midterm/final)
 
-   #+RESULTS:
-   : 100 200 300 400 500
-   : 100 200 300 400 500
-   : 100 200 300 400 500
-   : 100 200 300 400 500
+- 20% of your grade comes from two projects one at midterm, one before
+  the end.
 
-4. In what sense are iterators similar to pointers, and what is the
-   key difference?
-   #+begin_quote
-   Iterators behave like pointers because they support dereferencing
-   and incrementing, but they abstract away the underlying data
-   structure and are not necessarily raw memory addresses.
-   #+end_quote
+- The first project (due in week 7 - July 3rd)
 
-5. Why are iterators necessary instead of simply using indices for all
-   containers?
-   #+begin_quote
-   Not all containers support indexing (e.g., list, map), so iterators
-   provide a uniform way to traverse different container types
-   independent of their internal structure.
-   #+end_quote
+- Project ideas:
 
-6. Why can the ~string~ class be used with iterators even though it is
-   not listed as a standard sequence container?
-   #+begin_quote
-   Because string provides an interface similar to containers,
-   including ~begin()~, ~end()~, ~size()~, and element access, allowing it
-   to work with iterators and STL algorithms.
-   #+end_quote
+  1) Pick a Python package, like ~matplotlib~ or ~numpy~, ~pandas~, ~seaborn~,
+     or another package interesting to what you know already, study
+     the documentation, and create a Colab notebook that illustrates a
+     use case.
 
-7. Can you iterate over the ~string~ ="Hello, beautiful!"= to print it
-   character-wise? (In OneCompiler)
-   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-     string hello {"Hello, beautiful!"};
-     for (auto it=hello.begin(); it!=hello.end();it++)
-       cout << *it << " ";
-   #+end_src
+     Examples: Visualize a personal dataset (grades, sleep log,...);
+     pull data from a public API (weather, Bible verse, sports scores)
+     and process the response. If you work in finance or pet care,
+     look for Python packages used in these domains.
 
-   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-     std::string hello {"Hello, beautiful!"};
-     for (auto it=hello.begin(); it != hello.end(); it++) cout << *it << " ";
-   #+end_src
+  2) Write an application of your choice - a small standalone program
+     (single file) that does something useful. Build/document in
+     a Colab notebook.
 
-   #+RESULTS:
-   : H e l l o ,   b e a u t i f u l !
+     Examples: Password generator, number- or word guessing game,
+     simple text based adventure game, unit converter, quiz game
+     pulling questions from a file, full song generator.
 
-   Sample output:
-   #+begin_example
-   H e l l o ,   b e a u t i f u l !
+- The final capstone project will be just like this but you'll have
+  more tools available and can (hopefully) built better stuff.
+
+- It is perfectly OK if you use AI to help you do this. But you need
+  to be able to present, demonstrate and explain your result.
+
+- Next milestone: Sketch a proposal by next week:
+  1) Rationale - What do you want to do?
+  2) References - What will you be looking for?
+  3) Results - What do you expect to get out of this?
+  4) Risks - What could go wrong?
+
+- Submit a prototype by the end of week 7 (July 3rd). Attach a file or
+  a link to a GDocs file, or write your proposal in the text field.
+
+- Estimated time: 1 hr for the proposal, 4-6 hours for the prototype
+  (spread out over 3 weeks).
+
+** Caveat
+
+Don't believe everything you read[fn:1]:
+#+begin_quote
+"Programming, and especially debugging, sometimes brings out strong
+emotions. If you are struggling with a difficult bug, you might feel
+angry, sad, or embarrassed." Downey (ch 1)
+#+end_quote
+
+** Review: Quiz / Assignments
+*** Submission rules
+
+- For all URL uploads, you need to *share* the Colab file with *anyone
+  who has the link* so that I can grade it!
+
+- If you submit late, you can get 50% of the points if turned in by
+  August 28, 2026, for both quizzes and programming assignments.
+
+- The quizzes assume that you have either read the respective chapter
+  in the textbook or (better) clicked your way through the notebook.
+
+*** Quiz 2 (Python basics)
+
+1. What does ='Well, ' + "it's a small " + 'world.'= produce?
+
+   Not entirely fair because the console (on the terminal) and Colab
+   (notebook) generate different answers:
+
+   #+begin_example python
+   >>> 'Well, ' + "it's a small " + 'world.'
+   "Well, it's a small world."
    #+end_example
 
-** Question about ~vector.max_size()~
+   #+attr_html: :width 350px :float nil:
+   [[../img/smallworld.png]]
 
-- For a vector, ~vector.max_size()~ returns the maximum number of
-  elements the vector could hold based on available address space,
-  allocator limits, and impelementation limits (compiler/STL).
-- Since address space is huge, ~max_size()~ is ultimately constrained by
-  hardware.
-- It's not a constant because it depends on the ~vector~ data type,
-  the compiler, the allocator, and the runtime reality.
+   (I have made a note for the three who were robbed of one point.)
 
-This is quite typical for other "constants" as well - because
-computing always involves many moving parts, you cannot rely on their
-value as for natural constants (though there's trouble in the water as
-well, see the ⁠recent difficulties to pin down the exact value of the
-gravitational constant Big G, [[https://www.nature.com/articles/d41586-026-01284-3][see here]]) - you need to "measure" or
-validate it before embarking on very memory-hungry adventures.
-
-** Your eminent most important take away
-
-- Competent use of iterators with vector objects
-- Making vectors with class objects (instead of basic
-  data types) is cooooool.
-
-* DONE Week 13 - STL ~vector~ review / STP ~map~ class I
-
-- [ ] Review ~std::vector~ class
-- [ ] The STL's ~std::map~ class
-- [ ] Bonus problems for ~std::vector~ and ~std::map~
-
-** Review: STL vector class
-
-You find the answers to these questions in the =STL_vector.org= lecture.
-
-1. Write a statement that defines an empty ~vector~ object named =avect=
-   that can hold strings. Show that the vector is actually empty.
-   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-     vector<string> avect; // empty vector
-     cout << boolalpha << "The vector is empty: " << avect.empty(); // with std::vector.empty()
-     for (vector<string>::iterator it=avect.begin(); // with a for loop iterator
-          it!=avect.end();
-          it++) cout << *it << " ";
-     for (auto element : avect) cout << element; // range based for loop
-     cout << "\nThe vector is empty: size() = " << avect.size(); // with .size()
-   #+end_src
-
-   #+RESULTS:
-   : The vector is empty: true
-   : The vector is empty: size() = 0
-
-2. Write a statement that defines a ~vector~ object named =avect2= that can
-   hold integers. The ~vector~ should have ten elements initialized with
-   the default value 1. Display the elements to show success.
-
-   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-     // using the fill constructor
-     vector<int> avect2(10,1);
-     for (const auto element : avect2) cout << element << " "; cout << endl;
-     vector<int> avect3(10,0);
-     for (const auto element : avect3) cout << element + 1 << " ";
-   #+end_src
-
-   #+RESULTS:
-   : 1 1 1 1 1 1 1 1 1 1
-   : 1 1 1 1 1 1 1 1 1 1
-
-3. The program below should print
-   #+begin_example
-   1 1 1 1 1 1 1 1 1 1
-   2 2 2 2 2 2 2 2 2 2
-   #+end_example
-   But it does not even compile. What's wrong? Can you fix it?
-
-   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-     vector<int> avect(10,1);
-     for (const auto element : avect)
-       {
-         cout << element++ << " ";
-       }
-     cout << endl;
-     for (auto element : avect)
-       {
-         cout << element << " ";
-       }
-   #+end_src
-
-   - Cannot change ~const auto element~ (must be ~auto element~) to compile
-   - Cannot change =avect= outside ~for~ loop unless I use reference: =auto
-     &element=.
-
-4. Write a statement that defines a ~vector~ object named =avect4= that can
-   hold integers. The ~vector~ should have 100 elements, each
-   initialized with the value 1. If this worked, print a success
-   message, but if any value is not 1, print an error message.
-
-   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-     vector<int> avect4(100,1);
-     // for loop to check that vector is initialized to 1
-     for (const auto element : avect4)
-       {
-         // if element is not 1 print ERROR!
-         if (element != 1) cout << "ERROR!" << endl;
-       }
-     // print success message
-     cout << "Initialized to 1!" << endl;
-   #+end_src
-
-   #+RESULTS:
-   : Initialized to 1!
-
-5. Write a statement that defines a ~vector~ object named =v1= that can
-   hold integers. The vector should be a copy of another vector
-   =v2=. Display both vectors to show that the copying worked. Use the
-   copy constructor to create =v1=.
-
-   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-     vector<int> v2 {100,200,300}; // integer vector with three elements
-     vector<int> v1(v2); // copies v2 into v1
-     for(const auto& element: v1) cout << element << " "; cout<<endl;
-     for(const auto& element: v2) cout << element << " "; cout<<endl;
-   #+end_src
-
-   #+RESULTS:
-   : 100 200 300
-   : 100 200 300
-
-6. What happens when you use an invalid index with the ~at~ function of
-   the ~vector~ class? Try it. Define a vector =names= with three names,
-   Aliana, Tory, Sam - then print an invalid index with
-   ~std::vector.at(index)~.
-
-   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-     vector<string> names {"Aliana","Tory","Sam"};
-     cout << names.at(3);
-   #+end_src
-
-   #+RESULTS:
-
-7. If your program will add a lot of objects to a ~vector~, is it best
-   to use the ~insert~ member function, or the ~emplace~ member function,
-   and why?
-
+2. What's the difference between "compile-time" and "run-time"?
    #+begin_quote
-   ~insert~, ~push_back~ create copies of the objects when elements are
-   inserted (or appended). ~emplace~ constructs the object in-place.
+   *Compile-time:* when Python translates your (human-readable) source
+   code into bytecode, before any of it runs.
+
+   *Run-time:* when the Python interpreter executes that bytecode, line
+   by line.
+
+   All errors are called "bugs."
+
+   *Compile-time* errors prevent the program from starting at all — the
+   main one you'll encounter is ~SyntaxError~ (including
+   ~IndentationError~).
+
+   *Run-time* errors are called "exceptions" — they occur only when the
+   offending line is executed, and can be guarded against with
+   ~try~/~except~. Examples: ~NameError~, ~ZeroDivisionError~, ~TypeError~.
+
+   Because Python checks syntax before running anything, ~SyntaxError~
+   is usually caught immediately and points directly at the problem.
+   Run-time exceptions are often trickier — they may only surface when
+   a particular branch or input triggers them.
+
+   If you haven't done it yet, check "A Gallery of Errors" ([[https://github.com/birkenkrahe/cs100/blob/main/org/2_pythagorean.org#step-10-a-gallery-of-errors][GitHub]]).
    #+end_quote
 
-8. Internally, how does a ~vector~ store its elements?
-   #+begin_quote
-   Contiguously on the heap ("free store"). It resizes as needed when
-   its ~capacity~ is exceeded.
-   #+end_quote
+3. All other mistakes seemed to be the result of someone not running a
+   command to check the answer: *Don't guess, but code and experiment!*
 
-9. The ~vector~ class has a ~size~ and a ~capacity~ member function. What is
-   the difference between these two member functions?
-   #+begin_quote
-   ~size~ returns the current number of allocated elements, while the
-   ~capacity~ function returns the number of elements that can be stored
-   before resizing is needed. Can be changed with ~reserve~.
-   #+end_quote
+If you got (1) wrong, you get an extra point. Everybody gets an extra
+point for (2). Unfortunately, I cannot add points to the gradebook, so
+this will have to be done at the end of the term if you need it.
 
-   Code along:
-   #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-     vector<int> v;
+*** Programming assignment: Paystub calculator
 
-     cout << "Size = " << v.size() <<
-             ", capacity = " << v.capacity() << endl;
+- A solution is available at [[https://tinyurl.com/paystub-solution][tinyurl.com/paystub-solution]]
 
-     v.push_back(10); // append one element
-     cout << "Size = " << v.size() <<
-             ", capacity = " << v.capacity() << endl;
+- Any questions on this assignment?
 
-     v.push_back(20);
-     v.push_back(30); // append two elements
-     cout << "Size = " << v.size() <<
-             ", capacity = " << v.capacity() << endl;
+*** Quiz 3 (variables and statements)
 
-     vector<int> v2;
-     v2.reserve(10);
-     cout << "Size = " << v2.size() <<
-             ", capacity = " << v2.capacity() << endl;
-   #+end_src
+- A student writes =primt("hello")= - what type of error is this?
+  #+attr_html: :width 600px :float nil:
+  [[../img/quiz_3_question_28.png]]
 
-   #+RESULTS:
-   : Size = 0, capacity = 0
-   : Size = 1, capacity = 1
-   : Size = 3, capacity = 4
-   : Size = 0, capacity = 10
+  This is a *runtime error* (more specifically a ~NameError~):
+  #+begin_src bash :results output :exports both
+    python3 -c 'primt("hello")' 2>&1
+  #+end_src
 
-10. What is the difference between the ~vector~ class member functions
-    ~insert~ and ~push_back~? Show it with a program.
+  #+RESULTS:
+  : Traceback (most recent call last):
+  :   File "<string>", line 1, in <module>
+  : NameError: name 'primt' is not defined. Did you mean: 'print'?
 
-    For ~insert~, you need an iterator position:
-    ~std::vector.insert(iterator,{values})~
+*** Programming assignment
 
-    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-      // Define an empty vector of integers.
-      vector<int> v;
-      // Add five numbers 1,2,3,4,5 to the vector using push_back
-      for(int i=0; i<5; i++) v.push_back(i+1);
-      // Display vector content.
-      for (const auto &element: v) cout << element << " ";
-      // Create an iterator pointing at the position before 4
-      vector<int>::iterator it = v.begin() + 2;
-      // Show the iterator value - for example with at()
-      cout << "\nIterator positioned before: " << v.at(*it);
-      // Insert two numbers 40,50 using the iterator.
-      v.insert(it, {40,50}); // price to be paid: rejigging of all indices < 4
-      // Display vector content.
-      cout << endl;
-      for (const auto &element: v) cout << element << " ";
+- Part 1: compute the volume of a sphere given its radius.
+  #+attr_html: :width 400px :float nil:
+  [[../img/volume-sphere.png]]
+
+- Part 2: confirm the trig version of Pythagoras' theorem.
+  #+attr_html: :width 400px :float nil:
+  [[../img/unit_circle.png]]
+
+*** DataCamp - Python lists (reference and copy)
+
+- Python lists: mutable, ordered, heterogenous sequence.
+  #+begin_src python :results output :exports both :session *Python* :python python3
+
+  #+end_src
+
+- A list name is a reference:
+  #+begin_src python :results output :exports both :session *Python* :python python3
+
+  #+end_src
+
+- A real copy of a list involves new memory allocation:
+  #+begin_src python :results output :exports both :session *Python* :python python3
+
+  #+end_src
+
+** Variables and Statements (extension)
+
+- What happens when a number is assigned to a variable: =n = 17= ?
+  #+begin_quote
+  + Python evaluates the expression on the right (=17=) creating an
+    integer object with that value.
+  + The name =n= is bound to that object. It can now be referenced as =n=.
+  #+end_quote
+
+- Is =n= now stuck with =17=?
+  #+begin_quote
+  + =n= is an entry in a namespace pointing to whatever object was last
+    bound to it.
+  + Rebinding it does not touch the object =17= at all, it just makes =n=
+    point elsewhere.
+  + No type is associated with the name =n=.
+  #+end_quote
+
+- Code example:
+  #+begin_src python :results output :exports both :session *Python* :python python3
+    n = 17
+    print(n)
+    n = "seventeen"
+    print(n)
+  #+end_src
+
+- Python variables are like *sticky notes*, not boxes.
+
+- What happens when you print a variable =n=: =print(n)= ?
+  #+begin_quote
+  1) Name lookup: Python looks up =n= in the current namespace
+  2) It finds the object it is bound to (e.g. the ~int~ object =17=)
+  3) ~print()~ receives a reference to that object
+  4) ~print()~ calls ~str()~ on the object: =str(17) -> '17'=
+  5) Resulting string is written to ~sys.stdout~ followed by a newline
+  #+end_quote
+
+- ~print()~ as a function returns ~None~:
+  #+begin_src python :results output :exports both :session *Python* :python python3
+    x = print(n)
+    print(x)
+  #+end_src
+
+** PRACTICE Warm up practice: Compute Euler's number (~e~)
+
+Open colab.research.google.com.
+
+In Colab, open ~Tools > Setting~ and check ~Use a temporary scratch
+notebook as the default landing page.~ Then =Save=.
+
+Now open colab.research.google.com again or refresh the page to code
+along if you like.
+
+- Euler's number e is also defined in the ~math~ module. e is the basis
+  of the natural logarithm: ln(e) = 1:
+  #+begin_src python :results output :exports both :session *Python* :python python3
+
+  #+end_src
+
+  #+RESULTS:
+  : 1.0
+
+- Compute e three ways:
+  1. use ~math.e~ and the exponentiation operator ~**~
+  2. use ~math.pow()~ to raise ~math.e~ to the power 2
+  3. use ~mat.exp()~ which takes an argument x, and compute e^{x}
+
+  #+begin_src python :results output :exports both :session *Python* :python python3
+    # exp.py: compute e^2 in three different ways | Author: Marcus
+    # Birkenkrahe | Source: Downey, Think Python (3e), ch 2
+
+    # import math
+
+    # use math.e and the exponentiation operator **
+
+    # use math.pow() to raise math.e to the power 2
+
+    # use mat.exp() which takes an argument x, and compute e^{x}
+
+  #+end_src
+
+  - Which of these is correct?
+    #+begin_quote
+    ~math.e~ already carries a small rounding error (truncated to 64-bit
+    float representation). This error is compounded through squaring.
+
+    ~math.exp(2)~ computes e^{2} directly via a dedicated algorithm,
+    correctly rounded to the nearest value to the true mathematical
+    value. It never uses the constant ~math.e~.
+
+    *Rule*: When a closed-form function exists for what you want (exp,
+    log, sqrt, etc.) prefer it over composing more primitive
+    operations both for accuracy and speed.
+    #+end_quote
+
+  - Demonstrating that with the ~mpmath~ package (and f-string output):
+    #+begin_src python :results output :exports both :session *Python* :python python3
+
     #+end_src
 
-    #+RESULTS:
-    : 1 2 3 4 5
-    : Iterator positioned before: 4
-    : 1 2 40 50 3 4 5
+** PRACTICE User-defined functions and Packages (extension and practice)
 
-11. What happens here? Run it and explain it.
+- Step 1: Anatomy of a function
+- Step 2: Traceback and Pythontutor.com
+- Step 3: NumPy preview
 
-    #+begin_src C++ :main yes :includes <iostream> <cstdlib> <string> <fstream> <vector> :namespaces std :results output :exports both :noweb yes
-      vector<int> v {0};
-      for (auto it = v.begin(); it != v.end(); ++it)
-        {
-          v.push_back(*it); // modifies memory & invalidates iterators
-        }
-    #+end_src
+Open the Colab starter notebook:
+[[https://tinyurl.com/functions-packages-starter][tinyurl.com/functions-packages-starter]]
 
-    Answer:
+Complete notebook:
+[[https://tinyurl.com/functions-packages-complete][tinyurl.com/functions-packages-complete]]
 
-12. What happens if you accidentally write the following but =v1= only
-    has 10 elements?
+** Next assignments (June 19th)
 
-    #+begin_example C++
-    vector<int> v2(v1.begin(), v1.begin()+10); // range-based copy constructor
-    vector<int> v2(v1.begin(), v1.begin() + v1.size()) // arithmetic
-    vector<int> v2(v1.begin(), v1.end()) // arithmetic
-    #+end_example
+- Submit informal project proposal for your midterm project.
 
+- DataCamp chapter on "NumPy" (deadline June 26 - 2 weeks time).
 
-** Lessons learnt:
+- Quiz 4 on DataCamp and textbook content (functions/packages).
 
-- How to arrays -> vectors -> maps
-- How to iterate over constant values
-- How to access keys and values of a map
+- Simple home programming assignment on functions and packages.
 
-* DONE Week 14 - ~std::map~ II / Review / Summary / Outlook
+- Read/work through "Functions and Interfaces" (chapter 4 of the
+  textbook with a Colab notebook). This is fun: graphics!
 
-- [X] Opening prayer (Our Father / Hail Mary)
-- [X] Has AI killed programming (blog post)
-- [X] End-of-course self-assessment exercise
-- [ ] Review two bonus programs
-- [ ] Finish the STL ~map~ class
-- [X] How did we do?
-- [X] Where could you go next?
-- [ ] Closing prayer (Aquinas' Students prayer)
+As always for the textbook assignments, the best way is to either read
+the book and/or play through the Colab notebook - 30 minutes tops (not
+counting the exercises).
 
-** End-of-course self-assessment
-*** Open the self-assessment sheet
+** Closing prayer
 
-https://is.gd/u7h2sE
+[[../img/o_most_holy_heart_of_jesus.png]]
 
-*** Rate yourself from 0-10 for each skill [5 min]
+* DONE Week 5 - Interface and Implementation / ~JupyTurtle~ graphics
 
-| Skill                                           |
-|-------------------------------------------------|
-| Reading and understanding code                  |
-| Writing small programs from scratch             |
-| Debugging errors                                |
-| Using functions                                 |
-| Using loops and conditionals                    |
-| Working with arrays/vectors                     |
-| Understanding pointers/references               |
-| Understanding classes/objects                   |
-| Using STL containers                            |
-| Explaining what code does                       |
-| Breaking problems into steps                    |
-| Learning new programming concepts independently |
+| Activity                           | Min |   |
+|------------------------------------+-----+---|
+| Opening prayer                     |   1 | x |
+| Update: Current assignments        |   5 | x |
+| Projects: Review of your proposals |  15 | x |
+| Interface design                   |  60 | x |
+| Next assignments                   |   5 | x |
+| Checkout (takeaway)                |   5 | x |
+| Closing prayer                     |   1 | x |
+|------------------------------------+-----+---|
 
-*** Independent coding task [15 min]:
+** Opening prayer
 
-Write a C++ program that analyzes quiz scores.
+[[../img/memorare_to_the_Sacred_Heart_of_Jesus.png]]
 
-Requirements:
-1. Store these scores in a ~vector<int>~:
-   #+begin_example
-      72 95 81 60 88 70
-   #+end_example
+** Update
 
-2. Write a function =printScores= that:
-   - takes the ~vector~ by ~const~ reference (~&~)
-   - prints all =scores=
+- I added one bonus assignment "Five easy pieces"
+- I added one programming assignment "Simple function exercises"
+- I added grading categories and weights
+- Bonus assignments are now listed as 0 points - added at end
 
-3. Write a function =averageScore= that:
-   - takes the ~vector~ by ~const~ reference (~&~)
-   - returns the =average= score
+#+begin_src python :results output :exports both :session *Python* :python python3
+  [print(_) for _ in dir(list)]
+#+end_src
 
-4. In ~main~:
-   - print all =scores=
-   - print the =average=
-   - print all =scores= above the =average=
-
-5. Add a short comment answering: Why is a range-based ~for~ loop
-   sufficient for =printScores=? When might an explicit ~iterator~ or
-   index-based ~for~ loop be preferable?
-
-Sample output:
+#+RESULTS:
 #+begin_example
-   72 95 81 60 88 70
-   Average score: 77
-
-   Scores above the average:
-   95 81 88
+__add__
+__class__
+__class_getitem__
+__contains__
+__delattr__
+__delitem__
+__dir__
+__doc__
+__eq__
+__format__
+__ge__
+__getattribute__
+__getitem__
+__gt__
+__hash__
+__iadd__
+__imul__
+__init__
+__init_subclass__
+__iter__
+__le__
+__len__
+__lt__
+__mul__
+__ne__
+__new__
+__reduce__
+__reduce_ex__
+__repr__
+__reversed__
+__rmul__
+__setattr__
+__setitem__
+__sizeof__
+__str__
+__subclasshook__
+append
+clear
+copy
+count
+extend
+index
+insert
+pop
+remove
+reverse
+sort
 #+end_example
 
-*** Code reading and explanation [10 min]
-
-Open the program: [[https://is.gd/JmoaiG][is.gd/JmoaiG]] and run it.
-
-Then study the program carefully.
-
-Then answer the questions below (put your answers in comments).
-
-#+begin_src C++ :main no :includes :exports both :results output
-  #include <iostream>
-  #include <vector>
-  using namespace std;
-
-  int compute(const vector<int>& data)
-  {
-    int total = 0;
-
-    for (int value : data)
-      {
-        if (value % 2 == 0)
-          total += value;
-      }
-    return total;
-  }
-
-  int main()
-  {
-    vector<int> nums {3,8,5,2,10};
-
-    int result = compute(nums);
-
-    cout << "Result = " << result << endl;
-
-    return 0;
-  }
+#+begin_src python :results output :exports both :session *Python* :python python3
+  l = [1,2,"jim"]
+  l.clear()
+  print(l)
+  help(len)
+  help(list.remove)
 #+end_src
 
-1. What does the function =compute= do?
+#+RESULTS:
+#+begin_example
+[]
+Help on built-in function len in module builtins:
 
-2. What changes if ===0= becomes =!=0= ?
+len(obj, /)
+    Return the number of items in a container.
 
-3. Can you think of one possible improvement to make the program more
-   flexible and more general?
+Help on method_descriptor:
 
-4. Can you think of one possible improvement to make the program
-   safer?
+remove(self, value, /)
+    Remove first occurrence of value.
 
-*** Closing Reflection (10 min)
+    Raises ValueError if the value is not present.
+#+end_example
 
-Answer briefly:
+** Projects: Review of your proposals
 
-1. What is one thing you can now do that you could not do at the start
-   of the course (or not very well, or didn't know why)?
+- Tell us about your project!
+- I will give everyone individual feedback.
+- Did you answer to the assignment requirements?
+- Did you provide sources? (Included software?)
+- How much time did you spend?
+- What's your confidence index? (0-10)
+- Do you have any questions?
+- Ask any questions in the General messages or via chat
 
-   1) Make a ~std::vector~
-   2) Why using different programming languages
-   3) Computer architecture blueprints
-   4) How (or why to) use pointers
-   5) How (or why to) use iterators
-   6) Range-based loops!
+** Review: Functions and Interfaces (ch 4)
 
-2. What topic would you study next if you continued programming?
+- Summarize what you took away from this chapter?
 
-   - Machine learning (in Python!) - containers & functions -> CS540
-   - Learn how to make code interact across applications: API,
-     bash/shell computing (command-line) -> book
-   - Using containerization (Docker) -> DataCamp
-   - Website making ("Full stack web development") -> AI, Google Cloud
-     Shell
-   - Database programming (querying and analysis) -> DataLab
+  #+begin_quote
+  - *Encapsulation* — wrap repeated code into a named function
+    (e.g. =square()=)
+  - *Generalization* — replace a magic number with a parameter
+    (e.g. =square() → square(length)=)
+  - *Interface vs. implementation* — the caller needs to know what a
+    function does and what to pass it, not how it works inside
+    (e.g. calling =polygon(t, n, length)= without knowing the angle
+    math)
+  - *Refactoring* — improving a function's design after it already
+    works, without changing what it does
+  - *Development plan* — encapsulate, then generalize, then refactor: a
+    repeatable process, not a one-shot
+  - Begin with the simplest version of your problem -> add functionality
+    -> now you will begin to need function -> generalize -> refactoring
+  - *Process* becomes *workflow* when you control the development
+  - *Magic numbers* — unexplained literal values in code that should
+    usually become parameters or named constants
+  #+end_quote
 
-3. Why might programming still matter even when AI tools can generate
-   code?
+#+begin_src python :results output :exports both :session *Python* :python python3
+  print("Marcus" + " B") # print needs 0 or n arguments
+#+end_src
 
-   1) You need to know if the responses are valid or made up
-   2) AI will (by design) regress to the mean ("not creative")
-   3) Someone still has to develop AI platforms (and services)
-   4) AI has no direct access to analogue reality (1%-5% digitized)
-   5) Someone needs to maintain the infrastructure
-   6) If everybody builds stuff, who maintains that stuff
+#+RESULTS:
+: Marcus B
 
-4. What did this course teach you besides syntax?
+** PRACTICE Interface design: Rosary
 
-   - Time complexity and Big-O
-   - Difference between secular UG and Catholic (under)graduate
-     students
-   - Importance of praying (esp. Aquinas' students prayer)
-   - Lots of tools (OneCompiler, Jupyter, Google Cloud Shell)
+- Open the Colab notebook: [[https://tinyurl.com/rosary-starter][tinyurl.com/rosary-starter]]
+- Make a copy
+- Code along with me
 
-5. What advice would you give the students or me for the next course?
+** Next assignments
 
-   - Following a book would be nice (warm up and independence)
-   - Don't give me books, I don't want to read (rather try things)
-   - Instructor wishes he had scheduled shorter sessions
-   - Do the bonus programs on your own
-   - Use the custom GPT or generative AI (use carefully)
-   
-** Review: Bonus programs: ~vector~ and ~map~ (show)
+- Quiz on this week's content
+- Home programming assignment: "Full rosary!" (Refactoring)
+- DataCamp lesson on "NumPy" due
+- Read/work through chapter 5 of the textbook (Conditionals)
+- Remember midterm project is due on Friday, July 3rd
 
-- You find my solutions at GitHub: [[https://is.gd/MBGpCf][is.gd/MBGpCf]]
+** Take aways
 
-** More about ~std::map~
+- Encapsulation
+- Functions that share no logic don't need to be bundled
+- Rosary as a composition of functions
+- Coding for Catholics
+- Generalize by turning numbers into parameters
+- Change by degree (does not touch logic) vs. by kind (algorithm)
 
-More information about the STL's ~map~ class:
-→ traversal
-→ structured bindings
-→ nested containers
-→ abstraction
-→ realistic data modeling
+** Closing prayer
 
-** How did we do? (AI course result reflection)
+[[../img/o_most_holy_heart_of_jesus.png]]
 
-*** Prompt for ChatGPT:
+* DONE Week 6 - Conditionals and Recursion / NumPy
+
+| Activity                           | Min |   |       |
+|------------------------------------+-----+---+-------|
+| Opening prayer                     |   1 | x |       |
+| Post-mortem: ~remove~ vs ~len~ vs ~del~  |   5 | x |       |
+| Projects: Review (proposals)       |   5 | x |       |
+| Review: Chapter 5 / DataCamp NumPy |  35 | x |       |
+| Code along: Liturgical Prayers     |  35 | x | video |
+| Next assignments                   |   1 | x |       |
+| Checkout (takeaway)                |   5 | x |       |
+| Closing prayer                     |   1 | x |       |
+|------------------------------------+-----+---+-------|
+
+** Opening prayer
+
+[[../img/memorare_to_the_Sacred_Heart_of_Jesus.png]]
+
+** Update - housekeeping
+
+- All remaining DataCamp lessons assigned (July 3-Aug 28):
+  1) Intermediate Python: Pandas, dictionaries, loops, control flow
+  2) Lambda functions and error-handling 
+  3) Python Toolbox: iterators, comprehensions, generators
+
+- All assignments and quizzes until June 19 graded.
+
+- If you submitted and have 0 points: Share your submission.
+
+** Post-mortem: Three ways Python lets you act on a list
+
+TLDR version:
+
+Restated more precisely, the question is:
 #+begin_quote
-I want a reflection on the success of this class in the light of the
-uploaded material. The course - for undergraduate and graduate
-students, was called "introduction to programming II", a form of
-intermediate programming. Did I fulfill this promise, what do you
-think? And if not 100%, to which extent?
+~list~ has ~.remove()~ as a method - isn't ~len~ also a method, and why is
+~del~ neither a method nore a function but something else entirely?
 #+end_quote
 
-*** Answer
-| Axis                 | Covered                              | Level    | %     |
-|----------------------+--------------------------------------+----------+-------|
-| Memory Model         | Pointers, stack/heap, arithmetic     | Strong   | 90–95 |
-| Data Structures      | vector, map, STL, iterators          | Strong   | 80–85 |
-| Abstraction (OOP)    | Classes, encapsulation, constructors | Moderate | 70–80 |
-| Algorithmic Thinking | Iterators, basic complexity          | Moderate | 60–70 |
-| Integration          | Memory → STL → OOP                   | Strong   | 85–90 |
+1. ~x.remove()~ is a *method* that belongs to the ~list~ type and you call
+   it with the dot-notation.
+   
+2. ~len()~ is a *function*, an interface to the hidden function ~__len__~
+   and works for all objects that chose to implement length counting.
+   
+3. ~del~ is a built-in *keyword* that works on any object using the hidden
+   ~__delitem__~ function.
 
-| Overall Outcome     | Description                    |
-|---------------------+--------------------------------|
-| Fulfillment         | Substantially achieved         |
-| Completion Estimate | ~80–85% of expectations        |
-| Course Identity     | Systems-aware intermediate C++ |
-| Main Strength       | Memory + STL abstraction       |
-| Main Gap            | Algorithms, advanced OOP       |
+These three represent three levels of operations of different
+impact. The language could also have one function for everything, but
+the price of giving up this abstraction would be much duplication and
+waste of resources.
 
-| You Should Now Be Able To          |
-|------------------------------------|
-| Use pointers and understand memory |
-| Work with vector and map           |
-| Use iterators effectively          |
-| Write basic classes                |
-| Connect memory and abstraction     |
+Full version [[https://teams.cloud.microsoft/l/message/19:xwJm5Zf90mdM34VuFWBGyX-ofNKhU9JQ7Wbrr55uYSE1@thread.tacv2/1781961912939?tenantId=0a354b0e-92d3-45a0-8b54-df786cb36e0f&groupId=10bc88e3-971f-4b60-ae54-c90368bd6d8c&parentMessageId=1781961912939&teamName=CS%20100&channelName=General%20messages&createdTime=1781961912939][posted to General Messages, 6/20/2026]]
 
-| What Comes Next                |
-|--------------------------------|
-| Data structures (lists, trees) |
-| Algorithm design               |
-| Advanced OOP                   |
-| Systems programming            |
+** Project review: Proposals feedback
 
-| Key Takeaway                                                  |
-|---------------------------------------------------------------|
-| Bridge from basic to structured  and memory-aware programming |
+- Keep it simple, keep it stupid.
+- The purpose is the (well-documented) journey.
+- You need to provide your sources.
+- You need to own up to your specific use of AI.
+- To share: ways to work locally with Python and Jupyter
 
-Overall score: 80-82% because
-- algorithmic depth is limited
-- OOP is foundational but not complete
+** Review: Refactoring assignment
 
-** Where could you go next?
+- What was the last session about (apart from the Rosary :-)?
+  #+begin_quote
+  1. *Interface design* involves writing functions that *encapsulate*
+     algorithms (= steps to take to solve a problem)
+  2. When a function contains variable or constant numbers, it can be
+     *generalized* by replacing the numbers with variables that become
+     parameters of the function.
+  3. The user calls functions with (or without) arguments based on his
+     knowledge of the *interface* (function name and parameters).
+  4. The function body contains the *implementation*, and the user does
+     not need to know about anything except the interface.
+  5. When a program with multiple functions works, it can often be
+     optimized by *refactoring* - restructuring existing working code to
+     reduce duplication and improve reuse, without changing what the
+     program does.
+  #+end_quote
 
-- Study core data structures explicitly: linked lists, stacks, queues,
-  trees
+- The working code (test for n=1):
+  #+begin_src python :results output :exports both :session *Python* :python python3
+    # Functions definitions
+    def our_father():
+      """Print the first line of Our Father.
+      """
+      print("Our Father, who art in heaven...")
 
-- Learn algorithm design: sorting, searching, recursion, problem
-  solving patterns
+    def hail_mary():
+      """Print the first line of the Hail Mary
+           """
+      print("Hail Mary, full of grace...")
 
-- Practice time complexity: Big-O reasoning for code and data
-  structures
+    def fatima():
+      """Print the first line of the Fatima prayer
+           """
+      print("O my Jesus, forgive us our sins...")
 
-- Deepen C++ knowledge: memory management, references vs pointers,
-  RAII
+    def glory_be():
+      """Print the first line of the Glory Be
+           """
+      print("Glory be to the Father...")
 
-- Extend OOP: inheritance, polymorphism, class hierarchies
+    def decade(mystery, n=10):
+      """Pray one decade of the rosary.
 
-- Build small projects: combine STL, classes, and file I/O
+         mystery: string, the name of the mystery to announce
+           n: int, number of Hail Marys (default 10 for full decade)
+           """
+      print(mystery)
+      our_father()
+      for i in range(n):
+        hail_mary()
+      glory_be()
+      fatima()
 
-- Solve programming problems regularly: focus on translating ideas
-  into working code
+    def rosary(mysteries):
+      """Pray one set of five decades of the Rosary.
 
-*What to do not to lose the skills you gained:*
+         mysteries: list of 5 strings, one mystery name per decade
+      """
+      for mystery in mysteries:
+        decade(mystery,n=1)
 
-- Minimum (maintenance): 2 hours/week are enough to avoid forgetting
-  syntax and basic patterns
+    # main program
+    def main():
+      # Sorrowful mystery:
+      sorrowful = [
+        "The First Sorrowful Mystery: The Agony in the Garden",
+        "The Second Sorrowful Mystery: The Scourging at the Pillar",
+        "The Third Sorrowful Mystery: The Crowning with Thorns",
+        "The Fourth Sorrowful Mystery: The Carrying of the Cross",
+        "The Fifth Sorrowful Mystery: The Crucifixion and Death of Jesus",
+      ]
 
-- Recommended (retain + improve): 4 hours/week to keep mental models
-  (pointers, STL, OOP) active
+      # Pray the Sorrowful mystery:
+      rosary(sorrowful)
 
-- Strong growth: >4 hours/week if you want to move into data
-  structures/algorithms
+    # main guard
+    if __name__ == "__main__":
+      main()
+  #+end_src
 
-- Structure suggestion:
-  + 2–3 short sessions (45–90 min each)
-  + mix: coding + small problem solving
+  #+RESULTS:
+  #+begin_example
+  The First Sorrowful Mystery: The Agony in the Garden
+  Our Father, who art in heaven...
+  Hail Mary, full of grace...
+  Glory be to the Father...
+  O my Jesus, forgive us our sins...
+  The Second Sorrowful Mystery: The Scourging at the Pillar
+  Our Father, who art in heaven...
+  Hail Mary, full of grace...
+  Glory be to the Father...
+  O my Jesus, forgive us our sins...
+  The Third Sorrowful Mystery: The Crowning with Thorns
+  Our Father, who art in heaven...
+  Hail Mary, full of grace...
+  Glory be to the Father...
+  O my Jesus, forgive us our sins...
+  The Fourth Sorrowful Mystery: The Carrying of the Cross
+  Our Father, who art in heaven...
+  Hail Mary, full of grace...
+  Glory be to the Father...
+  O my Jesus, forgive us our sins...
+  The Fifth Sorrowful Mystery: The Crucifixion and Death of Jesus
+  Our Father, who art in heaven...
+  Hail Mary, full of grace...
+  Glory be to the Father...
+  O my Jesus, forgive us our sins...
+  #+end_example
 
-- Community suggestion:
-  + Stack Overflow (read and post)
-  + GitHub (read, follow, contribute)
-  + Leetcode or open.kattis.com for small exercises
-  + Start a programming project and publish it on GitHub
-    
-- What matters more than time:
-  + consistency (every week)
-  + active coding (not just reading)
-  + using =cppreference.com= extensively
+- The solution:
+  1) Rewrite =rosary()= to accept a =mystery_name= parameter
+  2) Add the remaining mysteries as lists
+  3) Write =full_rosary()= as four calls to =rosary()=
+     #+begin_example python
+     def full_rosary():
+         rosary2("--- The Joyful Mysteries ---", joyful)
+         rosary2("--- The Sorrowful Mysteries ---", sorrowful)
+         rosary2("--- The Glorious Mysteries ---", glorious)
+         rosary2("--- The Luminous Mysteries ---", luminous)
+     #+end_example
+  4) Add the four mysteries as a list of two-element lists
+  5) Rewrite =full_rosary()= as a loop over =rosary2()=
+     #+begin_example python
+     def full_rosary2():
+         for pair in mysteries:
+             rosary2(pair[0],pair[1])
+     #+end_example
+
+- If you did not manage to solve/submit this, try again, be extra
+  verbose in your notebook, and submit for 50% of the points.
+
+- We'll discuss the solution to the extension (with ~return~) next time
+  because it is a good preparation for chapter 6 (functions with
+  ~return~) - reading assignment for July 8 (not July 1).
+
+** New Assignments
+
+- *Quiz:* Conditionals, Recursion, NumPy.
+- New DataCamp lesson ~matplotlib~ (creating graphs)
+- *Work on your project* (deadline Friday July 3rd)
+- *No new book chapter* assigned this week!
+
+** Warm up coding: What's wrong with this code?
+
+- Open this notebook and make a copy:
+  [[https://tinyurl.com/conditionals-recursion-numpy][tinyurl.com/conditionals-recursion-numpy]]
+
+- Let's review textbook and DataCamp content.
+
+- Find out what's wrong with the code, then fix it.
+
+- The solution is available on GitHub (review/ folder).
+
+** Code along lecture: Liturgical Hours Revisited
+
+- Objectives:
+  1. Use =//= (integer division) and =%= (modulus) to extract components
+     from a raw integer value (e.g. hours and minutes from seconds).
+  2. Write a chained conditional (=if= / =elif= / =else=) to classify a
+     value into one of several named categories.
+  3. Apply =//= and =%= element-wise across a NumPy array.
+  4. Construct a boolean mask from a NumPy array and use it to subset
+     the array.
+  5. Combine two boolean conditions on a NumPy array using =&=.
+
+- Open the starter notebook and code along:
+  [[https://tinyurl.com/liturgical-prayers-starter][tinyurl.com/liturgical-prayers-starter]]
+
+- The solution notebook is available on GitHub.
+
+** Take aways today?
+
+- When recursion is valuable (you need a recursive problem)
+- There is a modifiable system parameter for maximum recursion
+- Fractals are exemplary recursive structures
+- Guessing (or knowing) error codes (to build guardrails)
+
+** Closing prayer
+
+[[../img/o_most_holy_heart_of_jesus.png]]
+
+* DONE Week 7 - Matplotlib - Midterm project 
+
+** Opening prayer
+
+LITANY OF THE MOST PRECIOUS BLOOD ([[https://www.usccb.org/prayers/litany-most-precious-blood][usccb.org]])
+
+ Lord, have mercy  *Lord, have mercy*
+ Christ, have mercy  *Christ, have mercy*
+ Lord, have mercy  *Lord, hav mercy*
+       
+ God our Father in heaven  *Have mercy on us*
+ God the Son, Redeemer of the world  *Have mercy on us*
+ God the Holy Spirit  *Have mercy on us*
+ Holy Trinity, one God  *Have mercy on us*
+ 
+ Blood of Christ, only Son of the Father  *Be our salvation*
+ Blood of Christ, incarnate Word  *Be our salvation*
+ Blood of Christ, of the new and eternal covenant  *Be our salvation*
+ Blood of Christ, that spilled to the ground  *Be our salvation*
+ Blood of Christ, that flowed at the scourging  *Be our salvation*
+ Blood of Christ, dripping from the thorns  *Be our salvation*
+ Blood of Christ, shed on the cross  *Be our salvation*
+ Blood of Christ, the price of our redemption  *Be our salvation*
+ Blood of Christ, our only claim to pardon  *Be our salvation*
+ Blood of Christ, our blessing cup  *Be our salvation*
+ Blood of Christ, in which we are washed  *Be our salvation*
+ Blood of Christ, torrent of mercy  *Be our salvation*
+ Blood of Christ, that overcomes evil  *Be our salvation*
+ Blood of Christ, strength of the martyrs  *Be our salvation*
+ Blood of Christ, endurance of the saints  *Be our salvation*  
+ Blood of Christ, that makes the barren fruitful  *Be our salvation*
+ Blood of Christ, protection of the threatened  *Be our salvation*  
+ Blood of Christ, comfort of the weary  *Be our salvation*  
+ Blood of Christ, solace of the mourner  *Be our salvation*  
+ Blood of Christ, hope of the repentant  *Be our salvation*  
+ Blood of Christ, consolation of the dying  *Be our salvation*  
+ Blood of Christ, our peace and refreshment  *Be our salvation*
+ Blood of Christ, our pledge of life  *Be our salvation*  
+ Blood of Christ, by which we pass to glory  *Be our salvation*
+ Blood of Christ, most worthy of honor  *Be our salvation*
+ 
+ Lamb of God, you take away the sins of the world  *Have mercy on us*
+ Lamb of God, you take away the sins of the world  *Have mercy on us*  
+ Lamb of God, you take away the sins of the world  *Have mercy on us*
+ 
+ Lord, you redeemed us by your blood.  *You have made us a kingdom to serve our God.*
+
+ *Amen*.
+
+** Updates - housekeeping
+
+- The July 3 deadline is for an (ungraded) prototype.
+
+- Rather than submit this for my eyes only, submit to the General
+  Channel so that everyone can see your results and comment on them.
+
+- The last week will be presentation week. You have max 10-15 minutes
+  to present followed by 5 minutes discussion.
+
+- 10-15 minutes is very tight. You have to rehearse your presentation
+  well.
+
+- Please reserve 2 hours for the last class so that we can accommodate
+  everyone.
+
+- *Any questions on the projects?*
+
+** Review Quiz 4
+
+#+attr_html: :width 600px :float nil: 
+[[../img/quiz_4_import_numpy.png]]
+
+The reasons for preferring ~import numpy~:
+1. Namespace pollution (=array= name collision likely)
+2. Readability (=array= from different packages)
+
+#+attr_html: :width 600px :float nil: 
+[[../img/quiz_4_import.png]]
+
+Once you ~import~ the ~array~ module on its own, the dot notation will no
+longer work - =array= now is on its own. But you want it, even though
+it's more to write.
+
+#+attr_html: :width 600px :float nil: 
+[[../img/quiz_4_index().png]]
+
+#+begin_src python :results output :exports both :session *Python* :python python3 
+  spam = [23, 45, 67]
+  print(spam.index(45))
+  print(spam[1])
+#+end_src
+
+#+RESULTS:
+: 1
+: 45
+
+** Review Quiz 5
+
+#+attr_html: :width 600px :float nil: 
+[[../img/quiz_5_composition.png]]
+
+Encapsulation means that whatever was available everywhere before
+(global scope) is now hidden in the function implementation (local
+scope), and you can only get to it through the function interface.
+
+#+attr_html: :width 600px :float nil: 
+[[../img/quiz_5_generalization.png]]
+
+Making a function call another function is called composition. It
+means building more complex behavior out of simpler pieces (like a
+composition in music).
+
+#+attr_html: :width 600px :float nil: 
+[[../img/quiz_5_magic_number.png]]
+
+A named constant is typically a global object.
+
+#+attr_html: :width 400px :float nil: 
+[[../img/quiz_5_default_parameter.png]]
+
+In =decade(n=10)=, n=10 is the default for =n= irrespective what goes on
+inside the function =decade= (difference interface vs. implementation).
+
+#+attr_html: :width 400px :float nil: 
+[[../img/quiz_5_docstring.png]]
+
+Think about why people call the ~help()~ function.
+
+** New assignments
+
+- Home assignment: plot the pilgrim's path "Camino de Santiago"
+- Quiz on Matplotlib
+- Read chapter 6 in the textbook (functions with ~return~)
+- Complete the next DataCamp chapter "Dictionaries & Pandas"
+
+** Matplotlib code-along and practice
+
+- Code along lecture: We're going to go through the creation of the
+  GapMinder plot as shown in DataCamp.
+
+- Open the starter file and code along: [[https://tinyurl.com/matplotlib-ipynb][tinyurl.com/matplotlib-ipynb]]
+
+- Full file is available in GitHub (6_matplotlib.org).
+
+- I will share a video with the remainder of the lecture if we don't
+  get through it.
+
+** Take aways
+
+- ~pandas.info()~ for structural info on DataFrame
+- The plot type depends (mostly) on the shape/nature of your data
+- ~alpha~ value to control opacity (~**kwargs~)
+- Changing the colors with a colormap (aka dictionary)
+
+** Closing prayer
+
+Let us pray.
+
+O God, who by the Precious Blood of your Only Begotten Son
+have redeemed the whole world,
+preserve in us the work of your mercy,
+so that, ever honoring the mystery of our salvation,
+we may merit to obtain its fruits.
+Through Christ our Lord.
+
+*Amen.*
+
+* Week 8 - Function ~return~ values, dictionaries and DataFrames
+
+| Activity                                                           | Min |
+|--------------------------------------------------------------------+-----|
+| Opening prayer                                                     |   1 |
+| Hindsight is 20/20: choice of book                                 |   5 |
+| Review: Home assignment "Camino de Santiago"                       |   5 |
+| Review: Textbook ch. 6 - What's wrong with this code               |   6 |
+| Code along: return values, pure functions, incremental development |  65 |
+| New assignments                                                    |   1 |
+| Checkout (takeaway)                                                |   5 |
+| Closing prayer                                                     |   1 |
+|--------------------------------------------------------------------+-----|
+
+** Opening Prayer
+** Hindsight is 20/20 - Choice of book
+
+*Question: How has your reading experience in this course been so far?*
+
+My view now:
+
+- I don't think that "ThinkPython" was the best choice for a textbook.
+
+- I don't like the flow of any of the chapters or the examples.
+
+- At least it's free (online anyway) and comes with notebooks.
+
+- Alas, it's too late to do anything about it except stop it.
+
+- For absolute beginners, "[[https://learncodethehardway.com/client/#/product/learn-python-the-hard-way-5e-2023/][Learn Python the Hard Way]]" is better.
+
+- It's not expensive and comes with a digital copy & videos for $22.
+
+- For those who already know a little programming "Python Crash
+  Course" (2023) may be better ($20-$30)
+
+- I also like the (free) "Automate the Boring Stuff with Python".
+
+- For the scientifically minded: "Intro to Programming w/Python"
+  (2016) by Sedgewick et al. (heavy on algorithms/data structures)
+
+- Of course, you don't really need a book unless you like books
+
+** Review: Home assignment "Camino de Santiago"
+
+- This was a parallel to last week's lecture & code along.
+  
+- You can find a well commented solution in Colab:
+  [[https://tinyurl.com/pilgrim-path-solution][tinyurl.com/pilgrim-path-solution]]
+
+- If you don't submit an assignment on time, you lose 50% of the
+  points. But you should still try to solve it.
+
+** New assignments
+
+- Home assignment: Incremental development (Pilgrim walking days)
+- Quiz on DataCamp's "Dictionaries & Pandas" and today's lecture
+
+** Review: Textbook ch. 6 - What's wrong with this code?
+
+Find out if you actually read the chapter — three "what's wrong with
+this code" questions, each targeting a specific pitfall the chapter
+calls out by name.
+
+- What does this print, and why?
+  #+begin_src python :results output :exports both :session *Python* :python python3 
+  def sign(n):
+      if n > 0:
+          return "positive"
+      elif n < 0:
+          return "negative"
+
+  print(sign(0))
+  #+end_src
+
+  #+RESULTS:
+  : None
+
+  #+begin_quote
+  Prints ~None~ — no branch catches =n == 0=, so the function falls off
+  the end and implicitly returns ~None~.
+  #+end_quote
+
+- This crashes. What's the actual bug?
+  #+begin_src python :results output :exports both :session *Python* :python python3 
+  def double(n):
+      print(n * 2)
+
+  result = double(5)
+  print(result + 1)
+  #+end_src
+  #+begin_quote
+  ~double()~ never ~return~s, so =result= is ~None~; =None + 1= raises a
+  ~TypeError~. ~print()~ displays a value, it doesn't hand it back to the
+  caller.
+  #+end_quote
+
+- This works, but the chapter would flag one line as bad style. Which
+  line, and why?
+  #+begin_src python :results output :exports both :session *Python* :python python3 
+  def is_even(n):
+      return n % 2 == 0
+
+  def describe(n):
+      if is_even(n) == True:
+          return "even"
+      else:
+          return "odd"
+  #+end_src
+  #+begin_quote
+  =if is_even(n) == True:= — =is_even(n)= already /is/ a Boolean, so
+  comparing it to ~True~ is redundant; should just be =if is_even(n):=.
+  #+end_quote
+
+** Code along lecture: functions with ~return~, pure functions, recursion
+
+- Open the Colab starter file: [[https://tinyurl.com/return-ipynb][tinyurl.com/return-ipynb]]
+
+- Make a copy and save it
+
+- Code along with me and save it at the end
+
+- The full solution is on GitHub.
+
+** Take aways
+
+- Use try...except instead of raise
+- Use assert to write a one-line test for a function return
+- Doing more coding with return
+- Changing void to return 
+
+** Closing Prayer
+
+
+* Footnotes
+
+[fn:1] If programming makes you feel passionate, good for you. This is
+a problem-solving activity, and it comes with some emotions, sure, but
+programmers usually don't talk about these because doing that doesn't
+really serve any purpose and is rather likely to reduce your focus. In
+particular do *not* "think of the computer as an employee," as the
+author suggests. Instead, consider it a tool that you're trying to
+master. Getting lost in emotions when you fail to hammer a nail into a
+wall gets you nowhere IMHO (and I'm saying this as a trained coach
+and psychotherapist).
+
